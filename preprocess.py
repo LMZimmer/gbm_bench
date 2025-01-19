@@ -71,9 +71,10 @@ if __name__ == "__main__":
             tumor_mask_file=tumor_outfile,
             outdir=healthy_mask_dir)
 
+    tissue_seg_dir = os.path.join(os.path.dirname(nifti_dir), "tissue_segmentation")
     run_tissue_seg_registration(
             t1_file=os.path.join(preprocessed_dir, "t1c_bet_normalized.nii.gz"),
-            outdir=os.path.join(preprocessed_dir, "tissue_segmentation.nii.gz"),
+            outdir=tissue_seg_dir,
             mask_dir=healthy_mask_dir)
 
     print("Tissue segmentation complete.")
