@@ -1,5 +1,6 @@
 import argparse
 import numpy as np
+import nibabel as nib
 import os
 import subprocess
 import glob
@@ -63,7 +64,20 @@ def run_tissue_seg_registration(t1_file, outdir, mask_dir=None):
 
     aff, header = nib.load(t1_file).affine, nib.load(t1_file).header
     seg = nib.Nifti1Image(warped_tissues.numpy(), header=header, affine=aff)
-    nib.save(seg, os.path.join(outdir, "tissue_seg_reg.nii.gz"))
+    nib.save(seg, os.path.join(outdir, "tissue_seg.nii.gz"))
+
+    # 1:csf, 2:gm, 3:wm
+    csf = (warped_tissues.numpy() == 1.).astype(np.int32)
+    gm = (warped_tissues.numpy() == 2.).astype(np.int32)
+    wm = (warped_tissues.numpy() == 3.).astype(np.int32)
+
+    csf_nifti = nib.Nifti1Image(csf, header=header, affine=aff)
+    gm_nifti = nib.Nifti1Image(gm, header=header, affine=aff)
+    wm_nifti = nib.Nifti1Image(wm, header=header, affine=aff)
+
+    nib.save(csf_nifti, os.path.join(outdir, "csf.nii.gz"))
+    nib.save(gm_nifti, os.path.join(outdir, "gm.nii.gz"))
+    nib.save(wm_nifti, os.path.join(outdir, "wm.nii.gz"))
 
 
 if __name__ == "__main__":
