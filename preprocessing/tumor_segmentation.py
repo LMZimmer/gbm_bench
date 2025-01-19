@@ -1,19 +1,20 @@
 import argparse
 import os
-from brats import AdultGliomaSegmenter
-from brats.utils.constants import AdultGliomaAlgorithms
+from brats import AdultGliomaPreTreatmentSegmenter
+from brats.constants import AdultGliomaPreTreatmentAlgorithms
 
 
-def run_brats(t1, t1c, t2, flair, outfile):
-    segmenter = AdultGliomaSegmenter(
-            algorithm=AdultGliomaAlgorithms.BraTS23_1,
-            cuda_devices=CUDA_DEVICES
+def run_brats(t1, t1c, t2, flair, outfile, cuda_device="2"):
+
+    segmenter = AdultGliomaPreTreatmentSegmenter(
+            algorithm=AdultGliomaPreTreatmentAlgorithms.BraTS23_1,
+            cuda_devices=cuda_device
             )
 
     segmenter.infer_single(
             t1n=t1,
             t1c=t1c,
-            t2=t2,
+            t2w=t2,
             t2f=flair,
             output_file=outfile)
 
@@ -31,4 +32,4 @@ if __name__ == "__main__":
     os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 
 
-    run_brats(t1, t1c, t2, flair, outfile)
+    run_brats(t1, t1c, t2, flair, outfile, cuda_device="2")

@@ -1,0 +1,86 @@
+import argparse
+import numpy as np
+import os
+import subprocess
+import glob
+import nibabel as nib
+from pathlib import Path
+from brainles_preprocessing.modality import Modality, CenterModality
+from brainles_preprocessing.normalization.percentile_normalizer import (
+    PercentileNormalizer,
+)
+from brainles_preprocessing.preprocessor import Preprocessor
+from brainles_preprocessing.registration import ANTsRegistrator
+from typing import List, Optional
+import matplotlib.pyplot as plt
+import sys
+import ants
+
+
+def generate_healthy_brain_mask(brain_mask_file, tumor_mask_file, outdir):
+    #TODO: better implementation via a[b > 0] = 0
+    brain_nifti = nib.load(brain_mask_file)
+    aff, header = brain_nifti.affine, brain_nifti.header
+    m1 = brain_nifti.get_fdata()
+    m2 = (nib.load(tumor_mask_file).get_fdata() > 0).astype(np.float32)
+    healthy_mask = ((m1 - m2) > 0).astype(np.float32)
+    healthy_mask_nifti = nib.Nifti1Image(healthy_mask, aff, header)
+    nib.save(healthy_mask_nifti, outdir)
+
+
+def run_tissue_seg_registration(t1_file, outdir, mask_dir=None):
+    sri_42_atlas = "/home/home/lucas/bin/miniconda3/envs/brainles/lib/python3.10/site-packages/brainles_preprocessing/registration/atlas/t1_skullstripped_brats_space.nii"
+    sri_42_tissues = "/home/home/lucas/data/ATLAS/SRI-24/tissues.nii"
+
+    matrix_dir = os.path.join(outdir, "affine.mat")
+    log_dir = os.path.join(outdir, "tissue_affine_reg.log")
+
+    if mask_dir is not None:
+        mask = ants.image_read(mask_dir)
+
+    registration_params = {
+            "type_of_transform": "Affine",
+            "mask": mask
+            }
+    registrator = ANTsRegistrator(registration_params=registration_params)
+    registrator.register(
+            fixed_image_path=t1_file,
+            moving_image_path=sri_42_atlas,
+            transformed_image_path=os.path.join(outdir, "atlas_deformable.nii.gz"),
+            matrix_path=matrix_dir,
+            log_file_path=log_dir,
+            )
+
+    fixed = ants.image_read(t1_file)
+    moving = ants.image_read(sri_42_tissues)
+    #moving = ants.image_read(sri_42_atlas)
+
+    warped_tissues = ants.apply_transforms(
+            fixed=fixed,
+            moving=moving,
+            transformlist=[matrix_dir]
+            )
+
+    aff, header = nib.load(t1_file).affine, nib.load(t1_file).header
+    seg = nib.Nifti1Image(warped_tissues.numpy(), header=header, affine=aff)
+    nib.save(seg, os.path.join(outdir, "tissue_seg_reg.nii.gz"))
+
+
+if __name__ == "__main__":
+    # python 4_tissue_segmentation.py -t1 /home/home/lucas/scripts/test/stripped/t1c_bet_normalized.nii.gz -brain_mask /home/home/lucas/scripts/test/stripped/t1c_bet_mask.nii.gz -tumor_mask /home/home/lucas/scripts/test/segmentations/brats_segmentation.nii.gz -outdir /home/home/lucas/scripts/test/segmentations
+    # python 4_tissue_segmentation.py -t1 /home/home/lucas/data/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0001/0/RHUH-0001_0_t1.nii.gz -brain_mask /home/home/lucas/inverse_tumor_mask.nii.gz -tumor_mask /home/home/lucas/data/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0001/0/RHUH-0001_0_segmentations.nii.gz -outdir /home/home/lucas/scripts/test/segmentations
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-t1", type=str, help="Path to T1 nifti.")
+    parser.add_argument("-brain_mask", type=str, help="Path to brain mask.")
+    parser.add_argument("-tumor_mask", type=str, help="Path to tumor mask.")
+    parser.add_argument("-outdir", type=str, help="Desired file path for output segmentation.")
+    args = parser.parse_args()
+
+    os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+
+
+    print("Generating healthy brain mask...")
+    healthy_mask_dir = os.path.join(args.outdir, "healthy_brain_mask.nii.gz")
+    generate_healthy_brain_mask(args.brain_mask, args.tumor_mask, healthy_mask_dir)
+
+    run_tissue_seg_registration(t1_file=args.t1, outdir=args.outdir, mask_dir=healthy_mask_dir)
