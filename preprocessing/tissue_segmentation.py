@@ -41,7 +41,8 @@ def run_tissue_seg_registration(t1_file, outdir, mask_dir=None):
 
     registration_params = {
             "type_of_transform": "Affine",
-            "mask": mask
+            "mask": mask,
+            "reg_iterations": (50, 30, 20) #TODO: tune this parameter
             }
     registrator = ANTsRegistrator(registration_params=registration_params)
     registrator.register(

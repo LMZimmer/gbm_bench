@@ -5,38 +5,34 @@ from preprocessing.tumor_segmentation import run_brats
 from preprocessing.tissue_segmentation import generate_healthy_brain_mask, run_tissue_seg_registration
 
 
-if __name__ == "__main__":
-    #python preprocess.py
+def preprocess_dicom(t1, t1c, t2, flair, gpu_device="2"):
+    os.environ["CUDA_VISIBLE_DEVICES"] = gpu_device
 
-    os.environ["CUDA_VISIBLE_DEVICES"]="2"
-
-
-    # Step 1: Convert to nifti
+    # Step 1: DICOM to NifTi conversion
     print("Converting DICOM to NifTi...")
     dicom_modalities = {
-            "t1" : "test_data/exam1/t1",
-            "t1c" : "test_data/exam1/t1c",
-            "t2" : "test_data/exam1/t2",
-            "flair" : "test_data/exam1/flair"
+            "t1" : t1,
+            "t1c" : t1c,
+            "t2" : t2,
+            "flair" : flair
             }
 
     for modality_name, dicom_folder in dicom_modalities.items():
         out_dir = os.path.join(os.path.dirname(dicom_folder), "preprocessing")
         nifti_dir = os.path.join(out_dir, "nifti_conversion")
-        
+
         niftiConvert(
                 inputDir=dicom_folder,
                 exportDir=nifti_dir,
                 fileName=modality_name
                 )
-    
-        print("NifTi conversion complete.")
 
+        print("NifTi conversion complete.")
 
     # Step 2: Normalize, co-registrate, skull strip
     print("Running normalization, co-registration and skull stripping...")
     preprocessed_dir = os.path.join(out_dir, "skull_stripped")
-    
+
     run_preprocessing(
             t1=os.path.join(nifti_dir, "t1.nii.gz"),
             t1c=os.path.join(nifti_dir, "t1c.nii.gz"),
@@ -44,16 +40,15 @@ if __name__ == "__main__":
             flair=os.path.join(nifti_dir, "flair.nii.gz"),
             outdir=preprocessed_dir
             )
-    
-    print("Skull stripping complete.")
 
+    print("Skull stripping complete.")
 
     # Step 3: Segment tumor
     print("Segmenting tumor...")
     tumor_outdir = os.path.join(out_dir, "tumor_segmentation")
     tumor_outfile = os.path.join(tumor_outdir, "tumor_seg.nii.gz")
     os.makedirs(tumor_outdir, exist_ok=True)
-    
+
     run_brats(
             t1=os.path.join(preprocessed_dir, "t1_bet_normalized.nii.gz"),
             t1c=os.path.join(preprocessed_dir, "t1c_bet_normalized.nii.gz"),
@@ -62,15 +57,14 @@ if __name__ == "__main__":
             outfile=tumor_outfile,
             cuda_device="2"
             )
-    
-    print("Tumor segmentation complete.")
 
+    print("Tumor segmentation complete.")
 
     # Step 4: Segment tissue
     print("Segmenting tissue...")
     brain_mask_dir = os.path.join(preprocessed_dir, "t1c_bet_mask.nii.gz")
     healthy_mask_dir = os.path.join(tumor_outdir, "healthy_brain_mask.nii.gz")
-    
+
     generate_healthy_brain_mask(
             brain_mask_file=brain_mask_dir,
             tumor_mask_file=tumor_outfile,
@@ -83,3 +77,16 @@ if __name__ == "__main__":
             mask_dir=healthy_mask_dir)
 
     print("Tissue segmentation complete.")
+
+
+if __name__ == "__main__":
+    # Example:
+    # python preprocess.py
+
+    preprocess_dicom(
+            t1="test_data/exam1/t1",
+            t1c="test_data/exam1/t1c",
+            t2="test_data/exam1/t2",
+            flair="test_data/exam1/flair",
+            gpu_device="2"
+            )
