@@ -1,4 +1,5 @@
 import argparse
+import ants
 import numpy as np
 import nibabel as nib
 import os
@@ -29,45 +30,42 @@ def generate_healthy_brain_mask(brain_mask_file, tumor_mask_file, outdir):
     nib.save(healthy_mask_nifti, outdir)
 
 
-def run_tissue_seg_registration(t1_file, outdir, mask_dir=None):
+def run_tissue_seg_registration(t1_file, outdir, mask_dir):
+    # TODO: Make the atlas path an argument
     sri_42_atlas = "/home/home/lucas/bin/miniconda3/envs/brainles/lib/python3.10/site-packages/brainles_preprocessing/registration/atlas/t1_skullstripped_brats_space.nii"
     sri_42_tissues = "/home/home/lucas/data/ATLAS/SRI-24/tissues.nii"
 
     matrix_dir = os.path.join(outdir, "affine.mat")
     log_dir = os.path.join(outdir, "tissue_affine_reg.log")
+    mask = ants.image_read(mask_dir)
 
-    if mask_dir is not None:
-        mask = ants.image_read(mask_dir)
-
-    registration_params = {
-            "type_of_transform": "Affine",
-            "mask": mask,
-            "reg_iterations": (50, 30, 20) #TODO: tune this parameter
-            }
-    registrator = ANTsRegistrator(registration_params=registration_params)
-    registrator.register(
-            fixed_image_path=t1_file,
-            moving_image_path=sri_42_atlas,
-            transformed_image_path=os.path.join(outdir, "atlas_deformable.nii.gz"),
-            matrix_path=matrix_dir,
-            log_file_path=log_dir,
+    os.makedirs(outdir, exist_ok=True)
+    t1_patient = ants.image_read(t1_file)
+    t1_atlas = ants.image_read(sri_42_atlas)
+    
+    # Register atlas to patient deformably
+    reg = ants.registration(
+            fixed=t1_patient,
+            moving=t1_atlas,
+            type_of_transform="antsRegistrationSyN[s,2]",
+            mask=mask,
+            outprefix=os.path.join(outdir, '')
             )
+    transforms_path = reg['fwdtransforms']
 
-    fixed = ants.image_read(t1_file)
-    moving = ants.image_read(sri_42_tissues)
-    #moving = ants.image_read(sri_42_atlas)
-
+    # Transform atlas tissues deformably
+    tissues_atlas = ants.image_read(sri_42_tissues)
     warped_tissues = ants.apply_transforms(
-            fixed=fixed,
-            moving=moving,
-            transformlist=[matrix_dir]
+            fixed=t1_patient,
+            moving=tissues_atlas, 
+            transformlist=transforms_path,
+            interpolator="nearestNeighbor"
             )
-
-    aff, header = nib.load(t1_file).affine, nib.load(t1_file).header
-    seg = nib.Nifti1Image(warped_tissues.numpy(), header=header, affine=aff)
-    nib.save(seg, os.path.join(outdir, "tissue_seg.nii.gz"))
+    warped_tissues_nifti = warped_tissues.to_nibabel()
+    nib.save(warped_tissues_nifti, os.path.join(outdir, "tissue_seg.nii.gz"))
 
     # 1:csf, 2:gm, 3:wm
+    header, aff = warped_tissues_nifti.header, warped_tissues_nifti.affine
     csf = (warped_tissues.numpy() == 1.).astype(np.int32)
     gm = (warped_tissues.numpy() == 2.).astype(np.int32)
     wm = (warped_tissues.numpy() == 3.).astype(np.int32)
