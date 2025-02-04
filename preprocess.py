@@ -83,10 +83,15 @@ if __name__ == "__main__":
     # Example:
     # python preprocess.py
 
+    """
     preprocess_dicom(
             t1="test_data/exam1/t1",
             t1c="test_data/exam1/t1c",
             t2="test_data/exam1/t2",
             flair="test_data/exam1/flair",
             gpu_device="2"
+            )
+    """
+
+    preprocess_nifti(
             )
