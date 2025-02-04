@@ -53,10 +53,8 @@ def niftiConvert(inputDir, exportDir, fileName):
 
 
 if __name__ == "__main__":
-    # python 1_dicom_2_nifty.py -inputDir /home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-25-2015-NA-RM\ CEREBRAL6NEURNAV-21029/5.000000-Ax\ T1\ FSE-08383 -exportDir /home/home/lucas/scripts/test/raw -fileName t1_raw
-    # python 1_dicom_2_nifty.py -inputDir /home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-25-2015-NA-RM\ CEREBRAL6NEURNAV-21029/12.000000-Ax\ T1\ 3d\ NEURONAVEGADOR-55128 -exportDir /home/home/lucas/scripts/test/raw -fileName t1c_raw
-    # python 1_dicom_2_nifty.py -inputDir /home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-25-2015-NA-RM\ CEREBRAL6NEURNAV-21029/6.000000-Ax\ T2\ FRFSE-46501 -exportDir /home/home/lucas/scripts/test/raw -fileName t2_raw
-    # python 1_dicom_2_nifty.py -inputDir /home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-25-2015-NA-RM\ CEREBRAL6NEURNAV-21029/3.000000-Ax\ T2\ FLAIR-62646 -exportDir /home/home/lucas/scripts/test/raw -fileName flair_raw
+    # python dicom_to_nifti.py -inputDir /home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-25-2015-NA-RM\ CEREBRAL6NEURNAV-21029/12.000000-Ax\ T1\ 3d\ NEURONAVEGADOR-55128 -exportDir /home/home/lucas/scripts/test/raw -fileName t1c_raw
+
     parser = argparse.ArgumentParser()
     parser.add_argument("-inputDir", type=str, help="Path to directory containing DICOMs.")
     parser.add_argument("-exportDir", type=str, help="Desired directory for output.")
