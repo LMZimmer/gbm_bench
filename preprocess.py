@@ -83,7 +83,6 @@ if __name__ == "__main__":
     # Example:
     # python preprocess.py
 
-    """
     preprocess_dicom(
             t1="test_data/exam1/t1",
             t1c="test_data/exam1/t1c",
@@ -91,7 +90,6 @@ if __name__ == "__main__":
             flair="test_data/exam1/flair",
             gpu_device="2"
             )
-    """
-
-    preprocess_nifti(
-            )
+    
+    #preprocess_nifti(
+    #        )

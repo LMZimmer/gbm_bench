@@ -30,14 +30,14 @@ def generate_healthy_brain_mask(brain_mask_file, tumor_mask_file, outdir):
     nib.save(healthy_mask_nifti, outdir)
 
 
-def run_tissue_seg_registration(t1_file, outdir, mask_dir):
+def run_tissue_seg_registration(t1_file, outdir, healthy_mask_dir, brain_mask_dir, refit_brain=False):
     # TODO: Make the atlas path an argument
     sri_42_atlas = "/home/home/lucas/bin/miniconda3/envs/brainles/lib/python3.10/site-packages/brainles_preprocessing/registration/atlas/t1_skullstripped_brats_space.nii"
     sri_42_tissues = "/home/home/lucas/data/ATLAS/SRI-24/tissues.nii"
 
     matrix_dir = os.path.join(outdir, "affine.mat")
     log_dir = os.path.join(outdir, "tissue_affine_reg.log")
-    mask = ants.image_read(mask_dir)
+    healthy_mask = ants.image_read(healthy_mask_dir)
 
     os.makedirs(outdir, exist_ok=True)
     t1_patient = ants.image_read(t1_file)
@@ -48,7 +48,7 @@ def run_tissue_seg_registration(t1_file, outdir, mask_dir):
             fixed=t1_patient,
             moving=t1_atlas,
             type_of_transform="antsRegistrationSyN[s,2]",
-            mask=mask,
+            mask=healthy_mask,
             outprefix=os.path.join(outdir, '')
             )
     transforms_path = reg['fwdtransforms']
@@ -61,7 +61,29 @@ def run_tissue_seg_registration(t1_file, outdir, mask_dir):
             transformlist=transforms_path,
             interpolator="nearestNeighbor"
             )
-    warped_tissues_nifti = warped_tissues.to_nibabel()
+
+    #TODO:
+    # Refit tissue mask on the full brain mask, if desired
+    if refit_brain:
+        brain_mask = ants.image_read(brain_mask_dir)
+        tissue_mask = ants.get_mask(warped_tissues, low_thresh=0.5)
+        reg2 = ants.registration(
+                fixed=brain_mask,
+                moving=tissue_mask,
+                type_of_transform="antsRegistrationSyN[s,2]",
+                outprefix=os.path.join(outdir, '')
+                )
+        transforms_path = reg['fwdtransforms']
+
+        tissues_atlas = ants.image_read(sri_42_tissues)
+        warped_tissues = ants.apply_transforms(
+                fixed=,
+                moving=tissues_atlas,
+                transformlist=transforms_path,
+                interpolator="nearestNeighbor"
+                )
+    
+        warped_tissues_nifti = warped_tissues.to_nibabel()
     nib.save(warped_tissues_nifti, os.path.join(outdir, "tissue_seg.nii.gz"))
 
     # 1:csf, 2:gm, 3:wm
@@ -96,4 +118,4 @@ if __name__ == "__main__":
     healthy_mask_dir = os.path.join(args.outdir, "healthy_brain_mask.nii.gz")
     generate_healthy_brain_mask(args.brain_mask, args.tumor_mask, healthy_mask_dir)
 
-    run_tissue_seg_registration(t1_file=args.t1, outdir=args.outdir, mask_dir=healthy_mask_dir)
+    run_tissue_seg_registration(t1_file=args.t1, outdir=args.outdir, healthy_mask_dir=healthy_mask_dir, brain_mask_dir=args.brain_mask)
