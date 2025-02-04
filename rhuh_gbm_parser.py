@@ -11,6 +11,14 @@ from preprocess import preprocess_dicom
 # {'t1c': '6.000000-Obl T1 3D FSPGR IR-40131', 't2': '3.000000-Ax FRFSE T2-30196', 'diffusion': '5.000000-AX DIFUSION B 1500-89195', 'flair': '2.000000-Ax T2 FLAIR ASSET-88274'}
 # ['2.000000-Obl T1 3D FSPGR IR IV-86944', '3.000000-Ax FRFSE T2-30196', '5.000000-AX DIFUSION B 1500-89195', '2.000000-Ax T2 FLAIR ASSET-88274', '6.000000-Obl T1 3D FSPGR IR-40131'] --> 2 is t1c, 6 is t1
 
+#ValueError: Only found 4 modalities for exam /home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/10-08-2013-NA-RM CEREBRO-16983 
+# {'t2': '/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/10-08-2013-NA-RM CEREBRO-16983/6.000000-Ax T2 FRFSE-45087', 'flair': '/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/10-08-2013-NA-RM CEREBRO-16983/3.000000-Sag T1 Flair-58836', 'diffusion': '/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/10-08-2013-NA-RM CEREBRO-16983/5.000000-DIFUSION 2000b-92733', 't1c': '/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/10-08-2013-NA-RM CEREBRO-16983/11.000000-SAG T1 3D C-32615'} 
+# ['6.000000-Ax T2 FRFSE-45087', '4.000000-Ax T2 FLAIR-41390', '5.000000-DIFUSION 2000b-92733', '3.000000-Sag T1 Flair-58836', '11.000000-SAG T1 3D C-32615'] --> t1 flair
+
+#ValueError: Only found 4 modalities for exam /home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/11-19-2017-NA-RM CEREBRAL-03097 
+# {'t2': '/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/11-19-2017-NA-RM CEREBRAL-03097/8.000000-Ax T2 FSE Prop.-81294', 't1': '/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/11-19-2017-NA-RM CEREBRAL-03097/10.000000-Ax T1 FSE C-28409', 'diffusion': '/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/11-19-2017-NA-RM CEREBRAL-03097/4.000000-Ax Difusion 1000-2000b-22482', 'flair': '/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/11-19-2017-NA-RM CEREBRAL-03097/3.000000-Ax T2 FLAIR-03821'} 
+# ['8.000000-Ax T2 FSE Prop.-81294', '6.000000-Ax T1 FSE-40589', '10.000000-Ax T1 FSE C-28409', '4.000000-Ax Difusion 1000-2000b-22482', '3.000000-Ax T2 FLAIR-03821'] --> this t1 and t1c only differ by a c..., could add a check that one modality cant be picked more than once but its a nice check 
+
 
 def rhuh_sort_func(exam_dir):
     date = os.path.basename(exam_dir).replace("-","")
@@ -24,16 +32,16 @@ def find_modalities(exam_dir):
 
     for d in sequence_dirs:
         d_lower = d.lower().replace("-", " ")
-        if "t1 se" in d_lower or "t1 fse" in d_lower or "92851" in d_lower or "24651" in d_lower or "40131" in d_lower:
-            modalities["t1"] = os.path.join(exam_dir, d)
-            continue
-        if "flair" in d.lower():
+        if "flair" in d.lower() and not "t1" in d.lower():
             modalities["flair"] = os.path.join(exam_dir, d)
             continue
-        if "difusion" in d.lower() or "diffusion" in d.lower() or "dwi" in d.lower():
+        if any([pattern in d_lower for pattern in ["t1 se", "t1 fse", "t1wse", "t1 flair", "92851", "24651", "40131"]]):
+            modalities["t1"] = os.path.join(exam_dir, d)
+            continue
+        if any([pattern in d_lower for pattern in ["dwi", "difusion", "diffusion"]]):
             modalities["diffusion"] = os.path.join(exam_dir, d)
             continue
-        if "t2" in d.lower(): #and "se" in d.lower():
+        if "t2" in d.lower():
             modalities["t2"] = os.path.join(exam_dir, d)
             continue
         if "t1" in d_lower or "3d" in d_lower:
@@ -69,10 +77,10 @@ if __name__=="__main__":
     args = parser.parse_args()
     
     preop_exams = rhuh_parse_exams(args.patient_dir, preop=True)
-    print(f"Found {len(preop_exams)} pre-op exams.")
+    print(f"Found {len(preop_exams)} pre-op exams: {preop_exams[0]}...")
     
-    #postop_exams = rhuh_parse_exams(args.patient_dir, preop=False)
-    #print(f"Found {len(postop_exams)} post-op exams.")
+    postop_exams = rhuh_parse_exams(args.patient_dir, preop=False)
+    print(f"Found {len(postop_exams)} post-op exams: {postop_exams[0]}...")
 
     """
     for e in preop_exams:
