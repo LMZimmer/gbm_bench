@@ -30,7 +30,7 @@ def generate_healthy_brain_mask(brain_mask_file, tumor_mask_file, outdir):
     nib.save(healthy_mask_nifti, outdir)
 
 
-def run_tissue_seg_registration(t1_file, outdir, healthy_mask_dir, brain_mask_dir, refit_brain=False):
+def run_tissue_seg_registration(t1_file, outdir, healthy_mask_dir, brain_mask_dir=None, refit_brain=False):
     # TODO: Make the atlas path an argument
     sri_42_atlas = "/home/home/lucas/bin/miniconda3/envs/brainles/lib/python3.10/site-packages/brainles_preprocessing/registration/atlas/t1_skullstripped_brats_space.nii"
     sri_42_tissues = "/home/home/lucas/data/ATLAS/SRI-24/tissues.nii"
@@ -64,7 +64,10 @@ def run_tissue_seg_registration(t1_file, outdir, healthy_mask_dir, brain_mask_di
 
     #TODO:
     # Refit tissue mask on the full brain mask, if desired
+    """
     if refit_brain:
+        if brain_mask_dir is None:
+            raise ValueError(f"Please specify brain_maks_dir when using refit_brain=True")
         brain_mask = ants.image_read(brain_mask_dir)
         tissue_mask = ants.get_mask(warped_tissues, low_thresh=0.5)
         reg2 = ants.registration(
@@ -82,8 +85,9 @@ def run_tissue_seg_registration(t1_file, outdir, healthy_mask_dir, brain_mask_di
                 transformlist=transforms_path,
                 interpolator="nearestNeighbor"
                 )
-    
-        warped_tissues_nifti = warped_tissues.to_nibabel()
+    """
+
+    warped_tissues_nifti = warped_tissues.to_nibabel()
     nib.save(warped_tissues_nifti, os.path.join(outdir, "tissue_seg.nii.gz"))
 
     # 1:csf, 2:gm, 3:wm

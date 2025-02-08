@@ -74,7 +74,7 @@ def preprocess_dicom(t1, t1c, t2, flair, gpu_device="2"):
     run_tissue_seg_registration(
             t1_file=os.path.join(preprocessed_dir, "t1c_bet_normalized.nii.gz"),
             outdir=tissue_seg_dir,
-            mask_dir=healthy_mask_dir)
+            healthy_mask_dir=healthy_mask_dir)
 
     print("Tissue segmentation complete.")
 

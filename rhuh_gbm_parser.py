@@ -21,13 +21,13 @@ from preprocess import preprocess_dicom
 
 
 def rhuh_sort_func(exam_dir):
-    date = os.path.basename(exam_dir).replace("-","")
+    date = os.path.basename(exam_dir).replace("-", "")
     date = date[4:8] + date[0:2] + date[2:4]
     return date
 
 
 def find_modalities(exam_dir):
-    sequence_dirs = os.listdir(exam_dir)
+    sequence_dirs = [d for d in os.listdir(exam_dir) if d != "preprocessing"]
     modalities = {}
 
     for d in sequence_dirs:
@@ -79,10 +79,9 @@ if __name__=="__main__":
     preop_exams = rhuh_parse_exams(args.patient_dir, preop=True)
     print(f"Found {len(preop_exams)} pre-op exams: {preop_exams[0]}...")
     
-    postop_exams = rhuh_parse_exams(args.patient_dir, preop=False)
-    print(f"Found {len(postop_exams)} post-op exams: {postop_exams[0]}...")
+    #postop_exams = rhuh_parse_exams(args.patient_dir, preop=False)
+    #print(f"Found {len(postop_exams)} post-op exams: {postop_exams[0]}...")
 
-    """
     for e in preop_exams:
         preprocess_dicom(
             t1 = e["t1"],
@@ -91,7 +90,8 @@ if __name__=="__main__":
             flair = e["flair"],
             gpu_device=args.gpu_device
             )
-
+    
+    """
     for e in postop_exams:
         preprocess_dicom(
             t1 = e["t1"],
