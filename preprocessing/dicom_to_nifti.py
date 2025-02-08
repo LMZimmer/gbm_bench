@@ -9,6 +9,18 @@ from auxiliary.turbopath.turbopath import turbopath
 from path import Path
 
 
+def remove_postfixes(outdir):
+    # removes postfixes created by dcm2niix (e.g. _real)
+    postfix_files = [f for f in os.listdir(outdir) if "_" in f and not f.endswith(".log")]
+    for pf in postfix_files:
+        modality, file_extensions = pf.split(".")[0], pf.split(".")[1:]
+        modality = modality.split("_")[0]
+        nf = ".".join([modality] + file_extensions)
+        old, new = os.path.join(outdir, pf), os.path.join(outdir, nf)
+        os.rename(old, new)
+        print(f"Renamed postfix file {old} to {new}.")
+
+
 def niftiConvert(inputDir, exportDir, fileName):
     try:
         print("*** start ***")
@@ -43,6 +55,8 @@ def niftiConvert(inputDir, exportDir, fileName):
         with open(logFilePath, "w") as outFile:
             subprocess.run(command, stdout=outFile, stderr=outFile)
 
+        remove_postfixes(exportDir)
+
     except Exception as e:
         print("error: " + str(e))
         print("conversion error for:", inputDir)
@@ -53,7 +67,7 @@ def niftiConvert(inputDir, exportDir, fileName):
 
 
 if __name__ == "__main__":
-    # python dicom_to_nifti.py -inputDir /home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-25-2015-NA-RM\ CEREBRAL6NEURNAV-21029/12.000000-Ax\ T1\ 3d\ NEURONAVEGADOR-55128 -exportDir /home/home/lucas/scripts/test/raw -fileName t1c_raw
+    # python dicom_to_nifti.py -inputDir /home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-25-2015-NA-RM\ CEREBRAL6NEURNAV-21029/12.000000-Ax\ T1\ 3d\ NEURONAVEGADOR-55128 -exportDir /home/home/lucas/scripts/test/raw -fileName t1c
 
     parser = argparse.ArgumentParser()
     parser.add_argument("-inputDir", type=str, help="Path to directory containing DICOMs.")

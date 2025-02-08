@@ -82,7 +82,8 @@ if __name__=="__main__":
     #postop_exams = rhuh_parse_exams(args.patient_dir, preop=False)
     #print(f"Found {len(postop_exams)} post-op exams: {postop_exams[0]}...")
 
-    for e in preop_exams:
+    for ind, e in enumerate(preop_exams[1:2]):
+        print(f"Processing exam {ind}: {e} \n")
         preprocess_dicom(
             t1 = e["t1"],
             t1c = e["t1c"],
