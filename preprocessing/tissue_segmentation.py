@@ -71,7 +71,7 @@ def run_tissue_seg_registration(t1_file, outdir, healthy_mask_dir, brain_mask_di
         reg2 = ants.registration(
                 fixed=brain_mask,
                 moving=tissue_mask,
-                type_of_transform="antsRegistrationSyN[s,2]",
+                type_of_transform="SyNOnly",
                 outprefix=os.path.join(outdir, '')
                 )
         transforms_path_masks = reg['fwdtransforms']
