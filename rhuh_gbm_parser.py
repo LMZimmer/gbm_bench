@@ -3,22 +3,6 @@ import os
 import glob
 from preprocess import preprocess_dicom
 
-#ValueError: Only found 3 modalities for exam /home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0034/07-20-2014-NA-RM DE CRANEO SINCON CONTRASTE-27430 
-# {'t1c': '13.000000-T1 3D VIBE AXIAL  avant gado -24651', 'flair': '11.000000-T2 FLAIR 3D SAG 1.25 FS-39663', 'diffusion': '5.000000-DIFFUSION EPI 3bTRACEWDFC-52607'} 
-# ['14.000000-T1 3D VIBE AXIAL FS  GADO-14660', '11.000000-T2 FLAIR 3D SAG 1.25 FS-39663', '5.000000-DIFFUSION EPI 3bTRACEWDFC-52607', '13.000000-T1 3D VIBE AXIAL  avant gado -24651', '12.000000-T2 EG TRA 256 NEW-55362'] --> 14 is t1c, 13 is t1
-
-#ValueError: Only found 4 modalities for exam /home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0025/10-14-2012-NA-RM DE CEREBRO SINCON CONTRASTE-82954
-# {'t1c': '6.000000-Obl T1 3D FSPGR IR-40131', 't2': '3.000000-Ax FRFSE T2-30196', 'diffusion': '5.000000-AX DIFUSION B 1500-89195', 'flair': '2.000000-Ax T2 FLAIR ASSET-88274'}
-# ['2.000000-Obl T1 3D FSPGR IR IV-86944', '3.000000-Ax FRFSE T2-30196', '5.000000-AX DIFUSION B 1500-89195', '2.000000-Ax T2 FLAIR ASSET-88274', '6.000000-Obl T1 3D FSPGR IR-40131'] --> 2 is t1c, 6 is t1
-
-#ValueError: Only found 4 modalities for exam /home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/10-08-2013-NA-RM CEREBRO-16983 
-# {'t2': '/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/10-08-2013-NA-RM CEREBRO-16983/6.000000-Ax T2 FRFSE-45087', 'flair': '/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/10-08-2013-NA-RM CEREBRO-16983/3.000000-Sag T1 Flair-58836', 'diffusion': '/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/10-08-2013-NA-RM CEREBRO-16983/5.000000-DIFUSION 2000b-92733', 't1c': '/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/10-08-2013-NA-RM CEREBRO-16983/11.000000-SAG T1 3D C-32615'} 
-# ['6.000000-Ax T2 FRFSE-45087', '4.000000-Ax T2 FLAIR-41390', '5.000000-DIFUSION 2000b-92733', '3.000000-Sag T1 Flair-58836', '11.000000-SAG T1 3D C-32615'] --> t1 flair
-
-#ValueError: Only found 4 modalities for exam /home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/11-19-2017-NA-RM CEREBRAL-03097 
-# {'t2': '/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/11-19-2017-NA-RM CEREBRAL-03097/8.000000-Ax T2 FSE Prop.-81294', 't1': '/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/11-19-2017-NA-RM CEREBRAL-03097/10.000000-Ax T1 FSE C-28409', 'diffusion': '/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/11-19-2017-NA-RM CEREBRAL-03097/4.000000-Ax Difusion 1000-2000b-22482', 'flair': '/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/11-19-2017-NA-RM CEREBRAL-03097/3.000000-Ax T2 FLAIR-03821'} 
-# ['8.000000-Ax T2 FSE Prop.-81294', '6.000000-Ax T1 FSE-40589', '10.000000-Ax T1 FSE C-28409', '4.000000-Ax Difusion 1000-2000b-22482', '3.000000-Ax T2 FLAIR-03821'] --> this t1 and t1c only differ by a c..., could add a check that one modality cant be picked more than once but its a nice check 
-
 
 def rhuh_sort_func(exam_dir):
     date = os.path.basename(exam_dir).replace("-", "")
@@ -82,7 +66,7 @@ if __name__=="__main__":
     #postop_exams = rhuh_parse_exams(args.patient_dir, preop=False)
     #print(f"Found {len(postop_exams)} post-op exams: {postop_exams[0]}...")
 
-    for ind, e in enumerate(preop_exams[1:2]):
+    for ind, e in enumerate(preop_exams[2:]):
         print(f"Processing exam {ind}: {e} \n")
         preprocess_dicom(
             t1 = e["t1"],
