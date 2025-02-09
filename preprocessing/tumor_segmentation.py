@@ -4,6 +4,8 @@ import numpy as np
 import nibabel as nib
 from brats import AdultGliomaPreTreatmentSegmenter
 from brats.constants import AdultGliomaPreTreatmentAlgorithms
+from brats import AdultGliomaPostTreatmentSegmenter
+from brats.constants import AdultGliomaPostTreatmentAlgorithms
 
 
 def split_segmentation(tumor_seg_file):
@@ -25,12 +27,18 @@ def split_segmentation(tumor_seg_file):
     nib.save(edema, os.path.join(outdir, "peritumoral_edema.nii.gz"))
 
 
-def run_brats(t1, t1c, t2, flair, outfile, cuda_device="2"):
+def run_brats(t1, t1c, t2, flair, outfile, pre_treatment=True, cuda_device="2"):
 
-    segmenter = AdultGliomaPreTreatmentSegmenter(
-            algorithm=AdultGliomaPreTreatmentAlgorithms.BraTS23_1,
-            cuda_devices=cuda_device
-            )
+    if pre_treatment:
+        segmenter = AdultGliomaPreTreatmentSegmenter(
+                algorithm=AdultGliomaPreTreatmentAlgorithms.BraTS23_1,
+                cuda_devices=cuda_device
+                )
+    else:
+        segmenter = AdultGliomaPostTreatmentSegmenter(
+                algorithm=AdultGliomaPostTreatmentAlgorithms.BraTS23_1,
+                cuda_devices=cuda_device
+                )
 
     segmenter.infer_single(
             t1n=t1,

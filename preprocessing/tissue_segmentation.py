@@ -62,9 +62,7 @@ def run_tissue_seg_registration(t1_file, outdir, healthy_mask_dir, brain_mask_di
             interpolator="nearestNeighbor"
             )
 
-    #TODO:
     # Refit tissue mask on the full brain mask, if desired
-    """
     if refit_brain:
         if brain_mask_dir is None:
             raise ValueError(f"Please specify brain_maks_dir when using refit_brain=True")
@@ -76,16 +74,14 @@ def run_tissue_seg_registration(t1_file, outdir, healthy_mask_dir, brain_mask_di
                 type_of_transform="antsRegistrationSyN[s,2]",
                 outprefix=os.path.join(outdir, '')
                 )
-        transforms_path = reg['fwdtransforms']
+        transforms_path_masks = reg['fwdtransforms']
 
-        tissues_atlas = ants.image_read(sri_42_tissues)
         warped_tissues = ants.apply_transforms(
-                fixed=,
-                moving=tissues_atlas,
-                transformlist=transforms_path,
+                fixed=t1_patient,
+                moving=warped_tissues,
+                transformlist=transforms_path_masks,
                 interpolator="nearestNeighbor"
                 )
-    """
 
     warped_tissues_nifti = warped_tissues.to_nibabel()
     nib.save(warped_tissues_nifti, os.path.join(outdir, "tissue_seg.nii.gz"))
