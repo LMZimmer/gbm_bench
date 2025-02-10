@@ -5,7 +5,7 @@ from preprocessing.tumor_segmentation import run_brats
 from preprocessing.tissue_segmentation import generate_healthy_brain_mask, run_tissue_seg_registration
 
 
-def preprocess_dicom(t1, t1c, t2, flair, gpu_device="2"):
+def preprocess_dicom(t1, t1c, t2, flair, pre_treatment=True, gpu_device="2"):
     os.environ["CUDA_VISIBLE_DEVICES"] = gpu_device
 
     # Step 1: DICOM to NifTi conversion
@@ -55,6 +55,7 @@ def preprocess_dicom(t1, t1c, t2, flair, gpu_device="2"):
     #        t2=os.path.join(preprocessed_dir, "t2_bet_normalized.nii.gz"),
     #        flair=os.path.join(preprocessed_dir, "flair_bet_normalized.nii.gz"),
     #        outfile=tumor_outfile,
+    #        pre_treatment=pre_treatment,
     #        cuda_device="2"
     #        )
 
@@ -85,13 +86,22 @@ if __name__ == "__main__":
     # Example:
     # python preprocess.py
 
+    # Pre-treatment example
     preprocess_dicom(
             t1="test_data/exam1/t1",
             t1c="test_data/exam1/t1c",
             t2="test_data/exam1/t2",
             flair="test_data/exam1/flair",
-            gpu_device="2"
+            pre_treatment=True,
+            gpu_device="4"
             )
     
-    #preprocess_nifti(
+    # Post-treatment example
+    #preprocess_dicom(
+    #        t1="test_data/exam2/t1",
+    #        t1c="test_data/exam2/t1c",
+    #        t2="test_data/exam2/t2",
+    #        flair="test_data/exam2/flair",
+    #        pre_treatment=False,
+    #        gpu_device="2"
     #        )

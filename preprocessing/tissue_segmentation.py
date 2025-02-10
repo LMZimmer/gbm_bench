@@ -68,16 +68,21 @@ def run_tissue_seg_registration(t1_file, outdir, healthy_mask_dir, brain_mask_di
             raise ValueError(f"Please specify brain_maks_dir when using refit_brain=True")
         brain_mask = ants.image_read(brain_mask_dir)
         tissue_mask = ants.get_mask(warped_tissues, low_thresh=0.5)
+
         reg2 = ants.registration(
                 fixed=brain_mask,
                 moving=tissue_mask,
-                type_of_transform="SyNOnly",
+                type_of_transform="antsRegistrationSyN[bo]",
                 outprefix=os.path.join(outdir, '')
                 )
         transforms_path_masks = reg['fwdtransforms']
 
+        tmp = os.path.join(outdir, "tissue_mask.nii.gz")
+        breakoint()
+        tissue_mask.image_write(tmp) #brain_mask
+
         warped_tissues = ants.apply_transforms(
-                fixed=t1_patient,
+                fixed=brain_mask,
                 moving=warped_tissues,
                 transformlist=transforms_path_masks,
                 interpolator="nearestNeighbor"

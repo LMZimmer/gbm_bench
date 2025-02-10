@@ -162,34 +162,12 @@ def plot_exam(
 ) -> None:
     exam_path = turbopath(exam_path)
 
-    t1c_path = (
-        exam_path
-        + "/"
-        + exam_path.name
-        + "_brainles/normalized_bet/t1c_bet_normalized.nii.gz"
-    )
-    t1_path = (
-        exam_path
-        + "/"
-        + exam_path.name
-        + "_brainles/normalized_bet/t1_bet_normalized.nii.gz"
-    )
-    t2_path = (
-        exam_path
-        + "/"
-        + exam_path.name
-        + "_brainles/normalized_bet/t2_bet_normalized.nii.gz"
-    )
-    fla_path = (
-        exam_path
-        + "/"
-        + exam_path.name
-        + "_brainles/normalized_bet/fla_bet_normalized.nii.gz"
-    )
+    t1c_path = os.path.join(exam_path, "preprocessing/skull_stripped/t1c_bet_normalized.nii.gz")
+    t1_path = os.path.join(exam_path, "preprocessing/skull_stripped/t1_bet_normalized.nii.gz")
+    t2_path = os.path.join(exam_path, "preprocessing/skull_stripped/t2_bet_normalized.nii.gz")
+    fla_path = os.path.join(exam_path, "preprocessing/skull_stripped/flair_bet_normalized.nii.gz")
 
-    seg_path = exam_path + "/segmentations/" + algorithm_identifier + ".nii.gz"
-    print(seg_path)
-    print(os.path.exists(seg_path))
+    seg_path = os.path.join(exam_path, "tumor_segmentation/tumor_seg.nii.gz")
 
     # Plot with computed center of mass slices and save to the specified PDF
     plot_mri_with_segmentation(
@@ -230,41 +208,53 @@ def merge_pdfs(pdf_list: List[str], output_pdf: str) -> None:
     print(f"Combined PDF saved as {output_pdf}")
 
 
+def rhuh_sort_func(exam_dir):
+    date = os.path.basename(exam_dir).replace("-", "")
+    date = date[4:8] + date[0:2] + date[2:4]
+    return date
+
+
+def rhuh_parse_exams(patient_dir, preop):
+    # Parse patients
+    patients = glob.glob(os.path.join(patient_dir, "RHUH-*"))
+    # Parse exams, sort by date, return first for preop and later exams for postop
+    exams = []
+    for p in patients:
+        patient_exams = glob.glob(os.path.join(p, "*-NA-*"))
+        patient_exams.sort(key=rhuh_sort_func)
+        if preop:
+            exams.append(patient_exams[0])
+        else:
+            exams = exams + patient_exams[1:]
+    return exams
+
+
 if __name__ == "__main__":
     # Loop over data and algorithms
-    data_folder = turbopath("data/OSLO_TS")
-    report_folder = turbopath("reports")
-    patients = data_folder.dirs()
-    algorithms = [
-        "first_place",
-        "second_place",
-        "third_place",
-        "mav_fusion",
-    ]
+    data_folder = "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM"
+    preop_exams = rhuh_parse_exams(args.patient_dir, preop=True)
 
-    for algorithm in algorithms:
-        for patient in tqdm(patients):
-            exams = sorted(patient.dirs(), key=lambda x: extract_day_number(x.name))
-            patient_report_folder = report_folder / patient.name
-            os.makedirs(patient_report_folder / "combined", exist_ok=True)
+    patient_exams = []
+    print(preop_exams)
+    """
+    for exam in preop_exams[:1]:
+        print(f"{e}")
+        patient_identifier = exam.split("/")[-2]
+        exam_identifier = "0"
+        algorithm_identifier = "BRATS"
+        output_pdf = os.path.join(exam, "preprocessing/visualization/patient_identifier.pdf")
+        os.makedirs(os.path.dirname(output_pdf), exist_ok=True)
 
-            patient_exams = []
-
-            for exam in tqdm(exams):
-                exam_path = exam
-                patient_identifier = patient.name
-                exam_identifier = exam.name
-                algorithm_identifier = algorithm
-                output_pdf = f"{patient_report_folder}/{algorithm_identifier}_{patient.name}_{exam.name}.pdf"
-                plot_exam(
-                    patient_identifier=patient_identifier,
-                    exam_identifier=exam_identifier,
-                    algorithm_identifier=algorithm_identifier,
-                    exam_path=exam_path,
-                    output_pdf=output_pdf,
+        plot_exam(
+                patient_identifier=patient_identifier,
+                exam_identifier=exam_identifier,
+                algorithm_identifier=algorithm_identifier,
+                exam_path=exam,
+                output_pdf=output_pdf,
                 )
-                patient_exams.append(output_pdf)
+        patient_exams.append(output_pdf)
+    """
 
-            # Merge all PDFs for this algorithm into one for the patient
-            combined_pdf_path = f"{patient_report_folder}/combined/{algorithm}_{patient.name}_combined.pdf"
-            merge_pdfs(patient_exams, combined_pdf_path)
+        # Merge all PDFs for this algorithm into one for the patient
+        #combined_pdf_path = f"{patient_report_folder}/combined/{algorithm}_{patient.name}_combined.pdf"
+        #merge_pdfs(patient_exams, combined_pdf_path)

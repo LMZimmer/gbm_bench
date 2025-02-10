@@ -36,7 +36,7 @@ def run_brats(t1, t1c, t2, flair, outfile, pre_treatment=True, cuda_device="2"):
                 )
     else:
         segmenter = AdultGliomaPostTreatmentSegmenter(
-                algorithm=AdultGliomaPostTreatmentAlgorithms.BraTS23_1,
+                algorithm=AdultGliomaPostTreatmentAlgorithms.BraTS24_1,
                 cuda_devices=cuda_device
                 )
 
