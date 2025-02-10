@@ -87,12 +87,6 @@ def plot_mri_with_segmentation(
         f"Computed center of mass (Axial slice: {slice_num_axial}, Sagittal slice: {slice_num_sagittal})"
     )
 
-    # Define a colormap with consistent colors for each class
-    colors = ["none", "green", "blue", "red"]  # 'none' for background
-    cmap = mcolors.ListedColormap(colors)
-    bounds = [i - 0.5 for i in classes_of_interest] + [classes_of_interest[-1] + 0.5]
-    norm = mcolors.BoundaryNorm(bounds, cmap.N)
-
     # Updated sequence order: T1c, T1, T2, FLAIR
     sequences = [
         ("T1c", t1c_data),
@@ -115,7 +109,7 @@ def plot_mri_with_segmentation(
         # Axial view with segmentation overlay (only non-zero regions)
         axs[1, i].imshow(np.rot90(data[:, :, slice_num_axial]), cmap="gray")
         overlay = np.rot90(seg_data[:, :, slice_num_axial])
-        axs[1, i].imshow(overlay, cmap=cmap, norm=norm, alpha=0.9)
+        axs[1, i].imshow(overlay, cmap='viridis', alpha=0.9)
         axs[1, i].set_title(f"{seq_name} - Axial (Overlay): {slice_num_axial}")
         axs[1, i].axis("off")
 
@@ -129,7 +123,7 @@ def plot_mri_with_segmentation(
         # Sagittal view with segmentation overlay (only non-zero regions)
         axs[3, i].imshow(np.rot90(data[slice_num_sagittal, :, :]), cmap="gray")
         overlay = np.rot90(seg_data[slice_num_sagittal, :, :])
-        axs[3, i].imshow(overlay, cmap=cmap, norm=norm, alpha=0.9)
+        axs[3, i].imshow(overlay, cmap='viridis', alpha=0.9)
         axs[3, i].set_title(f"{seq_name} - Sagittal (Overlay): {slice_num_sagittal}")
         axs[3, i].axis("off")
 
@@ -169,7 +163,7 @@ def plot_exam(
     t2_path = os.path.join(exam_path, "preprocessing/skull_stripped/t2_bet_normalized.nii.gz")
     fla_path = os.path.join(exam_path, "preprocessing/skull_stripped/flair_bet_normalized.nii.gz")
 
-    seg_path = os.path.join(exam_path, "preprocessing/tumor_segmentation/tumor_seg.nii.gz")
+    seg_path = os.path.join(exam_path, "preprocessing/lmi/lmi_tumor_patientSpace.nii")
 
     # Plot with computed center of mass slices and save to the specified PDF
     plot_mri_with_segmentation(
@@ -238,19 +232,14 @@ if __name__ == "__main__":
     # Loop over data and algorithms
     data_folder = "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM"
     preop_exams = rhuh_parse_exams(data_folder, preop=True)
-    clear_old_visualization = False
 
     patient_exams = []
     for exam in preop_exams:
         print(f"{exam}")
         patient_identifier = exam.split("/")[-2]
         exam_identifier = "0"
-        algorithm_identifier = "BRATS"
+        algorithm_identifier = "LMI"
         output_pdf = os.path.join(exam, f"preprocessing/visualization/{algorithm_identifier}_{patient_identifier}_{exam_identifier}.pdf")
-        
-        if clear_old_visualization:
-            print(f"Clearing old visualizations in {os.path.dirname(output_pdf)}")
-            shutil.rmtree(os.path.dirname(output_pdf))
         os.makedirs(os.path.dirname(output_pdf), exist_ok=True)
 
         plot_exam(

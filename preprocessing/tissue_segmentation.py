@@ -67,7 +67,13 @@ def run_tissue_seg_registration(t1_file, outdir, healthy_mask_dir, brain_mask_di
         if brain_mask_dir is None:
             raise ValueError(f"Please specify brain_maks_dir when using refit_brain=True")
         brain_mask = ants.image_read(brain_mask_dir)
-        tissue_mask = ants.get_mask(warped_tissues, low_thresh=0.5)
+        #tissue_mask = ants.get_mask(warped_tissues, low_thresh=0.5)
+        tissue_mask_nib =  nib.Nifti1Image(
+                (warped_tissues.numpy() > 0.5).astype(np.int32),
+                header=warped_tissues.to_nibabel().header,
+                affine=warped_tissues.to_nibabel().affine
+                )
+        tissue_mask = ants.from_nibabel(tissue_mask_nib)
 
         reg2 = ants.registration(
                 fixed=brain_mask,
@@ -77,9 +83,7 @@ def run_tissue_seg_registration(t1_file, outdir, healthy_mask_dir, brain_mask_di
                 )
         transforms_path_masks = reg['fwdtransforms']
 
-        tmp = os.path.join(outdir, "tissue_mask.nii.gz")
-        breakoint()
-        tissue_mask.image_write(tmp) #brain_mask
+        ants.image_write(tissue_mask, os.path.join(outdir, "tissue_mask_refit.nii.gz"))
 
         warped_tissues = ants.apply_transforms(
                 fixed=brain_mask,
