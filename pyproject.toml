@@ -12,6 +12,7 @@ authors = [
     { name = "Lucas Zimmer", email = "zimmer.lucas.w@gmail.com" }
 ]
 classifiers = [
+    "Programming Language :: Python :: 3",
     "License :: OSI Approved :: Apache Software License",
 ]
 dependencies = [
@@ -19,4 +20,4 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/LMZimmer/GBM_bench"
+Homepage = "https://github.com/LMZimmer/gbm_bench"
