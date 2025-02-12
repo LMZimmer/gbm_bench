@@ -21,11 +21,11 @@ def preprocess_dicom(t1, t1c, t2, flair, pre_treatment=True, gpu_device="2"):
         out_dir = os.path.join(os.path.dirname(dicom_folder), "preprocessing")
         nifti_dir = os.path.join(out_dir, "nifti_conversion")
 
-        #niftiConvert(
-        #        inputDir=dicom_folder,
-        #        exportDir=nifti_dir,
-        #        fileName=modality_name
-        #        )
+        niftiConvert(
+                inputDir=dicom_folder,
+                exportDir=nifti_dir,
+                fileName=modality_name
+                )
 
         print("NifTi conversion complete.")
 
@@ -33,13 +33,13 @@ def preprocess_dicom(t1, t1c, t2, flair, pre_treatment=True, gpu_device="2"):
     print("Running normalization, co-registration and skull stripping...")
     preprocessed_dir = os.path.join(out_dir, "skull_stripped")
 
-    #run_preprocessing(
-    #        t1=os.path.join(nifti_dir, "t1.nii.gz"),
-    #        t1c=os.path.join(nifti_dir, "t1c.nii.gz"),
-    #        t2=os.path.join(nifti_dir, "t2.nii.gz"),
-    #        flair=os.path.join(nifti_dir, "flair.nii.gz"),
-    #        outdir=preprocessed_dir
-    #        )
+    run_preprocessing(
+            t1=os.path.join(nifti_dir, "t1.nii.gz"),
+            t1c=os.path.join(nifti_dir, "t1c.nii.gz"),
+            t2=os.path.join(nifti_dir, "t2.nii.gz"),
+            flair=os.path.join(nifti_dir, "flair.nii.gz"),
+            outdir=preprocessed_dir
+            )
 
     print("Skull stripping complete.")
 
@@ -49,15 +49,15 @@ def preprocess_dicom(t1, t1c, t2, flair, pre_treatment=True, gpu_device="2"):
     tumor_outfile = os.path.join(tumor_outdir, "tumor_seg.nii.gz")
     os.makedirs(tumor_outdir, exist_ok=True)
 
-    #run_brats(
-    #        t1=os.path.join(preprocessed_dir, "t1_bet_normalized.nii.gz"),
-    #        t1c=os.path.join(preprocessed_dir, "t1c_bet_normalized.nii.gz"),
-    #        t2=os.path.join(preprocessed_dir, "t2_bet_normalized.nii.gz"),
-    #        flair=os.path.join(preprocessed_dir, "flair_bet_normalized.nii.gz"),
-    #        outfile=tumor_outfile,
-    #        pre_treatment=pre_treatment,
-    #        cuda_device="2"
-    #        )
+    run_brats(
+            t1=os.path.join(preprocessed_dir, "t1_bet_normalized.nii.gz"),
+            t1c=os.path.join(preprocessed_dir, "t1c_bet_normalized.nii.gz"),
+            t2=os.path.join(preprocessed_dir, "t2_bet_normalized.nii.gz"),
+            flair=os.path.join(preprocessed_dir, "flair_bet_normalized.nii.gz"),
+            outfile=tumor_outfile,
+            pre_treatment=pre_treatment,
+            cuda_device="2"
+            )
 
     print("Tumor segmentation complete.")
 
@@ -69,7 +69,8 @@ def preprocess_dicom(t1, t1c, t2, flair, pre_treatment=True, gpu_device="2"):
     generate_healthy_brain_mask(
             brain_mask_file=brain_mask_dir,
             tumor_mask_file=tumor_outfile,
-            outdir=healthy_mask_dir)
+            outdir=healthy_mask_dir
+            )
 
     tissue_seg_dir = os.path.join(out_dir, "tissue_segmentation")
     run_tissue_seg_registration(
@@ -77,7 +78,8 @@ def preprocess_dicom(t1, t1c, t2, flair, pre_treatment=True, gpu_device="2"):
             outdir=tissue_seg_dir,
             healthy_mask_dir=healthy_mask_dir,
             brain_mask_dir=brain_mask_dir,
-            refit_brain=True)
+            refit_brain=False
+            )
 
     print("Tissue segmentation complete.")
 
