@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import numpy as np
 import nibabel as nib
+import glob
+import shutil
 from scipy.ndimage import center_of_mass
 from auxiliary.turbopath.turbopath import turbopath
 from typing import List, Tuple
@@ -167,7 +169,7 @@ def plot_exam(
     t2_path = os.path.join(exam_path, "preprocessing/skull_stripped/t2_bet_normalized.nii.gz")
     fla_path = os.path.join(exam_path, "preprocessing/skull_stripped/flair_bet_normalized.nii.gz")
 
-    seg_path = os.path.join(exam_path, "tumor_segmentation/tumor_seg.nii.gz")
+    seg_path = os.path.join(exam_path, "preprocessing/tumor_segmentation/tumor_seg.nii.gz")
 
     # Plot with computed center of mass slices and save to the specified PDF
     plot_mri_with_segmentation(
@@ -230,19 +232,25 @@ def rhuh_parse_exams(patient_dir, preop):
 
 
 if __name__ == "__main__":
+    # Example:
+    # python visualize_exam_rhuh.py
+
     # Loop over data and algorithms
     data_folder = "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM"
-    preop_exams = rhuh_parse_exams(args.patient_dir, preop=True)
+    preop_exams = rhuh_parse_exams(data_folder, preop=True)
+    clear_old_visualization = False
 
     patient_exams = []
-    print(preop_exams)
-    """
-    for exam in preop_exams[:1]:
-        print(f"{e}")
+    for exam in preop_exams:
+        print(f"{exam}")
         patient_identifier = exam.split("/")[-2]
         exam_identifier = "0"
         algorithm_identifier = "BRATS"
-        output_pdf = os.path.join(exam, "preprocessing/visualization/patient_identifier.pdf")
+        output_pdf = os.path.join(exam, f"preprocessing/visualization/{algorithm_identifier}_{patient_identifier}_{exam_identifier}.pdf")
+        
+        if clear_old_visualization:
+            print(f"Clearing old visualizations in {os.path.dirname(output_pdf)}")
+            shutil.rmtree(os.path.dirname(output_pdf))
         os.makedirs(os.path.dirname(output_pdf), exist_ok=True)
 
         plot_exam(
@@ -253,7 +261,6 @@ if __name__ == "__main__":
                 output_pdf=output_pdf,
                 )
         patient_exams.append(output_pdf)
-    """
 
         # Merge all PDFs for this algorithm into one for the patient
         #combined_pdf_path = f"{patient_report_folder}/combined/{algorithm}_{patient.name}_combined.pdf"
