@@ -1,17 +1,15 @@
-import matplotlib.pyplot as plt
-import matplotlib.colors as mcolors
+import glob
+import os
+import shutil
 import numpy as np
 import nibabel as nib
-import glob
-import shutil
-from scipy.ndimage import center_of_mass
-from auxiliary.turbopath.turbopath import turbopath
-from typing import List, Tuple
-import os
+import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
 from tqdm import tqdm
 from PyPDF2 import PdfMerger
-
-os.environ["CUDA_VISIBLE_DEVICES"]="7"
+from typing import List, Tuple
+from scipy.ndimage import center_of_mass
+from auxiliary.turbopath.turbopath import turbopath
 
 
 def load_mri_data(filepath: str) -> np.ndarray:
@@ -228,6 +226,8 @@ def rhuh_parse_exams(patient_dir, preop):
 if __name__ == "__main__":
     # Example:
     # python visualize_exam_rhuh.py
+
+    os.environ["CUDA_VISIBLE_DEVICES"]="7"
 
     # Loop over data and algorithms
     data_folder = "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM"

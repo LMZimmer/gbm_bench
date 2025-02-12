@@ -1,7 +1,7 @@
 import argparse
 import os
 import glob
-from preprocess import preprocess_dicom
+from gbm_bench.preprocessing.preprocess import preprocess_dicom
 
 
 def rhuh_sort_func(exam_dir):

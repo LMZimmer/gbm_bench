@@ -1,10 +1,8 @@
-# use with a recent release of dcm2niix, e.g. https://github.com/rordenlab/dcm2niix/releases/tag/v1.0.20220720
 import argparse
 import datetime
 import os
 import shlex
 import subprocess
-
 from auxiliary.turbopath.turbopath import turbopath
 from path import Path
 

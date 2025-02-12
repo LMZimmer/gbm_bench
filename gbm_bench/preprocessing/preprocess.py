@@ -1,8 +1,8 @@
 import os
-from preprocessing.dicom_to_nifti import niftiConvert
-from preprocessing.brainles_preprocessing import run_preprocessing
-from preprocessing.tumor_segmentation import run_brats
-from preprocessing.tissue_segmentation import generate_healthy_brain_mask, run_tissue_seg_registration
+from gbm_bench.preprocessing.dicom_to_nifti import niftiConvert
+from gbm_bench.preprocessing.brainles_preprocessing import run_preprocessing
+from gbm_bench.preprocessing.tumor_segmentation import run_brats
+from gbm_bench.preprocessing.tissue_segmentation import generate_healthy_brain_mask, run_tissue_seg_registration
 
 
 def preprocess_dicom(t1, t1c, t2, flair, pre_treatment=True, gpu_device="2"):
