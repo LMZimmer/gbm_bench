@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gbm_bench"
-version = "0.0.1"
+version = "0.1.0"
 description = "A library providing Python implementations for standardized preprocessing of brain MRI and benchmarking of glioblastoma models via radiation plans."
 readme = "README.md"
 requires-python = ">=3.8"
@@ -20,7 +20,7 @@ dependencies = [
 ]
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["."]
 exclude = ["test_data", "scripts"]
 
 [project.urls]

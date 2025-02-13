@@ -1,3 +1,9 @@
+# Avoiding conflicts
+test_data/__init__.py
+scripts/__init__.py
+__init__.py
+
+# Non-package data
 *.log
 test_data/
 
