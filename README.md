@@ -27,3 +27,9 @@ Follow https://github.com/BBillot/SynthSeg (clone, set up versions, download mod
 
 # 7. Install ANTS
 Follow https://github.com/ANTsX/ANTs (download binaries, extract, add to PATH)
+
+
+
+
+# Editable installation
+pip install -e .
