@@ -1,6 +1,5 @@
 import argparse
 import os
-from pathlib import Path
 from brainles_preprocessing.modality import Modality, CenterModality
 from brainles_preprocessing.normalization.percentile_normalizer import (
     PercentileNormalizer, 
@@ -49,10 +48,6 @@ def run_preprocessing(t1, t1c, t2, flair, outdir):
             upper_percentile=99,
             lower_limit=0,
             upper_limit=1,
-            #lower_percentile=0.001,
-            #upper_percentile=100,
-            #lower_limit=0,
-            #upper_limit=1,
             )
 
     center = initialize_center_modality(
@@ -78,16 +73,23 @@ def run_preprocessing(t1, t1c, t2, flair, outdir):
 
 
 if __name__ == "__main__":
-    # python 2_brainles_preprocess.py -t1 /home/home/lucas/scripts/test/raw/t1_raw.nii.gz -t1c /home/home/lucas/scripts/test/raw/t1c_raw.nii.gz -t2 /home/home/lucas/scripts/test/raw/t2_raw.nii.gz -flair /home/home/lucas/scripts/test/raw/flair_raw.nii.gz -outdir /home/home/lucas/scripts/test/stripped  
+    # Example:
+    # python gbm_bench/preprocessing/norm_ss_coregistration.py -t1 test_data/exam1/preprocessing/nifti_conversion/t1.nii.gz -t1c test_data/exam1/preprocessing/nifti_conversion/t1c.nii.gz -t2 test_data/exam1/preprocessing/nifti_conversion/t2.nii.gz -flair test_data/exam1/preprocessing/nifti_conversion/flair.nii.gz -outdir tmp_ss_test/
     parser = argparse.ArgumentParser()
     parser.add_argument("-t1", type=str, help="Path to T1 nifti.")
     parser.add_argument("-t1c", type=str, help="Path to T1 contrast nifti.")
     parser.add_argument("-t2", type=str, help="Path to T2 nifti.")
     parser.add_argument("-flair", type=str, help="Path to flair nifti.")
     parser.add_argument("-outdir", type=str, help="Output directory.")
+    parser.add_argument("-gpu_device", type=str, default="1", help="GPU id to run on.")
     args = parser.parse_args()
 
-    os.environ["CUDA_VISIBLE_DEVICES"]="2"
-
-
-    run_preprocessing(args.t1, args.t1c, args.t2, args.flair, args.outdir)
+    os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu_device
+    
+    run_preprocessing(
+            t1=args.t1,
+            t1c=args.t1c,
+            t2=args.t2,
+            flair=args.flair,
+            outdir=args.outdir
+            )

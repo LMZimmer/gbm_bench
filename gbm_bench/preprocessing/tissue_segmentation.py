@@ -1,20 +1,15 @@
-import argparse
-import ants
-import numpy as np
-import nibabel as nib
 import os
-import subprocess
 import sys
 import glob
+import ants
+import argparse
+import subprocess
+import numpy as np
 import nibabel as nib
-from pathlib import Path
-from brainles_preprocessing.modality import Modality, CenterModality
-from brainles_preprocessing.normalization.percentile_normalizer import (
-    PercentileNormalizer,
-)
 from brainles_preprocessing.preprocessor import Preprocessor
 from brainles_preprocessing.registration import ANTsRegistrator
-from typing import List, Optional
+from brainles_preprocessing.modality import Modality, CenterModality
+from brainles_preprocessing.normalization.percentile_normalizer import PercentileNormalizer
 
 
 def generate_healthy_brain_mask(brain_mask_file, tumor_mask_file, outdir):
