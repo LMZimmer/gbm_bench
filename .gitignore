@@ -2,6 +2,7 @@
 test_data/__init__.py
 scripts/__init__.py
 __init__.py
+tmp*
 
 # Non-package data
 *.log

@@ -53,7 +53,7 @@ def niftiConvert(input_dir, export_dir, outfile, dcm2niix_location):
 
 if __name__ == "__main__":
     # Example
-    # python gbm_bench/preprocessing/dicom_to_nifti.py -input_dir test_data/exam1/t1c -export_dir tmp_dcm2nii_test -outfile t1c_test -dcm2niix_loc /home/home/lucas/bin/dcm2niix
+    # python gbm_bench/preprocessing/dicom_to_nifti.py -input_dir test_data/exam1/t1c -export_dir tmp_test_dcm2nii -outfile t1c -dcm2niix_loc /home/home/lucas/bin/dcm2niix
 
     parser = argparse.ArgumentParser()
     parser.add_argument("-input_dir", type=str, help="Path to directory containing DICOMs.")

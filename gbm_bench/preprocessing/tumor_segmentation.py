@@ -1,10 +1,10 @@
-import argparse
 import os
+import argparse
 import numpy as np
 import nibabel as nib
 from brats import AdultGliomaPreTreatmentSegmenter
-from brats.constants import AdultGliomaPreTreatmentAlgorithms
 from brats import AdultGliomaPostTreatmentSegmenter
+from brats.constants import AdultGliomaPreTreatmentAlgorithms
 from brats.constants import AdultGliomaPostTreatmentAlgorithms
 
 
@@ -51,16 +51,24 @@ def run_brats(t1, t1c, t2, flair, outfile, pre_treatment=True, cuda_device="2"):
 
 
 if __name__ == "__main__":
-    # python tumor_segmentation.py -t1 /home/home/lucas/scripts/test/stripped/t1_bet_normalized.nii.gz -t1c /home/home/lucas/scripts/test/stripped/t1c_bet_normalized.nii.gz -t2 /home/home/lucas/scripts/test/stripped/t2_bet_normalized.nii.gz -flair /home/home/lucas/scripts/test/stripped/flair_bet_normalized.nii.gz -outfile /home/home/lucas/scripts/test/stripped/segmentations/brats_segmentation.nii.gz
+    # Example
+    # python gbm_bench/preprocessing/tumor_segmentation.py -t1 test_data/exam1/preprocessing/skull_stripped/t1_bet_normalized.nii.gz -t1c test_data/exam1/preprocessing/skull_stripped/t1c_bet_normalized.nii.gz -t2 test_data/exam1/preprocessing/skull_stripped/t2_bet_normalized.nii.gz -flair test_data/exam1/preprocessing/skull_stripped/flair_bet_normalized.nii.gz -outfile tmp_test_tumorseg/tumor_seg.nii.gz
     parser = argparse.ArgumentParser()
     parser.add_argument("-t1", type=str, help="Path to T1 nifti.")
     parser.add_argument("-t1c", type=str, help="Path to T1 nifti.")
     parser.add_argument("-t2", type=str, help="Path to T1 nifti.")
     parser.add_argument("-flair", type=str, help="Path to T1 nifti.")
     parser.add_argument("-outfile", type=str, help="Desired file path for output segmentation.")
+    parser.add_argument("-cuda_device", type=str, default="1", help="GPU id to run on.")
     args = parser.parse_args()
 
-    os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+    os.environ["CUDA_VISIBLE_DEVICES"] = args.cuda_device
 
-
-    run_brats(t1, t1c, t2, flair, outfile, cuda_device="2")
+    run_brats(
+            t1=args.t1,
+            t1c=args.t1c,
+            t2=args.t2,
+            flair=args.flair,
+            outfile=args.outfile,
+            cuda_device=args.cuda_device
+            )

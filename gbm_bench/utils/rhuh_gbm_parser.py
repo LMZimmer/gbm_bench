@@ -54,10 +54,10 @@ def rhuh_parse_exams(patient_dir, preop):
 
 if __name__=="__main__":
     # Example
-    # python rhuh_gbm_parser.py -patient_dir /home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM -gpu_device 2
+    # python rhuh_gbm_parser.py -patient_dir /home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM -cuda_device 2
     parser = argparse.ArgumentParser()
     parser.add_argument("-patient_dir", type=str, help="Path to directory containing the patients with exams and DICOM data.")
-    parser.add_argument("-gpu_device", type=str, help="GPU id to run on.")
+    parser.add_argument("-cuda_device", type=str, help="GPU id to run on.")
     args = parser.parse_args()
     
     preop_exams = rhuh_parse_exams(args.patient_dir, preop=True)
@@ -73,7 +73,7 @@ if __name__=="__main__":
             t1c = e["t1c"],
             t2 = e["t2"],
             flair = e["flair"],
-            gpu_device=args.gpu_device
+            cuda_device=args.cuda_device
             )
     
     """
@@ -83,6 +83,6 @@ if __name__=="__main__":
             t1c = e["t1c"],
             t2 = e["t2"],
             flair = e["flair"],
-            gpu_device=args.gpu_device
+            cuda_device=args.cuda_device
             )
     """

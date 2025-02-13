@@ -20,13 +20,11 @@ def generate_healthy_brain_mask(brain_mask_file, tumor_mask_file, outdir):
     m2 = (nib.load(tumor_mask_file).get_fdata() > 0).astype(np.float32)
     healthy_mask = ((m1 - m2) > 0).astype(np.float32)
     healthy_mask_nifti = nib.Nifti1Image(healthy_mask, aff, header)
+    os.makedirs(os.path.dirname(outdir), exist_ok=True)
     nib.save(healthy_mask_nifti, outdir)
 
 
-def run_tissue_seg_registration(t1_file, outdir, healthy_mask_dir, brain_mask_dir=None, refit_brain=False):
-    # TODO: Make the atlas path an argument
-    sri_42_atlas = "/home/home/lucas/bin/miniconda3/envs/brainles/lib/python3.10/site-packages/brainles_preprocessing/registration/atlas/t1_skullstripped_brats_space.nii"
-    sri_42_tissues = "/home/home/lucas/data/ATLAS/SRI-24/tissues.nii"
+def run_tissue_seg_registration(t1_file, healthy_mask_dir, atlas_t1_dir, atlas_tissues_dir, outdir, brain_mask_dir=None, refit_brain=False):
 
     matrix_dir = os.path.join(outdir, "affine.mat")
     log_dir = os.path.join(outdir, "tissue_affine_reg.log")
@@ -34,7 +32,7 @@ def run_tissue_seg_registration(t1_file, outdir, healthy_mask_dir, brain_mask_di
 
     os.makedirs(outdir, exist_ok=True)
     t1_patient = ants.image_read(t1_file)
-    t1_atlas = ants.image_read(sri_42_atlas)
+    t1_atlas = ants.image_read(atlas_t1_dir)
     
     # Register atlas to patient deformably
     reg = ants.registration(
@@ -47,7 +45,7 @@ def run_tissue_seg_registration(t1_file, outdir, healthy_mask_dir, brain_mask_di
     transforms_path = reg['fwdtransforms']
 
     # Transform atlas tissues deformably
-    tissues_atlas = ants.image_read(sri_42_tissues)
+    tissues_atlas = ants.image_read(atlas_tissues_dir)
     warped_tissues = ants.apply_transforms(
             fixed=t1_patient,
             moving=tissues_atlas, 
@@ -104,20 +102,34 @@ def run_tissue_seg_registration(t1_file, outdir, healthy_mask_dir, brain_mask_di
 
 
 if __name__ == "__main__":
-    # python 4_tissue_segmentation.py -t1 /home/home/lucas/scripts/test/stripped/t1c_bet_normalized.nii.gz -brain_mask /home/home/lucas/scripts/test/stripped/t1c_bet_mask.nii.gz -tumor_mask /home/home/lucas/scripts/test/segmentations/brats_segmentation.nii.gz -outdir /home/home/lucas/scripts/test/segmentations
-    # python 4_tissue_segmentation.py -t1 /home/home/lucas/data/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0001/0/RHUH-0001_0_t1.nii.gz -brain_mask /home/home/lucas/inverse_tumor_mask.nii.gz -tumor_mask /home/home/lucas/data/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0001/0/RHUH-0001_0_segmentations.nii.gz -outdir /home/home/lucas/scripts/test/segmentations
+    # Example:
+    # python gbm_bench/preprocessing/tissue_segmentation.py -t1 test_data/exam1/preprocessing/skull_stripped/t1c_bet_normalized.nii.gz -brain_mask test_data/exam1/preprocessing/skull_stripped/t1c_bet_mask.nii.gz -tumor_mask test_data/exam1/preprocessing/tumor_segmentation/tumor_seg.nii.gz -atlas_t1_dir /home/home/lucas/bin/miniconda3/envs/brainles/lib/python3.10/site-packages/brainles_preprocessing/registration/atlas/t1_skullstripped_brats_space.nii -atlas_tissues_dir /home/home/lucas/data/ATLAS/SRI-24/tissues.nii -outdir tmp_test_tissueseg -cuda_device 2
     parser = argparse.ArgumentParser()
     parser.add_argument("-t1", type=str, help="Path to T1 nifti.")
     parser.add_argument("-brain_mask", type=str, help="Path to brain mask.")
     parser.add_argument("-tumor_mask", type=str, help="Path to tumor mask.")
+    parser.add_argument("-atlas_t1_dir", type=str, help="Path to t1 atlas file.")
+    parser.add_argument("-atlas_tissues_dir", type=str, help="Path to tissue atlas.")
     parser.add_argument("-outdir", type=str, help="Desired file path for output segmentation.")
+    parser.add_argument("-cuda_device", type=str, default="1", help="GPU id to run on.")
     args = parser.parse_args()
 
-    os.environ["CUDA_VISIBLE_DEVICES"] = "2"
-
+    os.environ["CUDA_VISIBLE_DEVICES"] = args.cuda_device
 
     print("Generating healthy brain mask...")
     healthy_mask_dir = os.path.join(args.outdir, "healthy_brain_mask.nii.gz")
-    generate_healthy_brain_mask(args.brain_mask, args.tumor_mask, healthy_mask_dir)
+    generate_healthy_brain_mask(
+            args.brain_mask,
+            args.tumor_mask,
+            healthy_mask_dir
+            )
 
-    run_tissue_seg_registration(t1_file=args.t1, outdir=args.outdir, healthy_mask_dir=healthy_mask_dir, brain_mask_dir=args.brain_mask)
+    run_tissue_seg_registration(
+            t1_file=args.t1,
+            healthy_mask_dir=healthy_mask_dir,
+            brain_mask_dir=args.brain_mask,
+            atlas_t1_dir=args.atlas_t1_dir,
+            atlas_tissues_dir=args.atlas_tissues_dir,
+            outdir=args.outdir,
+            refit_brain=False
+            )
