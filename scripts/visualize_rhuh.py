@@ -42,6 +42,12 @@ if __name__ == "__main__":
         #merge_pdfs(patient_exams, combined_pdf_path)
 
 
+
+
+
+
+
+
     # THIS WAS LMI VISUALIZATION
     os.environ["CUDA_VISIBLE_DEVICES"]="7"
 

@@ -1,42 +1,10 @@
 import os
-import datetime
+import argparse
 import numpy as np
-import nibabel as nib
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
-from PyPDF2 import PdfMerger
 from typing import List, Tuple
-from scipy.ndimage import center_of_mass
-
-
-def timed_print(print_message: str) -> None:
-    time = str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-    print(f"[INFO | {time}]: ", print_message)
-
-
-def load_mri_data(filepath: str) -> np.ndarray:
-    img = nib.load(filepath)
-    data = img.get_fdata()
-    return data
-
-
-def compute_center_of_mass(
-    seg_data: np.ndarray,
-    mri_data: np.ndarray,
-    classes: List[int] = [1, 2, 3],
-) -> Tuple[int, int, int]:
- 
-    mask = np.isin(seg_data, classes)
-
-    # Check if the mask contains any non-zero values (i.e., non-empty segmentation)
-    if not np.any(mask):
-        print("Warning: Segmentation is empty, returning middle slices of the MRI.")
-        # Return the middle slices of the MRI volume as default
-        return (mri_data.shape[0] // 2, mri_data.shape[1] // 2, mri_data.shape[2] // 2)
-
-    # Compute center of mass if the segmentation is non-empty
-    com = center_of_mass(mask)
-    return tuple(map(int, com))
+from gbm_bench.utils.utils import compute_center_of_mass, load_mri_data, merge_pdfs
 
 
 def plot_mri_with_segmentation(
@@ -167,12 +135,74 @@ def plot_exam(
     )
 
 
-def merge_pdfs(pdf_list: List[str], output_pdf: str) -> None:
-    pdf_merger = PdfMerger()
+if __name__ == "__main__":
+    # Example:
+    # python gbm_bench/utils/visualization.py -results_dir /home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-25-2015-NA-RM\ CEREBRAL6NEURNAV-21029/preprocessing/
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-results_dir", type=str, help="Directory containing outputs, e.g. '/preprocessing'.")
+    args = parser.parse_args()
 
-    for pdf in pdf_list:
-        pdf_merger.append(pdf)
+    plot_exam(
+                patient_identifier=patient_identifier,
+                exam_identifier=exam_identifier,
+                algorithm_identifier=algorithm_identifier,
+                exam_path=exam,
+                output_pdf=output_pdf,
+                )
 
-    pdf_merger.write(output_pdf)
-    pdf_merger.close()
-    print(f"Combined PDF saved as {output_pdf}")
+
+    # FROM visualize_rhuh.py
+    #TODO:
+    patient_exams = []
+    for exam in preop_exams:
+        print(f"{exam}")
+        patient_identifier = exam.split("/")[-2]
+        exam_identifier = "0"
+        algorithm_identifier = "BRATS"
+        output_pdf = os.path.join(exam, f"preprocessing/visualization/{algorithm_identifier}_{patient_identifier}_{exam_identifier}.pdf")
+
+        if clear_old_visualization:
+            print(f"Clearing old visualizations in {os.path.dirname(output_pdf)}")
+            shutil.rmtree(os.path.dirname(output_pdf))
+        os.makedirs(os.path.dirname(output_pdf), exist_ok=True)
+
+        plot_exam(
+                patient_identifier=patient_identifier,
+                exam_identifier=exam_identifier,
+                algorithm_identifier=algorithm_identifier,
+                exam_path=exam,
+                output_pdf=output_pdf,
+                )
+        patient_exams.append(output_pdf)
+
+        # Merge all PDFs for this algorithm into one for the patient
+        #combined_pdf_path = f"{patient_report_folder}/combined/{algorithm}_{patient.name}_combined.pdf"
+        #merge_pdfs(patient_exams, combined_pdf_path)
+
+    
+    # FROM visualize_lmi.py
+    # Loop over data and algorithms
+    data_folder = "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM"
+    preop_exams = rhuh_parse_exams(data_folder, preop=True)
+
+    patient_exams = []
+    for exam in preop_exams:
+        print(f"{exam}")
+        patient_identifier = exam.split("/")[-2]
+        exam_identifier = "0"
+        algorithm_identifier = "LMI"
+        output_pdf = os.path.join(exam, f"preprocessing/visualization/{algorithm_identifier}_{patient_identifier}_{exam_identifier}.pdf")
+        os.makedirs(os.path.dirname(output_pdf), exist_ok=True)
+
+        plot_exam(
+                patient_identifier=patient_identifier,
+                exam_identifier=exam_identifier,
+                algorithm_identifier=algorithm_identifier,
+                exam_path=exam,
+                output_pdf=output_pdf,
+                )
+        patient_exams.append(output_pdf)
+
+        # Merge all PDFs for this algorithm into one for the patient
+        #combined_pdf_path = f"{patient_report_folder}/combined/{algorithm}_{patient.name}_combined.pdf"
+        #merge_pdfs(patient_exams, combined_pdf_path)

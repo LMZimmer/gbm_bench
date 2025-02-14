@@ -27,14 +27,14 @@ if __name__ == "__main__":
         
         for exam_ind, sequences in enumerate(patient.sequences):
             print(f"Exam {exam_ind}...")
-            
+
             # Exams are sorted, first one is pre-op for RHUH
             pre_treatement = True if exam_ind==0 else False
             preprocess_dicom(
-                    t1=sequences.t1,
-                    t1c=sequences.t1c,
-                    t2=sequences.t2,
-                    flair=sequences.flair
+                    t1=sequences["t1"],
+                    t1c=sequences["t1c"],
+                    t2=sequences["t2"],
+                    flair=sequences["flair"],
                     dcm2niix_location=dcm2niix_location,
                     atlas_t1_dir=atlas_t1_dir,
                     atlas_tissues_dir=atlas_tissues_dir,
