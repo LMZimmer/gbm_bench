@@ -4,6 +4,12 @@ from gbm_bench.preprocessing.preprocess import preprocess_dicom
 if __name__=="__main__":
     # Example:
     # python scripts/test_preop.py
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-cuda_device", type=str, default="1", help="GPU id to run on.")
+    args = parser.parse_args()
+
+    os.environ["CUDA_VISIBLE_DEVICES"] = args.cuda_device
+
     dcm2niix_location = "/home/home/lucas/bin/dcm2niix"
     atlas_t1_dir = "/home/home/lucas/bin/miniconda3/envs/brainles/lib/python3.10/site-packages/brainles_preprocessing/registration/atlas/t1_skullstripped_brats_space.nii"
     atlas_tissues_dir = "/home/home/lucas/data/ATLAS/SRI-24/tissues.nii"
