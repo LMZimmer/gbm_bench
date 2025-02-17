@@ -3,90 +3,131 @@ import argparse
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
-from typing import List, Tuple
+from typing import Dict, List, Tuple
 from gbm_bench.utils.utils import compute_center_of_mass, load_mri_data, merge_pdfs
+
+
+def get_image_dirs(preprocessing_dir: str) --> Dict:
+    modality_order = ["t1c", "t1", "t2", "flair"]
+    image_dirs = {
+            "raw": [os.path.join(preprocessing_dir, "nifti_conversion", m+".nii.gz") for m in modality_order],
+            "stripped": [os.path.join(preprocessing_dir, "skull_stripped", m+"_bet_normalized.nii.gz") for m in modalilty_order],
+            "tumorseg": os.path.join(preprocessing_dir, "tumor_segmentation/tumor_seg.nii.gz"),
+            "tissueseg": [
+                os.path.join(preprocessing_dir, "tissue_segmentation/tissue_seg.nii.gz"),
+                os.path.join(preprocessing_dir, "tissue_segmentation/wm.nii.gz"),
+                os.path.join(preprocessing_dir, "tissue_segmentation/gm.nii.gz"),
+                os.path.join(preprocessing_dir, "tissue_segmentation/csf.nii.gz")
+                ],
+            "lmi": os.path.join(preprocessing_dir, "lmi/lmi_tumor_patientSpace.nii"),
+            "masks": [
+                os.path.join(preprocessing_dir, "skull_stripped/t1c_bet_mask.nii.gz"),
+                os.path.join(preprocessing_dir, "tumor_segmentation/tumor_seg.nii.gz"),
+                os.path.join(preprocessing_dir, "tumor_segmentation/enhancing_non_enhancing_tumor.nii.gz"),
+                os.path.join(preprocessing_dir, "tumor_segmentation/peritumoral_edema.nii.gz")
+                ]
+            }
+    return image_dirs
 
 
 def plot_mri_with_segmentation(
     patient_identifier: str,
     exam_identifier: str,
     algorithm_identifier: str,
-    t1c_path: str,
-    t1_path: str,
-    t2_path: str,
-    fla_path: str,
-    seg_path: str,
-    output_pdf: str,
+    preprocessing_dir: str,
+    outfile: str,
     classes_of_interest: List[int] = [1, 2, 3],
 ) -> None:
-    # Load the MRI sequences
-    t1c_data = load_mri_data(t1c_path)
-    t1_data = load_mri_data(t1_path)
-    t2_data = load_mri_data(t2_path)
-    fla_data = load_mri_data(fla_path)
+    
+    image_dirs = get_image_dirs(preprocessing_dir)
 
-    # Load segmentation mask
-    seg_data = load_mri_data(seg_path)
+    t1c_data = load_mri_data(image_dirs["stripped"][0])
+    seg_data = load_mri_data(image_dirs["tumorseg"])
 
     # Compute center of mass of the tumor/region from the segmentation mask
     center = compute_center_of_mass(seg_data, t1c_data, classes_of_interest)
-    slice_num_axial = center[2]  # z-axis
+    slice_num_axial = center[2]     # z-axis
     slice_num_sagittal = center[0]  # x-axis
 
     print(
         f"Computed center of mass (Axial slice: {slice_num_axial}, Sagittal slice: {slice_num_sagittal})"
     )
 
-    # Define a colormap with consistent colors for each class
-    colors = ["none", "green", "blue", "red"]  # 'none' for background
+    # colormap for tumor segmentation (none for background)
+    colors = ["none", "green", "blue", "red"]
     cmap = mcolors.ListedColormap(colors)
     bounds = [i - 0.5 for i in classes_of_interest] + [classes_of_interest[-1] + 0.5]
     norm = mcolors.BoundaryNorm(bounds, cmap.N)
 
-    # Updated sequence order: T1c, T1, T2, FLAIR
-    sequences = [
-        ("T1c", t1c_data),
-        ("T1", t1_data),
-        ("T2", t2_data),
-        ("FLAIR", fla_data),
-        ]
+    # each key-value pair in image_dirs gets 2 rows (axial, sagittal)
+    num_sequences = len(image_dirs["raw"])
+    num_rows = len(image_dirs)
+    fig, axs = plt.subplots(2 * num_rows, num_sequences, figsize=(20, 8 * num_rows))
 
-    # Set up the plot with 4 rows of images per sequence
-    num_sequences = len(sequences)
-    fig, axs = plt.subplots(4, num_sequences, figsize=(20, 16))
-
-    # Plot axial images (raw and with overlays)
-    for i, (seq_name, data) in enumerate(sequences):
-        # Axial images (raw)
-        axs[0, i].imshow(np.rot90(data[:, :, slice_num_axial]), cmap="gray")
-        axs[0, i].set_title(f"{seq_name} - Axial (Raw): {slice_num_axial}")
+    # axial plots
+    for i, raw_dir in enumerate(image_dirs["raw"]):
+        # raw
+        axs[0, i].imshow(np.rot90(load_mri_data(image_dirs["raw"][i])[:, :, slice_num_axial]), cmap="gray")
         axs[0, i].axis("off")
 
-        # Axial view with segmentation overlay (only non-zero regions)
-        axs[1, i].imshow(np.rot90(data[:, :, slice_num_axial]), cmap="gray")
-        overlay = np.rot90(seg_data[:, :, slice_num_axial])
-        axs[1, i].imshow(overlay, cmap=cmap, norm=norm, alpha=0.9)
-        axs[1, i].set_title(f"{seq_name} - Axial (Overlay): {slice_num_axial}")
+        # skull stripped
+        axs[1, i].imshow(np.rot90(load_mri_data(image_dirs["skull_stripped"][i])[:, :, slice_num_axial]), cmap="gray")
         axs[1, i].axis("off")
 
-    # Plot sagittal images (raw and with overlays)
-    for i, (seq_name, data) in enumerate(sequences):
-        # Sagittal images (raw)
-        axs[2, i].imshow(np.rot90(data[slice_num_sagittal, :, :]), cmap="gray")
-        axs[2, i].set_title(f"{seq_name} - Sagittal (Raw): {slice_num_sagittal}")
+        # tissue segmentation
+        axs[2, i].imshow(np.rot90(load_mri_data(image_dirs["tissueseg"][i])[:, :, slice_num_axial]), cmap="gray")
         axs[2, i].axis("off")
 
-        # Sagittal view with segmentation overlay (only non-zero regions)
-        axs[3, i].imshow(np.rot90(data[slice_num_sagittal, :, :]), cmap="gray")
-        overlay = np.rot90(seg_data[slice_num_sagittal, :, :])
+        # skull stripped + tumor segmentation
+        axs[3, i].imshow(np.rot90(load_mri_data(image_dirs["skull_stripped"][i])[:, :, slice_num_axial]), cmap="gray")
+        overlay = np.rot90(seg_data[:, :, slice_num_axial])
         axs[3, i].imshow(overlay, cmap=cmap, norm=norm, alpha=0.9)
-        axs[3, i].set_title(f"{seq_name} - Sagittal (Overlay): {slice_num_sagittal}")
         axs[3, i].axis("off")
+
+        # skull strippped + tumor model
+        axs[4, i].imshow(np.rot90(load_mri_data(image_dirs["skull_stripped"][i])[:, :, slice_num_axial]), cmap="gray")
+        overlay = np.rot90(load_mri_data(image_dirs["lmi"])[:, :, slice_num_axial])
+        axs[4, i].imshow(overlay, cmap=cmap, norm=norm, alpha=0.9)
+        axs[4, i].axis("off")
+
+        # masks
+        axs[5, i].imshow(np.rot90(load_mri_data(image_dirs["masks"][i])[:, :, slice_num_axial]), cmap="gray")
+        axs[5, i].axis("off")
+
+    # Sagittal plots
+    for i, (seq_name, data) in enumerate(sequences):
+        # raw
+        axs[6, i].imshow(np.rot90(load_mri_data(image_dirs["raw"][i])[slice_num_sagittal, :, :]), cmap="gray")
+        axs[6, i].axis("off")
+
+        # skull stripped
+        axs[7, i].imshow(np.rot90(load_mri_data(image_dirs["skull_stripped"][i])[slice_num_sagittal, :, :]), cmap="gray")
+        axs[7, i].axis("off")
+
+        # tissue segmentation
+        axs[8, i].imshow(np.rot90(load_mri_data(image_dirs["tissueseg"][i])[slice_num_sagittal, :, :]), cmap="gray")
+        axs[8, i].axis("off")
+
+        # skull stripped + tumor segmentation
+        axs[9, i].imshow(np.rot90(load_mri_data(image_dirs["skull_stripped"][i])[slice_num_sagittal, :, :]), cmap="gray")
+        overlay = np.rot90(seg_data[slice_num_sagittal, :, :])
+        axs[9, i].imshow(overlay, cmap=cmap, norm=norm, alpha=0.9)
+        axs[9, i].axis("off")
+
+        # skull strippped + tumor model
+        axs[10, i].imshow(np.rot90(load_mri_data(image_dirs["skull_stripped"][i])[slice_num_sagittal, :, :]), cmap="gray")
+        overlay = np.rot90(seg_data[slice_num_sagittal, :, :])
+        axs[10, i].imshow(overlay, cmap=cmap, norm=norm, alpha=0.9)
+        axs[10, i].axis("off")
+
+        # masks
+        axs[11, i].imshow(np.rot90(load_mri_data(image_dirs["masks"][i])[slice_num_sagittal, :, :]), cmap="gray")
+        axs[11, i].axis("off")
 
     # Add identifiers with adjusted margins and bounding box
     fig.subplots_adjust(top=0.85)  # Increase top margin to fit text
     fig.suptitle(
-        f"Patient: {patient_identifier}\nExam: {exam_identifier}\nAlgorithm: {algorithm_identifier}",
+            f"Patient: {patient_identifier}\nExam: {exam_identifier}\nAlgorithm: {algorithm_identifier}\nSlice (axial/sagittal): {slice_num_axial}/{slice_num_sagittal}",
         fontsize=16,
         fontweight="bold",
         color="black",
@@ -97,112 +138,32 @@ def plot_mri_with_segmentation(
     plt.tight_layout(rect=[0, 0, 1, 0.9])  # Adjust layout to fit identifiers
 
     # Save the figure as a PDF to the custom output location
-    plt.savefig(output_pdf, format="pdf")
-    print(f"Plot saved as {output_pdf}")
+    plt.savefig(outfile, format="pdf")
+    print(f"Plot saved as {outfile}")
 
     # Close the figure to free up memory
     plt.close(fig)
 
 
-def plot_exam(
-    patient_identifier: str,
-    exam_identifier: str,
-    algorithm_identifier: str,
-    exam_path: str,
-    output_pdf: str,
-    classes_of_interest: List[int] = [1, 2, 3],
-) -> None:
-
-    t1c_path = os.path.join(exam_path, "preprocessing/skull_stripped/t1c_bet_normalized.nii.gz")
-    t1_path = os.path.join(exam_path, "preprocessing/skull_stripped/t1_bet_normalized.nii.gz")
-    t2_path = os.path.join(exam_path, "preprocessing/skull_stripped/t2_bet_normalized.nii.gz")
-    fla_path = os.path.join(exam_path, "preprocessing/skull_stripped/flair_bet_normalized.nii.gz")
-
-    seg_path = os.path.join(exam_path, "preprocessing/tumor_segmentation/tumor_seg.nii.gz")
-
-    # Plot with computed center of mass slices and save to the specified PDF
-    plot_mri_with_segmentation(
-        patient_identifier=patient_identifier,
-        exam_identifier=exam_identifier,
-        algorithm_identifier=algorithm_identifier,
-        t1c_path=t1c_path,
-        t1_path=t1_path,
-        t2_path=t2_path,
-        fla_path=fla_path,
-        seg_path=seg_path,
-        output_pdf=output_pdf,
-        classes_of_interest=classes_of_interest,
-    )
-
-
 if __name__ == "__main__":
     # Example:
-    # python gbm_bench/utils/visualization.py -results_dir /home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-25-2015-NA-RM\ CEREBRAL6NEURNAV-21029/preprocessing/
+    # python gbm_bench/utils/visualization.py -preprocessing_dir /home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-25-2015-NA-RM\ CEREBRAL6NEURNAV-21029/preprocessing/ -patient_id RHUH-0001 -exam_id 01-25-2015\ (pre-op) -algo_id LMI -outfile ~/test.pdf
     parser = argparse.ArgumentParser()
-    parser.add_argument("-results_dir", type=str, help="Directory containing outputs, e.g. '/preprocessing'.")
+    parser.add_argument("-preprocessing_dir", type=str, help="Directory containing outputs. Should be named 'preprocessing'.")
+    parser.add_argument("-patiend_id", type=str, help="Patient identifier for plot.")
+    parser.add_argument("-exam_id", type=str, help="Exam identifier for plot.")
+    parser.add_argument("-algo_id", type=str, help="Algorithm identifier for plot.")
+    parser.add_argument("-outfile", type=str, help="Directory to save figure to.")
     args = parser.parse_args()
 
-    plot_exam(
-                patient_identifier=patient_identifier,
-                exam_identifier=exam_identifier,
-                algorithm_identifier=algorithm_identifier,
-                exam_path=exam,
-                output_pdf=output_pdf,
-                )
+    plot_mri_with_segmentation(
+            patient_identifier=args.patiend_id,
+            exam_identifier=args.exam_id,
+            algorithm_identifier=args.algo_id,
+            preprocessing_dir=args.preprocessing_dir,
+            outfile=args.outfile
+            )
 
-
-    # FROM visualize_rhuh.py
-    #TODO:
-    patient_exams = []
-    for exam in preop_exams:
-        print(f"{exam}")
-        patient_identifier = exam.split("/")[-2]
-        exam_identifier = "0"
-        algorithm_identifier = "BRATS"
-        output_pdf = os.path.join(exam, f"preprocessing/visualization/{algorithm_identifier}_{patient_identifier}_{exam_identifier}.pdf")
-
-        if clear_old_visualization:
-            print(f"Clearing old visualizations in {os.path.dirname(output_pdf)}")
-            shutil.rmtree(os.path.dirname(output_pdf))
-        os.makedirs(os.path.dirname(output_pdf), exist_ok=True)
-
-        plot_exam(
-                patient_identifier=patient_identifier,
-                exam_identifier=exam_identifier,
-                algorithm_identifier=algorithm_identifier,
-                exam_path=exam,
-                output_pdf=output_pdf,
-                )
-        patient_exams.append(output_pdf)
-
-        # Merge all PDFs for this algorithm into one for the patient
-        #combined_pdf_path = f"{patient_report_folder}/combined/{algorithm}_{patient.name}_combined.pdf"
-        #merge_pdfs(patient_exams, combined_pdf_path)
-
-    
-    # FROM visualize_lmi.py
-    # Loop over data and algorithms
-    data_folder = "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM"
-    preop_exams = rhuh_parse_exams(data_folder, preop=True)
-
-    patient_exams = []
-    for exam in preop_exams:
-        print(f"{exam}")
-        patient_identifier = exam.split("/")[-2]
-        exam_identifier = "0"
-        algorithm_identifier = "LMI"
-        output_pdf = os.path.join(exam, f"preprocessing/visualization/{algorithm_identifier}_{patient_identifier}_{exam_identifier}.pdf")
-        os.makedirs(os.path.dirname(output_pdf), exist_ok=True)
-
-        plot_exam(
-                patient_identifier=patient_identifier,
-                exam_identifier=exam_identifier,
-                algorithm_identifier=algorithm_identifier,
-                exam_path=exam,
-                output_pdf=output_pdf,
-                )
-        patient_exams.append(output_pdf)
-
-        # Merge all PDFs for this algorithm into one for the patient
-        #combined_pdf_path = f"{patient_report_folder}/combined/{algorithm}_{patient.name}_combined.pdf"
-        #merge_pdfs(patient_exams, combined_pdf_path)
+    # Merge all PDFs for this algorithm into one for the patient
+    #combined_pdf_path = f"{patient_report_folder}/combined/{algorithm}_{patient.name}_combined.pdf"
+    #merge_pdfs(patient_exams, combined_pdf_path)
