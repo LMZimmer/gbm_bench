@@ -7,10 +7,14 @@ from typing import Dict, List, Tuple
 from gbm_bench.utils.utils import compute_center_of_mass, load_mri_data, merge_pdfs
 
 
+MODALITY_ORDER = ["t1c", "t1", "t2", "flair"]
+
+
+
 def get_image_dirs(preprocessing_dir: str) -> Dict:
-    modality_order = ["t1c", "t1", "t2", "flair"]
+    MODALITY_ORDER = ["t1c", "t1", "t2", "flair"]
     image_dirs = {
-            "stripped": [os.path.join(preprocessing_dir, "skull_stripped", m+"_bet_normalized.nii.gz") for m in modality_order],
+            "stripped": [os.path.join(preprocessing_dir, "skull_stripped", m+"_bet_normalized.nii.gz") for m in MODALITY_ORDER],
             "tumorseg": os.path.join(preprocessing_dir, "tumor_segmentation/tumor_seg.nii.gz"),
             "tissueseg": [
                 os.path.join(preprocessing_dir, "tissue_segmentation/tissue_seg.nii.gz"),
@@ -64,10 +68,11 @@ def plot_mri_with_segmentation(
     fig, axs = plt.subplots(2 * num_rows, num_sequences, figsize=(20, 8 * num_rows))
 
     # axial plots
-    for i in range(len(image_dirs["stripped"])):
+    for i, modality in enumerate(MODALITY_ORDER):
 
         # skull stripped
         axs[0, i].imshow(np.rot90(load_mri_data(image_dirs["stripped"][i])[:, :, slice_num_axial]), cmap="gray")
+        axs[0, i].set_title(modality.upper(), fontsize=16, fontweight="bold", pad=20)
         axs[0, i].axis("off")
 
         # tissue segmentation
@@ -83,7 +88,7 @@ def plot_mri_with_segmentation(
         # skull strippped + tumor model
         axs[3, i].imshow(np.rot90(load_mri_data(image_dirs["stripped"][i])[:, :, slice_num_axial]), cmap="gray")
         overlay = np.rot90(load_mri_data(image_dirs["lmi"])[:, :, slice_num_axial])
-        axs[3, i].imshow(overlay, cmap='inferno',  alpha=0.9)
+        axs[3, i].imshow(overlay, cmap='inferno',  alpha=0.8)
         axs[3, i].axis("off")
 
         # masks
@@ -91,7 +96,7 @@ def plot_mri_with_segmentation(
         axs[4, i].axis("off")
 
     # Sagittal plots
-    for i in range(len(image_dirs["stripped"])):
+    for i, modality in enumerate(MODALITY_ORDER):
         
         # skull stripped
         axs[5, i].imshow(np.rot90(load_mri_data(image_dirs["stripped"][i])[slice_num_sagittal, :, :]), cmap="gray")
@@ -104,7 +109,7 @@ def plot_mri_with_segmentation(
         # skull stripped + tumor segmentation
         axs[7, i].imshow(np.rot90(load_mri_data(image_dirs["stripped"][i])[slice_num_sagittal, :, :]), cmap="gray")
         overlay = np.rot90(seg_data[slice_num_sagittal, :, :])
-        axs[7, i].imshow(overlay, cmap=cmap, norm=norm, alpha=0.9)
+        axs[7, i].imshow(overlay, cmap=cmap, norm=norm, alpha=0.8)
         axs[7, i].axis("off")
 
         # skull strippped + tumor model
@@ -117,11 +122,18 @@ def plot_mri_with_segmentation(
         axs[9, i].imshow(np.rot90(load_mri_data(image_dirs["masks"][i])[slice_num_sagittal, :, :]), cmap="gray")
         axs[9, i].axis("off")
 
+    # Left hand side titles
+    #TODO
+    row_labels = ["stripped", "tissueseg", "tumorseg", "model", "masks"]
+    for ind, rl in enumerate(row_labels):
+        axs[ind, 0].set_ylabel(rl, fontweight="bold", labelpad=20)
+        axs[ind+len(row_labels), 0].set_ylabel(rl, rotation=0, fontweight="bold", labelpad=20)
+
     # Add identifiers with adjusted margins and bounding box
     fig.subplots_adjust(top=0.85)  # Increase top margin to fit text
     fig.suptitle(
             f"Patient: {patient_identifier}\nExam: {exam_identifier}\nAlgorithm: {algorithm_identifier}\nSlice (axial/sagittal): {slice_num_axial}/{slice_num_sagittal}",
-        fontsize=16,
+        fontsize=20,
         fontweight="bold",
         color="black",
         y=0.95,
