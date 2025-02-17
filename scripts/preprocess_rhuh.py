@@ -25,7 +25,7 @@ if __name__ == "__main__":
     for patient_ind, patient in enumerate(patients):
         print(f"Processing {patient_ind}/{len(patients)}...")
         
-        for exam_ind, sequences in enumerate(patient.sequences):
+        for exam_ind, sequences in enumerate(patient["sequences"]):
             print(f"Exam {exam_ind}...")
 
             # Exams are sorted, first one is pre-op for RHUH

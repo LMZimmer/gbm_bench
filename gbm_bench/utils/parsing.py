@@ -16,7 +16,7 @@ class ModalityDict(TypedDict):
     diffusion: Optional[str] = None
 
 
-class Patient(NamedTuple):
+class Patient(TypedDict):
     """
     Data type for a patient storing MRI exams and sequences.
     """
@@ -26,25 +26,17 @@ class Patient(NamedTuple):
     sequences: List[ModalityDict]
     info: Optional[dict[str, str]] = None
 
-    def __repr__(self):
-        return f"\nPatient( \
-                \n Patient ID: {self.patient_id} \
-                \n Patient dir: {self.patient_dir} \
-                \n Exams: {self.exams} \
-                \n Sequences: {self.sequences.__repr__()[0:350]}... \
-                \n Info: {self.info} \
-                \n )"
-
 
 class BaseDatasetParser(ABC):
     """
     An abstract base class for a parser to search for exams in a medical dataset.
     """
-    #NOTE: add_patient method might be a better interface
-
     def __init__(self, root_dir: str):
         self.root_dir = root_dir
         self._patients : List[Patient] = []
+
+    def add_patient(self, patient: Patient) -> None:
+        self._patients.append(patient)
 
     def get_patients(self) -> List[Patient]:
         if len(self._patients) == 0:
@@ -97,11 +89,7 @@ class RHUHParser(BaseDatasetParser):
         for pdir in patient_dirs:
             pid = os.path.basename(pdir)
             patient_exams = glob.glob(os.path.join(pdir, "*-NA-*"))
-            
             patient_exams.sort(key = sort_func)
-
-            #patient_exams.sort(key=RHUHParser.sort_date)
-            #patient_exams.sort(key=self.sort_date)
 
             sequences = [self.find_modalities(pexam) for pexam in patient_exams]
 
@@ -111,7 +99,7 @@ class RHUHParser(BaseDatasetParser):
                     exams=patient_exams,
                     sequences=sequences,
                     )
-            self._patients.append(patient)
+            self.add_patient(patient)
         
         print(f"Parsing finished. Found {len(self._patients)} patients.")
 
