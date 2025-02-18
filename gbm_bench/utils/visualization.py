@@ -122,7 +122,7 @@ def plot_mri_with_segmentation(
         axs[9, i].axis("off")
 
     # Left hand side titles
-    row_labels = ["stripped", "tissueseg", "tumorseg", "model", "masks"]
+    row_labels = ["STRIPPED", "TISSUESEG", "TUMORSEG", "MODEL", "MASKS"]
     for ind, rl in enumerate(row_labels):
         axs[ind, 0].axis("on")
         axs[ind, 0].tick_params(left=False, bottom=False, labelleft=False, labelbottom=False)
@@ -132,7 +132,7 @@ def plot_mri_with_segmentation(
         axs[ind+len(row_labels), 0].set_ylabel(rl, fontweight="bold", labelpad=20, fontsize=16)
 
     # Add identifiers with adjusted margins and bounding box
-    fig.subplots_adjust(top=0.85)  # Increase top margin to fit text
+    fig.subplots_adjust(top=0.85)
     fig.suptitle(
             f"Patient: {patient_identifier}\nExam: {exam_identifier}\nAlgorithm: {algorithm_identifier}\nSlice (axial/sagittal): {slice_num_axial}/{slice_num_sagittal}",
         fontsize=20,
@@ -142,13 +142,9 @@ def plot_mri_with_segmentation(
         bbox=dict(facecolor="white", edgecolor="none", alpha=0.7),
     )
 
-    plt.tight_layout(rect=[0, 0, 1, 0.9])  # Adjust layout to fit identifiers
-
-    # Save the figure as a PDF to the custom output location
+    plt.tight_layout(rect=[0, 0, 1, 0.9])
     plt.savefig(outfile, format="pdf")
     print(f"Plot saved as {outfile}")
-
-    # Close the figure to free up memory
     plt.close(fig)
 
 
@@ -170,7 +166,3 @@ if __name__ == "__main__":
             preprocessing_dir=args.preprocessing_dir,
             outfile=args.outfile
             )
-
-    # Merge all PDFs for this algorithm into one for the patient
-    #combined_pdf_path = f"{patient_report_folder}/combined/{algorithm}_{patient.name}_combined.pdf"
-    #merge_pdfs(patient_exams, combined_pdf_path)

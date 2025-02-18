@@ -22,6 +22,7 @@ class Patient(TypedDict):
     """
     patient_id: str
     patient_dir: str
+    exam_ids: List[str]
     exams: List[str]
     sequences: List[ModalityDict]
     info: Optional[dict[str, str]] = None
@@ -89,13 +90,15 @@ class RHUHParser(BaseDatasetParser):
         for pdir in patient_dirs:
             pid = os.path.basename(pdir)
             patient_exams = glob.glob(os.path.join(pdir, "*-NA-*"))
-            patient_exams.sort(key = sort_func)
+            patient_exams.sort(key = sort_func)     # Sort by date
+            exam_ids = [os.path.basename(pe) for pe in patient_exams]
 
             sequences = [self.find_modalities(pexam) for pexam in patient_exams]
 
             patient = Patient(
                     patient_id=pid,
                     patient_dir=pdir,
+                    exam_ids=exam_ids,
                     exams=patient_exams,
                     sequences=sequences,
                     )
@@ -115,4 +118,3 @@ if __name__=="__main__":
     rhuh_parser.parse()
     patients = rhuh_parser.get_patients()
     print(f"Found {len(patients)} patients: {patients[0]}...")
-    #print(f"{patients[0].sequences}")
