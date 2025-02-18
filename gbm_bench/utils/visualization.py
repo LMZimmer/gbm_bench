@@ -10,7 +10,6 @@ from gbm_bench.utils.utils import compute_center_of_mass, load_mri_data, merge_p
 MODALITY_ORDER = ["t1c", "t1", "t2", "flair"]
 
 
-
 def get_image_dirs(preprocessing_dir: str) -> Dict:
     MODALITY_ORDER = ["t1c", "t1", "t2", "flair"]
     image_dirs = {
@@ -114,7 +113,7 @@ def plot_mri_with_segmentation(
 
         # skull strippped + tumor model
         axs[8, i].imshow(np.rot90(load_mri_data(image_dirs["stripped"][i])[slice_num_sagittal, :, :]), cmap="gray")
-        overlay = np.rot90(seg_data[slice_num_sagittal, :, :])
+        overlay = np.rot90(load_mri_data(image_dirs["lmi"])[slice_num_sagittal, :, :])
         axs[8, i].imshow(overlay, cmap='inferno', alpha=0.9)
         axs[8, i].axis("off")
 
@@ -123,11 +122,14 @@ def plot_mri_with_segmentation(
         axs[9, i].axis("off")
 
     # Left hand side titles
-    #TODO
     row_labels = ["stripped", "tissueseg", "tumorseg", "model", "masks"]
     for ind, rl in enumerate(row_labels):
-        axs[ind, 0].set_ylabel(rl, fontweight="bold", labelpad=20)
-        axs[ind+len(row_labels), 0].set_ylabel(rl, rotation=0, fontweight="bold", labelpad=20)
+        axs[ind, 0].axis("on")
+        axs[ind, 0].tick_params(left=False, bottom=False, labelleft=False, labelbottom=False)
+        axs[ind, 0].set_ylabel(rl, fontweight="bold", labelpad=20, fontsize=16)
+        axs[ind+len(row_labels), 0].axis("on")
+        axs[ind+len(row_labels), 0].tick_params(left=False, bottom=False, labelleft=False, labelbottom=False)
+        axs[ind+len(row_labels), 0].set_ylabel(rl, fontweight="bold", labelpad=20, fontsize=16)
 
     # Add identifiers with adjusted margins and bounding box
     fig.subplots_adjust(top=0.85)  # Increase top margin to fit text
