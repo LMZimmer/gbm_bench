@@ -24,7 +24,13 @@ def generate_healthy_brain_mask(brain_mask_file, tumor_mask_file, outdir):
     nib.save(healthy_mask_nifti, outdir)
 
 
-def run_tissue_seg_registration(t1_file, healthy_mask_dir, atlas_t1_dir, atlas_tissues_dir, outdir, brain_mask_dir=None, refit_brain=False):
+def run_tissue_seg_registration(t1_file, healthy_mask_dir, outdir, brain_mask_dir=None, refit_brain=False):
+
+    #TODO absolute paths
+    atlas_base_dir = "/home/home/lucas/projects/gbm_bench/gbm_bench/sri24_atlas"
+    atlas_t1_dir = os.path.join(atlas_base_dir, "t1.nii")
+    atlas_tissues_dir = os.path.join(atlas_base_dir, "tissues.nii")
+    atlas_pbmap_dirs = {tissue: os.path.join(atlas_base_dir, f"pbmap_{tissue.upper()}.nii") for tissue in ["csf", "gm", "wm"]}
 
     matrix_dir = os.path.join(outdir, "affine.mat")
     log_dir = os.path.join(outdir, "tissue_affine_reg.log")
@@ -58,7 +64,6 @@ def run_tissue_seg_registration(t1_file, healthy_mask_dir, atlas_t1_dir, atlas_t
         if brain_mask_dir is None:
             raise ValueError(f"Please specify brain_maks_dir when using refit_brain=True")
         brain_mask = ants.image_read(brain_mask_dir)
-        #tissue_mask = ants.get_mask(warped_tissues, low_thresh=0.5)
         tissue_mask_nib =  nib.Nifti1Image(
                 (warped_tissues.numpy() > 0.5).astype(np.int32),
                 header=warped_tissues.to_nibabel().header,
@@ -86,30 +91,47 @@ def run_tissue_seg_registration(t1_file, healthy_mask_dir, atlas_t1_dir, atlas_t
     warped_tissues_nifti = warped_tissues.to_nibabel()
     nib.save(warped_tissues_nifti, os.path.join(outdir, "tissue_seg.nii.gz"))
 
-    # 1:csf, 2:gm, 3:wm
+    # Tissue masks
+    tissue_labels = {"csf": 1., "gm": 2., "wm": 3.}
     header, aff = warped_tissues_nifti.header, warped_tissues_nifti.affine
-    csf = (warped_tissues.numpy() == 1.).astype(np.int32)
-    gm = (warped_tissues.numpy() == 2.).astype(np.int32)
-    wm = (warped_tissues.numpy() == 3.).astype(np.int32)
+    for tissue, label in tissue_labels.items():
+        tissue_mask = (warped_tissues.numpy() == label).astype(np.int32)
+        tissue_mask_nifti = nib.Nifti1Image(tissue_mask, header=header, affine=aff)
+        nib.save(tissue_mask_nifti, os.path.join(outdir, f"{tissue}.nii.gz"))
 
-    csf_nifti = nib.Nifti1Image(csf, header=header, affine=aff)
-    gm_nifti = nib.Nifti1Image(gm, header=header, affine=aff)
-    wm_nifti = nib.Nifti1Image(wm, header=header, affine=aff)
+    #TODO delete after testing
+    #csf = (warped_tissues.numpy() == 1.).astype(np.int32)
+    #gm = (warped_tissues.numpy() == 2.).astype(np.int32)
+    #wm = (warped_tissues.numpy() == 3.).astype(np.int32)
 
-    nib.save(csf_nifti, os.path.join(outdir, "csf.nii.gz"))
-    nib.save(gm_nifti, os.path.join(outdir, "gm.nii.gz"))
-    nib.save(wm_nifti, os.path.join(outdir, "wm.nii.gz"))
+    #csf_nifti = nib.Nifti1Image(csf, header=header, affine=aff)
+    #gm_nifti = nib.Nifti1Image(gm, header=header, affine=aff)
+    #wm_nifti = nib.Nifti1Image(wm, header=header, affine=aff)
+
+    #nib.save(csf_nifti, os.path.join(outdir, "csf.nii.gz"))
+    #nib.save(gm_nifti, os.path.join(outdir, "gm.nii.gz"))
+    #nib.save(wm_nifti, os.path.join(outdir, "wm.nii.gz"))
+
+    # Probability maps
+    for tissue, pbmap_dir in atlas_pbmap_dirs.items():
+        pbmap = ants.image_read(pbmap_dir)
+        warped_pbmap = ants.apply_transforms(
+                fixed=t1_patient,
+                moving=pbmap,
+                transformlist=transforms_path,
+                interpolator="nearestNeighbor"
+                )
+        warped_pbmap_nifti = warped_pbmap.to_nibabel()
+        nib.save(warped_pbmap_nifti, os.path.join(outdir, f"{tissue}_pbmap.nii.gz"))
 
 
 if __name__ == "__main__":
     # Example:
-    # python gbm_bench/preprocessing/tissue_segmentation.py -t1 test_data/exam1/preprocessing/skull_stripped/t1c_bet_normalized.nii.gz -brain_mask test_data/exam1/preprocessing/skull_stripped/t1c_bet_mask.nii.gz -tumor_mask test_data/exam1/preprocessing/tumor_segmentation/tumor_seg.nii.gz -atlas_t1_dir /home/home/lucas/bin/miniconda3/envs/brainles/lib/python3.10/site-packages/brainles_preprocessing/registration/atlas/t1_skullstripped_brats_space.nii -atlas_tissues_dir /home/home/lucas/data/ATLAS/SRI-24/tissues.nii -outdir tmp_test_tissueseg -cuda_device 2
+    # python gbm_bench/preprocessing/tissue_segmentation.py -t1 test_data/exam1/preprocessing/skull_stripped/t1c_bet_normalized.nii.gz -brain_mask test_data/exam1/preprocessing/skull_stripped/t1c_bet_mask.nii.gz -tumor_mask test_data/exam1/preprocessing/tumor_segmentation/tumor_seg.nii.gz -outdir tmp_test_tissueseg -cuda_device 2
     parser = argparse.ArgumentParser()
     parser.add_argument("-t1", type=str, help="Path to T1 nifti.")
     parser.add_argument("-brain_mask", type=str, help="Path to brain mask.")
     parser.add_argument("-tumor_mask", type=str, help="Path to tumor mask.")
-    parser.add_argument("-atlas_t1_dir", type=str, help="Path to t1 atlas file.")
-    parser.add_argument("-atlas_tissues_dir", type=str, help="Path to tissue atlas.")
     parser.add_argument("-outdir", type=str, help="Desired file path for output segmentation.")
     parser.add_argument("-cuda_device", type=str, default="1", help="GPU id to run on.")
     args = parser.parse_args()
@@ -124,12 +146,12 @@ if __name__ == "__main__":
             healthy_mask_dir
             )
 
+    print("Starting tissue registration...")
     run_tissue_seg_registration(
             t1_file=args.t1,
             healthy_mask_dir=healthy_mask_dir,
             brain_mask_dir=args.brain_mask,
-            atlas_t1_dir=args.atlas_t1_dir,
-            atlas_tissues_dir=args.atlas_tissues_dir,
             outdir=args.outdir,
             refit_brain=False
             )
+    print("Finished.")

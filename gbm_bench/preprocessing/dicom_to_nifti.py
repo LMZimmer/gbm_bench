@@ -23,7 +23,6 @@ def niftiConvert(input_dir, export_dir, outfile, dcm2niix_location):
     try:
         os.makedirs(export_dir, exist_ok=True)
         cmd_readable = (
-            #"/home/home/lucas/bin/dcm2niix -d 9 -f "
             dcm2niix_location
             + " -d 9 -f "
             + outfile

@@ -7,7 +7,7 @@ from gbm_bench.preprocessing.norm_ss_coregistration import run_preprocessing
 from gbm_bench.preprocessing.tissue_segmentation import generate_healthy_brain_mask, run_tissue_seg_registration
 
 
-def preprocess_dicom(t1, t1c, t2, flair, dcm2niix_location, atlas_t1_dir, atlas_tissues_dir, pre_treatment=True, cuda_device="2"):
+def preprocess_dicom(t1, t1c, t2, flair, dcm2niix_location, pre_treatment=True, cuda_device="2"):
 
     os.environ["CUDA_VISIBLE_DEVICES"] = cuda_device
 
@@ -25,12 +25,12 @@ def preprocess_dicom(t1, t1c, t2, flair, dcm2niix_location, atlas_t1_dir, atlas_
         outdir = os.path.join(os.path.dirname(dicom_folder), "preprocessing")
         nifti_dir = os.path.join(outdir, "nifti_conversion")
 
-        niftiConvert(
-                input_dir=dicom_folder,
-                export_dir=nifti_dir,
-                outfile=modality_name,
-                dcm2niix_location=dcm2niix_location
-                )
+        #niftiConvert(
+        #        input_dir=dicom_folder,
+        #        export_dir=nifti_dir,
+        #        outfile=modality_name,
+        #        dcm2niix_location=dcm2niix_location
+        #        )
 
     timed_print("Finished DICOM to NIfTI conversion.")
 
@@ -39,13 +39,13 @@ def preprocess_dicom(t1, t1c, t2, flair, dcm2niix_location, atlas_t1_dir, atlas_
     timed_print("Starting normalization, co-registration and skull stripping...")
     preprocessed_dir = os.path.join(outdir, "skull_stripped")
 
-    run_preprocessing(
-            t1=os.path.join(nifti_dir, "t1.nii.gz"),
-            t1c=os.path.join(nifti_dir, "t1c.nii.gz"),
-            t2=os.path.join(nifti_dir, "t2.nii.gz"),
-            flair=os.path.join(nifti_dir, "flair.nii.gz"),
-            outdir=preprocessed_dir
-            )
+    #run_preprocessing(
+    #        t1=os.path.join(nifti_dir, "t1.nii.gz"),
+    #        t1c=os.path.join(nifti_dir, "t1c.nii.gz"),
+    #        t2=os.path.join(nifti_dir, "t2.nii.gz"),
+    #        flair=os.path.join(nifti_dir, "flair.nii.gz"),
+    #        outdir=preprocessed_dir
+    #        )
 
     timed_print("Finished normalization, co-registration and skull stripping.")
 
@@ -56,15 +56,15 @@ def preprocess_dicom(t1, t1c, t2, flair, dcm2niix_location, atlas_t1_dir, atlas_
     tumor_outfile = os.path.join(tumor_outdir, "tumor_seg.nii.gz")
     os.makedirs(tumor_outdir, exist_ok=True)
 
-    run_brats(
-            t1=os.path.join(preprocessed_dir, "t1_bet_normalized.nii.gz"),
-            t1c=os.path.join(preprocessed_dir, "t1c_bet_normalized.nii.gz"),
-            t2=os.path.join(preprocessed_dir, "t2_bet_normalized.nii.gz"),
-            flair=os.path.join(preprocessed_dir, "flair_bet_normalized.nii.gz"),
-            outfile=tumor_outfile,
-            pre_treatment=pre_treatment,
-            cuda_device="2"
-            )
+    #run_brats(
+    #        t1=os.path.join(preprocessed_dir, "t1_bet_normalized.nii.gz"),
+    #        t1c=os.path.join(preprocessed_dir, "t1c_bet_normalized.nii.gz"),
+    #        t2=os.path.join(preprocessed_dir, "t2_bet_normalized.nii.gz"),
+    #        flair=os.path.join(preprocessed_dir, "flair_bet_normalized.nii.gz"),
+    #        outfile=tumor_outfile,
+    #        pre_treatment=pre_treatment,
+    #        cuda_device="2"
+    #        )
 
     timed_print("Finished tumor segmentation.")
 
@@ -85,8 +85,6 @@ def preprocess_dicom(t1, t1c, t2, flair, dcm2niix_location, atlas_t1_dir, atlas_
             t1_file=os.path.join(preprocessed_dir, "t1c_bet_normalized.nii.gz"),
             healthy_mask_dir=healthy_mask_dir,
             brain_mask_dir=brain_mask_dir,
-            atlas_t1_dir=atlas_t1_dir,
-            atlas_tissues_dir=atlas_tissues_dir,
             outdir=tissue_seg_dir,
             refit_brain=False
             )
@@ -105,8 +103,6 @@ if __name__ == "__main__":
             t2="test_data/exam1/t2",
             flair="test_data/exam1/flair",
             dcm2niix_location="/home/home/lucas/bin/dcm2niix",
-            atlas_t1_dir = "/home/home/lucas/bin/miniconda3/envs/brainles/lib/python3.10/site-packages/brainles_preprocessing/registration/atlas/t1_skullstripped_brats_space.nii",
-            atlas_tissues_dir = "/home/home/lucas/data/ATLAS/SRI-24/tissues.nii",
             pre_treatment=True,
             cuda_device="4"
             )
