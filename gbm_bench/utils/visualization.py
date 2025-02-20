@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 from typing import Dict, List, Tuple
-from gbm_bench.utils.utils import compute_center_of_mass, load_mri_data, merge_pdfs
+from gbm_bench.utils.utils import compute_center_of_mass, load_mri_data, load_and_resample_mri_data, merge_pdfs
 
 
 MODALITY_ORDER = ["t1c", "t1", "t2", "flair"]
@@ -45,6 +45,7 @@ def plot_mri_with_segmentation(
 
     t1c_data = load_mri_data(image_dirs["stripped"][0])
     seg_data = load_mri_data(image_dirs["tumorseg"])
+    patient_dim = t1c_data.shape
 
     # Compute center of mass of the tumor/region from the segmentation mask
     center = compute_center_of_mass(seg_data, t1c_data, classes_of_interest)
@@ -86,7 +87,8 @@ def plot_mri_with_segmentation(
 
         # skull strippped + tumor model
         axs[3, i].imshow(np.rot90(load_mri_data(image_dirs["stripped"][i])[:, :, slice_num_axial]), cmap="gray")
-        overlay = np.rot90(load_mri_data(image_dirs["lmi"])[:, :, slice_num_axial])
+        overlay = np.rot90(load_and_resample_mri_data(image_dirs["lmi"], resample_params=patient_dim, interp_type=1)[:, :, slice_num_axial])
+        #overlay = np.rot90(load_mri_data(image_dirs["lmi"])[:, :, slice_num_axial])
         axs[3, i].imshow(overlay, cmap='inferno',  alpha=0.8)
         axs[3, i].axis("off")
 
@@ -113,7 +115,8 @@ def plot_mri_with_segmentation(
 
         # skull strippped + tumor model
         axs[8, i].imshow(np.rot90(load_mri_data(image_dirs["stripped"][i])[slice_num_sagittal, :, :]), cmap="gray")
-        overlay = np.rot90(load_mri_data(image_dirs["lmi"])[slice_num_sagittal, :, :])
+        overlay = np.rot90(load_and_resample_mri_data(image_dirs["lmi"], resample_params=patient_dim, interp_type=1)[slice_num_sagittal, :, :])
+        #overlay = np.rot90(load_mri_data(image_dirs["lmi"])[slice_num_sagittal, :, :])
         axs[8, i].imshow(overlay, cmap='inferno', alpha=0.9)
         axs[8, i].axis("off")
 

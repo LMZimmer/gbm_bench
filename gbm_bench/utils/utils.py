@@ -1,11 +1,12 @@
 import os
+import ants
 import datetime
 import numpy as np
 import nibabel as nib
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 from PyPDF2 import PdfMerger
-from typing import List, Tuple
+from typing import List, Tuple, Optional
 from scipy.ndimage import center_of_mass
 
 
@@ -32,6 +33,22 @@ def load_mri_data(filepath: str) -> np.ndarray:
     img = nib.load(filepath)
     data = img.get_fdata()
     return data
+
+
+def load_and_resample_mri_data(
+        filepath: str,
+        resample_params: Tuple[int, int, int],
+        interp_type: Optional[int] = 0,
+) -> np.ndarray:
+    
+    img = ants.image_read(filepath)
+    img = ants.resample_image(
+            image=img,
+            resample_params=resample_params,
+            use_voxels=True,
+            interp_type=interp_type
+            )
+    return img.to_nibabel().get_fdata()
 
 
 def merge_pdfs(pdf_list: List[str], output_pdf: str) -> None:
