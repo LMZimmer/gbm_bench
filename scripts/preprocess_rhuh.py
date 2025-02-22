@@ -35,5 +35,9 @@ if __name__ == "__main__":
                     flair=sequences["flair"],
                     dcm2niix_location=dcm2niix_location,
                     pre_treatment=pre_treatement,
-                    cuda_device=args.cuda_device
+                    cuda_device=args.cuda_device,
+                    perform_nifti_conversion=False,
+                    perform_skullstripping=False,
+                    perform_tumorseg=False,
+                    perform_tissueseg=True
                     )

@@ -3,6 +3,7 @@ test_data/__init__.py
 scripts/__init__.py
 __init__.py
 tmp*
+out.txt
 
 # Non-package data
 *.log

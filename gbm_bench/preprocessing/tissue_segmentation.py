@@ -77,7 +77,8 @@ def run_tissue_seg_registration(t1_file, healthy_mask_dir, outdir, brain_mask_di
                 type_of_transform="antsRegistrationSyN[bo]",
                 outprefix=os.path.join(outdir, '')
                 )
-        transforms_path_masks = reg['fwdtransforms']
+        transforms_path_masks = reg2['fwdtransforms']
+        transforms_path += transforms_path_masks
 
         ants.image_write(tissue_mask, os.path.join(outdir, "tissue_mask_refit.nii.gz"))
 
@@ -98,19 +99,6 @@ def run_tissue_seg_registration(t1_file, healthy_mask_dir, outdir, brain_mask_di
         tissue_mask = (warped_tissues.numpy() == label).astype(np.int32)
         tissue_mask_nifti = nib.Nifti1Image(tissue_mask, header=header, affine=aff)
         nib.save(tissue_mask_nifti, os.path.join(outdir, f"{tissue}.nii.gz"))
-
-    #TODO delete after testing
-    #csf = (warped_tissues.numpy() == 1.).astype(np.int32)
-    #gm = (warped_tissues.numpy() == 2.).astype(np.int32)
-    #wm = (warped_tissues.numpy() == 3.).astype(np.int32)
-
-    #csf_nifti = nib.Nifti1Image(csf, header=header, affine=aff)
-    #gm_nifti = nib.Nifti1Image(gm, header=header, affine=aff)
-    #wm_nifti = nib.Nifti1Image(wm, header=header, affine=aff)
-
-    #nib.save(csf_nifti, os.path.join(outdir, "csf.nii.gz"))
-    #nib.save(gm_nifti, os.path.join(outdir, "gm.nii.gz"))
-    #nib.save(wm_nifti, os.path.join(outdir, "wm.nii.gz"))
 
     # Probability maps
     for tissue, pbmap_dir in atlas_pbmap_dirs.items():
