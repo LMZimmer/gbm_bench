@@ -140,6 +140,6 @@ if __name__ == "__main__":
             healthy_mask_dir=healthy_mask_dir,
             brain_mask_dir=args.brain_mask,
             outdir=args.outdir,
-            refit_brain=False
+            refit_brain=True
             )
     print("Finished.")
