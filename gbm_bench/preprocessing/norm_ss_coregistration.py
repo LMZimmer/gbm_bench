@@ -72,7 +72,7 @@ def norm_ss_coregister(t1, t1c, t2, flair, outdir):
     preprocessor.run()
 
 
-def register_longitudinal(t1c_pre_dir, t1c_post_dir, outdir, transform_images_dict, transform_masks_dict):
+def register_recurrence(t1c_pre_dir, t1c_post_dir, recurrence_seg_dir, outdir):
     t1c_pre = ants.image_read(t1c_pre_dir)
     t1c_post = ants.image_read(t1c_post_dir)
 
@@ -86,51 +86,32 @@ def register_longitudinal(t1c_pre_dir, t1c_post_dir, outdir, transform_images_di
             )
 
     os.makedirs(outdir, exist_ok=True)
-    #ants.write_transform(reg["warpedmovout"], os.path.join(outdir, "longitudinal_trafo.mat"))
     shutil.copyfile(src=reg["fwdtransforms"][0], dst=os.path.join(outdir, "longitudinal_trafo.mat"))
     ants.image_write(reg["warpedmovout"], os.path.join(outdir, "t1c_warped_longitudinal.nii.gz"))
 
-    for img_id, img_dir in transform_images_dict.items():
-        img = ants.image_read(img_dir)
-        img_warped = ants.apply_transforms(
-                fixed=t1c_pre,
-                moving=img,
-                transformlist=reg["fwdtransforms"],
-                interpolator='linear'
-                )
-        ants.image_write(img_warped, os.path.join(outdir, f"{img_id}_warped_longitudinal.nii.gz"))
-
-    for mask_id, mask_dir in transform_masks_dict.items():
-        mask = ants.image_read(mask_dir)
-        mask_warped = ants.apply_transforms(
-                fixed=t1c_pre,
-                moving=mask,
-                transformlist=reg["fwdtransforms"],
-                interpolator='nearestNeighbor'
-                )
-        ants.image_write(mask_warped, os.path.join(outdir, f"{img_id}_warped_longitudinal.nii.gz"))
+    recurrence_seg = ants.image_read(recurrence_seg_dir)
+    recurrence_warped = ants.apply_transforms(
+            fixed=t1c_pre,
+            moving=recurrence_seg,
+            transformlist=reg["fwdtransforms"],
+            interpolator='nearestNeighbor'
+            )
+    ants.image_write(recurrence_warped, os.path.join(outdir, "recurrence_preop.nii.gz"))
 
 
 if __name__ == "__main__":
     # python gbm_bench/preprocessing/norm_ss_coregistration.py
-    os.environ["CUDA_VISIBLE_DEVICES"] = "4"
+    os.environ["CUDA_VISIBLE_DEVICES"] = "6"
     t1c_pre_dir = "/home/home/lucas/projects/gbm_bench/test_data/exam1/preprocessing/skull_stripped/t1c_bet_normalized.nii.gz"
     t1c_post_dir = "/home/home/lucas/projects/gbm_bench/test_data/exam2/preprocessing/skull_stripped/t1c_bet_normalized.nii.gz"
     outdir = "/home/home/lucas/projects/gbm_bench/test_data/exam2/preprocessing/longitudinal/"
-    transform_images_dict = {
-            "t1": "/home/home/lucas/projects/gbm_bench/test_data/exam2/preprocessing/skull_stripped/t1_bet_normalized.nii.gz",
-            "t2": "/home/home/lucas/projects/gbm_bench/test_data/exam2/preprocessing/skull_stripped/t2_bet_normalized.nii.gz",
-            "flair": "/home/home/lucas/projects/gbm_bench/test_data/exam2/preprocessing/skull_stripped/flair_bet_normalized.nii.gz"
-            }
-    transform_masks_dict = {
-            "tumor_seg": "/home/home/lucas/projects/gbm_bench/test_data/exam2/preprocessing/tumor_segmentation/tumor_seg.nii.gz"
-            }
-    register_longitudinal(
+    recurrence_seg_dir = "/home/home/lucas/projects/gbm_bench/test_data/exam2/preprocessing/tumor_segmentation/tumor_seg.nii.gz"
+    
+    register_recurrence(
             t1c_pre_dir=t1c_pre_dir,
             t1c_post_dir=t1c_post_dir,
-            outdir=outdir,
-            transform_images_dict=transform_images_dict,
-            transform_masks_dict=transform_masks_dict
+            recurrence_seg_dir=recurrence_seg_dir,
+            outdir=outdir
             )
 
     """

@@ -2,7 +2,7 @@ import os
 import argparse
 from gbm_bench.utils.utils import merge_pdfs
 from gbm_bench.utils.parsing import RHUHParser
-from gbm_bench.utils.visualization import plot_mri_with_segmentation
+from gbm_bench.utils.visualization import plot_mri_with_segmentation, plot_tumor_concentration_multislice
 
 
 if __name__ == "__main__":
@@ -27,7 +27,15 @@ if __name__ == "__main__":
         outfile = f"./tmp/{patient_identifier}_lmi.pdf"
         outfiles.append(outfile)
         
-        plot_mri_with_segmentation(
+        #plot_mri_with_segmentation(
+        #        patient_identifier=patient_identifier,
+        #        exam_identifier=exam_identifier,
+        #        algorithm_identifier=algorithm_identifier,
+        #        preprocessing_dir=preprocessing_dir,
+        #        outfile=outfile
+        #        )
+
+        plot_tumor_concentration_multislice(
                 patient_identifier=patient_identifier,
                 exam_identifier=exam_identifier,
                 algorithm_identifier=algorithm_identifier,

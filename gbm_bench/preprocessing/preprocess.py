@@ -3,7 +3,7 @@ import datetime
 from gbm_bench.utils.utils import timed_print
 from gbm_bench.preprocessing.dicom_to_nifti import niftiConvert
 from gbm_bench.preprocessing.tumor_segmentation import run_brats
-from gbm_bench.preprocessing.norm_ss_coregistration import norm_ss_coregister
+from gbm_bench.preprocessing.norm_ss_coregistration import norm_ss_coregister, register_recurrence
 from gbm_bench.preprocessing.tissue_segmentation import generate_healthy_brain_mask, run_tissue_seg_registration
 
 
@@ -96,6 +96,21 @@ def preprocess_dicom(t1, t1c, t2, flair, dcm2niix_location, pre_treatment, cuda_
     timed_print("Finished tissue segmentation.")
 
 
+def process_longitudinal(preop_exam, postop_exam):
+    
+    t1c_pre_dir = os.path.join(preop_exam, "preprocessing/skull_stripped/t1c_bet_normalized.nii.gz")
+    t1c_post_dir = os.path.join(postop_exam, "preprocessing/skull_stripped/t1c_bet_normalized.nii.gz")
+    recurrence_seg_dir = os.path.join(postop_exam, "preprocessing/tumor_segmentation/tumor_seg.nii.gz")
+    outdir = os.path.join(postop_exam, "preprocessing/longitudinal")
+
+    register_recurrence(
+            t1c_pre_dir=t1c_pre_dir,
+            t1c_post_dir=t1c_post_dir,
+            recurrence_seg_dir=recurrence_seg_dir,
+            outdir=outdir
+            )
+
+
 if __name__ == "__main__":
     # Example:
     # python gbm_bench/preprocessing/preprocess.py
@@ -117,6 +132,7 @@ if __name__ == "__main__":
             t1c="test_data/exam2/t1c",
             t2="test_data/exam2/t2",
             flair="test_data/exam2/flair",
+            dcm2niix_location="/home/home/lucas/bin/dcm2niix",
             pre_treatment=False,
             perform_tissueseg=False,
             cuda_device="4"

@@ -1,8 +1,7 @@
-import os
+import os   
 import argparse
 from gbm_bench.utils.parsing import RHUHParser
-from gbm_bench.preprocessing.preprocess import preprocess_dicom
-
+from gbm_bench.preprocessing.preprocess import preprocess_dicom, process_longitudinal
 
 if __name__ == "__main__":
     # Example:
@@ -20,24 +19,39 @@ if __name__ == "__main__":
     rhuh_parser.parse()
     patients = rhuh_parser.get_patients()
 
+
+    # Process exams
     for patient_ind, patient in enumerate(patients):
         print(f"Processing {patient_ind}/{len(patients)}...")
         
-        for exam_ind, sequences in enumerate(patient["sequences"][:1]): #preop only
+        for exam_ind, sequences in enumerate(patient["sequences"][1:]): #postop only
             print(f"Exam {exam_ind}...")
 
             # Exams are sorted, first one is pre-op for RHUH
-            pre_treatement = True if exam_ind==0 else False
+            is_preop = True if exam_ind==0 else False
+
+            if os.path.exists(os.path.join(os.path.dirname(sequences["t1"]), "preprocessing")):
+                continue
+
             preprocess_dicom(
                     t1=sequences["t1"],
                     t1c=sequences["t1c"],
                     t2=sequences["t2"],
                     flair=sequences["flair"],
                     dcm2niix_location=dcm2niix_location,
-                    pre_treatment=pre_treatement,
+                    pre_treatment=is_preop,
                     cuda_device=args.cuda_device,
-                    perform_nifti_conversion=False,
-                    perform_skullstripping=False,
-                    perform_tumorseg=False,
-                    perform_tissueseg=True
+                    perform_nifti_conversion=True,
+                    perform_skullstripping=True,
+                    perform_tumorseg=True,
+                    perform_tissueseg=is_preop
                     )
+
+    # Longitudinal registration (preop exam and exam 2)
+    for patient_ind, patient in enumerate(patients):
+        print(f"Performing longitudinal registration {patient_ind}/{len(patients)}...")
+        
+        process_longitudinal(
+                preop_exam=patient["exams"][0],
+                postop_exam=patient["exams"][2]
+                )
