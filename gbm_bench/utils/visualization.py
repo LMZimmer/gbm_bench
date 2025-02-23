@@ -305,6 +305,145 @@ def plot_tumor_concentration_multislice(
     plt.close(fig)
 
 
+def plot_recurrence(
+    patient_identifier: str,
+    exam_identifier_pre: str,
+    exam_identifier_post: str,
+    preprocessing_dir_pre: str,
+    preprocessing_dir_post: str,
+    outfile: str,
+    classes_of_interest: List[int] = [1, 2, 3]
+) -> None:
+
+    t1c_pre_dir = os.path.join(preprocessing_dir_pre, "skull_stripped/t1c_bet_normalized.nii.gz")
+    t1c_post_dir = os.path.join(preprocessing_dir_post, "longitudinal/t1c_warped_longitudinal.nii.gz")
+    tumor_seg_dir = os.path.join(preprocessing_dir_pre, "tumor_segmentation/tumor_seg.nii.gz")
+    recurrence_seg_dir = os.path.join(preprocessing_dir_post, "longitudinal/recurrence_preop.nii.gz"
+
+    t1c_data_pre = load_mri_data(t1c_pre_dir)
+    seg_data_pre = load_mri_data(tumor_seg_dir)
+    t1c_data_post = load_mri_data(t1c_post_dir)
+    seg_data_post = load_mri_data(recurrence_seg_dir)
+    patient_dim = t1c_data_pre.shape
+
+    # Compute center of mass of the tumor/region from the segmentation mask
+    center = compute_center_of_mass(seg_data_pre, t1c_data_pre, classes_of_interest)
+    step_size = 10
+    num_slices = 5
+    axial_slices = [center[2] + ind * step_size - 2 * step_size for ind in range(0, num_slices)]
+    axial_slices = [min(max(0, ax_slice), patient_dim[2]) for ax_slice in axial_slices]
+    sagittal_slices = [center[0] + ind * step_size - 2 * step_size for ind in range(0, num_slices)]
+    sagittal_slices = [min(max(0, sag_slice), patient_dim[0]) for sag_slice in sagittal_slices]
+
+    print(
+        f"Computed center of mass (Axial slice: {center[2]}, Sagittal slice: {center[0]})"
+    )
+
+    # colormap for tumor segmentation (1: non enhancing, 2: edema, 3: enhancing)
+    colors = [(0,0,0,0), (1, 127/255, 0, 1), (30/255, 144/255, 1, 1), (138/255, 43/255, 226/255, 1)]
+    color_labels = ["Non-enhancing Tumor", "Peritumoral Edema", "Enhancing Tumor"]
+    cmap = mcolors.ListedColormap(colors)
+    bounds = [0, 0.5, 1.5, 2.5, 3.5]
+    norm = mcolors.BoundaryNorm(bounds, cmap.N)
+    patches = [mpatches.Patch(color=c, label=l) for (c, l) in zip(colors[1:], color_labels)]
+
+    # each key-value pair in image_dirs gets 2 rows (axial, sagittal)
+    fig, axs = plt.subplots(2 * num_slices, 4, figsize=(20, 8 * num_slices))
+
+    # axial plots
+    for i, axial_slice in enumerate(axial_slices):
+
+        # T1c (pre) + Tumor seg (pre)
+        axs[i, 0].imshow(np.rot90(t1c_data_pre[:, :, axial_slice]), cmap="gray")
+        overlay = np.rot90(seg_data_pre[:, :, axial_slice])
+        axs[i, 0].imshow(overlay, cmap=cmap, norm=norm, alpha=0.9)
+        axs[i, 0].axis("off")
+
+        # T1c (pre) + Recurrence
+        axs[i, 1].imshow(np.rot90(t1c_data_pre[:, :, axial_slice]), cmap="gray")
+        overlay = np.rot90(seg_data_post[:, :, axial_slice])
+        axs[i, 1].imshow(overlay, cmap=cmap, norm=norm, alpha=0.9)
+        axs[i, 1].axis("off")
+
+        # T1c (post) + Tumor seg (pre)
+        axs[i, 2].imshow(np.rot90(t1c_data_post[:, :, axial_slice]), cmap="gray")
+        overlay = np.rot90(seg_data_pre[:, :, axial_slice])
+        axs[i, 2].imshow(overlay, cmap=cmap, norm=norm, alpha=0.9)
+        axs[i, 2].axis("off")
+
+        # T1c (post) + Recurrence
+        axs[i, 3].imshow(np.rot90(t1c_data_post[:, :, axial_slice]), cmap="gray")
+        overlay = np.rot90(seg_data_post[:, :, axial_slice])
+        axs[i, 3].imshow(overlay, cmap=cmap, norm=norm, alpha=0.9)
+        axs[i, 3].axis("off")
+
+    for i, sagittal_slice in enumerate(sagittal_slices):
+
+        # T1c (pre) + Tumor seg (pre)
+        axs[i + num_slices, 0].imshow(np.rot90(t1c_data_pre[:, :, axial_slice]), cmap="gray")
+        overlay = np.rot90(seg_data_pre[:, :, axial_slice])
+        axs[i + num_slices, 0].imshow(overlay, cmap=cmap, norm=norm, alpha=0.9)
+        axs[i + num_slices, 0].axis("off")
+
+        # T1c (pre) + Recurrence
+        axs[i + num_slices, 1].imshow(np.rot90(t1c_data_pre[:, :, axial_slice]), cmap="gray")
+        overlay = np.rot90(seg_data_post[:, :, axial_slice])
+        axs[i + num_slices, 1].imshow(overlay, cmap=cmap, norm=norm, alpha=0.9)
+        axs[i + num_slices, 1].axis("off")
+
+        # T1c (post) + Tumor seg (pre)
+        axs[i + num_slices, 2].imshow(np.rot90(t1c_data_post[:, :, axial_slice]), cmap="gray")
+        overlay = np.rot90(seg_data_pre[:, :, axial_slice])
+        axs[i + num_slices, 2].imshow(overlay, cmap=cmap, norm=norm, alpha=0.9)
+        axs[i + num_slices, 2].axis("off")
+
+        # T1c (post) + Recurrence
+        axs[i + num_slices, 3].imshow(np.rot90(t1c_data_post[:, :, axial_slice]), cmap="gray")
+        overlay = np.rot90(seg_data_post[:, :, axial_slice])
+        axs[i + num_slices, 3].imshow(overlay, cmap=cmap, norm=norm, alpha=0.9)
+        axs[i + num_slices, 3].axis("off")
+
+    # Column titles
+    axs[0, 0].set_title("T1C (preop)+Tumor", fontsize=16, fontweight="bold", pad=20)
+    axs[0, 1].set_title("T1C (preop)+Recurrence", fontsize=16, fontweight="bold", pad=20)
+    axs[0, 2].set_title("T1C (postop)+Tumor", fontsize=16, fontweight="bold", pad=20)
+    axs[0, 3].set_title("T1C (postop)+Recurrence", fontsize=16, fontweight="bold", pad=20)
+
+    # Row titles
+    row_labels = axial_slices + sagittal_slices
+    for ind, rl in enumerate(row_labels):
+        axs[ind, 0].axis("on")
+        axs[ind, 0].tick_params(left=False, bottom=False, labelleft=False, labelbottom=False)
+        axs[ind, 0].set_ylabel(rl, fontweight="bold", labelpad=20, fontsize=16)
+
+    # Add identifiers with adjusted margins and bounding box
+    fig.subplots_adjust(top=0.85)
+    fig.suptitle(
+            (
+                f"Patient: {patient_identifier}\n"
+                f"Exam (preop): {exam_identifier_pre}\n"
+                f"Exam (postop): {exam_identifier_post}\n"
+                f"CoM slice (axial/sagittal): {center[2]}/{center[0]}\n"
+                ),
+            horizontalalignment="left",
+            fontsize=20,
+            fontweight="bold",
+            color="black",
+            y=0.92,
+            x=0.066,
+            bbox=dict(facecolor="white", edgecolor="none", alpha=0.7),
+            )
+
+    # Color legends
+    fig.legend(handles=patches, loc="upper right", bbox_to_anchor=(0.96, 0.891), ncol=3)
+
+    plt.tight_layout(rect=[0, 0, 1, 0.9])
+    plt.savefig(outfile, format="pdf")
+    print(f"Plot saved as {outfile}")
+    plt.close(fig)
+
+
+
 if __name__ == "__main__":
     # Example:
     # python gbm_bench/utils/visualization.py -preprocessing_dir /home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-25-2015-NA-RM\ CEREBRAL6NEURNAV-21029/preprocessing/ -patient_id RHUH-0001 -exam_id 01-25-2015 -algo_id LMI -outfile ~/test.pdf
@@ -324,10 +463,19 @@ if __name__ == "__main__":
     #        outfile=args.outfile
     #        )
 
-    plot_tumor_concentration_multislice(
-            patient_identifier=args.patient_id,
-            exam_identifier=args.exam_id,
-            algorithm_identifier=args.algo_id,
-            preprocessing_dir=args.preprocessing_dir,
-            outfile=args.outfile
+    #plot_tumor_concentration_multislice(
+    #        patient_identifier=args.patient_id,
+    #        exam_identifier=args.exam_id,
+    #        algorithm_identifier=args.algo_id,
+    #        preprocessing_dir=args.preprocessing_dir,
+    #        outfile=args.outfile
+    #        )
+
+    plot_recurrence(
+            patient_identifier="RHUH-0001",
+            exam_identifier_pre="Pre",
+            exam_identifier_post="Post",
+            preprocessing_dir_pre="test_data/exam1/preprocessing",
+            preprocessing_dir_post="test_data/exam3/preprocessing"
+            outfile="test.pdf"
             )
