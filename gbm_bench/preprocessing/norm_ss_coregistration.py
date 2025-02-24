@@ -103,9 +103,9 @@ if __name__ == "__main__":
     # python gbm_bench/preprocessing/norm_ss_coregistration.py
     os.environ["CUDA_VISIBLE_DEVICES"] = "6"
     t1c_pre_dir = "/home/home/lucas/projects/gbm_bench/test_data/exam1/preprocessing/skull_stripped/t1c_bet_normalized.nii.gz"
-    t1c_post_dir = "/home/home/lucas/projects/gbm_bench/test_data/exam2/preprocessing/skull_stripped/t1c_bet_normalized.nii.gz"
-    outdir = "/home/home/lucas/projects/gbm_bench/test_data/exam2/preprocessing/longitudinal/"
-    recurrence_seg_dir = "/home/home/lucas/projects/gbm_bench/test_data/exam2/preprocessing/tumor_segmentation/tumor_seg.nii.gz"
+    t1c_post_dir = "/home/home/lucas/projects/gbm_bench/test_data/exam3/preprocessing/skull_stripped/t1c_bet_normalized.nii.gz"
+    outdir = "/home/home/lucas/projects/gbm_bench/test_data/exam3/preprocessing/longitudinal/"
+    recurrence_seg_dir = "/home/home/lucas/projects/gbm_bench/test_data/exam3/preprocessing/tumor_segmentation/tumor_seg.nii.gz"
     
     register_recurrence(
             t1c_pre_dir=t1c_pre_dir,

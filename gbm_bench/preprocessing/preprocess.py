@@ -1,4 +1,5 @@
 import os
+import argparse
 import datetime
 from gbm_bench.utils.utils import timed_print
 from gbm_bench.preprocessing.dicom_to_nifti import niftiConvert
@@ -113,7 +114,12 @@ def process_longitudinal(preop_exam, postop_exam):
 
 if __name__ == "__main__":
     # Example:
-    # python gbm_bench/preprocessing/preprocess.py
+    # python gbm_bench/preprocessing/preprocess.py -cuda_device 2
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-cuda_device", type=str, default="4", help="GPU id to run on.")
+    args = parser.parse_args()
+
+    os.environ["CUDA_VISIBLE_DEVICES"] = args.cuda_device
 
     # Pre-treatment example
     #preprocess_dicom(
@@ -123,17 +129,17 @@ if __name__ == "__main__":
     #        flair="test_data/exam1/flair",
     #        dcm2niix_location="/home/home/lucas/bin/dcm2niix",
     #        pre_treatment=True,
-    #        cuda_device="4"
+    #        cuda_device=args.cuda_device
     #        )
     
     # Post-treatment example
     preprocess_dicom(
-            t1="test_data/exam2/t1",
-            t1c="test_data/exam2/t1c",
-            t2="test_data/exam2/t2",
-            flair="test_data/exam2/flair",
+            t1="test_data/exam3/t1",
+            t1c="test_data/exam3/t1c",
+            t2="test_data/exam3/t2",
+            flair="test_data/exam3/flair",
             dcm2niix_location="/home/home/lucas/bin/dcm2niix",
             pre_treatment=False,
             perform_tissueseg=False,
-            cuda_device="4"
+            cuda_device=args.cuda_device
             )

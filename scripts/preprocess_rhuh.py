@@ -48,6 +48,7 @@ if __name__ == "__main__":
                     )
 
     # Longitudinal registration (preop exam and exam 2)
+    """
     for patient_ind, patient in enumerate(patients):
         print(f"Performing longitudinal registration {patient_ind}/{len(patients)}...")
         
@@ -55,3 +56,4 @@ if __name__ == "__main__":
                 preop_exam=patient["exams"][0],
                 postop_exam=patient["exams"][2]
                 )
+    """

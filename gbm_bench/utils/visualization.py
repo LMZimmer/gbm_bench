@@ -318,7 +318,7 @@ def plot_recurrence(
     t1c_pre_dir = os.path.join(preprocessing_dir_pre, "skull_stripped/t1c_bet_normalized.nii.gz")
     t1c_post_dir = os.path.join(preprocessing_dir_post, "longitudinal/t1c_warped_longitudinal.nii.gz")
     tumor_seg_dir = os.path.join(preprocessing_dir_pre, "tumor_segmentation/tumor_seg.nii.gz")
-    recurrence_seg_dir = os.path.join(preprocessing_dir_post, "longitudinal/recurrence_preop.nii.gz"
+    recurrence_seg_dir = os.path.join(preprocessing_dir_post, "longitudinal/recurrence_preop.nii.gz")
 
     t1c_data_pre = load_mri_data(t1c_pre_dir)
     seg_data_pre = load_mri_data(tumor_seg_dir)
@@ -353,25 +353,21 @@ def plot_recurrence(
     # axial plots
     for i, axial_slice in enumerate(axial_slices):
 
-        # T1c (pre) + Tumor seg (pre)
+        # T1c (pre)
         axs[i, 0].imshow(np.rot90(t1c_data_pre[:, :, axial_slice]), cmap="gray")
-        overlay = np.rot90(seg_data_pre[:, :, axial_slice])
-        axs[i, 0].imshow(overlay, cmap=cmap, norm=norm, alpha=0.9)
         axs[i, 0].axis("off")
 
-        # T1c (pre) + Recurrence
+        # T1c (pre) + Tumor seg (pre)
         axs[i, 1].imshow(np.rot90(t1c_data_pre[:, :, axial_slice]), cmap="gray")
-        overlay = np.rot90(seg_data_post[:, :, axial_slice])
+        overlay = np.rot90(seg_data_pre[:, :, axial_slice])
         axs[i, 1].imshow(overlay, cmap=cmap, norm=norm, alpha=0.9)
         axs[i, 1].axis("off")
 
-        # T1c (post) + Tumor seg (pre)
+        # T1c (post)
         axs[i, 2].imshow(np.rot90(t1c_data_post[:, :, axial_slice]), cmap="gray")
-        overlay = np.rot90(seg_data_pre[:, :, axial_slice])
-        axs[i, 2].imshow(overlay, cmap=cmap, norm=norm, alpha=0.9)
         axs[i, 2].axis("off")
 
-        # T1c (post) + Recurrence
+        # T1c (post) + Tumor seg (recurrence)
         axs[i, 3].imshow(np.rot90(t1c_data_post[:, :, axial_slice]), cmap="gray")
         overlay = np.rot90(seg_data_post[:, :, axial_slice])
         axs[i, 3].imshow(overlay, cmap=cmap, norm=norm, alpha=0.9)
@@ -379,34 +375,30 @@ def plot_recurrence(
 
     for i, sagittal_slice in enumerate(sagittal_slices):
 
-        # T1c (pre) + Tumor seg (pre)
-        axs[i + num_slices, 0].imshow(np.rot90(t1c_data_pre[:, :, axial_slice]), cmap="gray")
-        overlay = np.rot90(seg_data_pre[:, :, axial_slice])
-        axs[i + num_slices, 0].imshow(overlay, cmap=cmap, norm=norm, alpha=0.9)
+        # T1c (pre)
+        axs[i + num_slices, 0].imshow(np.rot90(t1c_data_pre[sagittal_slice, :, :]), cmap="gray")
         axs[i + num_slices, 0].axis("off")
 
-        # T1c (pre) + Recurrence
-        axs[i + num_slices, 1].imshow(np.rot90(t1c_data_pre[:, :, axial_slice]), cmap="gray")
-        overlay = np.rot90(seg_data_post[:, :, axial_slice])
+        # T1c (pre) + Tumor seg (pre)
+        axs[i + num_slices, 1].imshow(np.rot90(t1c_data_pre[sagittal_slice, :, :]), cmap="gray")
+        overlay = np.rot90(seg_data_pre[sagittal_slice, :, :])
         axs[i + num_slices, 1].imshow(overlay, cmap=cmap, norm=norm, alpha=0.9)
         axs[i + num_slices, 1].axis("off")
 
-        # T1c (post) + Tumor seg (pre)
-        axs[i + num_slices, 2].imshow(np.rot90(t1c_data_post[:, :, axial_slice]), cmap="gray")
-        overlay = np.rot90(seg_data_pre[:, :, axial_slice])
-        axs[i + num_slices, 2].imshow(overlay, cmap=cmap, norm=norm, alpha=0.9)
+        # T1c (post)
+        axs[i + num_slices, 2].imshow(np.rot90(t1c_data_post[sagittal_slice, :, :]), cmap="gray")
         axs[i + num_slices, 2].axis("off")
 
-        # T1c (post) + Recurrence
-        axs[i + num_slices, 3].imshow(np.rot90(t1c_data_post[:, :, axial_slice]), cmap="gray")
-        overlay = np.rot90(seg_data_post[:, :, axial_slice])
+        # T1c (post) + Tumor seg (recurrence)
+        axs[i + num_slices, 3].imshow(np.rot90(t1c_data_post[sagittal_slice, :, :]), cmap="gray")
+        overlay = np.rot90(seg_data_post[sagittal_slice, :, :])
         axs[i + num_slices, 3].imshow(overlay, cmap=cmap, norm=norm, alpha=0.9)
         axs[i + num_slices, 3].axis("off")
 
     # Column titles
-    axs[0, 0].set_title("T1C (preop)+Tumor", fontsize=16, fontweight="bold", pad=20)
-    axs[0, 1].set_title("T1C (preop)+Recurrence", fontsize=16, fontweight="bold", pad=20)
-    axs[0, 2].set_title("T1C (postop)+Tumor", fontsize=16, fontweight="bold", pad=20)
+    axs[0, 0].set_title("T1C (preop)", fontsize=16, fontweight="bold", pad=20)
+    axs[0, 1].set_title("T1C (preop)+Tumor", fontsize=16, fontweight="bold", pad=20)
+    axs[0, 2].set_title("T1C (postop)", fontsize=16, fontweight="bold", pad=20)
     axs[0, 3].set_title("T1C (postop)+Recurrence", fontsize=16, fontweight="bold", pad=20)
 
     # Row titles
@@ -476,6 +468,6 @@ if __name__ == "__main__":
             exam_identifier_pre="Pre",
             exam_identifier_post="Post",
             preprocessing_dir_pre="test_data/exam1/preprocessing",
-            preprocessing_dir_post="test_data/exam3/preprocessing"
-            outfile="test.pdf"
+            preprocessing_dir_post="test_data/exam3/preprocessing",
+            outfile="test_longitudinal.pdf"
             )
