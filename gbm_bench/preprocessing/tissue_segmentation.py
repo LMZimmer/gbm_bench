@@ -108,12 +108,15 @@ def run_tissue_seg_registration(t1_file, healthy_mask_dir, outdir, brain_mask_di
                 )
 
         if refit_brain:
-            warped_pbmap = ants.apply_transforms(
-                    fixed=t1_patient,
-                    moving=warped_pbmap,
-                    transformlist=transforms_path_masks,
-                    interpolator="linear"
-                    )
+            #warped_pbmap2 = ants.apply_transforms(
+            #        fixed=brain_mask,
+            #        moving=warped_pbmap,
+            #        transformlist=transforms_path_masks,
+            #        interpolator="linear"
+            #        )
+            #warped_pbmap_nifti2 = warped_pbmap2.to_nibabel()
+            #nib.save(warped_pbmap_nifti2, os.path.join(outdir, f"{tissue}_pbmap2.nii.gz"))
+            pass
 
         warped_pbmap_nifti = warped_pbmap.to_nibabel()
         nib.save(warped_pbmap_nifti, os.path.join(outdir, f"{tissue}_pbmap.nii.gz"))
