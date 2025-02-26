@@ -17,7 +17,7 @@ def generate_healthy_brain_mask(brain_mask_file: str, tumor_seg_file: str, outdi
     brain_nifti = nib.load(brain_mask_file)
     aff, header = brain_nifti.affine, brain_nifti.header
     m1 = brain_nifti.get_fdata()
-    m2 = (nib.load(tumor_mask_file).get_fdata() > 0).astype(np.float32)
+    m2 = (nib.load(tumor_seg_file).get_fdata() > 0).astype(np.float32)
     healthy_mask = ((m1 - m2) > 0).astype(np.float32)
     healthy_mask_nifti = nib.Nifti1Image(healthy_mask, aff, header)
     os.makedirs(os.path.dirname(outdir), exist_ok=True)
