@@ -6,7 +6,7 @@ from typing import List
 from auxiliary.turbopath.turbopath import turbopath
 
 
-def remove_postfixes(outdir: str): -> None
+def remove_postfixes(outdir: str) -> None:
     # removes postfixes created by dcm2niix (e.g. _real)
     postfix_files = [f for f in os.listdir(outdir) if "_" in f and not f.endswith(".log")]
     for pf in postfix_files:
@@ -18,7 +18,7 @@ def remove_postfixes(outdir: str): -> None
         print(f"Renamed postfix file {old} to {new}.")
 
 
-def niftiConvert(input_dir: str, export_dir: str, outfile: str, dcm2niix_location: str): -> None
+def niftiConvert(input_dir: str, export_dir: str, outfile: str, dcm2niix_location: str) -> None:
     try:
         os.makedirs(export_dir, exist_ok=True)
         cmd_readable = (

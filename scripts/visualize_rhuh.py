@@ -1,4 +1,5 @@
 import os
+import shutil
 import argparse
 from gbm_bench.utils.utils import merge_pdfs
 from gbm_bench.utils.parsing import RHUHParser
@@ -16,39 +17,50 @@ if __name__ == "__main__":
     rhuh_parser.parse()
     patients = rhuh_parser.get_patients()
 
-    outfiles = []
+    outfiles_model, outfiles_recurrences = [], []
+    tmp_dir_model, tmp_dir_rec = "./tmp/lmi", "./tmp/recurrence"
+    os.makedirs(tmp_dir_model, exist_ok=True)
+    os.makedirs(tmp_dir_rec, exist_ok=True)
+    
     for ind, patient in enumerate(patients):
-        print(f"Creating plots {ind}/{len(patients)}...")
-        patient_identifier = patient["patient_id"]
-        exam_identifier = patient["exam_ids"][0]     # First exam is pre-op
-        algorithm_identifier = "lmi"
-        preprocessing_dir = os.path.join(patient["exams"][0], "preprocessing")
-        os.makedirs("./tmp", exist_ok=True)
-        outfile = f"./tmp/{patient_identifier}_lmi.pdf"
-        outfiles.append(outfile)
         
+        print(f"Creating plots {ind}/{len(patients)}...")
+        
+        patient_identifier = patient["patient_id"]
+        exam_identifier_preop = patient["exam_ids"][0]     # First exam is pre-op
+        exam_identifier_followup = patient["exam_ids"][2]  # Second exam is post-op, Third is follow up
+        preprocessing_dir_preop = os.path.join(patient["exams"][0], "preprocessing")
+        preprocessing_dir_followup = os.path.join(patient["exams"][2], "preprocessing")
+        algorithm_identifier = "LMI"
+        
+        outfile_model = os.path.join(tmp_dir_model, f"{patient_identifier}_{algorithm_identifier}.pdf")
+        outfiles_model.append(outfile_model)
+
         plot_model_multislice(
                 patient_identifier=patient_identifier,
-                exam_identifier=exam_identifier,
+                exam_identifier=exam_identifier_preop,
                 algorithm_identifier=algorithm_identifier,
-                preprocessing_dir=preprocessing_dir,
-                outfile=outfile
+                preprocessing_dir=preprocessing_dir_preop,
+                outfile=outfile_model
                 )
 
+        outfile_recurrence = os.path.join(tmp_dir_rec, f"{patient_identifier}_recurrence.pdf")
+        outfiles_recurrences.append(outfile_recurrence)
+        
         #plot_recurrence_multislice(
-        #    patient_identifier="RHUH-0001",
-        #    exam_identifier_pre="Pre",
-        #    exam_identifier_post="Post",
-        #    preprocessing_dir_pre="test_data/exam1/preprocessing",
-        #    preprocessing_dir_post="test_data/exam3/preprocessing",
-        #    outfile="test_longitudinal.pdf"
+        #    patient_identifier=patient_identifier,
+        #    exam_identifier_pre=exam_identifier_preop,
+        #    exam_identifier_post=exam_identifier_followup,
+        #    preprocessing_dir_pre=preprocessing_dir_preop,
+        #    preprocessing_dir_post=preprocessing_dir_followup,
+        #    outfile=outfile_recurrence
         #    )
 
-    # Merge all PDFs for this algorithm into one for the patient
-    combined_pdf_path = f"./tmp/RHUH_{algorithm_identifier}.pdf"
-    outfiles.sort()
-    merge_pdfs(outfiles, combined_pdf_path)
+    # Merge PDFs
+    outfiles_model.sort(), outfiles_recurrences.sort()
+    merge_pdfs(outfiles_model, f"./tmp/RHUH_{algorithm_identifier}.pdf")
+    merge_pdfs(outfiles_recurrences, f"./tmp/RHUH_recurrences.pdf")
 
-    # Delete single files
-    for f in outfiles:
-        os.remove(f)
+    # Delete temporary files
+    shutil.rmtree(tmp_dir_model)
+    shutil.rmtree(tmp_dir_rec)

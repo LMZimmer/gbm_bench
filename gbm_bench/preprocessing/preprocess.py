@@ -8,7 +8,9 @@ from gbm_bench.preprocessing.norm_ss_coregistration import norm_ss_coregister, r
 from gbm_bench.preprocessing.tissue_segmentation import generate_healthy_brain_mask, run_tissue_seg_registration
 
 
-def preprocess_dicom(t1, t1c, t2, flair, dcm2niix_location, pre_treatment, cuda_device="2", perform_nifti_conversion=True, perform_skullstripping=True, perform_tumorseg=True, perform_tissueseg=True):
+def preprocess_dicom(t1: str, t1c: str, t2: str, flair: str, dcm2niix_location: str, pre_treatment: bool, cuda_device: str = "2",
+                     perform_nifti_conversion: bool = True, perform_skullstripping: bool = True, perform_tumorseg: bool = True,
+                     perform_tissueseg: bool = True) -> None:
 
     os.environ["CUDA_VISIBLE_DEVICES"] = cuda_device
 
@@ -80,7 +82,7 @@ def preprocess_dicom(t1, t1c, t2, flair, dcm2niix_location, pre_treatment, cuda_
 
     generate_healthy_brain_mask(
             brain_mask_file=brain_mask_dir,
-            tumor_mask_file=tumor_outfile,
+            tumor_seg_file=tumor_outfile,
             outdir=healthy_mask_dir
             )
 
@@ -97,40 +99,44 @@ def preprocess_dicom(t1, t1c, t2, flair, dcm2niix_location, pre_treatment, cuda_
     timed_print("Finished tissue segmentation.")
 
 
-def process_longitudinal(preop_exam, postop_exam):
+def process_longitudinal(preop_exam: str, postop_exam: str) -> None:
     
     t1c_pre_dir = os.path.join(preop_exam, "preprocessing/skull_stripped/t1c_bet_normalized.nii.gz")
     t1c_post_dir = os.path.join(postop_exam, "preprocessing/skull_stripped/t1c_bet_normalized.nii.gz")
     recurrence_seg_dir = os.path.join(postop_exam, "preprocessing/tumor_segmentation/tumor_seg.nii.gz")
     outdir = os.path.join(postop_exam, "preprocessing/longitudinal")
 
+    timed_print("Starting longitudinal registration.")
     register_recurrence(
             t1c_pre_dir=t1c_pre_dir,
             t1c_post_dir=t1c_post_dir,
             recurrence_seg_dir=recurrence_seg_dir,
             outdir=outdir
             )
+    timed_print("Finished longitudinal registration.")
 
 
 if __name__ == "__main__":
     # Example:
-    # python gbm_bench/preprocessing/preprocess.py -cuda_device 2
+    # python gbm_bench/preprocessing/preprocess.py -cuda_device 4
     parser = argparse.ArgumentParser()
     parser.add_argument("-cuda_device", type=str, default="4", help="GPU id to run on.")
     args = parser.parse_args()
 
     os.environ["CUDA_VISIBLE_DEVICES"] = args.cuda_device
 
+    dcm2niix_location = "/home/home/lucas/bin/dcm2niix"
+
     # Pre-treatment example
-    #preprocess_dicom(
-    #        t1="test_data/exam1/t1",
-    #        t1c="test_data/exam1/t1c",
-    #        t2="test_data/exam1/t2",
-    #        flair="test_data/exam1/flair",
-    #        dcm2niix_location="/home/home/lucas/bin/dcm2niix",
-    #        pre_treatment=True,
-    #        cuda_device=args.cuda_device
-    #        )
+    preprocess_dicom(
+            t1="test_data/exam1/t1",
+            t1c="test_data/exam1/t1c",
+            t2="test_data/exam1/t2",
+            flair="test_data/exam1/flair",
+            dcm2niix_location=dcm2niix_location,
+            pre_treatment=True,
+            cuda_device=args.cuda_device
+            )
     
     # Post-treatment example
     preprocess_dicom(
@@ -138,8 +144,14 @@ if __name__ == "__main__":
             t1c="test_data/exam3/t1c",
             t2="test_data/exam3/t2",
             flair="test_data/exam3/flair",
-            dcm2niix_location="/home/home/lucas/bin/dcm2niix",
+            dcm2niix_location=dcm2niix_location,
             pre_treatment=False,
             perform_tissueseg=False,
             cuda_device=args.cuda_device
+            )
+
+    # Longitudinal example
+    process_longitudinal(
+            preop_exam="test_data/exam1",
+            postop_exam="test_data/exam3"
             )

@@ -5,9 +5,9 @@ from gbm_bench.preprocessing.preprocess import preprocess_dicom, process_longitu
 
 if __name__ == "__main__":
     # Example:
-    # python scripts/preprocess_rhuh.py -cuda_device 1
+    # python scripts/preprocess_rhuh.py -cuda_device 4
     parser = argparse.ArgumentParser()
-    parser.add_argument("-cuda_device", type=str, default="1", help="GPU id to run on.")
+    parser.add_argument("-cuda_device", type=str, default="4", help="GPU id to run on.")
     args = parser.parse_args()
 
     os.environ["CUDA_VISIBLE_DEVICES"] = args.cuda_device
@@ -18,7 +18,6 @@ if __name__ == "__main__":
     rhuh_parser = RHUHParser(root_dir=rhuh_root)
     rhuh_parser.parse()
     patients = rhuh_parser.get_patients()
-
 
     # Process exams
     for patient_ind, patient in enumerate(patients):
@@ -48,12 +47,13 @@ if __name__ == "__main__":
                     )
 
     # Longitudinal registration (preop exam and exam 2)
-    """
     for patient_ind, patient in enumerate(patients):
         print(f"Performing longitudinal registration {patient_ind}/{len(patients)}...")
+
+        if os.path.exists(os.path.join(patient["exams"][2], "preprocessing/longitudinal")):
+            continue
         
         process_longitudinal(
                 preop_exam=patient["exams"][0],
                 postop_exam=patient["exams"][2]
                 )
-    """

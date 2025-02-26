@@ -12,7 +12,7 @@ from brainles_preprocessing.modality import Modality, CenterModality
 from brainles_preprocessing.normalization.percentile_normalizer import PercentileNormalizer
 
 
-def generate_healthy_brain_mask(brain_mask_file, tumor_mask_file, outdir):
+def generate_healthy_brain_mask(brain_mask_file: str, tumor_seg_file: str, outdir: str) -> None:
     #TODO: better implementation via a[b > 0] = 0
     brain_nifti = nib.load(brain_mask_file)
     aff, header = brain_nifti.affine, brain_nifti.header
@@ -24,7 +24,7 @@ def generate_healthy_brain_mask(brain_mask_file, tumor_mask_file, outdir):
     nib.save(healthy_mask_nifti, outdir)
 
 
-def run_tissue_seg_registration(t1_file, healthy_mask_dir, outdir, brain_mask_dir=None, refit_brain=False):
+def run_tissue_seg_registration(t1_file: str, healthy_mask_dir: str, outdir: str, brain_mask_dir: str = None, refit_brain: bool = False) -> None:
 
     #TODO absolute paths
     atlas_base_dir = "/home/home/lucas/projects/gbm_bench/gbm_bench/sri24_atlas"
@@ -124,31 +124,31 @@ def run_tissue_seg_registration(t1_file, healthy_mask_dir, outdir, brain_mask_di
 
 if __name__ == "__main__":
     # Example:
-    # python gbm_bench/preprocessing/tissue_segmentation.py -t1 test_data/exam1/preprocessing/skull_stripped/t1c_bet_normalized.nii.gz -brain_mask test_data/exam1/preprocessing/skull_stripped/t1c_bet_mask.nii.gz -tumor_mask test_data/exam1/preprocessing/tumor_segmentation/tumor_seg.nii.gz -outdir tmp_test_tissueseg -cuda_device 2
+    # python gbm_bench/preprocessing/tissue_segmentation.py -cuda_device 4
     parser = argparse.ArgumentParser()
-    parser.add_argument("-t1", type=str, help="Path to T1 nifti.")
-    parser.add_argument("-brain_mask", type=str, help="Path to brain mask.")
-    parser.add_argument("-tumor_mask", type=str, help="Path to tumor mask.")
-    parser.add_argument("-outdir", type=str, help="Desired file path for output segmentation.")
-    parser.add_argument("-cuda_device", type=str, default="1", help="GPU id to run on.")
+    parser.add_argument("-cuda_device", type=str, default="4", help="GPU id to run on.")
     args = parser.parse_args()
 
     os.environ["CUDA_VISIBLE_DEVICES"] = args.cuda_device
 
+    t1 = "test_data/exam1/preprocessing/skull_stripped/t1c_bet_normalized.nii.gz"
+    brain_mask_dir = "test_data/exam1/preprocessing/skull_stripped/t1c_bet_mask.nii.gz"
+    tumor_seg_dir = "test_data/exam1/preprocessing/tumor_segmentation/tumor_seg.nii.gz"
+
     print("Generating healthy brain mask...")
     healthy_mask_dir = os.path.join(args.outdir, "healthy_brain_mask.nii.gz")
     generate_healthy_brain_mask(
-            args.brain_mask,
-            args.tumor_mask,
-            healthy_mask_dir
+            brain_mask_file=brain_mask_dir,
+            tumor_seg_file=tumor_seg,
+            outdir=healthy_mask_dir
             )
 
     print("Starting tissue registration...")
     run_tissue_seg_registration(
-            t1_file=args.t1,
+            t1_file=t1,
             healthy_mask_dir=healthy_mask_dir,
-            brain_mask_dir=args.brain_mask,
-            outdir=args.outdir,
-            refit_brain=True
+            brain_mask_dir=brain_mask_dir,
+            outdir="./tmp_test_tissueseg",
+            refit_brain=False
             )
     print("Finished.")
