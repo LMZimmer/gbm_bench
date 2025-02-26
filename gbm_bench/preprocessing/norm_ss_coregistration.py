@@ -2,12 +2,14 @@ import os
 import ants
 import shutil
 import argparse
+from typing import List, Tuple
+from brainles_preprocessing.normalization import Normalizer
 from brainles_preprocessing.preprocessor import Preprocessor
 from brainles_preprocessing.modality import Modality, CenterModality
 from brainles_preprocessing.normalization.percentile_normalizer import PercentileNormalizer
 
 
-def initialize_center_modality(modality_path, modality_name, normalizer, outdir):
+def initialize_center_modality(modality_path: str, modality_name: str, normalizer: Normalizer, outdir: str) -> CenterModality:
     
     bet_out = os.path.join(outdir, "_".join((modality_name, "bet_normalized.nii.gz")))
     bet_mask_out = os.path.join(outdir, "_".join((modality_name, "bet_mask.nii.gz")))
@@ -23,7 +25,7 @@ def initialize_center_modality(modality_path, modality_name, normalizer, outdir)
     return center
 
 
-def initialize_moving_modalities(modality_paths, modality_names, normalizer, outdir):
+def initialize_moving_modalities(modality_paths: List[str], modality_names: List[str], normalizer: Normalizer, outdir: str) -> Modality:
     
     moving_modalities = []
     for mod_path, mod_name in zip(modality_paths, modality_names):
@@ -41,7 +43,7 @@ def initialize_moving_modalities(modality_paths, modality_names, normalizer, out
     return moving_modalities
 
 
-def norm_ss_coregister(t1, t1c, t2, flair, outdir):
+def norm_ss_coregister(t1: str, t1c: str, t2: str, flair: str, outdir: str) -> None:
 
     percentile_normalizer = PercentileNormalizer(
             lower_percentile=0.1,
@@ -72,7 +74,7 @@ def norm_ss_coregister(t1, t1c, t2, flair, outdir):
     preprocessor.run()
 
 
-def register_recurrence(t1c_pre_dir, t1c_post_dir, recurrence_seg_dir, outdir):
+def register_recurrence(t1c_pre_dir: str, t1c_post_dir: str, recurrence_seg_dir: str, outdir: str) -> None:
     t1c_pre = ants.image_read(t1c_pre_dir)
     t1c_post = ants.image_read(t1c_post_dir)
 
@@ -100,59 +102,34 @@ def register_recurrence(t1c_pre_dir, t1c_post_dir, recurrence_seg_dir, outdir):
 
 
 if __name__ == "__main__":
-    # python gbm_bench/preprocessing/norm_ss_coregistration.py
-    os.environ["CUDA_VISIBLE_DEVICES"] = "6"
-    t1c_pre_dir = "/home/home/lucas/projects/gbm_bench/test_data/exam1/preprocessing/skull_stripped/t1c_bet_normalized.nii.gz"
-    t1c_post_dir = "/home/home/lucas/projects/gbm_bench/test_data/exam3/preprocessing/skull_stripped/t1c_bet_normalized.nii.gz"
-    outdir = "/home/home/lucas/projects/gbm_bench/test_data/exam3/preprocessing/longitudinal/"
-    recurrence_seg_dir = "/home/home/lucas/projects/gbm_bench/test_data/exam3/preprocessing/tumor_segmentation/tumor_seg.nii.gz"
-    
-    register_recurrence(
-            t1c_pre_dir=t1c_pre_dir,
-            t1c_post_dir=t1c_post_dir,
-            recurrence_seg_dir=recurrence_seg_dir,
-            outdir=outdir
-            )
-
-    """
     # Example:
-    # python gbm_bench/preprocessing/norm_ss_coregistration.py -t1 test_data/exam1/preprocessing/nifti_conversion/t1.nii.gz -t1c test_data/exam1/preprocessing/nifti_conversion/t1c.nii.gz -t2 test_data/exam1/preprocessing/nifti_conversion/t2.nii.gz -flair test_data/exam1/preprocessing/nifti_conversion/flair.nii.gz -outdir tmp_test_ss/
+    # python gbm_bench/preprocessing/norm_ss_coregistration.py -cuda_device 4
     parser = argparse.ArgumentParser()
-    parser.add_argument("-t1", type=str, help="Path to T1 nifti.")
-    parser.add_argument("-t1c", type=str, help="Path to T1 contrast nifti.")
-    parser.add_argument("-t2", type=str, help="Path to T2 nifti.")
-    parser.add_argument("-flair", type=str, help="Path to flair nifti.")
-    parser.add_argument("-outdir", type=str, help="Output directory.")
-    parser.add_argument("-cuda_device", type=str, default="1", help="GPU id to run on.")
+    parser.add_argument("-cuda_device", type=str, default="4", help="GPU id to run on.")
     args = parser.parse_args()
 
     os.environ["CUDA_VISIBLE_DEVICES"] = args.cuda_device
-    
+
+    t1_nifti = "test_data/exam1/preprocessing/nifti_conversion/t1.nii.gz"
+    t1c_nifti = "test_data/exam1/preprocessing/nifti_conversion/t1c.nii.gz"
+    t2_nifti = "test_data/exam1/preprocessing/nifti_conversion/t2.nii.gz"
+    flair = "test_data/exam1/preprocessing/nifti_conversion/flair.nii.gz"
+
+    t1c_preop_dir = "test_data/exam1/preprocessing/skull_stripped/t1c_bet_normalized.nii.gz"
+    t1c_postop_dir = "test_data/exam3/preprocessing/skull_stripped/t1c_bet_normalized.nii.gz"
+    recurrence_seg_dir = "test_data/exam3/preprocessing/tumor_segmentation/tumor_seg.nii.gz"
+
     norm_ss_coregister(
-            t1=args.t1,
-            t1c=args.t1c,
-            t2=args.t2,
-            flair=args.flair,
-            outdir=args.outdir
+            t1=t1_nifti,
+            t1c=t1c_nifti,
+            t2=t2_nifti,
+            flair=flair,
+            outdir="./tmp_test_ss"
             )
 
-    # Testing register_longitudinal
-    t1c_pre_dir = "/home/home/lucas/projects/gbm_bench/test_data/exam1/preprocessing/skull_stripped/t1c_bet_normalized.nii.gz"
-    t1c_post_dir = "/home/home/lucas/projects/gbm_bench/test_data/exam2/preprocessing/skull_stripped/t1c_bet_normalized.nii.gz"
-    outdir = "/home/home/lucas/projects/gbm_bench/test_data/exam2/preprocessing/longitudinal/"
-    transform_images_dict = {
-            "t1": "/home/home/lucas/projects/gbm_bench/test_data/exam2/preprocessing/skull_stripped/t1_bet_normalized.nii.gz",
-            "t2": "/home/home/lucas/projects/gbm_bench/test_data/exam2/preprocessing/skull_stripped/t2_bet_normalized.nii.gz",
-            "flair": "/home/home/lucas/projects/gbm_bench/test_data/exam2/preprocessing/skull_stripped/flair_bet_normalized.nii.gz"
-            }
-    transform_masks_dict = {
-            "tumor_seg": "/home/home/lucas/projects/gbm_bench/test_data/exam2/preprocessing/tumor_segmentation/tumor_seg.nii.gz"
-            }
-    register_longitudinal(
-            t1c_pre_dir=t1c_pre_dir,
-            t1c_post_dir=t1c_post_dir,
-            outdir=outdir,
-            transform_images_dict=transform_images_dict,
-            transform_masks_dict=transform_masks_dict
+    register_recurrence(
+            t1c_pre_dir=t1c_preop_dir,
+            t1c_post_dir=t1c_postop_dir,
+            recurrence_seg_dir=recurrence_seg_dir,
+            outdir="test_data/exam3/preprocessing/longitudinal"
             )
-    """

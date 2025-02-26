@@ -51,7 +51,7 @@ class BaseDatasetParser(ABC):
 
 class RHUHParser(BaseDatasetParser):
     
-    def find_modalities(self, exam_dir):
+    def find_modalities(self, exam_dir: str): -> ModalityDict
         sequence_dirs = [d for d in os.listdir(exam_dir) if d != "preprocessing"]
         modalities = {}
 
@@ -81,7 +81,7 @@ class RHUHParser(BaseDatasetParser):
 
         return ModalityDict(**modalities)
 
-    def parse(self):
+    def parse(self): -> None
         print(f"Parsing {self.root_dir}...")
         patient_dirs = glob.glob(os.path.join(self.root_dir, "RHUH-*"))
 

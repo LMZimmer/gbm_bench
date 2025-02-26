@@ -1,13 +1,12 @@
-import argparse
-import datetime
 import os
 import shlex
+import argparse
 import subprocess
+from typing import List
 from auxiliary.turbopath.turbopath import turbopath
-from path import Path
 
 
-def remove_postfixes(outdir):
+def remove_postfixes(outdir: str): -> None
     # removes postfixes created by dcm2niix (e.g. _real)
     postfix_files = [f for f in os.listdir(outdir) if "_" in f and not f.endswith(".log")]
     for pf in postfix_files:
@@ -19,7 +18,7 @@ def remove_postfixes(outdir):
         print(f"Renamed postfix file {old} to {new}.")
 
 
-def niftiConvert(input_dir, export_dir, outfile, dcm2niix_location):
+def niftiConvert(input_dir: str, export_dir: str, outfile: str, dcm2niix_location: str): -> None
     try:
         os.makedirs(export_dir, exist_ok=True)
         cmd_readable = (
@@ -52,20 +51,15 @@ def niftiConvert(input_dir, export_dir, outfile, dcm2niix_location):
 
 if __name__ == "__main__":
     # Example
-    # python gbm_bench/preprocessing/dicom_to_nifti.py -input_dir test_data/exam1/t1c -export_dir tmp_test_dcm2nii -outfile t1c -dcm2niix_loc /home/home/lucas/bin/dcm2niix
+    # python gbm_bench/preprocessing/dicom_to_nifti.py -dcm2niix_loc /home/home/lucas/bin/dcm2niix
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("-input_dir", type=str, help="Path to directory containing DICOMs.")
-    parser.add_argument("-export_dir", type=str, help="Desired directory for output.")
-    parser.add_argument("-outfile", type=str, help="Desired output file name.")
     parser.add_argument("-dcm2niix_loc", type=str, help="Path to your dcm2niix executable.")
     args = parser.parse_args()
 
-    os.environ["CUDA_VISIBLE_DEVICES"]="2"
-
     niftiConvert(
-        input_dir=args.input_dir,
-        export_dir=args.export_dir,
-        outfile=args.outfile,
+        input_dir="test_data/exam1/t1c",
+        export_dir="./tmp_test_dcm2nii",
+        outfile="t1c",
         dcm2niix_location=args.dcm2niix_loc
     )

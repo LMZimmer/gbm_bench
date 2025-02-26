@@ -2,7 +2,7 @@ import os
 import argparse
 from gbm_bench.utils.utils import merge_pdfs
 from gbm_bench.utils.parsing import RHUHParser
-from gbm_bench.utils.visualization import plot_mri_with_segmentation, plot_model_multislice
+from gbm_bench.utils.visualization import plot_model_multislice, plot_recurrence_multislice
 
 
 if __name__ == "__main__":
@@ -27,14 +27,6 @@ if __name__ == "__main__":
         outfile = f"./tmp/{patient_identifier}_lmi.pdf"
         outfiles.append(outfile)
         
-        #plot_mri_with_segmentation(
-        #        patient_identifier=patient_identifier,
-        #        exam_identifier=exam_identifier,
-        #        algorithm_identifier=algorithm_identifier,
-        #        preprocessing_dir=preprocessing_dir,
-        #        outfile=outfile
-        #        )
-
         plot_model_multislice(
                 patient_identifier=patient_identifier,
                 exam_identifier=exam_identifier,
@@ -42,6 +34,15 @@ if __name__ == "__main__":
                 preprocessing_dir=preprocessing_dir,
                 outfile=outfile
                 )
+
+        #plot_recurrence_multislice(
+        #    patient_identifier="RHUH-0001",
+        #    exam_identifier_pre="Pre",
+        #    exam_identifier_post="Post",
+        #    preprocessing_dir_pre="test_data/exam1/preprocessing",
+        #    preprocessing_dir_post="test_data/exam3/preprocessing",
+        #    outfile="test_longitudinal.pdf"
+        #    )
 
     # Merge all PDFs for this algorithm into one for the patient
     combined_pdf_path = f"./tmp/RHUH_{algorithm_identifier}.pdf"

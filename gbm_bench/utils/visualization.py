@@ -5,12 +5,9 @@ import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import matplotlib.patches as mpatches
 from matplotlib import colormaps
-from typing import Dict, List, Tuple
+from typing import Dict, List, Union, Tuple
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 from gbm_bench.utils.utils import compute_center_of_mass, load_mri_data, load_and_resample_mri_data, merge_pdfs
-
-
-MODALITY_ORDER = ["t1c", "t1", "t2", "flair"]
 
 
 def get_image_dirs(preprocessing_dir: str) -> Dict:
@@ -35,7 +32,7 @@ def get_image_dirs(preprocessing_dir: str) -> Dict:
     return image_dirs
 
 
-def get_slices(center, num_slices, step_size, patient_dim):
+def get_slices(center: Tuple[int, int, int], num_slices: int, step_size: int, patient_dim: Tuple[int, int, int]):
     axial_slices = [center[2] + ind * step_size - 2 * step_size for ind in range(0, num_slices)]
     axial_slices = [min(max(0, ax_slice), patient_dim[2]) for ax_slice in axial_slices]
     coronal_slices = [center[1] + ind * step_size - 2 * step_size for ind in range(0, num_slices)]
@@ -43,7 +40,7 @@ def get_slices(center, num_slices, step_size, patient_dim):
     return axial_slices, coronal_slices
 
 
-def get_cmap_norm_patches_tumorseg(classes_of_interest):
+def get_cmap_norm_patches_tumorseg(classes_of_interest: List[int]):
     # Tumor segmentation legend (1: non enhancing, 2: edema, 3: enhancing)
     colors = [(0,0,0,0), (1, 127/255, 0, 1), (30/255, 144/255, 1, 1), (138/255, 43/255, 226/255, 1)]
     color_labels = ["Non-enhancing Tumor", "Peritumoral Edema", "Enhancing Tumor"]
@@ -54,31 +51,23 @@ def get_cmap_norm_patches_tumorseg(classes_of_interest):
     return cmap, norm, patches
 
 
-def grid_plot(
-        image_tensor: np.ndarray,
-        imshow_args: List,
-        header: str,
-        col_titles: List,
-        row_titles: List,
-        outfile: str,
-        legend_handles: List[mpatches.Patch] = None
-) -> None:
+def grid_plot(image_tensor: np.ndarray, imshow_args: List[Dict], header: str, col_titles: List[str], row_titles: List[str],
+              outfile: str, legend_handles: List[mpatches.Patch] = None ) -> None:
     """
     A generic function to create a grid plot with multiple layers / overlays.
 
     Args:
         image_tensor: A numpy array with dimension 3 (n_layers, n_cols, n_rows) where each point is a 2D-image or None.
-            Note that due to this data type, all images are required to have the same dimension.
-        imshow_args: A list of arguments for each image layer as taken by imshow.
+        imshow_args: A list of dictionaries containing arguments for imshow calls for each image layer (e.g. {"cmap": "gray"}).
         header: String to be displayd at the top of the image.
         col_titles: List of strings used as column titles.
         row_titles: List of strings used as row titles.
-        outfile: File that the image is saved to.
+        outfile: File that the pdf is saved to.
         legend_handles: List of matplotlib.patches.Patch to be displayed in a legend.
     """
 
     if image_tensor.ndim != 3:
-        raise ValueError("Dimension mismatch. image_tensor dimension should be 5: (n_layers, n_cols, n_rows)")
+        raise ValueError("Dimension mismatch. image_tensor dimension should be 3: (n_layers, n_cols, n_rows)")
 
     if len(imshow_args) != image_tensor.shape[0]:
         raise ValueError(f"Dimension mismatch. imshow_args should be the same length as image_tensor.shape[0] = {image_tensor.shape[0]}.")
@@ -93,7 +82,7 @@ def grid_plot(
     n_col = image_tensor.shape[2]
     non_gray_cmaps = [mpcmp for mpcmp in colormaps() if mpcmp not in ["grey", "gray"]]
 
-    # Axes
+    # Create figure and fill axes
     fig, axs = plt.subplots(n_row, n_col, figsize=(5 * n_col, 4 * n_row))
     for image_layer, imshow_args in zip(image_tensor, imshow_args):
         for row in range(n_row):
@@ -141,14 +130,8 @@ def grid_plot(
     plt.close(fig)
 
 
-def plot_model_multislice(
-    patient_identifier: str,
-    exam_identifier: str,
-    algorithm_identifier: str,
-    preprocessing_dir: str,
-    outfile: str,
-    classes_of_interest: List[int] = [1, 2, 3]
-) -> None:
+def plot_model_multislice(patient_identifier: str, exam_identifier: str, algorithm_identifier: str, preprocessing_dir: str,
+                          outfile: str, classes_of_interest: List[int] = [1, 2, 3]) -> None:
 
     c_threshold = 0.01    # tumor cell concentration threshold
     n_layers = 3    # one layer for each imshow config
@@ -228,15 +211,9 @@ def plot_model_multislice(
             )
 
 
-def plot_recurrence_multislice(
-    patient_identifier: str,
-    exam_identifier_pre: str,
-    exam_identifier_post: str,
-    preprocessing_dir_pre: str,
-    preprocessing_dir_post: str,
-    outfile: str,
-    classes_of_interest: List[int] = [1, 2, 3]
-) -> None:
+def plot_recurrence_multislice(patient_identifier: str, exam_identifier_pre: str, exam_identifier_post: str,
+                               preprocessing_dir_pre: str, preprocessing_dir_post: str, outfile: str,
+                               classes_of_interest: List[int] = [1, 2, 3]) -> None:
 
     n_layers = 2    # one layer for each imshow config
 
@@ -316,21 +293,14 @@ def plot_recurrence_multislice(
 
 if __name__ == "__main__":
     # Example:
-    # python gbm_bench/utils/visualization.py -preprocessing_dir /home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-25-2015-NA-RM\ CEREBRAL6NEURNAV-21029/preprocessing/ -patient_id RHUH-0001 -exam_id 01-25-2015 -algo_id LMI -outfile test_single.pdf
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-preprocessing_dir", type=str, help="Directory containing outputs. Should be named 'preprocessing'.")
-    parser.add_argument("-patient_id", type=str, help="Patient identifier for plot.")
-    parser.add_argument("-exam_id", type=str, help="Exam identifier for plot.")
-    parser.add_argument("-algo_id", type=str, help="Algorithm identifier for plot.")
-    parser.add_argument("-outfile", type=str, help="Directory to save figure to.")
-    args = parser.parse_args()
+    # python gbm_bench/utils/visualization.py
 
     plot_model_multislice(
-            patient_identifier=args.patient_id,
-            exam_identifier=args.exam_id,
-            algorithm_identifier=args.algo_id,
-            preprocessing_dir=args.preprocessing_dir,
-            outfile=args.outfile
+            patient_identifier="RHUH-0001",
+            exam_identifier="01-25-2015",
+            algorithm_identifier="LMI",
+            preprocessing_dir="test_data/exam1/preprocessing",
+            outfile="test_multislice.pdf"
             )
 
     plot_recurrence_multislice(
