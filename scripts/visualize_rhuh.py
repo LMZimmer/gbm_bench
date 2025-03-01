@@ -31,7 +31,7 @@ if __name__ == "__main__":
         exam_identifier_followup = patient["exam_ids"][2]  # Second exam is post-op, Third is follow up
         preprocessing_dir_preop = os.path.join(patient["exams"][0], "preprocessing")
         preprocessing_dir_followup = os.path.join(patient["exams"][2], "preprocessing")
-        algorithm_identifier = "LMI"
+        algorithm_identifier = "SBTC"                       # LMI, SBTC
         
         outfile_model = os.path.join(tmp_dir_model, f"{patient_identifier}_{algorithm_identifier}.pdf")
         outfiles_model.append(outfile_model)
@@ -59,7 +59,7 @@ if __name__ == "__main__":
     # Merge PDFs
     outfiles_model.sort(), outfiles_recurrences.sort()
     merge_pdfs(outfiles_model, f"./tmp/RHUH_{algorithm_identifier}.pdf")
-    merge_pdfs(outfiles_recurrences, f"./tmp/RHUH_recurrences.pdf")
+    #merge_pdfs(outfiles_recurrences, f"./tmp/RHUH_recurrences.pdf")
 
     # Delete temporary files
     shutil.rmtree(tmp_dir_model)

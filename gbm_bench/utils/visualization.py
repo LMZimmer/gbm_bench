@@ -22,6 +22,7 @@ def get_image_dirs(preprocessing_dir: str) -> Dict:
                 os.path.join(preprocessing_dir, "tissue_segmentation/csf_pbmap.nii.gz")
                 ],
             "lmi": os.path.join(preprocessing_dir, "lmi/lmi_tumor_patientSpace.nii"),
+            "sbtc": os.path.join(preprocessing_dir, "sbtc/tumorImage.nii.gz"),
             "masks": [
                 os.path.join(preprocessing_dir, "skull_stripped/t1c_bet_mask.nii.gz"),
                 os.path.join(preprocessing_dir, "tumor_segmentation/tumor_seg.nii.gz"),
@@ -141,7 +142,9 @@ def plot_model_multislice(patient_identifier: str, exam_identifier: str, algorit
     t1c_data = load_mri_data(image_dirs["stripped"][0])
     tumorseg_data = load_mri_data(image_dirs["tumorseg"])
     tissueseg_data = load_mri_data(image_dirs["tissueseg"][0])
-    model_data = load_and_resample_mri_data(image_dirs["lmi"], resample_params=t1c_data.shape, interp_type=1)
+
+    model_dir = image_dirs[algorithm_identifier.lower()]
+    model_data = load_and_resample_mri_data(model_dir, resample_params=t1c_data.shape, interp_type=1)
 
     # Compute tumor center of mass
     center = compute_center_of_mass(tumorseg_data, t1c_data, classes_of_interest)

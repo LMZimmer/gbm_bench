@@ -45,7 +45,7 @@ def run_tissue_seg_registration(t1_file: str, healthy_mask_dir: str, outdir: str
             fixed=t1_patient,
             moving=t1_atlas,
             type_of_transform="antsRegistrationSyN[s,2]",
-            mask=healthy_mask,
+            #mask=healthy_mask,
             outprefix=os.path.join(outdir, '')
             )
     transforms_path = reg['fwdtransforms']
@@ -131,15 +131,27 @@ if __name__ == "__main__":
 
     os.environ["CUDA_VISIBLE_DEVICES"] = args.cuda_device
 
-    t1 = "test_data/exam1/preprocessing/skull_stripped/t1c_bet_normalized.nii.gz"
-    brain_mask_dir = "test_data/exam1/preprocessing/skull_stripped/t1c_bet_mask.nii.gz"
-    tumor_seg_dir = "test_data/exam1/preprocessing/tumor_segmentation/tumor_seg.nii.gz"
+    #t1 = "test_data/exam1/preprocessing/skull_stripped/t1c_bet_normalized.nii.gz"
+    #brain_mask_dir = "test_data/exam1/preprocessing/skull_stripped/t1c_bet_mask.nii.gz"
+    #tumor_seg_dir = "test_data/exam1/preprocessing/tumor_segmentation/tumor_seg.nii.gz"
+    #outdir = "./tmp_test_tissueseg"
+
+    #t1 = "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0004/11-19-2014-NA-RM CEREBRAL-20636/preprocessing/skull_stripped/t1c_bet_normalized.nii.gz"
+    #brain_mask_dir = "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0004/11-19-2014-NA-RM CEREBRAL-20636/preprocessing/skull_stripped/t1c_bet_mask.nii.gz"
+    #tumor_seg_dir = "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0004/11-19-2014-NA-RM CEREBRAL-20636/preprocessing/tumor_segmentation/tumor_seg.nii.gz"
+    #outdir = "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0004/11-19-2014-NA-RM CEREBRAL-20636/preprocessing/tissue_segmentation"
+
+    t1 = "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0012/07-31-2016-NA-RM CEREBRAL-51172/preprocessing/skull_stripped/t1c_bet_normalized.nii.gz"
+    brain_mask_dir = "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0012/07-31-2016-NA-RM CEREBRAL-51172/preprocessing/skull_stripped/t1c_bet_mask.nii.gz"
+    tumor_seg_dir = "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0012/07-31-2016-NA-RM CEREBRAL-51172/preprocessing/tumor_segmentation/tumor_seg.nii.gz"
+
+    outdir = "./tmp_test_tissueseg"
 
     print("Generating healthy brain mask...")
-    healthy_mask_dir = os.path.join(args.outdir, "healthy_brain_mask.nii.gz")
+    healthy_mask_dir = os.path.join(outdir, "healthy_brain_mask.nii.gz")
     generate_healthy_brain_mask(
             brain_mask_file=brain_mask_dir,
-            tumor_seg_file=tumor_seg,
+            tumor_seg_file=tumor_seg_dir,
             outdir=healthy_mask_dir
             )
 
@@ -148,7 +160,7 @@ if __name__ == "__main__":
             t1_file=t1,
             healthy_mask_dir=healthy_mask_dir,
             brain_mask_dir=brain_mask_dir,
-            outdir="./tmp_test_tissueseg",
+            outdir=outdir,
             refit_brain=False
             )
     print("Finished.")

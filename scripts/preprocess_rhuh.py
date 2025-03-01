@@ -48,7 +48,7 @@ if __name__ == "__main__":
 
     # Longitudinal registration (preop exam and exam 2)
     for patient_ind, patient in enumerate(patients):
-        print(f"Performing longitudinal registration {patient_ind}/{len(patients)}...")
+        print(f"Performing longitudinal registration {patient_ind}/{len(patients)}: {patient['exams'][2]}")
 
         if os.path.exists(os.path.join(patient["exams"][2], "preprocessing/longitudinal")):
             continue
