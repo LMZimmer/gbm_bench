@@ -18,7 +18,7 @@ if __name__ == "__main__":
     patients = rhuh_parser.get_patients()
 
     outfiles_model, outfiles_recurrences = [], []
-    tmp_dir_model, tmp_dir_rec = "./tmp/lmi", "./tmp/recurrence"
+    tmp_dir_model, tmp_dir_rec = "./tmp/model", "./tmp/recurrence"
     os.makedirs(tmp_dir_model, exist_ok=True)
     os.makedirs(tmp_dir_rec, exist_ok=True)
     
