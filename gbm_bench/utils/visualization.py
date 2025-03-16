@@ -23,6 +23,7 @@ def get_image_dirs(preprocessing_dir: str) -> Dict:
                 ],
             "lmi": os.path.join(preprocessing_dir, "lmi/lmi_tumor_patientSpace.nii"),
             "sbtc": os.path.join(preprocessing_dir, "sbtc/tumorImage.nii.gz"),
+            "gliodil": os.path.join(preprocessing_dir, "gliodilx_pet__PDE1.0_/192_48_48_48_solution.nii"),
             "masks": [
                 os.path.join(preprocessing_dir, "skull_stripped/t1c_bet_mask.nii.gz"),
                 os.path.join(preprocessing_dir, "tumor_segmentation/tumor_seg.nii.gz"),

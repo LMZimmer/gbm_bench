@@ -22,7 +22,7 @@ if __name__ == "__main__":
     os.makedirs(tmp_dir_model, exist_ok=True)
     os.makedirs(tmp_dir_rec, exist_ok=True)
     
-    for ind, patient in enumerate(patients):
+    for ind, patient in enumerate(patients[:1]):
         
         print(f"Creating plots {ind}/{len(patients)}...")
         
@@ -31,8 +31,9 @@ if __name__ == "__main__":
         exam_identifier_followup = patient["exam_ids"][2]  # Second exam is post-op, Third is follow up
         preprocessing_dir_preop = os.path.join(patient["exams"][0], "preprocessing")
         preprocessing_dir_followup = os.path.join(patient["exams"][2], "preprocessing")
-        algorithm_identifier = "SBTC"                       # LMI, SBTC
+        algorithm_identifier = "GLIODIL"                       # LMI, SBTC, GLIODIL
         
+        # Model plot
         outfile_model = os.path.join(tmp_dir_model, f"{patient_identifier}_{algorithm_identifier}.pdf")
         outfiles_model.append(outfile_model)
 
@@ -44,6 +45,7 @@ if __name__ == "__main__":
                 outfile=outfile_model
                 )
 
+        # Recurrences
         outfile_recurrence = os.path.join(tmp_dir_rec, f"{patient_identifier}_recurrence.pdf")
         outfiles_recurrences.append(outfile_recurrence)
         
