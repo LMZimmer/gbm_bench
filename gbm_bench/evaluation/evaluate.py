@@ -93,7 +93,7 @@ def getPredictionInRecurrence(tumorRecurrence, treatmentPlan):
     return coverage
 
 
-def evaluate_tumor_model(preop_exam_dir, postop_exam_dir, algo_id, ctv_margin=15, tumor_conc_thresh=0.1):
+def evaluate_tumor_model(preop_exam_dir, postop_exam_dir, pred_dir, ctv_margin=15, tumor_conc_thresh=0.1):
     
     results = {}
 
@@ -119,7 +119,7 @@ def evaluate_tumor_model(preop_exam_dir, postop_exam_dir, algo_id, ctv_margin=15
     recurrence_segmentation_all[recurrence_segmentation_all == 3] = 1
     recurrence_segmentation_all[recurrence_segmentation_all == 4] = 1
 
-    model_prediction_dir = os.path.join(preop_exam_dir, f"preprocessing/sbtc/tumorImage.nii.gz")
+    model_prediction_dir = pred_dir
     model_prediction = load_and_resample_mri_data(model_prediction_dir, resample_params=core_segmentation.shape, interp_type=0)
 
     # Create standard plan
@@ -135,6 +135,7 @@ def evaluate_tumor_model(preop_exam_dir, postop_exam_dir, algo_id, ctv_margin=15
     model_recurrence_coverage_all = getRecurrenceCoverage(recurrence_segmentation_all, model_prediction > tumor_threshold)
 
     # Analysis
+    """
     tmpdir = "tmp/radplans"
     os.makedirs(tmpdir, exist_ok=True)
     tmp = nib.load(model_prediction_dir)
@@ -150,6 +151,7 @@ def evaluate_tumor_model(preop_exam_dir, postop_exam_dir, algo_id, ctv_margin=15
 
     recurrence_img = nib.Nifti1Image(recurrence_segmentation, std_aff, std_header)
     nib.save(recurrence_img, os.path.join(tmpdir, "recurrence.nii"))
+    """
 
     # Compute metrics
     results["recurrence_coverage_standard"] = standard_plan_coverage
@@ -160,17 +162,17 @@ def evaluate_tumor_model(preop_exam_dir, postop_exam_dir, algo_id, ctv_margin=15
 
 
 if __name__ == "__main__":
-    #python gbm_bench/evaluation/evaluate.py -preop_exam_dir test_data/exam1 -postop_exam_dir test_data/exam3 -algo_id lmi
+    #python gbm_bench/evaluation/evaluate.py -preop_exam_dir test_data/exam1 -postop_exam_dir test_data/exam3 -pred_dir test_data/exam1/preprocessing/sbtc/recurrencePrediction.nii.gz
     parser = argparse.ArgumentParser()
     parser.add_argument("-preop_exam_dir", type=str, help="Path.")
     parser.add_argument("-postop_exam_dir", type=str, help="Path.")
-    parser.add_argument("-algo_id", type=str, help="Algorithm identifier, should be the same as the folder for the algorithm in patient/exam/preprocessing/.")
+    parser.add_argument("-pred_dir", type=str, help="Algorithm identifier, should be the same as the folder for the algorithm in patient/exam/preprocessing/.")
     args = parser.parse_args()
 
     results = evaluate_tumor_model(
             preop_exam_dir=args.preop_exam_dir,
             postop_exam_dir=args.postop_exam_dir,
-            algo_id=args.algo_id
+            pred_dir=args.pred_dir
             )
 
     print(results)

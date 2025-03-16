@@ -1,4 +1,5 @@
 import os
+import pickle
 import argparse
 import numpy as np
 import matplotlib.pyplot as plt
@@ -159,6 +160,17 @@ def plot_model_multislice(patient_identifier: str, exam_identifier: str, algorit
     # Tumor segmentation args
     cmap, norm, patches = get_cmap_norm_patches_tumorseg(classes_of_interest)
 
+    # Read recurrence coverage for title
+    coverage_dir = os.path.join(os.path.dirname(model_dir), "coverage.pkl")
+    if os.path.isfile(coverage_dir):
+        coverage = pickle.load(open(coverage_dir, "rb"))
+        coverage_str = (
+                f"Coverage (conventional / model): {100*coverage['recurrence_coverage_standard']:.1f}% / {100*coverage['recurrence_coverage_model']:.1f}%\n"
+                f"CoverageAll (conventional / model): {100*coverage['recurrence_coverage_standard_all']:.1f}% / {100*coverage['recurrence_coverage_model_all']:.1f}%"
+                )
+    else:
+        coverage_str = ""
+
     # Titles
     col_titles = ["T1C", "TUMORSEG", f"{algorithm_identifier.upper()}", "TISSUESEG"]
     row_titles = axial_slices + coronal_slices
@@ -166,8 +178,7 @@ def plot_model_multislice(patient_identifier: str, exam_identifier: str, algorit
             f"Patient: {patient_identifier}\n"
             f"Exam: {exam_identifier}\n"
             f"Algorithm: {algorithm_identifier}\n"
-            f"CoM slice (axial/coronal): {center[2]}/{center[1]}\n"
-            f"Tumor cell concentration threshold: {c_threshold}"
+            f"Tumor cell concentration threshold: {c_threshold}\n" + coverage_str
             )
 
     # Build image tensor

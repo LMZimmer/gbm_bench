@@ -5,7 +5,6 @@ import argparse
 from gbm_bench.utils.utils import merge_pdfs
 from gbm_bench.utils.parsing import RHUHParser
 from gbm_bench.evaluation.evaluate import evaluate_tumor_model
-from gbm_bench.utils.visualization import plot_model_multislice, plot_recurrence_multislice
 
 
 if __name__ == "__main__":
@@ -33,17 +32,18 @@ if __name__ == "__main__":
         exam_identifier_followup = patient["exam_ids"][2]  # Second exam is post-op, Third is follow up
         preprocessing_dir_preop = os.path.join(patient["exams"][0], "preprocessing")
         preprocessing_dir_followup = os.path.join(patient["exams"][2], "preprocessing")
-        algorithm_identifier = "lmi"                       # LMI, SBTC
+        #prediction_dir = os.path.join(preprocessing_dir_preop, "lmi/lmi_tumor_patientSpace.nii")
+        prediction_dir = os.path.join(preprocessing_dir_preop, "sbtc/recurrencePrediction.nii.gz")
+        #prediction_dir = os.path.join(preprocessing_dir_preop, "gliodilx_pet__PDE1.0_/192_48_48_48_solution.nii")
 
         results = evaluate_tumor_model(
                 preop_exam_dir=patient["exams"][0],
                 postop_exam_dir=patient["exams"][2],
-                algo_id=algorithm_identifier
+                pred_dir=prediction_dir
                 )
 
-        outdir = os.path.join(preprocessing_dir_preop, "lmi/results.json")
-        with open(outdir, "wb") as fp:
-            pickle.dump(results, fp)
+        outdir = os.path.join(os.path.dirname(prediction_dir), "coverage.pkl")
+        pickle.dump(results, open(outdir, "wb"))
 
         print(f"{patient_identifier}: {results}")
 
