@@ -1,6 +1,7 @@
 import os
 import argparse
 import numpy as np
+import nibabel as nib
 from scipy.ndimage import center_of_mass, distance_transform_edt
 from gbm_bench.utils.metrics import coverage
 from gbm_bench.utils.utils import load_mri_data, load_and_resample_mri_data
@@ -12,7 +13,7 @@ def create_standard_plan(core_segmentation, ctv_margin):
     return dilated_core
 
 
-def find_threshold(volume, target_volume, tolerance=0.01, initial_threshold=0.5,maxIter = 10000):
+def find_threshold(volume, target_volume, tolerance=0.01, initial_threshold=0.5, maxIter = 10000):
 
     if np.sum(volume > 0) < target_volume:
         print("Volume is too small")
@@ -103,32 +104,58 @@ def evaluate_tumor_model(preop_exam_dir, postop_exam_dir, algo_id, ctv_margin=15
     core_segmentation_dir = os.path.join(preop_exam_dir, "preprocessing/tumor_segmentation/enhancing_non_enhancing_tumor.nii.gz")
     core_segmentation = load_mri_data(core_segmentation_dir)
 
+    full_segmentation_dir = os.path.join(preop_exam_dir, "preprocessing/tumor_segmentation/tumor_seg.nii.gz")
+    full_segmentation = load_mri_data(full_segmentation_dir)
+    full_segmentation[full_segmentation==2] = 1                  # set all to 1
+    full_segmentation[full_segmentation==3] = 1 
+
     recurrence_dir = os.path.join(postop_exam_dir, "preprocessing/longitudinal/recurrence_preop.nii.gz")
     recurrence_segmentation = load_mri_data(recurrence_dir)
     recurrence_segmentation[recurrence_segmentation == 2] = 0    # ignore edema
+    recurrence_segmentation[recurrence_segmentation == 3] = 1
+    recurrence_segmentation[recurrence_segmentation == 4] = 1
+    recurrence_segmentation_all = load_mri_data(recurrence_dir)
+    recurrence_segmentation_all[recurrence_segmentation_all == 2] = 1
+    recurrence_segmentation_all[recurrence_segmentation_all == 3] = 1
+    recurrence_segmentation_all[recurrence_segmentation_all == 4] = 1
 
-    model_prediction_dir = os.path.join(preop_exam_dir, f"preprocessing/{algo_id}/lmi_tumor_patientSpace.nii")
+    model_prediction_dir = os.path.join(preop_exam_dir, f"preprocessing/sbtc/tumorImage.nii.gz")
     model_prediction = load_and_resample_mri_data(model_prediction_dir, resample_params=core_segmentation.shape, interp_type=0)
 
-    #tumor_cell_density_thresh = np.where(tumor_cell_density < tumor_conc_thresh, 0, tumor_cell_density)
-    #threshold_based_plan = create_standard_plan(np.where(tumor_cell_density_thresh, ctv_margin)
-
-
-    # Create conventional plan
-    conventional_plan = create_standard_plan(core_segmentation, ctv_margin)
-    conventional_plan[brain_mask == 0] = 0
-    conventional_plan_volume = np.sum(conventional_plan)
-    conventional_plan_coverage = getRecurrenceCoverage(recurrence_segmentation, conventional_plan)
-    #conventional_plan_coverage_all = getRecurrenceCoverage(recurrenceAll, standardPlan)
+    # Create standard plan
+    standard_plan = create_standard_plan(core_segmentation, ctv_margin)
+    standard_plan[brain_mask == 0] = 0
+    standard_plan_volume = np.sum(standard_plan)
+    standard_plan_coverage = getRecurrenceCoverage(recurrence_segmentation, standard_plan)
+    standard_plan_coverage_all = getRecurrenceCoverage(recurrence_segmentation_all, standard_plan)
 
     # Create model based plan
-    tumor_threshold = find_threshold(model_prediction, conventional_plan_volume, initial_threshold=0.2)
+    tumor_threshold = find_threshold(model_prediction, standard_plan_volume, initial_threshold=0.2)
     model_recurrence_coverage = getRecurrenceCoverage(recurrence_segmentation, model_prediction > tumor_threshold)
-    #model_recurrence_coverage_all = getRecurrenceCoverage(recurrenceAll, model_prediction > tumor_threshold)
+    model_recurrence_coverage_all = getRecurrenceCoverage(recurrence_segmentation_all, model_prediction > tumor_threshold)
+
+    # Analysis
+    tmpdir = "tmp/radplans"
+    os.makedirs(tmpdir, exist_ok=True)
+    tmp = nib.load(model_prediction_dir)
+    model_aff, model_header = tmp.affine, tmp.header
+    tmp = nib.load(core_segmentation_dir)
+    std_aff, std_header = tmp.affine, tmp.header
+    
+    standard_img = nib.Nifti1Image(standard_plan, std_aff, std_header)
+    nib.save(standard_img, os.path.join(tmpdir, "standard.nii"))
+
+    model_img = nib.Nifti1Image(model_prediction > tumor_threshold, model_aff, model_header)
+    nib.save(model_img, os.path.join(tmpdir, "model.nii"))
+
+    recurrence_img = nib.Nifti1Image(recurrence_segmentation, std_aff, std_header)
+    nib.save(recurrence_img, os.path.join(tmpdir, "recurrence.nii"))
 
     # Compute metrics
-    results["recurrence_coverage_conventional"] = conventional_plan_coverage
+    results["recurrence_coverage_standard"] = standard_plan_coverage
+    results["recurrence_coverage_standard_all"] = standard_plan_coverage_all
     results["recurrence_coverage_model"] = model_recurrence_coverage
+    results["recurrence_coverage_model_all"] = model_recurrence_coverage_all
     return results
 
 

@@ -26,7 +26,7 @@ if __name__ == "__main__":
     
     for ind, patient in enumerate(patients):
         
-        print(f"Creating plots {ind}/{len(patients)}...")
+        print(f"Patient {ind}/{len(patients)}...")
         
         patient_identifier = patient["patient_id"]
         exam_identifier_preop = patient["exam_ids"][0]     # First exam is pre-op
