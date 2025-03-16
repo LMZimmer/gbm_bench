@@ -33,8 +33,8 @@ if __name__ == "__main__":
         preprocessing_dir_preop = os.path.join(patient["exams"][0], "preprocessing")
         preprocessing_dir_followup = os.path.join(patient["exams"][2], "preprocessing")
         #prediction_dir = os.path.join(preprocessing_dir_preop, "lmi/lmi_tumor_patientSpace.nii")
-        prediction_dir = os.path.join(preprocessing_dir_preop, "sbtc/recurrencePrediction.nii.gz")
-        #prediction_dir = os.path.join(preprocessing_dir_preop, "gliodilx_pet__PDE1.0_/192_48_48_48_solution.nii")
+        #prediction_dir = os.path.join(preprocessing_dir_preop, "sbtc/recurrencePrediction.nii.gz")
+        prediction_dir = os.path.join(preprocessing_dir_preop, "gliodilx_pet__PDE1.0_/192_48_48_48_solution.nii")
 
         results = evaluate_tumor_model(
                 preop_exam_dir=patient["exams"][0],
