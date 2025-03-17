@@ -35,16 +35,19 @@ if __name__ == "__main__":
         
         # Model plot
         outfile_model = os.path.join(tmp_dir_model, f"{patient_identifier}_{algorithm_identifier}.pdf")
-        outfiles_model.append(outfile_model)
 
-        plot_model_multislice(
-                patient_identifier=patient_identifier,
-                exam_identifier=exam_identifier_preop,
-                algorithm_identifier=algorithm_identifier,
-                preprocessing_dir=preprocessing_dir_preop,
-                outfile=outfile_model
-                )
-
+        try:
+            plot_model_multislice(
+                    patient_identifier=patient_identifier,
+                    exam_identifier=exam_identifier_preop,
+                    algorithm_identifier=algorithm_identifier,
+                    preprocessing_dir=preprocessing_dir_preop,
+                    outfile=outfile_model
+                    )
+            outfiles_model.append(outfile_model)
+        except:
+            print(f"Plotting failed for {exam_identifier_preop}, method {algorithm_identifier}. Possibly file not found. Continuing...")
+        
         # Recurrences
         outfile_recurrence = os.path.join(tmp_dir_rec, f"{patient_identifier}_recurrence.pdf")
         outfiles_recurrences.append(outfile_recurrence)

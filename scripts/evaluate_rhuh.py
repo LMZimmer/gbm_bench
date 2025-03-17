@@ -36,14 +36,17 @@ if __name__ == "__main__":
         #prediction_dir = os.path.join(preprocessing_dir_preop, "sbtc/recurrencePrediction.nii.gz")
         prediction_dir = os.path.join(preprocessing_dir_preop, "gliodilx_pet__PDE1.0_/192_48_48_48_solution.nii")
 
-        results = evaluate_tumor_model(
-                preop_exam_dir=patient["exams"][0],
-                postop_exam_dir=patient["exams"][2],
-                pred_dir=prediction_dir
-                )
+        try:
+            results = evaluate_tumor_model(
+                    preop_exam_dir=patient["exams"][0],
+                    postop_exam_dir=patient["exams"][2],
+                    pred_dir=prediction_dir
+                    )
 
-        outdir = os.path.join(os.path.dirname(prediction_dir), "coverage.pkl")
-        pickle.dump(results, open(outdir, "wb"))
+            outdir = os.path.join(os.path.dirname(prediction_dir), "coverage.pkl")
+            pickle.dump(results, open(outdir, "wb"))
+        except:
+            print(f"Failed for {patient_identifier}. Possibly file not found. Continuing...")
 
         print(f"{patient_identifier}: {results}")
 
