@@ -131,8 +131,10 @@ def evaluate_tumor_model(preop_exam_dir, postop_exam_dir, pred_dir, ctv_margin=1
 
     # Create model based plan
     tumor_threshold = find_threshold(model_prediction, standard_plan_volume, initial_threshold=0.2)
-    model_recurrence_coverage = getRecurrenceCoverage(recurrence_segmentation, model_prediction > tumor_threshold)
-    model_recurrence_coverage_all = getRecurrenceCoverage(recurrence_segmentation_all, model_prediction > tumor_threshold)
+    model_pan = model_prediction > tumor_threshold
+    model_pan[brain_mask == 0] = 0
+    model_recurrence_coverage = getRecurrenceCoverage(recurrence_segmentation, model_pan)
+    model_recurrence_coverage_all = getRecurrenceCoverage(recurrence_segmentation_all, model_pan)
 
     # Analysis
     """

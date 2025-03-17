@@ -148,6 +148,10 @@ def plot_model_multislice(patient_identifier: str, exam_identifier: str, algorit
     model_dir = image_dirs[algorithm_identifier.lower()]
     model_data = load_and_resample_mri_data(model_dir, resample_params=t1c_data.shape, interp_type=1)
 
+    # Mask data outside of the brain
+    brain_mask = load_mri_data(image_dirs["masks"][0])
+    model_data[brain_mask==0] = 0
+
     # Compute tumor center of mass
     center = compute_center_of_mass(tumorseg_data, t1c_data, classes_of_interest)
 

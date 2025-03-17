@@ -2,6 +2,7 @@ import os
 import shutil
 import pickle
 import argparse
+import numpy as np
 from gbm_bench.utils.utils import merge_pdfs
 from gbm_bench.utils.parsing import RHUHParser
 from gbm_bench.evaluation.evaluate import evaluate_tumor_model
@@ -22,6 +23,8 @@ if __name__ == "__main__":
     tmp_dir_model, tmp_dir_rec = "./tmp/model", "./tmp/recurrence"
     os.makedirs(tmp_dir_model, exist_ok=True)
     os.makedirs(tmp_dir_rec, exist_ok=True)
+
+    all_results = []
     
     for ind, patient in enumerate(patients):
         
@@ -45,10 +48,23 @@ if __name__ == "__main__":
 
             outdir = os.path.join(os.path.dirname(prediction_dir), "coverage.pkl")
             pickle.dump(results, open(outdir, "wb"))
+            all_results.append(results)
         except:
             print(f"Failed for {patient_identifier}. Possibly file not found. Continuing...")
 
         print(f"{patient_identifier}: {results}")
+
+    recurrence_coverage_standard = [r["recurrence_coverage_standard"] for r in all_results]
+    recurrence_coverage_standard_all = [r["recurrence_coverage_standard_all"] for r in all_results]
+    recurrence_coverage_model = [r["recurrence_coverage_model"] for r in all_results]
+    recurrence_coverage_model_all = [r["recurrence_coverage_model_all"] for r in all_results]
+
+    print(f"Finished evaluation.")
+    print(f"Standard plan coverge: {np.mean(recurrence_coverage_standard)} \u00B1 {np.std(recurrence_coverage_standard)}")
+    print(f"Standard plan coverge (all): {np.mean(recurrence_coverage_standard_all)} \u00B1 {np.std(recurrence_coverage_standard_all)}")
+    print(f"Model plan coverge: {np.mean(recurrence_coverage_model)} \u00B1 {np.std(recurrence_coverage_model)}")
+    print(f"Model plan coverge (all): {np.mean(recurrence_coverage_model_all)} \u00B1 {np.std(recurrence_coverage_model_all)}")
+    
 
 
         
