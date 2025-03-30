@@ -64,7 +64,4 @@ if __name__ == "__main__":
     print(f"Standard plan coverge (all): {np.mean(recurrence_coverage_standard_all)} \u00B1 {np.std(recurrence_coverage_standard_all)}")
     print(f"Model plan coverge: {np.mean(recurrence_coverage_model)} \u00B1 {np.std(recurrence_coverage_model)}")
     print(f"Model plan coverge (all): {np.mean(recurrence_coverage_model_all)} \u00B1 {np.std(recurrence_coverage_model_all)}")
-    
 
-
-        

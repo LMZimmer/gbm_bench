@@ -9,13 +9,24 @@ dicom2niix, brainles-preprocessing (installs antspy), brats, dipy, PyPDF2, docke
 
 ## Installation
 
+```bash
 git clone https://github.com/LMZimmer/gbm_bench.git
 cd gbm_bench
 pip install .
+```
 
-## Usage
+## Features
+- Standardized processing pipeline for Brain MRIs
+- Easy-to-use minimal API
 
-Example scripts can be found in /scripts. On first use, brats will download docker models for tumor segmentation.
+
+> [!IMPORTANT]  
+> To run GBMBench you require a Docker installation. <br>
+> Some algorithms also require GPU support (NVIDIA Docker). <br>
 
 
-## Including your own models
+### Docker and NVIDIA Container Toolkit Setup
+
+- **Docker**: Installation instructions on the official [website](https://docs.docker.com/get-docker/)
+- **NVIDIA Container Toolkit**: Refer to the [NVIDIA install guide](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) and the official [GitHub page](https://github.com/NVIDIA/nvidia-container-toolkit)
+
