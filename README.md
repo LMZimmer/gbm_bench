@@ -4,7 +4,7 @@ Glioblastoma Model Benchmark (working title) is a work in progress with the goal
 
 ## Prerequisites
 
-- docker: A Docker installation for runnign BRATS models as well as Glioblstoma models. Notes on the docker setup with GPU support can be found below.
+- docker: A Docker installation for running BRATS models as well as Glioblstoma models. Notes on the docker setup with GPU support can be found below.
 
 - dicom2niix: If you plan to process raw DICOM data.
 
