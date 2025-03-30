@@ -1,10 +1,16 @@
 # GBMbench
-Glioblastoma Model Benchmark (working title)
+Glioblastoma Model Benchmark (working title) is a work in progress with the goal of assessing the possible benefit of Glioblastoma models for better radiotherapy planning.
 
 
 ## Prerequisites
 
-dicom2niix, brainles-preprocessing (installs antspy), brats, dipy, PyPDF2, docker, python (<3.11 from brainles?)
+- docker: A Docker installation for runnign BRATS models as well as Glioblstoma models. Notes on the docker setup with GPU support can be found below.
+
+- dicom2niix: If you plan to process raw DICOM data.
+
+You require a Docker installation for runnign BRATS models as well as Glioblstoma models.
+
+Any remaining dependencies are Python packages, such as brainles-preprocessing, brats and antspy, are listed in requirements.txt. They are installed alongside the Python package explained in the following section.
 
 
 ## Installation
@@ -17,12 +23,8 @@ pip install .
 
 ## Features
 - Standardized processing pipeline for Brain MRIs
+- Extensible benchmark framework for dockered Glioblastoma models
 - Easy-to-use minimal API
-
-
-> [!IMPORTANT]  
-> To run GBMBench you require a Docker installation. <br>
-> Some algorithms also require GPU support (NVIDIA Docker). <br>
 
 
 ### Docker and NVIDIA Container Toolkit Setup
