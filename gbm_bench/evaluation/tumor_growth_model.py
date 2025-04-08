@@ -106,7 +106,7 @@ class TumorGrowthModel():
         os.makedirs(os.path.dirname(output_file), exist_ok=True)
         shutil.move(algorithm_output, output_file)
 
-    def predict_single(self, t1c: str, gm: str, wm: str, csf: str, tumorseg: str, pet: str, output_file: str, log_file: Optional[str] = None) -> None:
+    def predict_single(self, t1c: str, gm: str, wm: str, csf: str, tumorseg: str, output_file: str, pet: Optional[str] = None, log_file: Optional[str] = None) -> None:
         """Predict tumor growth on a single subject with the provided images and save the result to the output file.
 
         Args:
@@ -159,4 +159,14 @@ if __name __ == "__main__":
 
     os.environ["CUDA_VISIBLE_DEVICES"] = args.cuda_device
 
-    model = TumorGrowthModel(algorithm: "test_model", cuda_devices = "0")
+    test_kwargs = {
+            "t1c": "/home/home/lucas/projects/gbm_bench/test_data/exam1/preprocessing/skull_stripped/t1c_bet_normalized.nii.gz",
+            "gm": "/home/home/lucas/projects/gbm_bench/test_data/exam1/preprocessing/tissue_segmentation/gm_pbmap.nii.gz",
+            "wm": "/home/home/lucas/projects/gbm_bench/test_data/exam1/preprocessing/tissue_segmentation/wm_pbmap.nii.gz",
+            "csf": "/home/home/lucas/projects/gbm_bench/test_data/exam1/preprocessing/tissue_segmentation/csf_pbmap.nii,gz",
+            "tumorseg": "/home/home/lucas/projects/gbm_bench/test_data/exam1/preprocessing/tumor_segmentation/tumor_seg.nii.gz",
+            "output_file": "tmp/docker_test"
+            }
+
+    model = TumorGrowthModel(algorithm="test_model", cuda_devices = "0")
+    model.predict_single(**test_kwargs)
