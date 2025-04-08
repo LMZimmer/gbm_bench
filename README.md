@@ -41,7 +41,7 @@ Data is passed to the docker container by mounting a directory /mlcube\_io0 and 
 INPUT:
 
 ```bash
-/mlcube\_io0
+/mlcube_io0
    ┗ Patient-00000
       ┣ 00000-t1c.nii.gz
       ┣ 00000-gm.nii.gz
@@ -54,7 +54,7 @@ INPUT:
 OUTPUT:
 
 ```bash
-/mlcube\_io1
+/mlcube_io1
    ┗ 00000.nii.gz
 ```
 
