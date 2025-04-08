@@ -50,14 +50,18 @@ def InferenceSetup(log_file: str = None) -> Generator[Tuple[Path, Path], None, N
 
 
 class TumorGrowthModel():
-    """A class that utilizes Docker images of tumor growth models to make tumor grwoth predictions."""
+    """A class that utilizes Docker images of tumor growth models to make tumor growth predictions."""
 
     def __init__(self, algorithm: str, cuda_devices: Optional[str] = "0", force_cpu: bool = False):
+        self.algorithm_list = load_algorithms(file_path=algorithms_file_path) #TODO: This function, list algorithms function, and check if something has to be changed in docker.py
+        
+        if algorithm not in self.algorithm_list:
+            raise ValueError(f"algorithm not in {self.algorithm_list}.")
+
         self.algorithm = algorithm
         self.cuda_devices = cuda_devices
-        self.force_gpu = force_cpu
+        self.force_cpu = force_cpu
 
-        self.algorithm_list = load_algorithms(file_path=algorithms_file_path) #TODO: This function, list algorithms function, and check if something has to be changed in docker.py
 
     def _standardize_input_files(self, data_folder: str, subject_id: int, inputs: Dict[str, str]) -> None:
         """Standardize the input images for a single subject to match requirements of all algorithms and save them in @data_folder/@subject_id.
