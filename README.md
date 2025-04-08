@@ -42,6 +42,7 @@ Data is passed to the docker container by mounting a directory /mlcube\_io0 and 
 
 INPUT:
 
+```bash
 /mlcube\_io0
    ┗ Patient-00000
       ┣ 00000-t1c.nii.gz
@@ -50,12 +51,14 @@ INPUT:
       ┣ 00000-csf.nii.gz
       ┣ 00000-tumorseg.nii.gz
       ┗ 00000-pet.nii.gz
+```
 
 OUTPUT:
 
+```bash
 /mlcube\_io1
    ┗ 00000.nii.gz
-
+```
 
 ### Dockerfile
 As long as the container adheres to the directory structure outlined above, there are no further requirements to the container. An example docker file could be:
@@ -71,4 +74,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy your code to workdir
 COPY . .
 ENTRYPOINT ["python", "inference.py"]
-```bash
+```
