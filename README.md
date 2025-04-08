@@ -11,11 +11,9 @@ Glioblastoma Model Benchmark (working title) is a work in progress with the goal
 ## Setting up
 
 ### Prerequisites
-- docker: A Docker installation for running BRATS models as well as Glioblstoma models. Notes on the docker setup with GPU support can be found below.
+- docker: A Docker installation for running BRATS models as well as Glioblstoma models. Notes on the docker setup with GPU support can be found in [Docker and NVIDIA Container Toolkit Setup][### Docker and NVIDIA Container Toolkit Setup]. Instructions on adding custom models are given in [Adding new growth models][## Adding new growth models].
 
 - dicom2niix: If you plan to process raw DICOM data.
-
-You require a Docker installation for runnign BRATS models as well as Glioblstoma models.
 
 Any remaining dependencies are Python packages, such as brainles-preprocessing, brats and antspy, are listed in requirements.txt. They are installed alongside the Python package explained in the following section.
 

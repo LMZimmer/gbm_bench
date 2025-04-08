@@ -16,6 +16,8 @@ classifiers = [
     "License :: OSI Approved :: Apache Software License",
 ]
 dependencies = [
+    "brats",
+    "brainles-preprocessing",
     "matplotlib"
 ]
 

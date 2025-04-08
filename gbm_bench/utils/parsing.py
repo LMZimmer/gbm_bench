@@ -32,6 +32,7 @@ class BaseDatasetParser(ABC):
     """
     An abstract base class for a parser to search for exams in a medical dataset.
     """
+
     def __init__(self, root_dir: str):
         self.root_dir = root_dir
         self._patients : List[Patient] = []

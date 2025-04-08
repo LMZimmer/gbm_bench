@@ -57,3 +57,19 @@ def merge_pdfs(pdf_list: List[str], output_pdf: str) -> None:
 def timed_print(print_message: str) -> None:
     time = str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     print(f"[INFO | {time}]: ", print_message)
+
+
+def remove_tmp_folder(folder: str):
+    """Remove a temporary folder and log a warning if it fails.
+
+    Args:
+        folder (Path): Path to the folder to be removed
+    """
+    try:
+        shutil.rmtree(folder)
+    except PermissionError as e:
+        logger.warning(
+            f"Failed to remove temporary folder {folder}. This is most likely caused by bad permission management of the docker container. \nError: {e}"
+        )
+    except FileNotFoundError as e:
+        logger.warning(f"Failed to delete folder {folder}. {e}")

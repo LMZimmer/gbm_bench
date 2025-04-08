@@ -2,27 +2,9 @@ import os
 import sys
 import shutil
 from typing import Dict, List, Optional, Union
-
 from gbm_bench.evaluation.docker import *
-
-
-GROWTH_PRED_SCHEMA="{subject_id}.nii.gz"
-
-
-def remove_tmp_folder(folder: str):
-    """Remove a temporary folder and log a warning if it fails.
-
-    Args:
-        folder (Path): Path to the folder to be removed
-    """
-    try:
-        shutil.rmtree(folder)
-    except PermissionError as e:
-        logger.warning(
-            f"Failed to remove temporary folder {folder}. This is most likely caused by bad permission management of the docker container. \nError: {e}"
-        )
-    except FileNotFoundError as e:
-        logger.warning(f"Failed to delete folder {folder}. {e}")
+from gbm_bench,utils.utils import remove_tmp_folder
+from gbm_bench.utils.constants import GROWTH_MODEL_DIR, GROWTH_PRED_SCHEMA
 
 
 @contextmanager
