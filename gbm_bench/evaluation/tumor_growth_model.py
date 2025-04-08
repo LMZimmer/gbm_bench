@@ -1,10 +1,22 @@
 import os
 import sys
 import shutil
+import argparse
 from typing import Dict, List, Optional, Union
-from gbm_bench.evaluation.docker import *
+from gbm_bench.evaluation.docker_funcs import *
 from gbm_bench,utils.utils import remove_tmp_folder
 from gbm_bench.utils.constants import GROWTH_MODEL_DIR, GROWTH_PRED_SCHEMA
+
+
+def load_algorithms(model_dir: str = GROWTH_MODEL_DIR) -> Dict[str, str]:
+    """
+    Parses file_path for growth model images in the form of *.tar
+    """
+    if not os.path.isdir(model_dir):
+        raise ValueError(f"Provided path to model directory {model_dir} is not a directory.")
+
+    available_models = {os.path.basename(model_path).replace(".tar", ""): model_path for model_path in os.path.list(model_dir) if ".tar" in model_path}
+    return available_models
 
 
 @contextmanager
@@ -35,12 +47,13 @@ class TumorGrowthModel():
     """A class that utilizes Docker images of tumor growth models to make tumor growth predictions."""
 
     def __init__(self, algorithm: str, cuda_devices: Optional[str] = "0", force_cpu: bool = False):
-        self.algorithm_list = load_algorithms(file_path=algorithms_file_path) #TODO: This function, list algorithms function, and check if something has to be changed in docker.py
+        self.algorithm_list = load_algorithms(file_path=algorithms_file_path)
         
-        if algorithm not in self.algorithm_list:
-            raise ValueError(f"algorithm not in {self.algorithm_list}.")
+        if algorithm not in self.algorithm_list.keys():
+            raise ValueError(f"algorithm not in {self.algorithm_list.keys()}.")
 
         self.algorithm = algorithm
+        self.model_path = self.algorithm_list[algorithm]
         self.cuda_devices = cuda_devices
         self.force_cpu = force_cpu
 
@@ -122,6 +135,7 @@ class TumorGrowthModel():
 
             run_container(
                 algorithm=self.algorithm,
+                model_path = self.model_path,
                 data_path=tmp_data_folder,
                 output_path=tmp_output_folder,
                 cuda_devices=self.cuda_devices,
@@ -137,4 +151,12 @@ class TumorGrowthModel():
 
 
 if __name __ == "__main__":
-    pass
+    # Example:
+    # python gbm_bench/evaluation/tumor_growth_model -cuda_device 0
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-cuda_device", type=str, default="0", help="GPU id to run on.")
+    args = parser.parse_args()
+
+    os.environ["CUDA_VISIBLE_DEVICES"] = args.cuda_device
+
+    model = TumorGrowthModel(algorithm: "test_model", cuda_devices = "0")
