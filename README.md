@@ -61,7 +61,7 @@ OUTPUT:
 ```
 
 ### Dockerfile
-As long as the container adheres to the directory structure outlined above, there are no further requirements to the container. An example docker file could be:
+As long as the container adheres to the directory structure outlined above, there are no further requirements to the container. An example Dockerfile could be:
 
 ```bash
 FROM <python:3.8-slim>
