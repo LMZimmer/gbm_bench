@@ -6,9 +6,9 @@ import tempfile
 from pathlib import Path
 from loguru import logger
 from contextlib import contextmanager
+from typing import Dict, Generator, List, Optional, Union
 from gbm_bench.evaluation.docker_funcs import *
 from gbm_bench.utils.utils import remove_tmp_folder
-from typing import Dict, Generator, List, Optional, Union
 from gbm_bench.utils.constants import GROWTH_MODEL_DIR, GROWTH_PRED_SCHEMA
 
 

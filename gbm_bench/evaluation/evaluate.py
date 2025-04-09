@@ -2,18 +2,63 @@ import os
 import argparse
 import numpy as np
 import nibabel as nib
+from typing import Dict, List, Optional, Union
 from scipy.ndimage import center_of_mass, distance_transform_edt
 from gbm_bench.utils.metrics import coverage
 from gbm_bench.utils.utils import load_mri_data, load_and_resample_mri_data
 
 
-def create_standard_plan(core_segmentation, ctv_margin):
+def create_standard_plan(core_segmentation: np.ndarray, ctv_margin: float = 15) -> np.ndarray:
+    """
+    Creates a target volume mask by dilating the tumor core segmentation with ctv_margin
+    
+    Parameters
+    ----------
+    core_segmentation : np.ndarray
+        A NumPy array representing the core segmentation mask, where non-zero
+        values indicate the region of interest.
+    ctv_margin : float
+        The margin to dilate the core segmentation.
+
+    Returns
+    -------
+    np.ndarray
+        A binary NumPy array of the same shape as core_segmentation, where
+        pixels within the ctv_margin from the core segmentation are True, and
+        all other pixels are False.
+    """
+    if not isinstance(ctv_margin, (int, float)) or ctv_margin <= 0:
+        raise ValueError("ctv_margin must be a positive number.")
     distance_transform = distance_transform_edt(~ (core_segmentation >0))
     dilated_core = distance_transform <= ctv_margin
     return dilated_core
 
 
-def find_threshold(volume, target_volume, tolerance=0.01, initial_threshold=0.5, maxIter = 10000):
+def find_threshold(volume: np.ndarray, target_volume: float, tolerance: float = 0.01, initial_threshold: float = 0.5, maxIter: int = 10000):
+    """
+    Compute the threshold that produces a specified volume after masking the input array using the threshold.
+
+    Parameters
+    ----------
+    volume : np.ndarray
+        A NumPy array representing the input volume to be thresholded (tumor cell concentration).
+    target_volume : float
+        The desired volume size.
+    tolerance : float, optional
+        The acceptable relative difference between the target volume and the thresholded volume. Default is 0.01 (1%).
+    initial_threshold : float, optional
+        The starting threshold value for the segmentation. Should be between 0 and 1.
+    max_iter : int, optional
+        The maximum number of iterations to perform. If the threshold is not found within this number of iterations,
+        the function will terminate.
+
+    Returns
+    -------
+    float
+        The threshold value that segments the volume to match the target volume within the specified tolerance.
+        Returns 1.01 if the threshold exceeds the valid range (0, 1), indicating an "above the model" condition.
+        Returns 0 if the maximum number of iterations is reached without finding a suitable threshold.
+    """
 
     if np.sum(volume > 0) < target_volume:
         print("Volume is too small")
