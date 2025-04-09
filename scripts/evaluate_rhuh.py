@@ -3,6 +3,7 @@ import shutil
 import pickle
 import argparse
 import numpy as np
+from pathlib import Path
 from gbm_bench.utils.utils import merge_pdfs
 from gbm_bench.utils.parsing import RHUHParser
 from gbm_bench.evaluation.evaluate import evaluate_tumor_model
@@ -41,9 +42,9 @@ if __name__ == "__main__":
 
         try:
             results = evaluate_tumor_model(
-                    preop_exam_dir=patient["exams"][0],
-                    postop_exam_dir=patient["exams"][2],
-                    pred_dir=prediction_dir
+                    preop_exam_dir=Path(patient["exams"][0]),
+                    postop_exam_dir=Path(patient["exams"][2]),
+                    pred_dir=Path(prediction_dir)
                     )
 
             outdir = os.path.join(os.path.dirname(prediction_dir), "coverage.pkl")

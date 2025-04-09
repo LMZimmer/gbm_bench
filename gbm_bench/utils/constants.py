@@ -48,6 +48,7 @@ class PathSchema:
 
 # DIRECTORIES
 PROJECT_DIR = Path(__file__).resolve().parent.parent
+DCM2NIIX_LOCATION = Path("/home/home/lucas/bin/dcm2niix")
 
 DATA_DIR = PROJECT_DIR / "data"
 
