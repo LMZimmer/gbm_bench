@@ -28,6 +28,23 @@ class PathSchema:
         """
         return Path(self.schema.format(**kwargs))
 
+    def __truediv__(self, other: Union[str, Path, "PathSchema"]) -> "PathSchema":
+        """
+        Allow the use of the "/" operator to join another format string, Path, or PathSchema.
+
+        Parameters:
+            other (Union[str, Path, PathSchema]): The string, Path, or PathSchema to join with the current schema.
+
+        Returns:
+            PathSchema: A new PathSchema instance with the joined schema.
+        """
+        if isinstance(other, PathSchema):
+            other_str = other.schema
+        else:
+            other_str = str(other)
+        new_schema = str(Path(self.schema) / other_str)
+        return PathSchema(new_schema)
+
 
 # DIRECTORIES
 PROJECT_DIR = Path(__file__).resolve().parent.parent
@@ -44,6 +61,7 @@ CONVERSION_FOLDER = "nifti_conversion"
 SKULL_STRIP_FOLDER = "skull_stripped"
 TISSUE_SEGMENTATION_FOLDER = "tissue_segmentation"
 TUMOR_SEGMENTATION_FOLDER = "tumor_segmentation"
+LONGITUDINAL_DIR = "longitudinal"
 MODEL_OUTPUT_DIR = "growth_models"
 
 
@@ -57,6 +75,8 @@ T2_SCHEMA = EXAM_BASE_SCHEMA / SKULL_STRIP_FOLDER / "t2_bet_normalized.nii.gz"
 FLAIR_SCHEMA = EXAM_BASE_SCHEMA / SKULL_STRIP_FOLDER / "flair_bet_normalized.nii.gz"
 
 TUMORSEG_SCHEMA = EXAM_BASE_SCHEMA / TUMOR_SEGMENTATION_FOLDER / "tumor_seg.nii.gz"
+TUMORSEG_EDEMA_SCHEMA = EXAM_BASE_SCHEMA / TUMOR_SEGMENTATION_FOLDER / "peritumoral_edema.nii.gz"
+TUMORSEG_CORE_SCHEMA = EXAM_BASE_SCHEMA / TUMOR_SEGMENTATION_FOLDER / "enhancing_non_enhancing_tumor.nii.gz"
 HEALTHY_BRAIN_MASK_SCHEMA = EXAM_BASE_SCHEMA / TUMOR_SEGMENTATION_FOLDER / "healthy_brain_mask.nii.gz"
 
 TISSUE_SEG_SCHEMA = EXAM_BASE_SCHEMA / TISSUE_SEGMENTATION_FOLDER / "tissue_seg.nii.gz"
@@ -66,5 +86,7 @@ CSF_SCHEMA = EXAM_BASE_SCHEMA / TISSUE_SEGMENTATION_FOLDER / "csf.nii.gz"
 GM_PBMAP_SCHEMA = EXAM_BASE_SCHEMA / TISSUE_SEGMENTATION_FOLDER / "gm_pbmap.nii.gz"
 WM_PBMAP_SCHEMA = EXAM_BASE_SCHEMA / TISSUE_SEGMENTATION_FOLDER / "wm_pbmap.nii.gz"
 CSF_PBMAP_SCHEMA = EXAM_BASE_SCHEMA / TISSUE_SEGMENTATION_FOLDER / "csf_pbmap.nii.gz"
+
+RECURRENCE_SCHEMA = EXAM_BASE_SCHEMA / LONGITUDINAL_DIR / "recurrence_preop.nii.gz"
 
 GROWTH_PRED_SCHEMA = "{subject_id}.nii.gz"

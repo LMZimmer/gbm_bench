@@ -2,11 +2,12 @@ import os
 import argparse
 import numpy as np
 import nibabel as nib
-from Pathlib import Path
+from pathlib import Path
 from typing import Any, Dict
 from scipy.ndimage import center_of_mass, distance_transform_edt
 from gbm_bench.utils.metrics import coverage
 from gbm_bench.utils.utils import load_mri_data, load_and_resample_mri_data, is_binary_array
+from gbm_bench.utils.constants import BRAIN_MASK_SCHEMA, RECURRENCE_SCHEMA, TUMORSEG_SCHEMA, TUMORSEG_CORE_SCHEMA
 
 
 def create_standard_plan(core_segmentation: np.ndarray, ctv_margin: int) -> np.ndarray:
@@ -132,8 +133,8 @@ def evaluate_tumor_model(preop_exam_dir: Path, postop_exam_dir: Path, pred_file:
     model-based radiotherapy plans using MRI segmentation data.
 
     Parameters:
-        preop_exam_dir (Path): Directory .
-        postop_exam_dir (Path): Directory containing postoperative examination data.
+        preop_exam_dir (Path): Directory to the preoperative exam that has been preprocessed. Should contain the folder with the output.
+        postop_exam_dir (Path): Directory to the postoperative exam that has been preprocessed. Should contain the folder with the output.
         pred_file (Path): File path containing model prediction MRI data.
         ctv_margin (int, optional): Margin used to expand the clinical target volume for the standard plan. Defaults to 15.
         tumor_conc_thresh (float, optional): Threshold for tumor concentration in the model predictions. Defaults to 0.1.
@@ -144,20 +145,19 @@ def evaluate_tumor_model(preop_exam_dir: Path, postop_exam_dir: Path, pred_file:
     results = {}
 
     # Load data
+    brain_mask_dir = BRAIN_MASK_SCHEMA.format(exam_dir=str(preop_exam_dir))
+    brain_mask = load_mri_data(str(brain_mask_dir))
 
-    brain_msak_dir = os.path.join(preop_exam_dir, "preprocessing/skull_stripped/t1c_bet_mask.nii.gz")
-    brain_mask = load_mri_data(brain_msak_dir)
+    core_segmentation_dir = TUMORSEG_CORE_SCHEMA.format(exam_dir=str(preop_exam_dir))
+    core_segmentation = load_mri_data(str(core_segmentation_dir))
 
-    core_segmentation_dir = os.path.join(preop_exam_dir, "preprocessing/tumor_segmentation/enhancing_non_enhancing_tumor.nii.gz")
-    core_segmentation = load_mri_data(core_segmentation_dir)
-
-    full_segmentation_dir = os.path.join(preop_exam_dir, "preprocessing/tumor_segmentation/tumor_seg.nii.gz")
-    full_segmentation = load_mri_data(full_segmentation_dir)
+    full_segmentation_dir = TUMORSEG_SCHEMA.format(exam_dir=str(preop_exam_dir))
+    full_segmentation = load_mri_data(str(full_segmentation_dir))
     full_segmentation[full_segmentation==2] = 1                  # set all to 1
     full_segmentation[full_segmentation==3] = 1 
 
-    recurrence_dir = os.path.join(postop_exam_dir, "preprocessing/longitudinal/recurrence_preop.nii.gz")
-    recurrence_segmentation = load_mri_data(recurrence_dir)
+    recurrence_dir = RECURRENCE_SCHEMA.format(exam_dir=str(postop_exam_dir))   
+    recurrence_segmentation = load_mri_data(str(recurrence_dir))
     recurrence_segmentation[recurrence_segmentation == 2] = 0    # ignore edema
     recurrence_segmentation[recurrence_segmentation == 3] = 1
     recurrence_segmentation[recurrence_segmentation == 4] = 1
@@ -166,8 +166,7 @@ def evaluate_tumor_model(preop_exam_dir: Path, postop_exam_dir: Path, pred_file:
     recurrence_segmentation_all[recurrence_segmentation_all == 3] = 1
     recurrence_segmentation_all[recurrence_segmentation_all == 4] = 1
 
-    model_prediction_dir = pred_file
-    model_prediction = load_and_resample_mri_data(model_prediction_dir, resample_params=core_segmentation.shape, interp_type=0)
+    model_prediction = load_and_resample_mri_data(str(pred_file), resample_params=core_segmentation.shape, interp_type=0)
 
     # Create standard plan
     standard_plan = create_standard_plan(core_segmentation, ctv_margin)
@@ -219,9 +218,9 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     results = evaluate_tumor_model(
-            preop_exam_dir=args.preop_exam_dir,
-            postop_exam_dir=args.postop_exam_dir,
-            pred_file=args.pred_file
+            preop_exam_dir=Path(args.preop_exam_dir),
+            postop_exam_dir=Path(args.postop_exam_dir),
+            pred_file=Path(args.pred_file)
             )
 
     print(results)
