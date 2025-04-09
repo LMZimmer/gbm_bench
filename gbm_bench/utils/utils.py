@@ -55,6 +55,11 @@ def merge_pdfs(pdf_list: List[str], output_pdf: str) -> None:
     print(f"Combined PDF saved as {output_pdf}")
 
 
+def is_binary_array(arr):
+    allowed_values = {0, 1, 0.0, 1.0, False, True}
+    return np.all(np.isin(arr, list(allowed_values)))
+
+
 def timed_print(print_message: str) -> None:
     time = str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     print(f"[INFO | {time}]: ", print_message)

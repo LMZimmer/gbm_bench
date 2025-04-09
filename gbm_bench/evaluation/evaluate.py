@@ -2,33 +2,29 @@ import os
 import argparse
 import numpy as np
 import nibabel as nib
-from typing import Dict, List, Optional, Union
+from Pathlib import Path
+from typing import Any, Dict
 from scipy.ndimage import center_of_mass, distance_transform_edt
 from gbm_bench.utils.metrics import coverage
-from gbm_bench.utils.utils import load_mri_data, load_and_resample_mri_data
+from gbm_bench.utils.utils import load_mri_data, load_and_resample_mri_data, is_binary_array
 
 
-def create_standard_plan(core_segmentation: np.ndarray, ctv_margin: float = 15) -> np.ndarray:
+def create_standard_plan(core_segmentation: np.ndarray, ctv_margin: int) -> np.ndarray:
     """
     Creates a target volume mask by dilating the tumor core segmentation with ctv_margin
     
-    Parameters
-    ----------
-    core_segmentation : np.ndarray
-        A NumPy array representing the core segmentation mask, where non-zero
-        values indicate the region of interest.
-    ctv_margin : float
-        The margin to dilate the core segmentation.
+    Parameters:
+        core_segmentation (np.ndarray): A NumPy array representing the core segmentation mask, where non-zero
+            values indicate the region of interest.
+        ctv_margin (int): The margin to dilate the core segmentation.
 
-    Returns
-    -------
-    np.ndarray
-        A binary NumPy array of the same shape as core_segmentation, where
-        pixels within the ctv_margin from the core segmentation are True, and
-        all other pixels are False.
+    Returns:
+        np.ndarray: A binary NumPy array of the same shape as core_segmentation, where
+            pixels within the ctv_margin from the core segmentation are True, and
+            all other pixels are False.
     """
-    if not isinstance(ctv_margin, (int, float)) or ctv_margin <= 0:
-        raise ValueError("ctv_margin must be a positive number.")
+    if ctv_margin <= 0:
+        raise ValueError("ctv_margin must be a positive int.")
     distance_transform = distance_transform_edt(~ (core_segmentation >0))
     dilated_core = distance_transform <= ctv_margin
     return dilated_core
@@ -38,26 +34,18 @@ def find_threshold(volume: np.ndarray, target_volume: float, tolerance: float = 
     """
     Compute the threshold that produces a specified volume after masking the input array using the threshold.
 
-    Parameters
-    ----------
-    volume : np.ndarray
-        A NumPy array representing the input volume to be thresholded (tumor cell concentration).
-    target_volume : float
-        The desired volume size.
-    tolerance : float, optional
-        The acceptable relative difference between the target volume and the thresholded volume. Default is 0.01 (1%).
-    initial_threshold : float, optional
-        The starting threshold value for the segmentation. Should be between 0 and 1.
-    max_iter : int, optional
-        The maximum number of iterations to perform. If the threshold is not found within this number of iterations,
-        the function will terminate.
+    Parameters:
+        volume (np.ndarray): A NumPy array representing the input volume to be thresholded (tumor cell concentration).
+        target_volume (float): The desired volume size.
+        tolerance (float, optional): The acceptable relative difference between the target volume and the thresholded volume. Default is 0.01 (1%).
+        initial_threshold (float, optional): The starting threshold value for the segmentation. Should be between 0 and 1.
+        max_iter (int, optional): The maximum number of iterations to perform. If the threshold is not found within this number of iterations,
+            the function will terminate.
 
-    Returns
-    -------
-    float
-        The threshold value that segments the volume to match the target volume within the specified tolerance.
-        Returns 1.01 if the threshold exceeds the valid range (0, 1), indicating an "above the model" condition.
-        Returns 0 if the maximum number of iterations is reached without finding a suitable threshold.
+    Returns:
+        float: The threshold value that segments the volume to match the target volume within the specified tolerance.
+            Returns 1.01 if the threshold exceeds the valid range (0, 1), indicating an "above the model" condition.
+            Returns 0 if the maximum number of iterations is reached without finding a suitable threshold.
     """
 
     if np.sum(volume > 0) < target_volume:
@@ -109,40 +97,54 @@ def find_threshold(volume: np.ndarray, target_volume: float, tolerance: float = 
     return threshold
 
 
-def getRecurrenceCoverage(tumorRecurrence, treatmentPlan):
+def recurrence_coverage(recurrence_segmentation: np.ndarray, target_volume: np.ndarray) -> float:
+    """
+    Calculate the coverage of tumor recurrence by the treatment plan volume.
 
-    if np.sum(tumorRecurrence) <=  0.00001:
+    Parameters:
+        recurrence_segmentation (np.ndarray): A (boolean) NumPy array indicating the presence of tumor recurrence.
+        target_volume (np.ndarray): A (boolean) NumPy array indicating the area covered by the treatment plan.
+
+    Returns:
+        float: The coverage ratio of the treatment plan over the tumor recurrence (0-1.0).
+            Returns 1.0 if there is no tumor recurrence.
+    """
+    if not is_binary_array(recurrence_segmentation):
+        raise ValueError(f"recurrence_segmentation values have to be in (True, False, 0, 1, 0.0, 1.1).")
+    if not is_binary_array(target_volume):
+        raise ValueError(f"target_volume values have to be in (True, False, 0, 1, 0.0, 1.1).")
+    
+    # If there is no recurrence, return 1
+    if np.sum(recurrence_segmentation) <=  0.00001:
         return 1
 
     # Calculate the intersection between the recurrence and the plan
-    intersection = np.logical_and(tumorRecurrence, treatmentPlan)
+    intersection = np.logical_and(recurrence_segmentation, target_volume)
 
     # Calculate the coverage as the ratio of the intersection to the recurrence
-    coverage = np.sum(intersection) / np.sum(tumorRecurrence)
+    coverage = np.sum(intersection) / np.sum(recurrence_segmentation)
     return coverage
 
 
-def getPredictionInRecurrence(tumorRecurrence, treatmentPlan):
+def evaluate_tumor_model(preop_exam_dir: Path, postop_exam_dir: Path, pred_file: Path, ctv_margin: int = 15, tumor_conc_thresh: float = 0.1) -> Dict[str, Any]:
+    """
+    Evaluate a tumor model by computing recurrence coverage for standard and 
+    model-based radiotherapy plans using MRI segmentation data.
 
-    if np.sum(tumorRecurrence) <=  0.00001:
-        return 0
+    Parameters:
+        preop_exam_dir (Path): Directory .
+        postop_exam_dir (Path): Directory containing postoperative examination data.
+        pred_file (Path): File path containing model prediction MRI data.
+        ctv_margin (int, optional): Margin used to expand the clinical target volume for the standard plan. Defaults to 15.
+        tumor_conc_thresh (float, optional): Threshold for tumor concentration in the model predictions. Defaults to 0.1.
 
-    if np.sum(treatmentPlan) <= 0.00001:
-        return 0
-
-    # normalize sum of treatment plan to 1
-    normalizedTreatmentPlan = treatmentPlan / np.sum(treatmentPlan)
-
-    coverage = np.sum((tumorRecurrence > 0) * normalizedTreatmentPlan)
-
-    return coverage
-
-
-def evaluate_tumor_model(preop_exam_dir, postop_exam_dir, pred_dir, ctv_margin=15, tumor_conc_thresh=0.1):
-    
+    Returns:
+        Dict[str, Any]: Dictionary with computed metrics
+    """
     results = {}
 
     # Load data
+
     brain_msak_dir = os.path.join(preop_exam_dir, "preprocessing/skull_stripped/t1c_bet_mask.nii.gz")
     brain_mask = load_mri_data(brain_msak_dir)
 
@@ -164,22 +166,22 @@ def evaluate_tumor_model(preop_exam_dir, postop_exam_dir, pred_dir, ctv_margin=1
     recurrence_segmentation_all[recurrence_segmentation_all == 3] = 1
     recurrence_segmentation_all[recurrence_segmentation_all == 4] = 1
 
-    model_prediction_dir = pred_dir
+    model_prediction_dir = pred_file
     model_prediction = load_and_resample_mri_data(model_prediction_dir, resample_params=core_segmentation.shape, interp_type=0)
 
     # Create standard plan
     standard_plan = create_standard_plan(core_segmentation, ctv_margin)
     standard_plan[brain_mask == 0] = 0
     standard_plan_volume = np.sum(standard_plan)
-    standard_plan_coverage = getRecurrenceCoverage(recurrence_segmentation, standard_plan)
-    standard_plan_coverage_all = getRecurrenceCoverage(recurrence_segmentation_all, standard_plan)
+    standard_plan_coverage = recurrence_coverage(recurrence_segmentation, standard_plan)
+    standard_plan_coverage_all = recurrence_coverage(recurrence_segmentation_all, standard_plan)
 
     # Create model based plan
     tumor_threshold = find_threshold(model_prediction, standard_plan_volume, initial_threshold=0.2)
     model_pan = model_prediction > tumor_threshold
     model_pan[brain_mask == 0] = 0
-    model_recurrence_coverage = getRecurrenceCoverage(recurrence_segmentation, model_pan)
-    model_recurrence_coverage_all = getRecurrenceCoverage(recurrence_segmentation_all, model_pan)
+    model_recurrence_coverage = recurrence_coverage(recurrence_segmentation, model_pan)
+    model_recurrence_coverage_all = recurrence_coverage(recurrence_segmentation_all, model_pan)
 
     # Analysis
     """
@@ -209,17 +211,17 @@ def evaluate_tumor_model(preop_exam_dir, postop_exam_dir, pred_dir, ctv_margin=1
 
 
 if __name__ == "__main__":
-    #python gbm_bench/evaluation/evaluate.py -preop_exam_dir test_data/exam1 -postop_exam_dir test_data/exam3 -pred_dir test_data/exam1/preprocessing/sbtc/recurrencePrediction.nii.gz
+    #python gbm_bench/evaluation/evaluate.py -preop_exam_dir test_data/exam1 -postop_exam_dir test_data/exam3 -pred_file test_data/exam1/preprocessing/sbtc/recurrencePrediction.nii.gz
     parser = argparse.ArgumentParser()
     parser.add_argument("-preop_exam_dir", type=str, help="Path.")
     parser.add_argument("-postop_exam_dir", type=str, help="Path.")
-    parser.add_argument("-pred_dir", type=str, help="Algorithm identifier, should be the same as the folder for the algorithm in patient/exam/preprocessing/.")
+    parser.add_argument("-pred_file", type=str, help="Algorithm identifier, should be the same as the folder for the algorithm in patient/exam/preprocessing/.")
     args = parser.parse_args()
 
     results = evaluate_tumor_model(
             preop_exam_dir=args.preop_exam_dir,
             postop_exam_dir=args.postop_exam_dir,
-            pred_dir=args.pred_dir
+            pred_file=args.pred_file
             )
 
     print(results)
