@@ -6,8 +6,18 @@ import numpy as np
 import nibabel as nib
 from pathlib import Path
 from loguru import logger
-from typing import Dict, List, Optional, Tuple
+from rich.console import Console
 from docker.errors import DockerException
+from typing import Dict, List, Optional, Tuple
+
+
+try:
+    client = docker.from_env()
+except DockerException as e:
+    logger.error(
+        f"Failed to connect to docker daemon. Please make sure docker is installed and running. Error: {e}"
+    )
+    # not aborting since this happens during read the docs builds. not a great solution tbf
 
 
 def _is_cuda_available() -> bool:
@@ -44,12 +54,12 @@ def _handle_device_requests(cuda_devices: str, force_cpu: bool) -> List[docker.t
     ]
 
 
-def _get_volume_mappings(data_path: str, output_path: str) -> Dict:
+def _get_volume_mappings(data_dir: Path, output_dir: Path) -> Dict:
     """Get the volume mappings for the docker container.
 
     Args:
-        data_path: The path to the input data
-        output_path: The path to save the output
+        data_dir: The path to the input data
+        output_dir: The path to save the output
 
     Returns:
         Dict: The volume mappings
@@ -57,23 +67,23 @@ def _get_volume_mappings(data_path: str, output_path: str) -> Dict:
     # TODO: add support for recommended "ro" mount mode for input data
     # data = mlcube_io0, output = mlcube_io1
     return {
-        volume.absolute(): {
+        volume.resolve(): {
             "bind": f"/mlcube_io{i}",
             "mode": "rw",
         }
         for i, volume in enumerate(
-            [data_path, , output_path]
+            [data_dir, output_dir]
         )
     }
 
 
-def _ensure_image(algorithm: str, model_path: str) -> str:
+def _ensure_image(algorithm: str, model_file: Path) -> str:
     """
-    Checks if algorithm:latest image is present. If not loads model_path into docker. Returns the image tag.
+    Checks if algorithm:latest image is present. If not loads model_file into docker. Returns the image tag.
 
     Args:
         algorithm: Algorithm name
-        model_path: Path to the growth model docker image
+        model_file: Path to the growth model docker image
     """
     image_tag = f"{algorithm}:latest"
 
@@ -88,14 +98,14 @@ def _ensure_image(algorithm: str, model_path: str) -> str:
         logger.info(f"Image '{image_tag}' found. Skipping loading the image.")
     
     except subprocess.CalledProcessError:
-        logger.info(f"Image '{image_tag}' not found. Loading image from '{model_path}'...")
+        logger.info(f"Image '{image_tag}' not found. Loading image from '{model_file}'...")
         try:
             # Load the docker image
             subprocess.run(
-                ["docker", "load", "-i", model_path],
+                ["docker", "load", "-i", model_file],
                 check=True
             )
-            logger.info(f"Image '{image_tag}' loaded successfully from '{model_path}'.")
+            logger.info(f"Image '{image_tag}' loaded successfully from '{model_file}'.")
         except subprocess.CalledProcessError as e:
             raise e #TODO: meaningful exception
     
@@ -130,38 +140,38 @@ def _observe_docker_output(container: docker.models.containers.Container) -> str
     return container_output
 
 
-def _sanity_check_output(data_path: str, output_path: str, container_output: str) -> None:
+def _sanity_check_output(data_dir: Path, output_dir: Path, container_output: str) -> None:
     """Sanity check that the number of output files matches the number of input files and the output is not empty.
 
     Args:
-        data_path: The path to the input data
-        output_path: The path to the output data
+        data_dir: The path to the input data
+        output_dir: The path to the output data
         container_output: The output of the docker container
     """
-    outputs = list(output_path.iterdir())
+    outputs = list(output_dir.iterdir())
     if len(outputs) != 1:
         logger.error(f"Docker container output: \n\r{container_output}")
         raise RuntimeError(f"Expected 1 output file but got {len(outputs)}. Please check the logging output of the docker container for more information.")
 
 
-def run_container(algorithm: str, model_path: str, data_path: str, output_path: str, cuda_devices: str, force_cpu: bool) -> None:
+def run_container(algorithm: str, model_file: Path, data_dir: Path, output_dir: Path, cuda_devices: str, force_cpu: bool) -> None:
     """Run a docker container for the provided algorithm.
 
     Args:
         algorithm: Name of the algorithm
-        model_path: Path to the growth model docker image.
-        data_path: The path to the input data
-        output_path: The path to save the output
+        model_file: Path to the growth model docker image.
+        data_dir: The path to the input data
+        output_dir: The path to save the output
         cuda_devices: The CUDA devices to use
         force_cpu: Whether to force CPU execution
         internal_external_name_map: Dictionary mapping internal name (in standardized format) to external subject name provided by user (only used for batch inference)
     """
     # ensure output folder exists
-    output_path.mkdir(parents=True, exist_ok=True)
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     volume_mappings = _get_volume_mappings(
-        data_path=data_path,
-        output_path=output_path
+        data_dir=data_dir,
+        output_dir=output_dir
     )
     logger.debug(f"Volume mappings: {volume_mappings}")
 
@@ -170,7 +180,7 @@ def run_container(algorithm: str, model_path: str, data_path: str, output_path: 
     logger.debug(f"GPU Device requests: {device_requests}")
 
     # load image if necessary
-    image_tag = _ensure_image(algorithm, model_path)
+    image_tag = _ensure_image(algorithm, model_file)
 
     # Run the container
     logger.info(f"{'Starting growth prediction'}")
@@ -181,14 +191,16 @@ def run_container(algorithm: str, model_path: str, data_path: str, output_path: 
         device_requests=device_requests,
         network_mode="none",
         detach=True,
-        remove=True,
         shm_size="20gb", #TODO
         #user=f"{os.getuid()}:{os.getgid()}"  #this line disables running as root
     )
     container_output = _observe_docker_output(container=container)
+    
+    # Remove container and check output
+    container.remove()
     _sanity_check_output(
-        data_path=data_path,
-        output_path=output_path,
+        data_dir=data_dir,
+        output_dir=output_dir,
         container_output=container_output
     )
 
