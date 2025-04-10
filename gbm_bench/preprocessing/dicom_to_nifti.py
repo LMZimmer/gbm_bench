@@ -30,7 +30,7 @@ def remove_postfixes(export_dir: Path) -> None:
             logger.info(f"Renamed postfix file {file} to {new_path}.")
 
 
-def niftiConvert(input_dir: Path, export_dir: Path, outfile: str, dcm2niix_location: Path = DCM2NIIX_LOCATION) -> None:
+def convert_nifti(input_dir: Path, export_dir: Path, outfile: str, dcm2niix_location: Path = DCM2NIIX_LOCATION) -> None:
     """
     Convert DICOM files to NIfTI format using dcm2niix.
 
@@ -75,7 +75,7 @@ if __name__ == "__main__":
     parser.add_argument("-dcm2niix_loc", type=str, help="Path to your dcm2niix executable.")
     args = parser.parse_args()
 
-    niftiConvert(
+    convert_nifti(
         input_dir=Path("test_data/exam1/t1c"),
         export_dir=Path("./tmp_test_dcm2nii"),
         outfile="t1c",

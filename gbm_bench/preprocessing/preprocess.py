@@ -2,7 +2,7 @@ import os
 import argparse
 import datetime
 from gbm_bench.utils.utils import timed_print
-from gbm_bench.preprocessing.dicom_to_nifti import niftiConvert
+from gbm_bench.preprocessing.dicom_to_nifti import convert_nifti
 from gbm_bench.preprocessing.tumor_segmentation import run_brats
 from gbm_bench.preprocessing.norm_ss_coregistration import norm_ss_coregister, register_recurrence
 from gbm_bench.preprocessing.tissue_segmentation import generate_healthy_brain_mask, run_tissue_seg_registration
@@ -29,7 +29,7 @@ def preprocess_dicom(t1: str, t1c: str, t2: str, flair: str, dcm2niix_location: 
         nifti_dir = os.path.join(outdir, "nifti_conversion")
 
         if perform_nifti_conversion:
-            niftiConvert(
+            convert_nifti(
                     input_dir=dicom_folder,
                     export_dir=nifti_dir,
                     outfile=modality_name,
@@ -44,11 +44,12 @@ def preprocess_dicom(t1: str, t1c: str, t2: str, flair: str, dcm2niix_location: 
     preprocessed_dir = os.path.join(outdir, "skull_stripped")
 
     if perform_skullstripping:
+        
         norm_ss_coregister(
-                t1=os.path.join(nifti_dir, "t1.nii.gz"),
-                t1c=os.path.join(nifti_dir, "t1c.nii.gz"),
-                t2=os.path.join(nifti_dir, "t2.nii.gz"),
-                flair=os.path.join(nifti_dir, "flair.nii.gz"),
+                t1_file=os.path.join(nifti_dir, "t1.nii.gz"),
+                t1c_file=os.path.join(nifti_dir, "t1c.nii.gz"),
+                t2_file=os.path.join(nifti_dir, "t2.nii.gz"),
+                flair_file=os.path.join(nifti_dir, "flair.nii.gz"),
                 outdir=preprocessed_dir
                 )
 
@@ -107,10 +108,11 @@ def process_longitudinal(preop_exam: str, postop_exam: str) -> None:
     outdir = os.path.join(postop_exam, "preprocessing/longitudinal")
 
     timed_print("Starting longitudinal registration.")
+
     register_recurrence(
-            t1c_pre_dir=t1c_pre_dir,
-            t1c_post_dir=t1c_post_dir,
-            recurrence_seg_dir=recurrence_seg_dir,
+            t1c_pre_file=t1c_pre_dir,
+            t1c_post_file=t1c_post_dir,
+            recurrence_seg_file=recurrence_seg_dir,
             outdir=outdir
             )
     timed_print("Finished longitudinal registration.")

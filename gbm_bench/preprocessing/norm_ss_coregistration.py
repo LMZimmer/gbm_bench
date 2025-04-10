@@ -2,49 +2,96 @@ import os
 import ants
 import shutil
 import argparse
+from pathlib import Path
+from loguru import logger
 from typing import List, Tuple
 from brainles_preprocessing.normalization import Normalizer
 from brainles_preprocessing.preprocessor import Preprocessor
 from brainles_preprocessing.modality import Modality, CenterModality
 from brainles_preprocessing.normalization.percentile_normalizer import PercentileNormalizer
+from gbm_bench.utils.constants import (
+    BRAIN_MASK_SCHEMA,
+    LONGITUDINAL_TRAFO_SCHEMA,
+    LONGITUDINAL_WARP_SCHEMA,
+    MODALITY_CONVERTED_SCHEMA,
+    MODALITY_STRIPPED_SHEMA,
+    RECURRENCE_SCHEMA,
+    TUMORSEG_SCHEMA,
+)
 
 
-def initialize_center_modality(modality_path: str, modality_name: str, normalizer: Normalizer, outdir: str) -> CenterModality:
-    
-    bet_out = os.path.join(outdir, "_".join((modality_name, "bet_normalized.nii.gz")))
-    bet_mask_out = os.path.join(outdir, "_".join((modality_name, "bet_mask.nii.gz")))
+def initialize_center_modality(modality_file: Path, modality_name: str, normalizer: Normalizer, outdir: Path) -> CenterModality:
+    """
+    Initializes and returns a CenterModality object configured for a specific imaging modality.
+
+    Parameters:
+        modality_file (Path): The path to the center/fixed modality nifti used for registration..
+        modality_name (str): A descriptive name for the modality (e.g., 't1c').
+        normalizer (Normalizer): An instance of the Normalizer class that defines the normalization parameters.
+        outdir (Path): The directory where the output files (normalized image and mask) will be saved. Usually the exam dir.
+
+    Returns:
+        CenterModality: An instance of CenterModality configured with the input file, normalization settings, 
+                        and output paths for the normalized image and the associated brain mask.
+    """
+    modality_outfile = MODALITY_STRIPPED_SHEMA.format(exam_dir=outdir, modality=modality_name)
+    mask_outfile = BRAIN_MASK_SCHEMA.format(exam_dir=outdir)
 
     center = CenterModality(
             modality_name=modality_name,
-            input_path=modality_path,
+            input_path=str(modality_file),
             normalizer=normalizer,
-            normalized_bet_output_path=bet_out,
-            bet_mask_output_path=bet_mask_out,
+            normalized_bet_output_path=str(modality_outfile),
+            bet_mask_output_path=str(mask_outfile),
             )
     
     return center
 
 
-def initialize_moving_modalities(modality_paths: List[str], modality_names: List[str], normalizer: Normalizer, outdir: str) -> Modality:
-    
+def initialize_moving_modalities(modality_files: List[Path], modality_names: List[Path], normalizer: Normalizer, outdir: Path) -> Modality:
+    """
+    Initializes and returns a list of Modality objects with moving modalities for registration.
+
+    Parameters:
+        modality_file (List[Path]): List of paths to the moving modality nifti used for registration.
+        modality_name (List[Path]): List of descriptive names for the modalities.
+        normalizer (Normalizer): An instance of the Normalizer class that defines the normalization parameters.
+        outdir (Path): The directory where the output files will be saved. Usually the exam dir.
+
+    Returns:
+        List[Modality]: A list of Modality instances configured for the moving modalities.
+    """
     moving_modalities = []
-    for mod_path, mod_name in zip(modality_paths, modality_names):
+    for mod_file, mod_name in zip(modality_files, modality_names):
         
-        bet_norm_out = os.path.join(outdir, "_".join((mod_name, "bet_normalized.nii.gz")))
+        stripped_modality_outfile = MODALITY_STRIPPED_SHEMA.format(exam_dir=outdir, modality=mod_name)
         
         m = Modality(
-                input_path=mod_path,
+                input_path=mod_file,
                 modality_name=mod_name,
                 normalizer=normalizer,
-                normalized_bet_output_path=bet_norm_out,
+                normalized_bet_output_path=stripped_modality_outfile,
                 )
 
         moving_modalities.append(m)
     return moving_modalities
 
 
-def norm_ss_coregister(t1: str, t1c: str, t2: str, flair: str, outdir: str) -> None:
+def norm_ss_coregister(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file: Path, outdir: Path) -> None:
+    """
+    Performs normalization, skull stripping and co-registration based on the brainles preprocessing module.
 
+    Parameters:
+        t1_file: Path to the t1 nifti.
+        t1c_file: Path to the t1c nifti.
+        t2_file: Path to the t2 nifti.
+        flair_file: Path to the flair nifti.
+        outdir: Base directory where the output will be saved. Usually exam dir.
+    
+    Returns:
+        None
+    """
+    logger.debug(f"Initializing brainles preprocessing for {t1_file}, {t1c_file} etc.")
     percentile_normalizer = PercentileNormalizer(
             lower_percentile=0.1,
             upper_percentile=99,
@@ -53,16 +100,16 @@ def norm_ss_coregister(t1: str, t1c: str, t2: str, flair: str, outdir: str) -> N
             )
 
     center = initialize_center_modality(
-            modality_path=t1c,
+            modality_file=str(t1c_file),
             modality_name="t1c",
             normalizer=percentile_normalizer,
-            outdir=outdir
+            outdir=str(outdir)
             )
     moving = initialize_moving_modalities(
-            modality_paths=[t1, t2, flair],
+            modality_files=[str(t1_file), str(t2_file), str(flair_file)],
             modality_names=["t1", "t2", "flair"],
             normalizer=percentile_normalizer,
-            outdir=outdir
+            outdir=str(outdir)
             )
 
     preprocessor = Preprocessor(
@@ -70,66 +117,87 @@ def norm_ss_coregister(t1: str, t1c: str, t2: str, flair: str, outdir: str) -> N
             moving_modalities=moving,
             )
 
+    logger.info("Starting brainles preprocessing for normalization, skull stripping and co-registration.")
     #preprocessor.run(save_dir_atlas_registration=output_path / "atlas_registration")
     preprocessor.run()
+    logger.info(f"Normalization, skull stripping, co-registration step finished. Output saved to {outdir}.")
 
 
-def register_recurrence(t1c_pre_dir: str, t1c_post_dir: str, recurrence_seg_dir: str, outdir: str) -> None:
-    t1c_pre = ants.image_read(t1c_pre_dir)
-    t1c_post = ants.image_read(t1c_post_dir)
+def register_recurrence(t1c_pre_file: Path, t1c_post_file: Path, recurrence_seg_file: Path, outdir: Path) -> None:
+    """
+    Register a postop image with recurrence to preop.
+
+    Parameters:
+        t1c_pre_file (Path): Path to the pre-operative T1c image.
+        t1c_post_file (Path): Path to the post-operative T1c image.
+        recurrence_seg_file (Path): Path to the tumor segmentation.
+        outdir (Path): Directory where the output files will be saved.
+
+    Returns:
+        None
+    """
+    logger.debug(f"Initializing longitudinal registration with preop {t1c_pre_file} and postop {t1c_post_file} on recurrence {recurrence_seg_file}.")
+    t1c_pre_img = ants.image_read(str(t1c_pre_file))
+    t1c_post_img = ants.image_read(str(t1c_post_file))
 
     reg = ants.registration(
-            fixed=t1c_pre,
-            moving=t1c_post,
+            fixed=t1c_pre_img,
+            moving=t1c_post_img,
             type_of_transform="SyN",
             reg_iterations=(50, 20),
             shrink_factors=(2, 1),
             smoothing_sigmas=(1, 0)
             )
 
-    os.makedirs(outdir, exist_ok=True)
-    shutil.copyfile(src=reg["fwdtransforms"][0], dst=os.path.join(outdir, "longitudinal_trafo.mat"))
-    ants.image_write(reg["warpedmovout"], os.path.join(outdir, "t1c_warped_longitudinal.nii.gz"))
+    outdir.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(src=reg["fwdtransforms"][0], dst=str(LONGITUDINAL_TRAFO_SCHEMA.format(exam_dir=outdir)))
+    ants.image_write(reg["warpedmovout"], str(LONGITUDINAL_WARP_SCHEMA.format(exam_dir=outdir)))
 
-    recurrence_seg = ants.image_read(recurrence_seg_dir)
+    recurrence_seg = ants.image_read(str(recurrence_seg_file))
     recurrence_warped = ants.apply_transforms(
-            fixed=t1c_pre,
+            fixed=t1c_pre_img,
             moving=recurrence_seg,
             transformlist=reg["fwdtransforms"],
             interpolator='nearestNeighbor'
             )
-    ants.image_write(recurrence_warped, os.path.join(outdir, "recurrence_preop.nii.gz"))
+    ants.image_write(recurrence_warped, str(RECURRENCE_SCHEMA.format(exam_dir=outdir)))
+    logger.info(f"Longitudinal registration finished. Output saved to {str(RECURRENCE_SCHEMA.format(exam_dir=outdir))}.")
 
 
 if __name__ == "__main__":
     # Example:
     # python gbm_bench/preprocessing/norm_ss_coregistration.py -cuda_device 4
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-cuda_device", type=str, default="4", help="GPU id to run on.")
+    parser = argparse.ArgumentParser(description="Normalize, skull strip and co-register brain imaging data in nifti format.")
+    parser.add_argument("-cuda_device", type=str, default="0", help="GPU id to run on.")
     args = parser.parse_args()
 
     os.environ["CUDA_VISIBLE_DEVICES"] = args.cuda_device
 
-    t1_nifti = "test_data/exam1/preprocessing/nifti_conversion/t1.nii.gz"
-    t1c_nifti = "test_data/exam1/preprocessing/nifti_conversion/t1c.nii.gz"
-    t2_nifti = "test_data/exam1/preprocessing/nifti_conversion/t2.nii.gz"
-    flair = "test_data/exam1/preprocessing/nifti_conversion/flair.nii.gz"
+    preop_exam = Path("test_data/exam1")
+    postop_exam = Path("test_data/exam3")
 
-    t1c_preop_dir = "test_data/exam1/preprocessing/skull_stripped/t1c_bet_normalized.nii.gz"
-    t1c_postop_dir = "test_data/exam3/preprocessing/skull_stripped/t1c_bet_normalized.nii.gz"
-    recurrence_seg_dir = "test_data/exam3/preprocessing/tumor_segmentation/tumor_seg.nii.gz"
+    t1_nifti_file = MODALITY_CONVERTED_SCHEMA.format(exam_dir=preop_exam, modality="t1")
+    t1c_nifti_file = MODALITY_CONVERTED_SCHEMA.format(exam_dir=preop_exam, modality="t1c")
+    t2_nifti_file = MODALITY_CONVERTED_SCHEMA.format(exam_dir=preop_exam, modality="t2")
+    flair_nifti_file = MODALITY_CONVERTED_SCHEMA.format(exam_dir=preop_exam, modality="flair")
 
+    t1c_stripped_preop = MODALITY_STRIPPED_SHEMA.format(exam_dir=preop_exam, modality="t1c")
+    t1c_stripped_postop = MODALITY_STRIPPED_SHEMA.format(exam_dir=postop_exam, modality="t1c")
+    recurrence_seg_file = TUMORSEG_SCHEMA.format(exam_dir=postop_exam)
+
+    outdir_tmp = Path("./tmp_test_ss")
     norm_ss_coregister(
-            t1=t1_nifti,
-            t1c=t1c_nifti,
-            t2=t2_nifti,
-            flair=flair,
-            outdir="./tmp_test_ss"
-            )
+        t1_file=t1_nifti_file,
+        t1c_file=t1c_nifti_file,
+        t2_file=t2_nifti_file,
+        flair_file=flair_nifti_file,
+        outdir=outdir_tmp
+    )
 
     register_recurrence(
-            t1c_pre_dir=t1c_preop_dir,
-            t1c_post_dir=t1c_postop_dir,
-            recurrence_seg_dir=recurrence_seg_dir,
-            outdir="test_data/exam3/preprocessing/longitudinal"
-            )
+        t1c_pre_file=t1c_stripped_preop,
+        t1c_post_file=t1c_stripped_postop,
+        recurrence_seg_file=recurrence_seg_file,
+        outdir=postop_exam
+    )
+

@@ -2,29 +2,48 @@ import os
 import argparse
 import numpy as np
 import nibabel as nib
+from pathlib import Path
+from loguru import logger
 from brats import AdultGliomaPreTreatmentSegmenter
 from brats import AdultGliomaPostTreatmentSegmenter
 from brats.constants import AdultGliomaPreTreatmentAlgorithms
 from brats.constants import AdultGliomaPostTreatmentAlgorithms
 
 
-def split_segmentation(tumor_seg_file: str) -> None:
-    # 1: non_enhancing, 2: edema, 3: enhancing
-    outdir = os.path.dirname(tumor_seg_file)
-    tumor_seg = nib.load(tumor_seg_file)
+def split_segmentation(tumor_seg_file: Path, necrotic_label: int = 1, edema_label: int = 2, enhancing_label: int = 3) -> None:
+    """
+    Split a composite tumor segmentation into separate binary segmentation files
+    for enhancing/non-enhancing tumor and peritumoral edema.
 
+    Parameters:
+        tumor_seg_file (Path): Path to the input tumor segmentation NIfTI file.
+        necrotic_label (int): Label for necrotic / non-enhancing tissue in the segmentation.
+        edema_label (int): Label for edema in the segmentation.
+        enhancing_label (int): Label for enhancing tumor in the segmentation.
+
+    Returns:
+        None
+    """
+    outdir = tumor_seg_file.parent
+    tumor_seg = nib.load(str(tumor_seg_file))
+    seg_data = tumor_seg.get_fdata()
+
+    # Create a binary mask for non-enhancing and enhancing tumor (labels 1 and 3).
     enhancing_non_enhancing = nib.Nifti1Image(
-            ((tumor_seg.get_fdata() == 1) | (tumor_seg.get_fdata() == 3)).astype(np.int32),
-            header=tumor_seg.header,
-            affine=tumor_seg.affine)
-    
-    edema = nib.Nifti1Image(
-            (tumor_seg.get_fdata() == 2).astype(np.int32),
-            header=tumor_seg.header,
-            affine=tumor_seg.affine)
+        ((seg_data == necrotic_label) | (seg_data == enhancing_label)).astype(np.int32),
+        header=tumor_seg.header,
+        affine=tumor_seg.affine
+    )
 
-    nib.save(enhancing_non_enhancing, os.path.join(outdir, "enhancing_non_enhancing_tumor.nii.gz"))
-    nib.save(edema, os.path.join(outdir, "peritumoral_edema.nii.gz"))
+    # Create a binary mask for edema (label 2).
+    edema = nib.Nifti1Image(
+        (seg_data == edema_label).astype(np.int32),
+        header=tumor_seg.header,
+        affine=tumor_seg.affine
+    )
+
+    nib.save(enhancing_non_enhancing, str(outdir / "enhancing_non_enhancing_tumor.nii.gz"))
+    nib.save(edema, str(outdir / "peritumoral_edema.nii.gz"))
 
 
 def run_brats(t1: str, t1c: str, t2: str, flair: str, outfile: str, pre_treatment: bool = True, cuda_device: str = "4") -> None:
