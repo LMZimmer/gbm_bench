@@ -6,28 +6,47 @@ import argparse
 import subprocess
 import numpy as np
 import nibabel as nib
+from pathlib import Path
+from loguru import logger
 from brainles_preprocessing.preprocessor import Preprocessor
 from brainles_preprocessing.registration import ANTsRegistrator
 from brainles_preprocessing.modality import Modality, CenterModality
 from brainles_preprocessing.normalization.percentile_normalizer import PercentileNormalizer
+from gbm_bench.utils.constants import ATLAS_DIR
 
 
-def generate_healthy_brain_mask(brain_mask_file: str, tumor_seg_file: str, outdir: str) -> None:
-    #TODO: better implementation via a[b > 0] = 0
-    brain_nifti = nib.load(brain_mask_file)
-    aff, header = brain_nifti.affine, brain_nifti.header
-    m1 = brain_nifti.get_fdata()
-    m2 = (nib.load(tumor_seg_file).get_fdata() > 0).astype(np.float32)
-    healthy_mask = ((m1 - m2) > 0).astype(np.float32)
-    healthy_mask_nifti = nib.Nifti1Image(healthy_mask, aff, header)
-    os.makedirs(os.path.dirname(outdir), exist_ok=True)
-    nib.save(healthy_mask_nifti, outdir)
+def generate_healthy_brain_mask(brain_mask_file: Path, tumor_seg_file: Path, out_file: Path) -> None:
+    """
+    Generate a healthy brain mask by subtracting the tumor segmentation from the brain mask.
+
+    Parameters:
+        brain_mask_file (Path): Path to the brain mask NIfTI file.
+        tumor_seg_file (Path): Path to the tumor segmentation NIfTI file.
+        out_file (Path): Output file path where the healthy brain mask will be saved.
+
+    Returns:
+        None
+    """
+    # Load niftis
+    brain_nifti = nib.load(str(brain_mask_file))
+    affine, header = brain_nifti.affine, brain_nifti.header
+    brain_data = brain_nifti.get_fdata()
+
+    tumor_data = nib.load(str(tumor_seg_file)).get_fdata()
+    tumor_mask = (tumor_data > 0).astype(np.float32)
+
+    # Generate the healthy brain mask.
+    healthy_data = np.where(tumor_mask > 0, 0, brain_data).astype(np.float32)
+
+    # Generate output nifti and save it
+    out_file.parent.mkdir(parents=True, exist_ok=True)
+    healthy_mask_nifti = nib.Nifti1Image(healthy_data, affine, header)
+    nib.save(healthy_mask_nifti, str(out_path))
 
 
 def run_tissue_seg_registration(t1_file: str, healthy_mask_dir: str, outdir: str, brain_mask_dir: str = None, refit_brain: bool = False) -> None:
 
-    #TODO absolute paths
-    atlas_base_dir = "/home/home/lucas/projects/gbm_bench/gbm_bench/sri24_atlas"
+    atlas_base_dir = ATLAS_DIR
     atlas_t1_dir = os.path.join(atlas_base_dir, "t1.nii")
     atlas_tissues_dir = os.path.join(atlas_base_dir, "tissues.nii")
     atlas_pbmap_dirs = {tissue: os.path.join(atlas_base_dir, f"pbmap_{tissue.upper()}.nii") for tissue in ["csf", "gm", "wm"]}

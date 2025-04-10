@@ -8,15 +8,17 @@ from brats import AdultGliomaPreTreatmentSegmenter
 from brats import AdultGliomaPostTreatmentSegmenter
 from brats.constants import AdultGliomaPreTreatmentAlgorithms
 from brats.constants import AdultGliomaPostTreatmentAlgorithms
+from gbm_bench.utils.constants import TUMORSEG_EDEMA_SCHEMA, TUMORSEG_SCHEMA, TUMORSEG_CORE_SCHEMA
 
 
-def split_segmentation(tumor_seg_file: Path, necrotic_label: int = 1, edema_label: int = 2, enhancing_label: int = 3) -> None:
+def split_segmentation(tumor_seg_file: Path, outdir: Path, necrotic_label: int = 1, edema_label: int = 2, enhancing_label: int = 3) -> None:
     """
     Split a composite tumor segmentation into separate binary segmentation files
     for enhancing/non-enhancing tumor and peritumoral edema.
 
     Parameters:
         tumor_seg_file (Path): Path to the input tumor segmentation NIfTI file.
+        outdir (Path): Path to the output directory. Usually exam directory.
         necrotic_label (int): Label for necrotic / non-enhancing tissue in the segmentation.
         edema_label (int): Label for edema in the segmentation.
         enhancing_label (int): Label for enhancing tumor in the segmentation.
@@ -24,7 +26,7 @@ def split_segmentation(tumor_seg_file: Path, necrotic_label: int = 1, edema_labe
     Returns:
         None
     """
-    outdir = tumor_seg_file.parent
+    logger.info(f"Splitting tumor segmentation into core and edema.")
     tumor_seg = nib.load(str(tumor_seg_file))
     seg_data = tumor_seg.get_fdata()
 
@@ -42,12 +44,29 @@ def split_segmentation(tumor_seg_file: Path, necrotic_label: int = 1, edema_labe
         affine=tumor_seg.affine
     )
 
-    nib.save(enhancing_non_enhancing, str(outdir / "enhancing_non_enhancing_tumor.nii.gz"))
-    nib.save(edema, str(outdir / "peritumoral_edema.nii.gz"))
+    nib.save(enhancing_non_enhancing, str(TUMORSEG_CORE_SCHEMA.format(exam_dir=outdir)))
+    nib.save(edema, str(TUMORSEG_EDEMA_SCHEMA.format(exam_dir=outdir)))
+    logger.info(f"Finished splitting segmentation. Output saved to {TUMORSEG_CORE_SCHEMA.format(exam_dir=outdir).parent}.")
 
 
-def run_brats(t1: str, t1c: str, t2: str, flair: str, outfile: str, pre_treatment: bool = True, cuda_device: str = "4") -> None:
+def run_brats(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file: Path, outdir: Path, pre_treatment: bool = True, cuda_device: str = "0") -> None:
+    """
+    Segments tumor based on common MRI modalities using brainles BRATS module.
 
+    Parameters:
+        t1_file (Path): Path to the T1 file.
+        t1c_file (Path): Path to the T1c file.
+        t2_file (Path): Path to the T2 file.
+        flair_file (Path): Path to the flair file.
+        outdir (Path): Directory to save the output to. Usually exam directory.
+        pre_treatment (bool): True if the provided MRI are preop, False if they are postop.
+            Causes BRATS to use the proper model based on this flag.
+        cuda_device (str): The GPU device to run on.
+
+    Returns:
+        None
+    """
+    logger.info(f"Starting tumor segmentation via BRATS.")
     if pre_treatment:
         segmenter = AdultGliomaPreTreatmentSegmenter(
                 algorithm=AdultGliomaPreTreatmentAlgorithms.BraTS23_1,
@@ -59,36 +78,38 @@ def run_brats(t1: str, t1c: str, t2: str, flair: str, outfile: str, pre_treatmen
                 cuda_devices=cuda_device
                 )
 
+    seg_outfile = str(TUMORSEG_SCHEMA.format(exam_dir=outdir))
     segmenter.infer_single(
-            t1n=t1,
-            t1c=t1c,
-            t2w=t2,
-            t2f=flair,
-            output_file=outfile)
+            t1n=str(t1_file),
+            t1c=str(t1c_file),
+            t2w=str(t2_file),
+            t2f=str(flair_file),
+            output_file=seg_outfile)
+    logger.info(f"Tumor segmentation finished. Saved output to {seg_outfile}.")
 
-    split_segmentation(outfile)
+    split_segmentation(seg_outfile, outdir)
 
 
 if __name__ == "__main__":
     # Example
     # python gbm_bench/preprocessing/tumor_segmentation.py -cuda_device 4
     parser = argparse.ArgumentParser()
-    parser.add_argument("-cuda_device", type=str, default="4", help="GPU id to run on.")
+    parser.add_argument("-cuda_device", type=str, default="0", help="GPU id to run on.")
     args = parser.parse_args()
 
     os.environ["CUDA_VISIBLE_DEVICES"] = args.cuda_device
 
-    t1 = "test_data/exam1/preprocessing/skull_stripped/t1_bet_normalized.nii.gz"
-    t1c = "test_data/exam1/preprocessing/skull_stripped/t1c_bet_normalized.nii.gz"
-    t2 = "test_data/exam1/preprocessing/skull_stripped/t2_bet_normalized.nii.gz"
-    flair = "test_data/exam1/preprocessing/skull_stripped/flair_bet_normalized.nii.gz"
-    outfiles = "tmp_test_tumorseg/tumor_seg.nii.gz"
+    t1_file = Path("test_data/exam1/preprocessing/skull_stripped/t1_bet_normalized.nii.gz")
+    t1c_file = Path("test_data/exam1/preprocessing/skull_stripped/t1c_bet_normalized.nii.gz")
+    t2_file = Path("test_data/exam1/preprocessing/skull_stripped/t2_bet_normalized.nii.gz")
+    flair_file = Path("test_data/exam1/preprocessing/skull_stripped/flair_bet_normalized.nii.gz")
+    outdir = Path("tmp_test_tumorseg/")
 
     run_brats(
-            t1=t1,
-            t1c=t1c,
-            t2=t2,
-            flair=flair,
-            outfile=outfile,
+            t1_file=t1_file,
+            t1c_file=t1c_file,
+            t2_file=t2_file,
+            flair_file=flair_file,
+            outdir=outdir,
             cuda_device=args.cuda_device
             )

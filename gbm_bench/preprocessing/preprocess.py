@@ -68,7 +68,7 @@ def preprocess_dicom(t1: str, t1c: str, t2: str, flair: str, dcm2niix_location: 
                 t1c=os.path.join(preprocessed_dir, "t1c_bet_normalized.nii.gz"),
                 t2=os.path.join(preprocessed_dir, "t2_bet_normalized.nii.gz"),
                 flair=os.path.join(preprocessed_dir, "flair_bet_normalized.nii.gz"),
-                outfile=tumor_outfile,
+                outdir=tumor_outfile, #TODO: tumor_outfile should be exam dir now
                 pre_treatment=pre_treatment,
                 cuda_device=cuda_device
                 )
