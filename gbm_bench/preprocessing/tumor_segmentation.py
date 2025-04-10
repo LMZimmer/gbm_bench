@@ -44,9 +44,9 @@ def split_segmentation(tumor_seg_file: Path, outdir: Path, necrotic_label: int =
         affine=tumor_seg.affine
     )
 
-    nib.save(enhancing_non_enhancing, str(TUMORSEG_CORE_SCHEMA.format(exam_dir=outdir)))
-    nib.save(edema, str(TUMORSEG_EDEMA_SCHEMA.format(exam_dir=outdir)))
-    logger.info(f"Finished splitting segmentation. Output saved to {TUMORSEG_CORE_SCHEMA.format(exam_dir=outdir).parent}.")
+    nib.save(enhancing_non_enhancing, str(TUMORSEG_CORE_SCHEMA.format(outdir=outdir)))
+    nib.save(edema, str(TUMORSEG_EDEMA_SCHEMA.format(outdir=outdir)))
+    logger.info(f"Finished splitting segmentation. Output saved to {TUMORSEG_CORE_SCHEMA.format(outdir=outdir).parent}.")
 
 
 def run_brats(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file: Path, outdir: Path, pre_treatment: bool = True, cuda_device: str = "0") -> None:
@@ -78,7 +78,7 @@ def run_brats(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file: Path, ou
                 cuda_devices=cuda_device
                 )
 
-    seg_outfile = str(TUMORSEG_SCHEMA.format(exam_dir=outdir))
+    seg_outfile = str(TUMORSEG_SCHEMA.format(outdir=outdir))
     segmenter.infer_single(
             t1n=str(t1_file),
             t1c=str(t1c_file),

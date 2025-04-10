@@ -34,8 +34,8 @@ def initialize_center_modality(modality_file: Path, modality_name: str, normaliz
         CenterModality: An instance of CenterModality configured with the input file, normalization settings, 
                         and output paths for the normalized image and the associated brain mask.
     """
-    modality_outfile = MODALITY_STRIPPED_SHEMA.format(exam_dir=outdir, modality=modality_name)
-    mask_outfile = BRAIN_MASK_SCHEMA.format(exam_dir=outdir)
+    modality_outfile = MODALITY_STRIPPED_SHEMA.format(outdir=outdir, modality=modality_name)
+    mask_outfile = BRAIN_MASK_SCHEMA.format(outdir=outdir)
 
     center = CenterModality(
             modality_name=modality_name,
@@ -64,7 +64,7 @@ def initialize_moving_modalities(modality_files: List[Path], modality_names: Lis
     moving_modalities = []
     for mod_file, mod_name in zip(modality_files, modality_names):
         
-        stripped_modality_outfile = MODALITY_STRIPPED_SHEMA.format(exam_dir=outdir, modality=mod_name)
+        stripped_modality_outfile = MODALITY_STRIPPED_SHEMA.format(outdir=outdir, modality=mod_name)
         
         m = Modality(
                 input_path=mod_file,
@@ -150,8 +150,8 @@ def register_recurrence(t1c_pre_file: Path, t1c_post_file: Path, recurrence_seg_
             )
 
     outdir.mkdir(parents=True, exist_ok=True)
-    shutil.copyfile(src=reg["fwdtransforms"][0], dst=str(LONGITUDINAL_TRAFO_SCHEMA.format(exam_dir=outdir)))
-    ants.image_write(reg["warpedmovout"], str(LONGITUDINAL_WARP_SCHEMA.format(exam_dir=outdir)))
+    shutil.copyfile(src=reg["fwdtransforms"][0], dst=str(LONGITUDINAL_TRAFO_SCHEMA.format(outdir=outdir)))
+    ants.image_write(reg["warpedmovout"], str(LONGITUDINAL_WARP_SCHEMA.format(outdir=outdir)))
 
     recurrence_seg = ants.image_read(str(recurrence_seg_file))
     recurrence_warped = ants.apply_transforms(
@@ -160,8 +160,8 @@ def register_recurrence(t1c_pre_file: Path, t1c_post_file: Path, recurrence_seg_
             transformlist=reg["fwdtransforms"],
             interpolator='nearestNeighbor'
             )
-    ants.image_write(recurrence_warped, str(RECURRENCE_SCHEMA.format(exam_dir=outdir)))
-    logger.info(f"Longitudinal registration finished. Output saved to {str(RECURRENCE_SCHEMA.format(exam_dir=outdir))}.")
+    ants.image_write(recurrence_warped, str(RECURRENCE_SCHEMA.format(outdir=outdir)))
+    logger.info(f"Longitudinal registration finished. Output saved to {str(RECURRENCE_SCHEMA.format(outdir=outdir))}.")
 
 
 if __name__ == "__main__":
@@ -176,14 +176,14 @@ if __name__ == "__main__":
     preop_exam = Path("test_data/exam1")
     postop_exam = Path("test_data/exam3")
 
-    t1_nifti_file = MODALITY_CONVERTED_SCHEMA.format(exam_dir=preop_exam, modality="t1")
-    t1c_nifti_file = MODALITY_CONVERTED_SCHEMA.format(exam_dir=preop_exam, modality="t1c")
-    t2_nifti_file = MODALITY_CONVERTED_SCHEMA.format(exam_dir=preop_exam, modality="t2")
-    flair_nifti_file = MODALITY_CONVERTED_SCHEMA.format(exam_dir=preop_exam, modality="flair")
+    t1_nifti_file = MODALITY_CONVERTED_SCHEMA.format(outdir=preop_exam, modality="t1")
+    t1c_nifti_file = MODALITY_CONVERTED_SCHEMA.format(outdir=preop_exam, modality="t1c")
+    t2_nifti_file = MODALITY_CONVERTED_SCHEMA.format(outdir=preop_exam, modality="t2")
+    flair_nifti_file = MODALITY_CONVERTED_SCHEMA.format(outdir=preop_exam, modality="flair")
 
-    t1c_stripped_preop = MODALITY_STRIPPED_SHEMA.format(exam_dir=preop_exam, modality="t1c")
-    t1c_stripped_postop = MODALITY_STRIPPED_SHEMA.format(exam_dir=postop_exam, modality="t1c")
-    recurrence_seg_file = TUMORSEG_SCHEMA.format(exam_dir=postop_exam)
+    t1c_stripped_preop = MODALITY_STRIPPED_SHEMA.format(outdir=preop_exam, modality="t1c")
+    t1c_stripped_postop = MODALITY_STRIPPED_SHEMA.format(outdir=postop_exam, modality="t1c")
+    recurrence_seg_file = TUMORSEG_SCHEMA.format(outdir=postop_exam)
 
     outdir_tmp = Path("./tmp_test_ss")
     norm_ss_coregister(

@@ -30,25 +30,24 @@ def remove_postfixes(export_dir: Path) -> None:
             logger.info(f"Renamed postfix file {file} to {new_path}.")
 
 
-def convert_nifti(input_dir: Path, export_dir: Path, outfile: str, dcm2niix_location: Path = DCM2NIIX_LOCATION) -> None:
+def convert_nifti(input_dir: Path, outfile: Path, dcm2niix_location: Path = DCM2NIIX_LOCATION) -> None:
     """
     Convert DICOM files to NIfTI format using dcm2niix.
 
     Parameters:
         input_dir (Path): Directory containing the raw DICOM files.
-        export_dir (Path): Directory where the converted NIfTI files will be saved.
-        outfile (Path): The filename template for the output files.
+        outfile (Path): The full path for the output file.
         dcm2niix_location (Path, optional): The location of the dcm2niix executable.
     """
     try:
-        export_dir.mkdir(parents=True, exist_ok=True)
+        outfile.parent.mkdir(parents=True, exist_ok=True)
         cmd_readable = (
             str(dcm2niix_location)
             + " -d 9 -f "
-            + outfile
+            + str(outfile.name)
             + " -z y -o"
             + ' "'
-            + str(export_dir)
+            + str(outfile.parent)
             + '" "'
             + str(input_dir)
             + '"'
@@ -57,11 +56,11 @@ def convert_nifti(input_dir: Path, export_dir: Path, outfile: str, dcm2niix_loca
         logger.info(f"Running: {cmd_readable}")
         cmd = shlex.split(cmd_readable)
 
-        log_file = export_dir / f"{export_dir.name}_conversion.log"
+        log_file = outfile.parent / f"{outfile.name}_conversion.log"
         with open(log_file, "w") as logf:
             subprocess.run(cmd, stdout=logf, stderr=logf)
 
-        remove_postfixes(export_dir)
+        remove_postfixes(outfile.parent)
         logger.debug(f"Nifti conversion complete for {input_dir}.")
 
     except Exception as e:
@@ -77,7 +76,6 @@ if __name__ == "__main__":
 
     convert_nifti(
         input_dir=Path("test_data/exam1/t1c"),
-        export_dir=Path("./tmp_test_dcm2nii"),
-        outfile="t1c",
+        outfile=Path("./tmp_test_dcm2nii/t1c"),
         dcm2niix_location=args.dcm2niix_loc
     )

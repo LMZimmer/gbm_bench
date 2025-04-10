@@ -127,14 +127,14 @@ def recurrence_coverage(recurrence_segmentation: np.ndarray, target_volume: np.n
     return coverage
 
 
-def evaluate_tumor_model(preop_exam_dir: Path, postop_exam_dir: Path, pred_file: Path, ctv_margin: int = 15, tumor_conc_thresh: float = 0.1) -> Dict[str, Any]:
+def evaluate_tumor_model(preop_outdir: Path, postop_outdir: Path, pred_file: Path, ctv_margin: int = 15, tumor_conc_thresh: float = 0.1) -> Dict[str, Any]:
     """
     Evaluate a tumor model by computing recurrence coverage for standard and 
     model-based radiotherapy plans using MRI segmentation data.
 
     Parameters:
-        preop_exam_dir (Path): Directory to the preoperative exam that has been preprocessed. Should contain the folder with the output.
-        postop_exam_dir (Path): Directory to the postoperative exam that has been preprocessed. Should contain the folder with the output.
+        preop_outdir (Path): Directory to the preoperative exam that has been preprocessed. Should contain the folder with the output.
+        postop_outdir (Path): Directory to the postoperative exam that has been preprocessed. Should contain the folder with the output.
         pred_file (Path): File path containing model prediction MRI data.
         ctv_margin (int, optional): Margin used to expand the clinical target volume for the standard plan. Defaults to 15.
         tumor_conc_thresh (float, optional): Threshold for tumor concentration in the model predictions. Defaults to 0.1.
@@ -145,18 +145,18 @@ def evaluate_tumor_model(preop_exam_dir: Path, postop_exam_dir: Path, pred_file:
     results = {}
 
     # Load data
-    brain_mask_dir = BRAIN_MASK_SCHEMA.format(exam_dir=str(preop_exam_dir))
+    brain_mask_dir = BRAIN_MASK_SCHEMA.format(outdir=str(preop_outdir))
     brain_mask = load_mri_data(str(brain_mask_dir))
 
-    core_segmentation_dir = TUMORSEG_CORE_SCHEMA.format(exam_dir=str(preop_exam_dir))
+    core_segmentation_dir = TUMORSEG_CORE_SCHEMA.format(outdir=str(preop_outdir))
     core_segmentation = load_mri_data(str(core_segmentation_dir))
 
-    full_segmentation_dir = TUMORSEG_SCHEMA.format(exam_dir=str(preop_exam_dir))
+    full_segmentation_dir = TUMORSEG_SCHEMA.format(outdir=str(preop_outdir))
     full_segmentation = load_mri_data(str(full_segmentation_dir))
     full_segmentation[full_segmentation==2] = 1                  # set all to 1
     full_segmentation[full_segmentation==3] = 1 
 
-    recurrence_dir = RECURRENCE_SCHEMA.format(exam_dir=str(postop_exam_dir))   
+    recurrence_dir = RECURRENCE_SCHEMA.format(outdir=str(postop_outdir))   
     recurrence_segmentation = load_mri_data(str(recurrence_dir))
     recurrence_segmentation[recurrence_segmentation == 2] = 0    # ignore edema
     recurrence_segmentation[recurrence_segmentation == 3] = 1
@@ -210,16 +210,16 @@ def evaluate_tumor_model(preop_exam_dir: Path, postop_exam_dir: Path, pred_file:
 
 
 if __name__ == "__main__":
-    #python gbm_bench/evaluation/evaluate.py -preop_exam_dir test_data/exam1 -postop_exam_dir test_data/exam3 -pred_file test_data/exam1/preprocessing/sbtc/recurrencePrediction.nii.gz
+    #python gbm_bench/evaluation/evaluate.py -preop_outdir test_data/exam1 -postop_outdir test_data/exam3 -pred_file test_data/exam1/preprocessing/sbtc/recurrencePrediction.nii.gz
     parser = argparse.ArgumentParser()
-    parser.add_argument("-preop_exam_dir", type=str, help="Path.")
-    parser.add_argument("-postop_exam_dir", type=str, help="Path.")
+    parser.add_argument("-preop_outdir", type=str, help="Path.")
+    parser.add_argument("-postop_outdir", type=str, help="Path.")
     parser.add_argument("-pred_file", type=str, help="Algorithm identifier, should be the same as the folder for the algorithm in patient/exam/preprocessing/.")
     args = parser.parse_args()
 
     results = evaluate_tumor_model(
-            preop_exam_dir=Path(args.preop_exam_dir),
-            postop_exam_dir=Path(args.postop_exam_dir),
+            preop_outdir=Path(args.preop_outdir),
+            postop_outdir=Path(args.postop_outdir),
             pred_file=Path(args.pred_file)
             )
 

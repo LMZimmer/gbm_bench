@@ -60,11 +60,6 @@ def is_binary_array(arr):
     return np.all(np.isin(arr, list(allowed_values)))
 
 
-def timed_print(print_message: str) -> None:
-    time = str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-    print(f"[INFO | {time}]: ", print_message)
-
-
 def remove_tmp_folder(folder: str):
     """Remove a temporary folder and log a warning if it fails.
 
