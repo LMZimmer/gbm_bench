@@ -1,5 +1,6 @@
 import os
 import ants
+import time
 import shutil
 import argparse
 from pathlib import Path
@@ -91,7 +92,8 @@ def norm_ss_coregister(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file:
     Returns:
         None
     """
-    logger.debug(f"Initializing brainles preprocessing for {t1_file}, {t1c_file} etc.")
+    start_time = time.time()
+    logger.info(f"Starting normalization, skull strippping, co-registration step. Starting brainles preprocessing.")
     percentile_normalizer = PercentileNormalizer(
             lower_percentile=0.1,
             upper_percentile=99,
@@ -117,10 +119,10 @@ def norm_ss_coregister(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file:
             moving_modalities=moving,
             )
 
-    logger.info("Starting brainles preprocessing for normalization, skull stripping and co-registration.")
     #preprocessor.run(save_dir_atlas_registration=output_path / "atlas_registration")
     preprocessor.run()
-    logger.info(f"Normalization, skull stripping, co-registration step finished. Output saved to {outdir}.")
+    time_spent = time.time() - start_time
+    logger.info(f"Finished normalization, skull stripping, co-registration step in {time_spent:.2f} seconds. Output saved to {outdir}.")
 
 
 def register_recurrence(t1c_pre_file: Path, t1c_post_file: Path, recurrence_seg_file: Path, outdir: Path) -> None:
@@ -136,7 +138,9 @@ def register_recurrence(t1c_pre_file: Path, t1c_post_file: Path, recurrence_seg_
     Returns:
         None
     """
-    logger.debug(f"Initializing longitudinal registration with preop {t1c_pre_file} and postop {t1c_post_file} on recurrence {recurrence_seg_file}.")
+    start_time = time.time()
+    logger.info(f"Starting longitudinal co-registration.")
+
     t1c_pre_img = ants.image_read(str(t1c_pre_file))
     t1c_post_img = ants.image_read(str(t1c_post_file))
 
@@ -149,7 +153,8 @@ def register_recurrence(t1c_pre_file: Path, t1c_post_file: Path, recurrence_seg_
             smoothing_sigmas=(1, 0)
             )
 
-    outdir.mkdir(parents=True, exist_ok=True)
+    recurrence_outdir = RECURRENCE_SCHEMA.format(outdir=outdir)
+    recurrence_outdir.parent.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(src=reg["fwdtransforms"][0], dst=str(LONGITUDINAL_TRAFO_SCHEMA.format(outdir=outdir)))
     ants.image_write(reg["warpedmovout"], str(LONGITUDINAL_WARP_SCHEMA.format(outdir=outdir)))
 
@@ -160,8 +165,9 @@ def register_recurrence(t1c_pre_file: Path, t1c_post_file: Path, recurrence_seg_
             transformlist=reg["fwdtransforms"],
             interpolator='nearestNeighbor'
             )
-    ants.image_write(recurrence_warped, str(RECURRENCE_SCHEMA.format(outdir=outdir)))
-    logger.info(f"Longitudinal registration finished. Output saved to {str(RECURRENCE_SCHEMA.format(outdir=outdir))}.")
+    ants.image_write(recurrence_warped, str(recurrence_outdir))
+    time_spent = time.time() - start_time
+    logger.info(f"Finished longitudinal co-registration in {time_spent:.2f} seconds. Output saved to {str(recurrence_outdir)}.")
 
 
 if __name__ == "__main__":

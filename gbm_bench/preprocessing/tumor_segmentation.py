@@ -1,13 +1,12 @@
 import os
+import time
 import argparse
 import numpy as np
 import nibabel as nib
 from pathlib import Path
 from loguru import logger
-from brats import AdultGliomaPreTreatmentSegmenter
-from brats import AdultGliomaPostTreatmentSegmenter
-from brats.constants import AdultGliomaPreTreatmentAlgorithms
-from brats.constants import AdultGliomaPostTreatmentAlgorithms
+from brats import AdultGliomaPreTreatmentSegmenter, AdultGliomaPostTreatmentSegmenter
+from brats.constants import AdultGliomaPreTreatmentAlgorithms, AdultGliomaPostTreatmentAlgorithms
 from gbm_bench.utils.constants import TUMORSEG_EDEMA_SCHEMA, TUMORSEG_SCHEMA, TUMORSEG_CORE_SCHEMA
 
 
@@ -26,7 +25,7 @@ def split_segmentation(tumor_seg_file: Path, outdir: Path, necrotic_label: int =
     Returns:
         None
     """
-    logger.info(f"Splitting tumor segmentation into core and edema.")
+    logger.debug(f"Splitting tumor segmentation into core and edema.")
     tumor_seg = nib.load(str(tumor_seg_file))
     seg_data = tumor_seg.get_fdata()
 
@@ -46,7 +45,7 @@ def split_segmentation(tumor_seg_file: Path, outdir: Path, necrotic_label: int =
 
     nib.save(enhancing_non_enhancing, str(TUMORSEG_CORE_SCHEMA.format(outdir=outdir)))
     nib.save(edema, str(TUMORSEG_EDEMA_SCHEMA.format(outdir=outdir)))
-    logger.info(f"Finished splitting segmentation. Output saved to {TUMORSEG_CORE_SCHEMA.format(outdir=outdir).parent}.")
+    logger.debug(f"Finished splitting segmentation. Output saved to {TUMORSEG_CORE_SCHEMA.format(outdir=outdir).parent}.")
 
 
 def run_brats(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file: Path, outdir: Path, pre_treatment: bool = True, cuda_device: str = "0") -> None:
@@ -66,6 +65,7 @@ def run_brats(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file: Path, ou
     Returns:
         None
     """
+    start_time = time.time()
     logger.info(f"Starting tumor segmentation via BRATS.")
     if pre_treatment:
         segmenter = AdultGliomaPreTreatmentSegmenter(
@@ -85,9 +85,11 @@ def run_brats(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file: Path, ou
             t2w=str(t2_file),
             t2f=str(flair_file),
             output_file=seg_outfile)
-    logger.info(f"Tumor segmentation finished. Saved output to {seg_outfile}.")
 
     split_segmentation(seg_outfile, outdir)
+
+    time_spent = time.time() - start_time
+    logger.info(f"Finished tumor segmentation in {time_spent:.2f} seconds. Saved output to {seg_outfile}.")
 
 
 if __name__ == "__main__":

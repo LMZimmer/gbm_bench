@@ -1,9 +1,8 @@
 import os
+import time
 import argparse
-import datetime
 from pathlib import Path
 from loguru import logger
-from gbm_bench.utils.utils import timed_print
 from gbm_bench.preprocessing.dicom_to_nifti import convert_nifti
 from gbm_bench.preprocessing.tumor_segmentation import run_brats
 from gbm_bench.preprocessing.norm_ss_coregistration import norm_ss_coregister, register_recurrence
@@ -38,10 +37,13 @@ def preprocess_dicom(t1_dir: Path, t1c_dir: Path, t2_dir: Path, flair_dir: Path,
     Returns:
         None
     """
+    start_time = time.time()
     os.environ["CUDA_VISIBLE_DEVICES"] = cuda_device
-    logger.info("DICOM preprocessing initialized.")
+    logger.info("Starting preprocessing.")
 
     # Step 1: DICOM to NIfTI conversion
+    start_time_conversion = time.time()
+    logger.info(f"Starting DICOM to NIfTI conversion.")
     dicom_modalities = {
             "t1" : t1_dir,
             "t1c" : t1c_dir,
@@ -51,7 +53,7 @@ def preprocess_dicom(t1_dir: Path, t1c_dir: Path, t2_dir: Path, flair_dir: Path,
 
     for modality_name, dicom_dir in dicom_modalities.items():
         # Remove suffix since dicom2niix adds .nii.gz automatically
-        outfile_tmp = MODALITY_CONVERTED_SCHEMA.format(outdir=outdir, modality=modality_name).with_suffix("")
+        outfile_tmp = MODALITY_CONVERTED_SCHEMA.format(outdir=outdir, modality=modality_name).with_suffix("").with_suffix("")
 
         if perform_nifti_conversion:
             convert_nifti(
@@ -59,6 +61,8 @@ def preprocess_dicom(t1_dir: Path, t1c_dir: Path, t2_dir: Path, flair_dir: Path,
                     outfile=outfile_tmp,
                     dcm2niix_location=dcm2niix_location
                     )
+    time_spent_conversion = time.time() - start_time_conversion
+    logger.info(f"Finished conversion step in {time_spent_conversion:.2f} seconds.")
 
     # Step 2: Normalization, co-registration, skull stripping
     preprocessed_dir = os.path.join(outdir, "skull_stripped")
@@ -78,8 +82,6 @@ def preprocess_dicom(t1_dir: Path, t1c_dir: Path, t2_dir: Path, flair_dir: Path,
     os.makedirs(tumor_outdir, exist_ok=True)
 
     if perform_tumorseg:
-        run_brats(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file: Path, outdir: Path, pre_treatment: bool = True, cuda_device: str = "0")
-
         run_brats(
                 t1_file=MODALITY_STRIPPED_SHEMA.format(outdir=outdir, modality="t1"),
                 t1c_file=MODALITY_STRIPPED_SHEMA.format(outdir=outdir, modality="t1c"),
@@ -105,27 +107,30 @@ def preprocess_dicom(t1_dir: Path, t1c_dir: Path, t2_dir: Path, flair_dir: Path,
                 outdir=outdir,
                 refit_brain=False
                 )
-    logger.info(f"Processing complete, results saved to {outdir}")
+    time_spent = time.time() - start_time
+    logger.info(f"Finished preprocessing in {time_spent:.2f} seconds. Results saved to {outdir}.")
 
 
-def process_longitudinal(preop_exam: Path, postop_exam: Path) -> None:
+def process_longitudinal(preop_exam: Path, postop_exam: Path, outdir: Path) -> None:
     """
     TODO
     """
+    start_time = time.time()
     logger.info(f"Starting longitudinal processing.")
 
     # Prepare directories
-    t1c_pre_dir = MODALITY_STRIPPED_SHEMA.format(outdir=preop_exam, modality="t1c")
-    t1c_post_dir = MODALITY_STRIPPED_SHEMA.format(outdir=postop_exam, modality="t1c")
-    recurrence_seg_dir = TUMORSEG_SCHEMA.format(outdir=postop_exam)
+    t1c_pre_file = MODALITY_STRIPPED_SHEMA.format(outdir=preop_exam, modality="t1c")
+    t1c_post_file = MODALITY_STRIPPED_SHEMA.format(outdir=postop_exam, modality="t1c")
+    recurrence_seg_file = TUMORSEG_SCHEMA.format(outdir=postop_exam)
 
     register_recurrence(
-            t1c_pre_file=t1c_pre_dir,
-            t1c_post_file=t1c_post_dir,
-            recurrence_seg_file=recurrence_seg_dir,
+            t1c_pre_file=t1c_pre_file,
+            t1c_post_file=t1c_post_file,
+            recurrence_seg_file=recurrence_seg_file,
             outdir=outdir
             )
-    logger.infor(f"Longitudinal processing finished succesfully. Output saved to {outdir}.")
+    time_spent = time.time() - start_time
+    logger.info(f"Finished longitudinal preprocessing in {time_spent:.2f} seconds. Results saved to {outdir}.")
 
 
 if __name__ == "__main__":
@@ -137,22 +142,26 @@ if __name__ == "__main__":
 
     os.environ["CUDA_VISIBLE_DEVICES"] = args.cuda_device
 
+    outdir_tmp = Path("tmp_preprocessing")
+
     # Pre-treatment example
     preprocess_dicom(
             t1_dir=Path("test_data/exam1/t1"),
             t1c_dir=Path("test_data/exam1/t1c"),
             t2_dir=Path("test_data/exam1/t2"),
             flair_dir=Path("test_data/exam1/flair"),
+            outdir=outdir_tmp / "preop",
             pre_treatment=True,
             cuda_device=args.cuda_device
             )
     
     # Post-treatment example
     preprocess_dicom(
-            t1=Path("test_data/exam3/t1"),
-            t1c=Path("test_data/exam3/t1c"),
-            t2=Path("test_data/exam3/t2"),
-            flair=Path("test_data/exam3/flair"),
+            t1_dir=Path("test_data/exam3/t1"),
+            t1c_dir=Path("test_data/exam3/t1c"),
+            t2_dir=Path("test_data/exam3/t2"),
+            flair_dir=Path("test_data/exam3/flair"),
+            outdir=outdir_tmp / "postop",
             pre_treatment=False,
             perform_tissueseg=False,
             cuda_device=args.cuda_device
@@ -160,6 +169,7 @@ if __name__ == "__main__":
 
     # Longitudinal example
     process_longitudinal(
-            preop_exam="test_data/exam1",
-            postop_exam="test_data/exam3"
+            preop_exam=Path("test_data/exam1"),
+            postop_exam=Path("test_data/exam3"),
+            outdir=outdir_tmp / "longitudinal"
             )

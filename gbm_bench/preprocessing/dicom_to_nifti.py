@@ -27,7 +27,7 @@ def remove_postfixes(export_dir: Path) -> None:
             new_name = ".".join([modality] + parts[1:])
             new_path = export_dir / new_name
             f.rename(new_path)
-            logger.info(f"Renamed postfix file {file} to {new_path}.")
+            logger.info(f"Renamed postfix file {f} to {new_path}.")
 
 
 def convert_nifti(input_dir: Path, outfile: Path, dcm2niix_location: Path = DCM2NIIX_LOCATION) -> None:

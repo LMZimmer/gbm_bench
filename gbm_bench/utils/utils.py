@@ -6,9 +6,10 @@ import numpy as np
 import nibabel as nib
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
+from pathlib import Path
 from PyPDF2 import PdfMerger
-from typing import List, Tuple, Optional
 from scipy.ndimage import center_of_mass
+from typing import List, Tuple, Optional, Union
 
 
 def compute_center_of_mass(seg_data: np.ndarray, mri_data: np.ndarray, classes: List[int] = [1, 2, 3],) -> Tuple[int, int, int]:
@@ -26,15 +27,15 @@ def compute_center_of_mass(seg_data: np.ndarray, mri_data: np.ndarray, classes: 
     return tuple(map(int, com))
 
 
-def load_mri_data(filepath: str) -> np.ndarray:
-    img = nib.load(filepath)
+def load_mri_data(filepath: Union(Path, str)) -> np.ndarray:
+    img = nib.load(str(filepath))
     data = img.get_fdata()
     return data
 
 
-def load_and_resample_mri_data(filepath: str, resample_params: Tuple[int, int, int], interp_type: Optional[int] = 0,) -> np.ndarray:
+def load_and_resample_mri_data(filepath: Union[str, Path], resample_params: Tuple[int, int, int], interp_type: Optional[int] = 0,) -> np.ndarray:
     
-    img = ants.image_read(filepath)
+    img = ants.image_read(str(filepath))
     img = ants.resample_image(
             image=img,
             resample_params=resample_params,
@@ -44,30 +45,30 @@ def load_and_resample_mri_data(filepath: str, resample_params: Tuple[int, int, i
     return img.to_nibabel().get_fdata()
 
 
-def merge_pdfs(pdf_list: List[str], output_pdf: str) -> None:
+def merge_pdfs(pdf_list: List[Union[str, Path]], output_pdf: Union[str, Path]) -> None:
     pdf_merger = PdfMerger()
 
     for pdf in pdf_list:
-        pdf_merger.append(pdf)
+        pdf_merger.append(str(pdf))
 
-    pdf_merger.write(output_pdf)
+    pdf_merger.write(str(output_pdf))
     pdf_merger.close()
-    print(f"Combined PDF saved as {output_pdf}")
+    print(f"Combined PDF saved as {str(output_pdf)}")
 
 
-def is_binary_array(arr):
+def is_binary_array(arr: np.ndarray) -> bool:
     allowed_values = {0, 1, 0.0, 1.0, False, True}
     return np.all(np.isin(arr, list(allowed_values)))
 
 
-def remove_tmp_folder(folder: str):
+def remove_tmp_folder(folder: Union[str, Path]) -> None:
     """Remove a temporary folder and log a warning if it fails.
 
     Args:
         folder (Path): Path to the folder to be removed
     """
     try:
-        shutil.rmtree(folder)
+        shutil.rmtree(str(folder))
     except PermissionError as e:
         logger.warning(
             f"Failed to remove temporary folder {folder}. This is most likely caused by bad permission management of the docker container. \nError: {e}"

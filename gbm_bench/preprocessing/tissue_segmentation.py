@@ -1,7 +1,8 @@
 import os
 import sys
-import glob
 import ants
+import glob
+import time
 import argparse
 import subprocess
 import numpy as np
@@ -69,7 +70,9 @@ def run_tissue_seg_registration(t1_file: Path, healthy_mask_file: Path, outdir: 
     Returns:
         None
     """
+    start_time = time.time()
     logger.info(f"Starting tissue segmentation.")
+
     # Prepare directories
     atlas_base_dir = ATLAS_DIR
     atlas_t1_dir = ATLAS_DIR / "t1.nii"
@@ -176,7 +179,8 @@ def run_tissue_seg_registration(t1_file: Path, healthy_mask_file: Path, outdir: 
         warped_pbmap_nifti = warped_pbmap.to_nibabel()
         nib.save(warped_pbmap_nifti, str(TISSUE_PBMAP_SCHEMA.format(outdir=outdir, tissue=tissue)))
     
-    logger.info(f"Tissue segmentation finished succesfully.")
+    time_spent = time.time() - start_time
+    logger.info(f"Finished tissue segmentation in {time_spent:.2f} seconds. Results saved to {outdir}.")
 
 
 if __name__ == "__main__":
