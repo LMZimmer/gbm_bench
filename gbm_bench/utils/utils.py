@@ -27,7 +27,7 @@ def compute_center_of_mass(seg_data: np.ndarray, mri_data: np.ndarray, classes: 
     return tuple(map(int, com))
 
 
-def load_mri_data(filepath: Union(Path, str)) -> np.ndarray:
+def load_mri_data(filepath: Union[Path, str]) -> np.ndarray:
     img = nib.load(str(filepath))
     data = img.get_fdata()
     return data

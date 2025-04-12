@@ -4,52 +4,53 @@ import pickle
 import argparse
 import numpy as np
 from pathlib import Path
-from gbm_bench.utils.utils import merge_pdfs
-from gbm_bench.utils.parsing import RHUHParser
+from gbm_bench.utils.constants import RHUH_GBM_DIR
+from gbm_bench.utils.parsing import LongitudinalDataset
 from gbm_bench.evaluation.evaluate import evaluate_tumor_model
 
 
 if __name__ == "__main__":
     # Example:
     # python scripts/evaluate_rhuh.py
-
-    os.environ["CUDA_VISIBLE_DEVICES"]="4"
-
+    
+    # Read dataset
     rhuh_root = "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM"
-    rhuh_parser = RHUHParser(root_dir=rhuh_root)
-    rhuh_parser.parse()
-    patients = rhuh_parser.get_patients()
-
-    outfiles_model, outfiles_recurrences = [], []
-    tmp_dir_model, tmp_dir_rec = "./tmp/model", "./tmp/recurrence"
-    os.makedirs(tmp_dir_model, exist_ok=True)
-    os.makedirs(tmp_dir_rec, exist_ok=True)
+    rhuh_gbm = LongitudinalDataset(dataset_id="RHUH", root_dir=rhuh_root)
+    rhuh_gbm.load(RHUH_GBM_DIR)
 
     all_results = []
-    
-    for ind, patient in enumerate(patients):
-        
-        print(f"Patient {ind}/{len(patients)}...")
-        
+
+    for patient_ind, patient in enumerate(rhuh_gbm.patients):
+        print(f"Processing {patient_ind}/{len(rhuh_gbm.patients)}...")
+
         patient_identifier = patient["patient_id"]
-        exam_identifier_preop = patient["exam_ids"][0]     # First exam is pre-op
-        exam_identifier_followup = patient["exam_ids"][2]  # Second exam is post-op, Third is follow up
-        preprocessing_dir_preop = os.path.join(patient["exams"][0], "preprocessing")
-        preprocessing_dir_followup = os.path.join(patient["exams"][2], "preprocessing")
-        #prediction_dir = os.path.join(preprocessing_dir_preop, "lmi/lmi_tumor_patientSpace.nii")
-        #prediction_dir = os.path.join(preprocessing_dir_preop, "sbtc/recurrencePrediction.nii.gz")
-        prediction_dir = os.path.join(preprocessing_dir_preop, "gliodilx_pet__PDE1.0_/192_48_48_48_solution.nii")
+        preop_exams = rhuh_gbm.get_patient_exams(patient_id=patient_identifier, timepoint="preop")
+        followup_exams = rhuh_gbm.get_patient_exams(patient_id=patient_identifier, timepoint="followup")
+
+        if len(preop_exams) > 1:
+            print(f"Warning: found {len(preop_exams)} preop exams for patient {patiend_ind, patiend}. Using first exam for evaluation.")
+
+        preop_exam_dir = preop_exams[0]["t1"].parent
+
+        #model_id = "lmi"
+        #prediction_dir = preop_exam_dir / "preprocessing/lmi/lmi_tumor_patientSpace.nii" #TODO: add constant (first relocate old model outputs)
+        
+        model_id = "sbtc"
+        prediction_dir = preop_exam_dir / "preprocessing/sbtc/recurrencePrediction.nii.gz"
+        
+        #model_id = "gliodil"
+        #prediction_dir = preop_exam_dir / "preprocessing/gliodilx_pet__PDE1.0_/192_48_48_48_solution.nii"
+        
+        for followup_exam in followup_exams:
+            followup_exam_dir = followup_exam["t1"].parent
 
         try:
             results = evaluate_tumor_model(
-                    preop_exam_dir=Path(patient["exams"][0]),
-                    postop_exam_dir=Path(patient["exams"][2]),
-                    pred_dir=Path(prediction_dir)
+                    preop_dir=preop_exam_dir,
+                    followup_dir=followup_exam_dir,
+                    pred_file=prediction_dir,
+                    model_id=model_id
                     )
-
-            outdir = os.path.join(os.path.dirname(prediction_dir), "coverage.pkl")
-            pickle.dump(results, open(outdir, "wb"))
-            all_results.append(results)
         except:
             print(f"Failed for {patient_identifier}. Possibly file not found. Continuing...")
 
