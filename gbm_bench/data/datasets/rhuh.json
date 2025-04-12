@@ -1,0 +1,1206 @@
+{
+  "dataset_id": "RHUH-GBM",
+  "root_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM",
+  "patients": [
+    {
+      "patient_id": "RHUH-0031",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0031",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0031/11-24-2013-NA-CEREBRO Y ANGIO RM.-08949/301.000000-T1-SE-SAG-02605",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0031/11-24-2013-NA-CEREBRO Y ANGIO RM.-08949/301.000000-T1-SE-SAG-02605",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0031/11-24-2013-NA-CEREBRO Y ANGIO RM.-08949/301.000000-T1-SE-SAG-02605",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0031/11-24-2013-NA-CEREBRO Y ANGIO RM.-08949/301.000000-T1-SE-SAG-02605",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0031/11-24-2013-NA-CEREBRO Y ANGIO RM.-08949/301.000000-T1-SE-SAG-02605",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0031/12-03-2013-NA-RM CEREBRO-31282/5.000000-Ax T1 FSE-14047",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0031/12-03-2013-NA-RM CEREBRO-31282/5.000000-Ax T1 FSE-14047",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0031/12-03-2013-NA-RM CEREBRO-31282/5.000000-Ax T1 FSE-14047",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0031/12-03-2013-NA-RM CEREBRO-31282/5.000000-Ax T1 FSE-14047",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0031/12-03-2013-NA-RM CEREBRO-31282/5.000000-Ax T1 FSE-14047",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0031/03-18-2014-NA-RM DE CEREBRO SINCON CONTRASTE-80435/301.000000-T1-SE-SAG-37203",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0031/03-18-2014-NA-RM DE CEREBRO SINCON CONTRASTE-80435/301.000000-T1-SE-SAG-37203",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0031/03-18-2014-NA-RM DE CEREBRO SINCON CONTRASTE-80435/301.000000-T1-SE-SAG-37203",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0031/03-18-2014-NA-RM DE CEREBRO SINCON CONTRASTE-80435/301.000000-T1-SE-SAG-37203",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0031/03-18-2014-NA-RM DE CEREBRO SINCON CONTRASTE-80435/301.000000-T1-SE-SAG-37203",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0035",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0035",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0035/03-02-2015-NA-Craneo-91865/8.000000-Ax T1 FSE-03633",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0035/03-02-2015-NA-Craneo-91865/8.000000-Ax T1 FSE-03633",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0035/03-02-2015-NA-Craneo-91865/8.000000-Ax T1 FSE-03633",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0035/03-02-2015-NA-Craneo-91865/8.000000-Ax T1 FSE-03633",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0035/03-02-2015-NA-Craneo-91865/8.000000-Ax T1 FSE-03633",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0035/03-10-2015-NA-RM CEREBRAL-47021/6.000000-Ax T1 FSE-09668",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0035/03-10-2015-NA-RM CEREBRAL-47021/6.000000-Ax T1 FSE-09668",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0035/03-10-2015-NA-RM CEREBRAL-47021/6.000000-Ax T1 FSE-09668",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0035/03-10-2015-NA-RM CEREBRAL-47021/6.000000-Ax T1 FSE-09668",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0035/03-10-2015-NA-RM CEREBRAL-47021/6.000000-Ax T1 FSE-09668",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0035/01-02-2017-NA-RM DE CEREBRO SINCON CONTRASTE-63938/301.000000-T1WSE-36953",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0035/01-02-2017-NA-RM DE CEREBRO SINCON CONTRASTE-63938/301.000000-T1WSE-36953",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0035/01-02-2017-NA-RM DE CEREBRO SINCON CONTRASTE-63938/301.000000-T1WSE-36953",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0035/01-02-2017-NA-RM DE CEREBRO SINCON CONTRASTE-63938/301.000000-T1WSE-36953",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0035/01-02-2017-NA-RM DE CEREBRO SINCON CONTRASTE-63938/301.000000-T1WSE-36953",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0030",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0030",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0030/11-25-2013-NA-RM CEREBRALC-02749/7.000000-Ax T1 FSE-39633",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0030/11-25-2013-NA-RM CEREBRALC-02749/7.000000-Ax T1 FSE-39633",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0030/11-25-2013-NA-RM CEREBRALC-02749/7.000000-Ax T1 FSE-39633",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0030/11-25-2013-NA-RM CEREBRALC-02749/7.000000-Ax T1 FSE-39633",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0030/11-25-2013-NA-RM CEREBRALC-02749/7.000000-Ax T1 FSE-39633",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0030/11-27-2013-NA-RM CEREBRO-45502/4.000000-Ax T1 FSE-06369",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0030/11-27-2013-NA-RM CEREBRO-45502/4.000000-Ax T1 FSE-06369",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0030/11-27-2013-NA-RM CEREBRO-45502/4.000000-Ax T1 FSE-06369",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0030/11-27-2013-NA-RM CEREBRO-45502/4.000000-Ax T1 FSE-06369",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0030/11-27-2013-NA-RM CEREBRO-45502/4.000000-Ax T1 FSE-06369",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0030/08-11-2014-NA-RM DE CEREBRO SINCON CONTRASTE-96321/301.000000-T1-SE-SAG-84520",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0030/08-11-2014-NA-RM DE CEREBRO SINCON CONTRASTE-96321/301.000000-T1-SE-SAG-84520",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0030/08-11-2014-NA-RM DE CEREBRO SINCON CONTRASTE-96321/301.000000-T1-SE-SAG-84520",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0030/08-11-2014-NA-RM DE CEREBRO SINCON CONTRASTE-96321/301.000000-T1-SE-SAG-84520",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0030/08-11-2014-NA-RM DE CEREBRO SINCON CONTRASTE-96321/301.000000-T1-SE-SAG-84520",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0027",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0027",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0027/05-04-2013-NA-RM DE CEREBRO SINCON CONTRASTE-80149/301.000000-T1-SE-SAG-68253",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0027/05-04-2013-NA-RM DE CEREBRO SINCON CONTRASTE-80149/301.000000-T1-SE-SAG-68253",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0027/05-04-2013-NA-RM DE CEREBRO SINCON CONTRASTE-80149/301.000000-T1-SE-SAG-68253",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0027/05-04-2013-NA-RM DE CEREBRO SINCON CONTRASTE-80149/301.000000-T1-SE-SAG-68253",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0027/05-04-2013-NA-RM DE CEREBRO SINCON CONTRASTE-80149/301.000000-T1-SE-SAG-68253",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0027/05-14-2013-NA-RM CEREBRAL-45852/7.000000-Ax T1 FSE-65951",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0027/05-14-2013-NA-RM CEREBRAL-45852/7.000000-Ax T1 FSE-65951",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0027/05-14-2013-NA-RM CEREBRAL-45852/7.000000-Ax T1 FSE-65951",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0027/05-14-2013-NA-RM CEREBRAL-45852/7.000000-Ax T1 FSE-65951",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0027/05-14-2013-NA-RM CEREBRAL-45852/7.000000-Ax T1 FSE-65951",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0027/08-31-2014-NA-RM DE CEREBRO SINCON CONTRASTE-35981/301.000000-T1-SE-SAG-11427",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0027/08-31-2014-NA-RM DE CEREBRO SINCON CONTRASTE-35981/301.000000-T1-SE-SAG-11427",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0027/08-31-2014-NA-RM DE CEREBRO SINCON CONTRASTE-35981/301.000000-T1-SE-SAG-11427",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0027/08-31-2014-NA-RM DE CEREBRO SINCON CONTRASTE-35981/301.000000-T1-SE-SAG-11427",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0027/08-31-2014-NA-RM DE CEREBRO SINCON CONTRASTE-35981/301.000000-T1-SE-SAG-11427",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0004",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0004",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0004/11-19-2014-NA-RM CEREBRAL-20636/6.000000-Ax T1 FSE-93456",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0004/11-19-2014-NA-RM CEREBRAL-20636/6.000000-Ax T1 FSE-93456",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0004/11-19-2014-NA-RM CEREBRAL-20636/6.000000-Ax T1 FSE-93456",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0004/11-19-2014-NA-RM CEREBRAL-20636/6.000000-Ax T1 FSE-93456",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0004/11-19-2014-NA-RM CEREBRAL-20636/6.000000-Ax T1 FSE-93456",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0004/11-25-2014-NA-Craneo-79812/6.000000-Ax T1 FSE-33288",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0004/11-25-2014-NA-Craneo-79812/6.000000-Ax T1 FSE-33288",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0004/11-25-2014-NA-Craneo-79812/6.000000-Ax T1 FSE-33288",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0004/11-25-2014-NA-Craneo-79812/6.000000-Ax T1 FSE-33288",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0004/11-25-2014-NA-Craneo-79812/6.000000-Ax T1 FSE-33288",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0004/10-29-2016-NA-RM CEREBRO PRE IQ-33288/6.000000-Ax T1 FSE-06201",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0004/10-29-2016-NA-RM CEREBRO PRE IQ-33288/6.000000-Ax T1 FSE-06201",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0004/10-29-2016-NA-RM CEREBRO PRE IQ-33288/6.000000-Ax T1 FSE-06201",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0004/10-29-2016-NA-RM CEREBRO PRE IQ-33288/6.000000-Ax T1 FSE-06201",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0004/10-29-2016-NA-RM CEREBRO PRE IQ-33288/6.000000-Ax T1 FSE-06201",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0029",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/09-25-2013-NA-RM DE CEREBRO SINCON CONTRASTE-24778/301.000000-T1-SE-SAG-79969",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/09-25-2013-NA-RM DE CEREBRO SINCON CONTRASTE-24778/301.000000-T1-SE-SAG-79969",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/09-25-2013-NA-RM DE CEREBRO SINCON CONTRASTE-24778/301.000000-T1-SE-SAG-79969",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/09-25-2013-NA-RM DE CEREBRO SINCON CONTRASTE-24778/301.000000-T1-SE-SAG-79969",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/09-25-2013-NA-RM DE CEREBRO SINCON CONTRASTE-24778/301.000000-T1-SE-SAG-79969",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/10-08-2013-NA-RM CEREBRO-16983/3.000000-Sag T1 Flair-58836",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/10-08-2013-NA-RM CEREBRO-16983/3.000000-Sag T1 Flair-58836",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/10-08-2013-NA-RM CEREBRO-16983/3.000000-Sag T1 Flair-58836",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/10-08-2013-NA-RM CEREBRO-16983/3.000000-Sag T1 Flair-58836",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/10-08-2013-NA-RM CEREBRO-16983/3.000000-Sag T1 Flair-58836",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/04-19-2014-NA-RM DE CEREBRO SINCON CONTRASTE-21913/301.000000-T1-SE-SAG-55231",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/04-19-2014-NA-RM DE CEREBRO SINCON CONTRASTE-21913/301.000000-T1-SE-SAG-55231",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/04-19-2014-NA-RM DE CEREBRO SINCON CONTRASTE-21913/301.000000-T1-SE-SAG-55231",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/04-19-2014-NA-RM DE CEREBRO SINCON CONTRASTE-21913/301.000000-T1-SE-SAG-55231",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/04-19-2014-NA-RM DE CEREBRO SINCON CONTRASTE-21913/301.000000-T1-SE-SAG-55231",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0005",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0005",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0005/05-25-2013-NA-RM CRANEONEURONAVEGADOR-29811/7.000000-Ax T1 FSE-55279",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0005/05-25-2013-NA-RM CRANEONEURONAVEGADOR-29811/7.000000-Ax T1 FSE-55279",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0005/05-25-2013-NA-RM CRANEONEURONAVEGADOR-29811/7.000000-Ax T1 FSE-55279",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0005/05-25-2013-NA-RM CRANEONEURONAVEGADOR-29811/7.000000-Ax T1 FSE-55279",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0005/05-25-2013-NA-RM CRANEONEURONAVEGADOR-29811/7.000000-Ax T1 FSE-55279",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0005/06-04-2013-NA-RM CEREBRO-07705/4.000000-Ax T1 FSE-99175",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0005/06-04-2013-NA-RM CEREBRO-07705/4.000000-Ax T1 FSE-99175",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0005/06-04-2013-NA-RM CEREBRO-07705/4.000000-Ax T1 FSE-99175",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0005/06-04-2013-NA-RM CEREBRO-07705/4.000000-Ax T1 FSE-99175",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0005/06-04-2013-NA-RM CEREBRO-07705/4.000000-Ax T1 FSE-99175",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0005/09-14-2014-NA-CEREBRAL-38655/9.000000-Ax T1 FSE-83683",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0005/09-14-2014-NA-CEREBRAL-38655/9.000000-Ax T1 FSE-83683",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0005/09-14-2014-NA-CEREBRAL-38655/9.000000-Ax T1 FSE-83683",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0005/09-14-2014-NA-CEREBRAL-38655/9.000000-Ax T1 FSE-83683",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0005/09-14-2014-NA-CEREBRAL-38655/9.000000-Ax T1 FSE-83683",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0002",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/08-20-2016-NA-RM CEREBRO  C-49009/4.000000-Ax T1 FSE-50161",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/08-20-2016-NA-RM CEREBRO  C-49009/4.000000-Ax T1 FSE-50161",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/08-20-2016-NA-RM CEREBRO  C-49009/4.000000-Ax T1 FSE-50161",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/08-20-2016-NA-RM CEREBRO  C-49009/4.000000-Ax T1 FSE-50161",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/08-20-2016-NA-RM CEREBRO  C-49009/4.000000-Ax T1 FSE-50161",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/08-30-2016-NA-RM CEREBRO-85513/4.000000-Ax T1 FSE-26728",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/08-30-2016-NA-RM CEREBRO-85513/4.000000-Ax T1 FSE-26728",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/08-30-2016-NA-RM CEREBRO-85513/4.000000-Ax T1 FSE-26728",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/08-30-2016-NA-RM CEREBRO-85513/4.000000-Ax T1 FSE-26728",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/08-30-2016-NA-RM CEREBRO-85513/4.000000-Ax T1 FSE-26728",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/07-09-2017-NA-RM CRANEO-52907/6.000000-Ax T1 FSE-77405",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/07-09-2017-NA-RM CRANEO-52907/6.000000-Ax T1 FSE-77405",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/07-09-2017-NA-RM CRANEO-52907/6.000000-Ax T1 FSE-77405",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/07-09-2017-NA-RM CRANEO-52907/6.000000-Ax T1 FSE-77405",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/07-09-2017-NA-RM CRANEO-52907/6.000000-Ax T1 FSE-77405",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0007",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0007",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0007/03-08-2016-NA-RM CEREBRAL-74997/7.000000-Ax T1 FSE-20430",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0007/03-08-2016-NA-RM CEREBRAL-74997/7.000000-Ax T1 FSE-20430",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0007/03-08-2016-NA-RM CEREBRAL-74997/7.000000-Ax T1 FSE-20430",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0007/03-08-2016-NA-RM CEREBRAL-74997/7.000000-Ax T1 FSE-20430",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0007/03-08-2016-NA-RM CEREBRAL-74997/7.000000-Ax T1 FSE-20430",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0007/03-16-2016-NA-Craneo-58241/7.000000-Ax T1 FSE-04842",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0007/03-16-2016-NA-Craneo-58241/7.000000-Ax T1 FSE-04842",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0007/03-16-2016-NA-Craneo-58241/7.000000-Ax T1 FSE-04842",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0007/03-16-2016-NA-Craneo-58241/7.000000-Ax T1 FSE-04842",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0007/03-16-2016-NA-Craneo-58241/7.000000-Ax T1 FSE-04842",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0007/07-09-2017-NA-RM CRANEO-49103/6.000000-Ax T1 FSE-67606",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0007/07-09-2017-NA-RM CRANEO-49103/6.000000-Ax T1 FSE-67606",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0007/07-09-2017-NA-RM CRANEO-49103/6.000000-Ax T1 FSE-67606",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0007/07-09-2017-NA-RM CRANEO-49103/6.000000-Ax T1 FSE-67606",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0007/07-09-2017-NA-RM CRANEO-49103/6.000000-Ax T1 FSE-67606",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0012",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0012",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0012/07-31-2016-NA-RM CEREBRAL-51172/6.000000-Ax T1 FSE-63503",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0012/07-31-2016-NA-RM CEREBRAL-51172/6.000000-Ax T1 FSE-63503",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0012/07-31-2016-NA-RM CEREBRAL-51172/6.000000-Ax T1 FSE-63503",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0012/07-31-2016-NA-RM CEREBRAL-51172/6.000000-Ax T1 FSE-63503",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0012/07-31-2016-NA-RM CEREBRAL-51172/6.000000-Ax T1 FSE-63503",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0012/08-02-2016-NA-RM CEREBRAL-42938/4.000000-Ax T1 FSE-56541",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0012/08-02-2016-NA-RM CEREBRAL-42938/4.000000-Ax T1 FSE-56541",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0012/08-02-2016-NA-RM CEREBRAL-42938/4.000000-Ax T1 FSE-56541",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0012/08-02-2016-NA-RM CEREBRAL-42938/4.000000-Ax T1 FSE-56541",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0012/08-02-2016-NA-RM CEREBRAL-42938/4.000000-Ax T1 FSE-56541",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0012/09-11-2016-NA-Craneo-68013/4.000000-Ax T1 FSE-54684",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0012/09-11-2016-NA-Craneo-68013/4.000000-Ax T1 FSE-54684",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0012/09-11-2016-NA-Craneo-68013/4.000000-Ax T1 FSE-54684",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0012/09-11-2016-NA-Craneo-68013/4.000000-Ax T1 FSE-54684",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0012/09-11-2016-NA-Craneo-68013/4.000000-Ax T1 FSE-54684",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0006",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/04-29-2017-NA-RM CEREBRAL-99588/6.000000-Ax T1 FSE-22360",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/04-29-2017-NA-RM CEREBRAL-99588/6.000000-Ax T1 FSE-22360",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/04-29-2017-NA-RM CEREBRAL-99588/6.000000-Ax T1 FSE-22360",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/04-29-2017-NA-RM CEREBRAL-99588/6.000000-Ax T1 FSE-22360",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/04-29-2017-NA-RM CEREBRAL-99588/6.000000-Ax T1 FSE-22360",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/05-03-2017-NA-RM CEREBRAL-74439/8.000000-Ax T1 FSE-16516",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/05-03-2017-NA-RM CEREBRAL-74439/8.000000-Ax T1 FSE-16516",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/05-03-2017-NA-RM CEREBRAL-74439/8.000000-Ax T1 FSE-16516",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/05-03-2017-NA-RM CEREBRAL-74439/8.000000-Ax T1 FSE-16516",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/05-03-2017-NA-RM CEREBRAL-74439/8.000000-Ax T1 FSE-16516",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/11-19-2017-NA-RM CEREBRAL-03097/6.000000-Ax T1 FSE-40589",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/11-19-2017-NA-RM CEREBRAL-03097/6.000000-Ax T1 FSE-40589",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/11-19-2017-NA-RM CEREBRAL-03097/6.000000-Ax T1 FSE-40589",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/11-19-2017-NA-RM CEREBRAL-03097/6.000000-Ax T1 FSE-40589",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/11-19-2017-NA-RM CEREBRAL-03097/6.000000-Ax T1 FSE-40589",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0032",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0032",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0032/12-14-2013-NA-RM CEREBRAL-13376/7.000000-Ax T1 FSE-76779",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0032/12-14-2013-NA-RM CEREBRAL-13376/7.000000-Ax T1 FSE-76779",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0032/12-14-2013-NA-RM CEREBRAL-13376/7.000000-Ax T1 FSE-76779",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0032/12-14-2013-NA-RM CEREBRAL-13376/7.000000-Ax T1 FSE-76779",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0032/12-14-2013-NA-RM CEREBRAL-13376/7.000000-Ax T1 FSE-76779",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0032/12-17-2013-NA-RM CEREBRO-34831/4.000000-Ax T1 FSE-25100",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0032/12-17-2013-NA-RM CEREBRO-34831/4.000000-Ax T1 FSE-25100",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0032/12-17-2013-NA-RM CEREBRO-34831/4.000000-Ax T1 FSE-25100",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0032/12-17-2013-NA-RM CEREBRO-34831/4.000000-Ax T1 FSE-25100",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0032/12-17-2013-NA-RM CEREBRO-34831/4.000000-Ax T1 FSE-25100",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0032/01-08-2014-NA-Craneo-58200/5.000000-Ax T1 FSE-44309",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0032/01-08-2014-NA-Craneo-58200/5.000000-Ax T1 FSE-44309",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0032/01-08-2014-NA-Craneo-58200/5.000000-Ax T1 FSE-44309",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0032/01-08-2014-NA-Craneo-58200/5.000000-Ax T1 FSE-44309",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0032/01-08-2014-NA-Craneo-58200/5.000000-Ax T1 FSE-44309",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0011",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0011",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0011/08-20-2017-NA-RM CRANEO-91051/6.000000-Ax T1 FSE-45038",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0011/08-20-2017-NA-RM CRANEO-91051/6.000000-Ax T1 FSE-45038",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0011/08-20-2017-NA-RM CRANEO-91051/6.000000-Ax T1 FSE-45038",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0011/08-20-2017-NA-RM CRANEO-91051/6.000000-Ax T1 FSE-45038",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0011/08-20-2017-NA-RM CRANEO-91051/6.000000-Ax T1 FSE-45038",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0011/08-22-2017-NA-RM CEREBRAL-13251/6.000000-Ax T1 FSE-07819",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0011/08-22-2017-NA-RM CEREBRAL-13251/6.000000-Ax T1 FSE-07819",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0011/08-22-2017-NA-RM CEREBRAL-13251/6.000000-Ax T1 FSE-07819",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0011/08-22-2017-NA-RM CEREBRAL-13251/6.000000-Ax T1 FSE-07819",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0011/08-22-2017-NA-RM CEREBRAL-13251/6.000000-Ax T1 FSE-07819",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0011/11-01-2017-NA-RM CEREBRAL-80880/5.000000-Ax T1 FSE-73097",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0011/11-01-2017-NA-RM CEREBRAL-80880/5.000000-Ax T1 FSE-73097",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0011/11-01-2017-NA-RM CEREBRAL-80880/5.000000-Ax T1 FSE-73097",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0011/11-01-2017-NA-RM CEREBRAL-80880/5.000000-Ax T1 FSE-73097",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0011/11-01-2017-NA-RM CEREBRAL-80880/5.000000-Ax T1 FSE-73097",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0001",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-25-2015-NA-RM CEREBRAL6NEURNAV-21029/5.000000-Ax T1 FSE-08383",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-25-2015-NA-RM CEREBRAL6NEURNAV-21029/5.000000-Ax T1 FSE-08383",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-25-2015-NA-RM CEREBRAL6NEURNAV-21029/5.000000-Ax T1 FSE-08383",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-25-2015-NA-RM CEREBRAL6NEURNAV-21029/5.000000-Ax T1 FSE-08383",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-25-2015-NA-RM CEREBRAL6NEURNAV-21029/5.000000-Ax T1 FSE-08383",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-27-2015-NA-Craneo post.-03180/6.000000-Ax T1 FSE-40291",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-27-2015-NA-Craneo post.-03180/6.000000-Ax T1 FSE-40291",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-27-2015-NA-Craneo post.-03180/6.000000-Ax T1 FSE-40291",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-27-2015-NA-Craneo post.-03180/6.000000-Ax T1 FSE-40291",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-27-2015-NA-Craneo post.-03180/6.000000-Ax T1 FSE-40291",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/11-05-2016-NA-RM CEREBRAL-42953/6.000000-Ax T1 FSE-26698",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/11-05-2016-NA-RM CEREBRAL-42953/6.000000-Ax T1 FSE-26698",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/11-05-2016-NA-RM CEREBRAL-42953/6.000000-Ax T1 FSE-26698",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/11-05-2016-NA-RM CEREBRAL-42953/6.000000-Ax T1 FSE-26698",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/11-05-2016-NA-RM CEREBRAL-42953/6.000000-Ax T1 FSE-26698",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0021",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0021",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0021/10-20-2013-NA-CEREBRAL-34247/7.000000-Ax T1 FSE-53800",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0021/10-20-2013-NA-CEREBRAL-34247/7.000000-Ax T1 FSE-53800",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0021/10-20-2013-NA-CEREBRAL-34247/7.000000-Ax T1 FSE-53800",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0021/10-20-2013-NA-CEREBRAL-34247/7.000000-Ax T1 FSE-53800",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0021/10-20-2013-NA-CEREBRAL-34247/7.000000-Ax T1 FSE-53800",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0021/10-22-2013-NA-RM CEREBRAL-98591/6.000000-Ax T1 FSE-61992",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0021/10-22-2013-NA-RM CEREBRAL-98591/6.000000-Ax T1 FSE-61992",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0021/10-22-2013-NA-RM CEREBRAL-98591/6.000000-Ax T1 FSE-61992",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0021/10-22-2013-NA-RM CEREBRAL-98591/6.000000-Ax T1 FSE-61992",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0021/10-22-2013-NA-RM CEREBRAL-98591/6.000000-Ax T1 FSE-61992",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0021/11-15-2014-NA-RM CEREBRO-87895/5.000000-Ax T1 FSE-22008",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0021/11-15-2014-NA-RM CEREBRO-87895/5.000000-Ax T1 FSE-22008",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0021/11-15-2014-NA-RM CEREBRO-87895/5.000000-Ax T1 FSE-22008",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0021/11-15-2014-NA-RM CEREBRO-87895/5.000000-Ax T1 FSE-22008",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0021/11-15-2014-NA-RM CEREBRO-87895/5.000000-Ax T1 FSE-22008",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0008",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/09-27-2015-NA-Craneo-26679/5.000000-Ax T1 FSE-66644",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/09-27-2015-NA-Craneo-26679/5.000000-Ax T1 FSE-66644",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/09-27-2015-NA-Craneo-26679/5.000000-Ax T1 FSE-66644",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/09-27-2015-NA-Craneo-26679/5.000000-Ax T1 FSE-66644",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/09-27-2015-NA-Craneo-26679/5.000000-Ax T1 FSE-66644",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/10-04-2015-NA-RM CEREBRAL-04342/6.000000-Ax T1 FSE-08320",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/10-04-2015-NA-RM CEREBRAL-04342/6.000000-Ax T1 FSE-08320",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/10-04-2015-NA-RM CEREBRAL-04342/6.000000-Ax T1 FSE-08320",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/10-04-2015-NA-RM CEREBRAL-04342/6.000000-Ax T1 FSE-08320",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/10-04-2015-NA-RM CEREBRAL-04342/6.000000-Ax T1 FSE-08320",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/04-05-2016-NA-RM CEREBRO-94961/5.000000-Ax T1 FSE-06026",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/04-05-2016-NA-RM CEREBRO-94961/5.000000-Ax T1 FSE-06026",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/04-05-2016-NA-RM CEREBRO-94961/5.000000-Ax T1 FSE-06026",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/04-05-2016-NA-RM CEREBRO-94961/5.000000-Ax T1 FSE-06026",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/04-05-2016-NA-RM CEREBRO-94961/5.000000-Ax T1 FSE-06026",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0033",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0033",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0033/05-07-2014-NA-RM DE CEREBRO SINCON CONTRASTE-65733/6.000000-Obl T1 3D FSPGR IR-92851",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0033/05-07-2014-NA-RM DE CEREBRO SINCON CONTRASTE-65733/6.000000-Obl T1 3D FSPGR IR-92851",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0033/05-07-2014-NA-RM DE CEREBRO SINCON CONTRASTE-65733/6.000000-Obl T1 3D FSPGR IR-92851",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0033/05-07-2014-NA-RM DE CEREBRO SINCON CONTRASTE-65733/6.000000-Obl T1 3D FSPGR IR-92851",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0033/05-07-2014-NA-RM DE CEREBRO SINCON CONTRASTE-65733/6.000000-Obl T1 3D FSPGR IR-92851",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0033/05-14-2014-NA-RM CEREBRAL-31894/3.000000-Ax T1 FSE-16264",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0033/05-14-2014-NA-RM CEREBRAL-31894/3.000000-Ax T1 FSE-16264",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0033/05-14-2014-NA-RM CEREBRAL-31894/3.000000-Ax T1 FSE-16264",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0033/05-14-2014-NA-RM CEREBRAL-31894/3.000000-Ax T1 FSE-16264",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0033/05-14-2014-NA-RM CEREBRAL-31894/3.000000-Ax T1 FSE-16264",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0033/04-08-2015-NA-Craneo-90520/4.000000-Ax T1 FSE-54923",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0033/04-08-2015-NA-Craneo-90520/4.000000-Ax T1 FSE-54923",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0033/04-08-2015-NA-Craneo-90520/4.000000-Ax T1 FSE-54923",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0033/04-08-2015-NA-Craneo-90520/4.000000-Ax T1 FSE-54923",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0033/04-08-2015-NA-Craneo-90520/4.000000-Ax T1 FSE-54923",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0026",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0026",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0026/09-16-2013-NA-RM DE CEREBRO SINCON CONTRASTE-39253/6.000000-Ax T1 FSE-14123",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0026/09-16-2013-NA-RM DE CEREBRO SINCON CONTRASTE-39253/6.000000-Ax T1 FSE-14123",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0026/09-16-2013-NA-RM DE CEREBRO SINCON CONTRASTE-39253/6.000000-Ax T1 FSE-14123",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0026/09-16-2013-NA-RM DE CEREBRO SINCON CONTRASTE-39253/6.000000-Ax T1 FSE-14123",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0026/09-16-2013-NA-RM DE CEREBRO SINCON CONTRASTE-39253/6.000000-Ax T1 FSE-14123",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0026/10-02-2013-NA-RM CEREBRO-06858/6.000000-Ax T1 FSE-17117",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0026/10-02-2013-NA-RM CEREBRO-06858/6.000000-Ax T1 FSE-17117",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0026/10-02-2013-NA-RM CEREBRO-06858/6.000000-Ax T1 FSE-17117",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0026/10-02-2013-NA-RM CEREBRO-06858/6.000000-Ax T1 FSE-17117",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0026/10-02-2013-NA-RM CEREBRO-06858/6.000000-Ax T1 FSE-17117",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0026/09-19-2015-NA-RM CEREBRAL-08112/5.000000-Ax T1 FSE-70401",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0026/09-19-2015-NA-RM CEREBRAL-08112/5.000000-Ax T1 FSE-70401",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0026/09-19-2015-NA-RM CEREBRAL-08112/5.000000-Ax T1 FSE-70401",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0026/09-19-2015-NA-RM CEREBRAL-08112/5.000000-Ax T1 FSE-70401",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0026/09-19-2015-NA-RM CEREBRAL-08112/5.000000-Ax T1 FSE-70401",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0024",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0024",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0024/11-10-2013-NA-Craneo-58463/6.000000-Ax T1 FSE-09311",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0024/11-10-2013-NA-Craneo-58463/6.000000-Ax T1 FSE-09311",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0024/11-10-2013-NA-Craneo-58463/6.000000-Ax T1 FSE-09311",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0024/11-10-2013-NA-Craneo-58463/6.000000-Ax T1 FSE-09311",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0024/11-10-2013-NA-Craneo-58463/6.000000-Ax T1 FSE-09311",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0024/11-12-2013-NA-CRANEO-04303/6.000000-Ax T1 FSE-57408",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0024/11-12-2013-NA-CRANEO-04303/6.000000-Ax T1 FSE-57408",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0024/11-12-2013-NA-CRANEO-04303/6.000000-Ax T1 FSE-57408",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0024/11-12-2013-NA-CRANEO-04303/6.000000-Ax T1 FSE-57408",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0024/11-12-2013-NA-CRANEO-04303/6.000000-Ax T1 FSE-57408",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0024/01-29-2014-NA-RM CEREBRO-96283/7.000000-Ax T1 FSE-62489",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0024/01-29-2014-NA-RM CEREBRO-96283/7.000000-Ax T1 FSE-62489",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0024/01-29-2014-NA-RM CEREBRO-96283/7.000000-Ax T1 FSE-62489",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0024/01-29-2014-NA-RM CEREBRO-96283/7.000000-Ax T1 FSE-62489",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0024/01-29-2014-NA-RM CEREBRO-96283/7.000000-Ax T1 FSE-62489",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0034",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0034",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0034/07-20-2014-NA-RM DE CRANEO SINCON CONTRASTE-27430/13.000000-T1 3D VIBE AXIAL  avant gado -24651",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0034/07-20-2014-NA-RM DE CRANEO SINCON CONTRASTE-27430/13.000000-T1 3D VIBE AXIAL  avant gado -24651",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0034/07-20-2014-NA-RM DE CRANEO SINCON CONTRASTE-27430/13.000000-T1 3D VIBE AXIAL  avant gado -24651",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0034/07-20-2014-NA-RM DE CRANEO SINCON CONTRASTE-27430/13.000000-T1 3D VIBE AXIAL  avant gado -24651",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0034/07-20-2014-NA-RM DE CRANEO SINCON CONTRASTE-27430/13.000000-T1 3D VIBE AXIAL  avant gado -24651",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0034/08-02-2014-NA-Craneo-56569/7.000000-Ax T1 FSE-49903",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0034/08-02-2014-NA-Craneo-56569/7.000000-Ax T1 FSE-49903",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0034/08-02-2014-NA-Craneo-56569/7.000000-Ax T1 FSE-49903",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0034/08-02-2014-NA-Craneo-56569/7.000000-Ax T1 FSE-49903",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0034/08-02-2014-NA-Craneo-56569/7.000000-Ax T1 FSE-49903",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0034/06-09-2015-NA-RM DE CEREBRO SIN CONTRASTE-54771/4.000000-Ax T1 FSE-59895",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0034/06-09-2015-NA-RM DE CEREBRO SIN CONTRASTE-54771/4.000000-Ax T1 FSE-59895",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0034/06-09-2015-NA-RM DE CEREBRO SIN CONTRASTE-54771/4.000000-Ax T1 FSE-59895",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0034/06-09-2015-NA-RM DE CEREBRO SIN CONTRASTE-54771/4.000000-Ax T1 FSE-59895",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0034/06-09-2015-NA-RM DE CEREBRO SIN CONTRASTE-54771/4.000000-Ax T1 FSE-59895",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0017",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0017",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0017/01-21-2017-NA-RM CEREBRO-52920/6.000000-Ax T1 FSE-03113",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0017/01-21-2017-NA-RM CEREBRO-52920/6.000000-Ax T1 FSE-03113",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0017/01-21-2017-NA-RM CEREBRO-52920/6.000000-Ax T1 FSE-03113",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0017/01-21-2017-NA-RM CEREBRO-52920/6.000000-Ax T1 FSE-03113",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0017/01-21-2017-NA-RM CEREBRO-52920/6.000000-Ax T1 FSE-03113",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0017/01-31-2017-NA-RM CEREBRAL-45114/5.000000-Ax T1 FSE-90064",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0017/01-31-2017-NA-RM CEREBRAL-45114/5.000000-Ax T1 FSE-90064",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0017/01-31-2017-NA-RM CEREBRAL-45114/5.000000-Ax T1 FSE-90064",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0017/01-31-2017-NA-RM CEREBRAL-45114/5.000000-Ax T1 FSE-90064",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0017/01-31-2017-NA-RM CEREBRAL-45114/5.000000-Ax T1 FSE-90064",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0017/07-17-2017-NA-RM CEREBRAL-60172/6.000000-Ax T1 FSE-61104",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0017/07-17-2017-NA-RM CEREBRAL-60172/6.000000-Ax T1 FSE-61104",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0017/07-17-2017-NA-RM CEREBRAL-60172/6.000000-Ax T1 FSE-61104",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0017/07-17-2017-NA-RM CEREBRAL-60172/6.000000-Ax T1 FSE-61104",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0017/07-17-2017-NA-RM CEREBRAL-60172/6.000000-Ax T1 FSE-61104",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0023",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0023",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0023/10-14-2015-NA-Craneo-75929/6.000000-Ax T1 FSE-73031",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0023/10-14-2015-NA-Craneo-75929/6.000000-Ax T1 FSE-73031",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0023/10-14-2015-NA-Craneo-75929/6.000000-Ax T1 FSE-73031",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0023/10-14-2015-NA-Craneo-75929/6.000000-Ax T1 FSE-73031",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0023/10-14-2015-NA-Craneo-75929/6.000000-Ax T1 FSE-73031",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0023/10-20-2015-NA-RM CEREBRAL-01416/5.000000-Ax T1 FSE-98930",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0023/10-20-2015-NA-RM CEREBRAL-01416/5.000000-Ax T1 FSE-98930",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0023/10-20-2015-NA-RM CEREBRAL-01416/5.000000-Ax T1 FSE-98930",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0023/10-20-2015-NA-RM CEREBRAL-01416/5.000000-Ax T1 FSE-98930",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0023/10-20-2015-NA-RM CEREBRAL-01416/5.000000-Ax T1 FSE-98930",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0023/02-07-2016-NA-RM CRANEO-01973/4.000000-Ax T1 FSE-96350",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0023/02-07-2016-NA-RM CRANEO-01973/4.000000-Ax T1 FSE-96350",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0023/02-07-2016-NA-RM CRANEO-01973/4.000000-Ax T1 FSE-96350",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0023/02-07-2016-NA-RM CRANEO-01973/4.000000-Ax T1 FSE-96350",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0023/02-07-2016-NA-RM CRANEO-01973/4.000000-Ax T1 FSE-96350",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0016",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0016",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0016/04-03-2013-NA-RM.CRANEO-87914/7.000000-Ax T1 FSE-62051",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0016/04-03-2013-NA-RM.CRANEO-87914/7.000000-Ax T1 FSE-62051",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0016/04-03-2013-NA-RM.CRANEO-87914/7.000000-Ax T1 FSE-62051",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0016/04-03-2013-NA-RM.CRANEO-87914/7.000000-Ax T1 FSE-62051",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0016/04-03-2013-NA-RM.CRANEO-87914/7.000000-Ax T1 FSE-62051",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0016/04-10-2013-NA-RM CEREBRAL-73925/4.000000-Ax T1 FSE-39965",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0016/04-10-2013-NA-RM CEREBRAL-73925/4.000000-Ax T1 FSE-39965",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0016/04-10-2013-NA-RM CEREBRAL-73925/4.000000-Ax T1 FSE-39965",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0016/04-10-2013-NA-RM CEREBRAL-73925/4.000000-Ax T1 FSE-39965",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0016/04-10-2013-NA-RM CEREBRAL-73925/4.000000-Ax T1 FSE-39965",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0016/11-05-2013-NA-CEREBRAL-57913/7.000000-Ax T1 FSE-07474",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0016/11-05-2013-NA-CEREBRAL-57913/7.000000-Ax T1 FSE-07474",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0016/11-05-2013-NA-CEREBRAL-57913/7.000000-Ax T1 FSE-07474",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0016/11-05-2013-NA-CEREBRAL-57913/7.000000-Ax T1 FSE-07474",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0016/11-05-2013-NA-CEREBRAL-57913/7.000000-Ax T1 FSE-07474",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0039",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0039",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0039/06-19-2017-NA-RM CEREBRAL-79526/6.000000-Ax T1 FSE-82982",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0039/06-19-2017-NA-RM CEREBRAL-79526/6.000000-Ax T1 FSE-82982",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0039/06-19-2017-NA-RM CEREBRAL-79526/6.000000-Ax T1 FSE-82982",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0039/06-19-2017-NA-RM CEREBRAL-79526/6.000000-Ax T1 FSE-82982",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0039/06-19-2017-NA-RM CEREBRAL-79526/6.000000-Ax T1 FSE-82982",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0039/06-21-2017-NA-Craneo-01222/6.000000-Ax T1 FSE-65264",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0039/06-21-2017-NA-Craneo-01222/6.000000-Ax T1 FSE-65264",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0039/06-21-2017-NA-Craneo-01222/6.000000-Ax T1 FSE-65264",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0039/06-21-2017-NA-Craneo-01222/6.000000-Ax T1 FSE-65264",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0039/06-21-2017-NA-Craneo-01222/6.000000-Ax T1 FSE-65264",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0039/12-16-2017-NA-RM DE CEREBRO SINCON CONTRASTE-72613/201.000000-T1-SAG-SE-37932",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0039/12-16-2017-NA-RM DE CEREBRO SINCON CONTRASTE-72613/201.000000-T1-SAG-SE-37932",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0039/12-16-2017-NA-RM DE CEREBRO SINCON CONTRASTE-72613/201.000000-T1-SAG-SE-37932",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0039/12-16-2017-NA-RM DE CEREBRO SINCON CONTRASTE-72613/201.000000-T1-SAG-SE-37932",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0039/12-16-2017-NA-RM DE CEREBRO SINCON CONTRASTE-72613/201.000000-T1-SAG-SE-37932",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0015",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0015",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0015/07-16-2013-NA-RM CRANEO NEURONAVEGADOR DTI-82275/7.000000-Ax T1 FSE-31247",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0015/07-16-2013-NA-RM CRANEO NEURONAVEGADOR DTI-82275/7.000000-Ax T1 FSE-31247",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0015/07-16-2013-NA-RM CRANEO NEURONAVEGADOR DTI-82275/7.000000-Ax T1 FSE-31247",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0015/07-16-2013-NA-RM CRANEO NEURONAVEGADOR DTI-82275/7.000000-Ax T1 FSE-31247",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0015/07-16-2013-NA-RM CRANEO NEURONAVEGADOR DTI-82275/7.000000-Ax T1 FSE-31247",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0015/07-23-2013-NA-Craneo-42422/6.000000-Ax T1 FSE-30287",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0015/07-23-2013-NA-Craneo-42422/6.000000-Ax T1 FSE-30287",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0015/07-23-2013-NA-Craneo-42422/6.000000-Ax T1 FSE-30287",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0015/07-23-2013-NA-Craneo-42422/6.000000-Ax T1 FSE-30287",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0015/07-23-2013-NA-Craneo-42422/6.000000-Ax T1 FSE-30287",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0015/09-14-2013-NA-Craneo-94623/6.000000-Ax T1 FSE-19832",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0015/09-14-2013-NA-Craneo-94623/6.000000-Ax T1 FSE-19832",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0015/09-14-2013-NA-Craneo-94623/6.000000-Ax T1 FSE-19832",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0015/09-14-2013-NA-Craneo-94623/6.000000-Ax T1 FSE-19832",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0015/09-14-2013-NA-Craneo-94623/6.000000-Ax T1 FSE-19832",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0025",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0025",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0025/10-14-2012-NA-RM DE CEREBRO SINCON CONTRASTE-82954/6.000000-Obl T1 3D FSPGR IR-40131",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0025/10-14-2012-NA-RM DE CEREBRO SINCON CONTRASTE-82954/6.000000-Obl T1 3D FSPGR IR-40131",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0025/10-14-2012-NA-RM DE CEREBRO SINCON CONTRASTE-82954/6.000000-Obl T1 3D FSPGR IR-40131",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0025/10-14-2012-NA-RM DE CEREBRO SINCON CONTRASTE-82954/6.000000-Obl T1 3D FSPGR IR-40131",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0025/10-14-2012-NA-RM DE CEREBRO SINCON CONTRASTE-82954/6.000000-Obl T1 3D FSPGR IR-40131",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0025/10-31-2012-NA-RM CEREBRAL-72057/3.000000-Ax T1 FSE-22810",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0025/10-31-2012-NA-RM CEREBRAL-72057/3.000000-Ax T1 FSE-22810",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0025/10-31-2012-NA-RM CEREBRAL-72057/3.000000-Ax T1 FSE-22810",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0025/10-31-2012-NA-RM CEREBRAL-72057/3.000000-Ax T1 FSE-22810",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0025/10-31-2012-NA-RM CEREBRAL-72057/3.000000-Ax T1 FSE-22810",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0025/03-24-2013-NA-CEREBRAL-48696/3.000000-Ax T1 FSE-30989",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0025/03-24-2013-NA-CEREBRAL-48696/3.000000-Ax T1 FSE-30989",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0025/03-24-2013-NA-CEREBRAL-48696/3.000000-Ax T1 FSE-30989",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0025/03-24-2013-NA-CEREBRAL-48696/3.000000-Ax T1 FSE-30989",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0025/03-24-2013-NA-CEREBRAL-48696/3.000000-Ax T1 FSE-30989",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0019",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0019",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0019/10-20-2014-NA-RM CEREBRAL-71839/5.000000-Ax T1 FSE-23851",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0019/10-20-2014-NA-RM CEREBRAL-71839/5.000000-Ax T1 FSE-23851",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0019/10-20-2014-NA-RM CEREBRAL-71839/5.000000-Ax T1 FSE-23851",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0019/10-20-2014-NA-RM CEREBRAL-71839/5.000000-Ax T1 FSE-23851",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0019/10-20-2014-NA-RM CEREBRAL-71839/5.000000-Ax T1 FSE-23851",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0019/10-22-2014-NA-RM CEREBRAL-37368/6.000000-Ax T1 FSE-70863",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0019/10-22-2014-NA-RM CEREBRAL-37368/6.000000-Ax T1 FSE-70863",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0019/10-22-2014-NA-RM CEREBRAL-37368/6.000000-Ax T1 FSE-70863",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0019/10-22-2014-NA-RM CEREBRAL-37368/6.000000-Ax T1 FSE-70863",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0019/10-22-2014-NA-RM CEREBRAL-37368/6.000000-Ax T1 FSE-70863",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0019/07-15-2015-NA-RM DE CEREBRO SINCON CONTRASTE-35189/301.000000-T1-SE-SAG-98177",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0019/07-15-2015-NA-RM DE CEREBRO SINCON CONTRASTE-35189/301.000000-T1-SE-SAG-98177",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0019/07-15-2015-NA-RM DE CEREBRO SINCON CONTRASTE-35189/301.000000-T1-SE-SAG-98177",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0019/07-15-2015-NA-RM DE CEREBRO SINCON CONTRASTE-35189/301.000000-T1-SE-SAG-98177",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0019/07-15-2015-NA-RM DE CEREBRO SINCON CONTRASTE-35189/301.000000-T1-SE-SAG-98177",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0014",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0014",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0014/02-24-2013-NA-Craneo DTI-19406/6.000000-Ax T1 FSE-27931",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0014/02-24-2013-NA-Craneo DTI-19406/6.000000-Ax T1 FSE-27931",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0014/02-24-2013-NA-Craneo DTI-19406/6.000000-Ax T1 FSE-27931",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0014/02-24-2013-NA-Craneo DTI-19406/6.000000-Ax T1 FSE-27931",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0014/02-24-2013-NA-Craneo DTI-19406/6.000000-Ax T1 FSE-27931",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0014/02-27-2013-NA-RM CEREBRAL-20713/7.000000-Ax T1 FSE-58148",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0014/02-27-2013-NA-RM CEREBRAL-20713/7.000000-Ax T1 FSE-58148",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0014/02-27-2013-NA-RM CEREBRAL-20713/7.000000-Ax T1 FSE-58148",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0014/02-27-2013-NA-RM CEREBRAL-20713/7.000000-Ax T1 FSE-58148",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0014/02-27-2013-NA-RM CEREBRAL-20713/7.000000-Ax T1 FSE-58148",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0014/07-27-2013-NA-Craneo-57576/6.000000-Ax T1 FSE-69831",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0014/07-27-2013-NA-Craneo-57576/6.000000-Ax T1 FSE-69831",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0014/07-27-2013-NA-Craneo-57576/6.000000-Ax T1 FSE-69831",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0014/07-27-2013-NA-Craneo-57576/6.000000-Ax T1 FSE-69831",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0014/07-27-2013-NA-Craneo-57576/6.000000-Ax T1 FSE-69831",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0018",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0018",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0018/06-25-2017-NA-RM CEREBRAL-66931/7.000000-Ax T1 FSE-82886",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0018/06-25-2017-NA-RM CEREBRAL-66931/7.000000-Ax T1 FSE-82886",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0018/06-25-2017-NA-RM CEREBRAL-66931/7.000000-Ax T1 FSE-82886",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0018/06-25-2017-NA-RM CEREBRAL-66931/7.000000-Ax T1 FSE-82886",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0018/06-25-2017-NA-RM CEREBRAL-66931/7.000000-Ax T1 FSE-82886",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0018/06-27-2017-NA-RM CEREBRAL-89529/6.000000-Ax T1 FSE-71007",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0018/06-27-2017-NA-RM CEREBRAL-89529/6.000000-Ax T1 FSE-71007",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0018/06-27-2017-NA-RM CEREBRAL-89529/6.000000-Ax T1 FSE-71007",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0018/06-27-2017-NA-RM CEREBRAL-89529/6.000000-Ax T1 FSE-71007",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0018/06-27-2017-NA-RM CEREBRAL-89529/6.000000-Ax T1 FSE-71007",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0018/11-15-2017-NA-CRANEO-18771/6.000000-Ax T1 FSE-29376",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0018/11-15-2017-NA-CRANEO-18771/6.000000-Ax T1 FSE-29376",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0018/11-15-2017-NA-CRANEO-18771/6.000000-Ax T1 FSE-29376",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0018/11-15-2017-NA-CRANEO-18771/6.000000-Ax T1 FSE-29376",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0018/11-15-2017-NA-CRANEO-18771/6.000000-Ax T1 FSE-29376",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0037",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0037",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0037/08-26-2015-NA-RM CEREBRAL-99779/8.000000-Ax T1 FSE-01200",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0037/08-26-2015-NA-RM CEREBRAL-99779/8.000000-Ax T1 FSE-01200",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0037/08-26-2015-NA-RM CEREBRAL-99779/8.000000-Ax T1 FSE-01200",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0037/08-26-2015-NA-RM CEREBRAL-99779/8.000000-Ax T1 FSE-01200",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0037/08-26-2015-NA-RM CEREBRAL-99779/8.000000-Ax T1 FSE-01200",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0037/09-28-2015-NA-RM CEREBRAL-70944/5.000000-Ax T1 FSE-94061",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0037/09-28-2015-NA-RM CEREBRAL-70944/5.000000-Ax T1 FSE-94061",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0037/09-28-2015-NA-RM CEREBRAL-70944/5.000000-Ax T1 FSE-94061",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0037/09-28-2015-NA-RM CEREBRAL-70944/5.000000-Ax T1 FSE-94061",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0037/09-28-2015-NA-RM CEREBRAL-70944/5.000000-Ax T1 FSE-94061",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0037/09-13-2016-NA-RM CEREBRAL-94796/8.000000-Ax T1 FSE-12823",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0037/09-13-2016-NA-RM CEREBRAL-94796/8.000000-Ax T1 FSE-12823",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0037/09-13-2016-NA-RM CEREBRAL-94796/8.000000-Ax T1 FSE-12823",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0037/09-13-2016-NA-RM CEREBRAL-94796/8.000000-Ax T1 FSE-12823",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0037/09-13-2016-NA-RM CEREBRAL-94796/8.000000-Ax T1 FSE-12823",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0003",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0003",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0003/12-15-2015-NA-RM CEREBRO-98075/8.000000-Ax T1 FSE-31466",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0003/12-15-2015-NA-RM CEREBRO-98075/8.000000-Ax T1 FSE-31466",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0003/12-15-2015-NA-RM CEREBRO-98075/8.000000-Ax T1 FSE-31466",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0003/12-15-2015-NA-RM CEREBRO-98075/8.000000-Ax T1 FSE-31466",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0003/12-15-2015-NA-RM CEREBRO-98075/8.000000-Ax T1 FSE-31466",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0003/12-22-2015-NA-RM CEREBRAL-96242/6.000000-Ax T1 FSE-07033",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0003/12-22-2015-NA-RM CEREBRAL-96242/6.000000-Ax T1 FSE-07033",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0003/12-22-2015-NA-RM CEREBRAL-96242/6.000000-Ax T1 FSE-07033",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0003/12-22-2015-NA-RM CEREBRAL-96242/6.000000-Ax T1 FSE-07033",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0003/12-22-2015-NA-RM CEREBRAL-96242/6.000000-Ax T1 FSE-07033",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0003/05-04-2016-NA-RM CEREBRAL-67352/4.000000-Ax T1 FSE-23247",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0003/05-04-2016-NA-RM CEREBRAL-67352/4.000000-Ax T1 FSE-23247",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0003/05-04-2016-NA-RM CEREBRAL-67352/4.000000-Ax T1 FSE-23247",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0003/05-04-2016-NA-RM CEREBRAL-67352/4.000000-Ax T1 FSE-23247",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0003/05-04-2016-NA-RM CEREBRAL-67352/4.000000-Ax T1 FSE-23247",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0028",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0028",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0028/08-06-2013-NA-RM DE CEREBRO SINCON CONTRASTE-79731/301.000000-T1-SE-SAG-49782",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0028/08-06-2013-NA-RM DE CEREBRO SINCON CONTRASTE-79731/301.000000-T1-SE-SAG-49782",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0028/08-06-2013-NA-RM DE CEREBRO SINCON CONTRASTE-79731/301.000000-T1-SE-SAG-49782",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0028/08-06-2013-NA-RM DE CEREBRO SINCON CONTRASTE-79731/301.000000-T1-SE-SAG-49782",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0028/08-06-2013-NA-RM DE CEREBRO SINCON CONTRASTE-79731/301.000000-T1-SE-SAG-49782",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0028/08-27-2013-NA-RM CRANEO-80808/5.000000-Ax T1 FSE-84857",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0028/08-27-2013-NA-RM CRANEO-80808/5.000000-Ax T1 FSE-84857",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0028/08-27-2013-NA-RM CRANEO-80808/5.000000-Ax T1 FSE-84857",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0028/08-27-2013-NA-RM CRANEO-80808/5.000000-Ax T1 FSE-84857",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0028/08-27-2013-NA-RM CRANEO-80808/5.000000-Ax T1 FSE-84857",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0028/10-21-2013-NA-RM CEREBRO-46621/6.000000-Ax T1 FSE-00655",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0028/10-21-2013-NA-RM CEREBRO-46621/6.000000-Ax T1 FSE-00655",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0028/10-21-2013-NA-RM CEREBRO-46621/6.000000-Ax T1 FSE-00655",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0028/10-21-2013-NA-RM CEREBRO-46621/6.000000-Ax T1 FSE-00655",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0028/10-21-2013-NA-RM CEREBRO-46621/6.000000-Ax T1 FSE-00655",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0040",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0040",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0040/09-11-2017-NA-RM CEREBRAL-44201/5.000000-Ax T1 FSE-43540",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0040/09-11-2017-NA-RM CEREBRAL-44201/5.000000-Ax T1 FSE-43540",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0040/09-11-2017-NA-RM CEREBRAL-44201/5.000000-Ax T1 FSE-43540",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0040/09-11-2017-NA-RM CEREBRAL-44201/5.000000-Ax T1 FSE-43540",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0040/09-11-2017-NA-RM CEREBRAL-44201/5.000000-Ax T1 FSE-43540",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0040/09-13-2017-NA-CRANEO-87828/6.000000-Ax T1 FSE-76744",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0040/09-13-2017-NA-CRANEO-87828/6.000000-Ax T1 FSE-76744",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0040/09-13-2017-NA-CRANEO-87828/6.000000-Ax T1 FSE-76744",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0040/09-13-2017-NA-CRANEO-87828/6.000000-Ax T1 FSE-76744",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0040/09-13-2017-NA-CRANEO-87828/6.000000-Ax T1 FSE-76744",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0040/10-07-2017-NA-RM DE CEREBRO SINCON CONTRASTE-12131/201.000000-T1-SAG-SE-96100",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0040/10-07-2017-NA-RM DE CEREBRO SINCON CONTRASTE-12131/201.000000-T1-SAG-SE-96100",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0040/10-07-2017-NA-RM DE CEREBRO SINCON CONTRASTE-12131/201.000000-T1-SAG-SE-96100",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0040/10-07-2017-NA-RM DE CEREBRO SINCON CONTRASTE-12131/201.000000-T1-SAG-SE-96100",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0040/10-07-2017-NA-RM DE CEREBRO SINCON CONTRASTE-12131/201.000000-T1-SAG-SE-96100",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0022",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0022",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0022/05-20-2014-NA-CEREBRAL-78643/7.000000-Ax T1 FSE-68208",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0022/05-20-2014-NA-CEREBRAL-78643/7.000000-Ax T1 FSE-68208",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0022/05-20-2014-NA-CEREBRAL-78643/7.000000-Ax T1 FSE-68208",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0022/05-20-2014-NA-CEREBRAL-78643/7.000000-Ax T1 FSE-68208",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0022/05-20-2014-NA-CEREBRAL-78643/7.000000-Ax T1 FSE-68208",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0022/05-26-2014-NA-Craneo-69961/6.000000-Ax T1 FSE-79062",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0022/05-26-2014-NA-Craneo-69961/6.000000-Ax T1 FSE-79062",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0022/05-26-2014-NA-Craneo-69961/6.000000-Ax T1 FSE-79062",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0022/05-26-2014-NA-Craneo-69961/6.000000-Ax T1 FSE-79062",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0022/05-26-2014-NA-Craneo-69961/6.000000-Ax T1 FSE-79062",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0022/10-21-2014-NA-rm craneo-14962/5.000000-Ax T1 FSE-23207",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0022/10-21-2014-NA-rm craneo-14962/5.000000-Ax T1 FSE-23207",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0022/10-21-2014-NA-rm craneo-14962/5.000000-Ax T1 FSE-23207",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0022/10-21-2014-NA-rm craneo-14962/5.000000-Ax T1 FSE-23207",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0022/10-21-2014-NA-rm craneo-14962/5.000000-Ax T1 FSE-23207",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0036",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0036",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0036/05-13-2015-NA-RM DE CEREBRO SINCON CONTRASTE-70164/301.000000-T1-SE-SAG-12759",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0036/05-13-2015-NA-RM DE CEREBRO SINCON CONTRASTE-70164/301.000000-T1-SE-SAG-12759",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0036/05-13-2015-NA-RM DE CEREBRO SINCON CONTRASTE-70164/301.000000-T1-SE-SAG-12759",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0036/05-13-2015-NA-RM DE CEREBRO SINCON CONTRASTE-70164/301.000000-T1-SE-SAG-12759",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0036/05-13-2015-NA-RM DE CEREBRO SINCON CONTRASTE-70164/301.000000-T1-SE-SAG-12759",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0036/06-02-2015-NA-RM CEREBRAL-27599/6.000000-Ax T1 FSE-46024",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0036/06-02-2015-NA-RM CEREBRAL-27599/6.000000-Ax T1 FSE-46024",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0036/06-02-2015-NA-RM CEREBRAL-27599/6.000000-Ax T1 FSE-46024",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0036/06-02-2015-NA-RM CEREBRAL-27599/6.000000-Ax T1 FSE-46024",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0036/06-02-2015-NA-RM CEREBRAL-27599/6.000000-Ax T1 FSE-46024",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0036/01-08-2017-NA-RM CEREBRAL-59146/7.000000-Ax T1 FSE-71611",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0036/01-08-2017-NA-RM CEREBRAL-59146/7.000000-Ax T1 FSE-71611",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0036/01-08-2017-NA-RM CEREBRAL-59146/7.000000-Ax T1 FSE-71611",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0036/01-08-2017-NA-RM CEREBRAL-59146/7.000000-Ax T1 FSE-71611",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0036/01-08-2017-NA-RM CEREBRAL-59146/7.000000-Ax T1 FSE-71611",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0009",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0009",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0009/12-26-2015-NA-RM CEREBRO-43886/6.000000-Ax T1 FSE-69705",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0009/12-26-2015-NA-RM CEREBRO-43886/6.000000-Ax T1 FSE-69705",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0009/12-26-2015-NA-RM CEREBRO-43886/6.000000-Ax T1 FSE-69705",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0009/12-26-2015-NA-RM CEREBRO-43886/6.000000-Ax T1 FSE-69705",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0009/12-26-2015-NA-RM CEREBRO-43886/6.000000-Ax T1 FSE-69705",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0009/12-28-2015-NA-CEREBRAL-99672/6.000000-Ax T1 FSE-70662",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0009/12-28-2015-NA-CEREBRAL-99672/6.000000-Ax T1 FSE-70662",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0009/12-28-2015-NA-CEREBRAL-99672/6.000000-Ax T1 FSE-70662",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0009/12-28-2015-NA-CEREBRAL-99672/6.000000-Ax T1 FSE-70662",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0009/12-28-2015-NA-CEREBRAL-99672/6.000000-Ax T1 FSE-70662",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0009/10-11-2016-NA-CRANEO-74507/7.000000-Ax T1 FSE-76661",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0009/10-11-2016-NA-CRANEO-74507/7.000000-Ax T1 FSE-76661",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0009/10-11-2016-NA-CRANEO-74507/7.000000-Ax T1 FSE-76661",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0009/10-11-2016-NA-CRANEO-74507/7.000000-Ax T1 FSE-76661",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0009/10-11-2016-NA-CRANEO-74507/7.000000-Ax T1 FSE-76661",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0038",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0038",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0038/03-21-2016-NA-RM CRANEO-44688/7.000000-Ax T1 FSE-65366",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0038/03-21-2016-NA-RM CRANEO-44688/7.000000-Ax T1 FSE-65366",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0038/03-21-2016-NA-RM CRANEO-44688/7.000000-Ax T1 FSE-65366",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0038/03-21-2016-NA-RM CRANEO-44688/7.000000-Ax T1 FSE-65366",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0038/03-21-2016-NA-RM CRANEO-44688/7.000000-Ax T1 FSE-65366",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0038/03-23-2016-NA-CEREBRO POSTQX-39975/11.000000-Ax T1 FSE-58787",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0038/03-23-2016-NA-CEREBRO POSTQX-39975/11.000000-Ax T1 FSE-58787",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0038/03-23-2016-NA-CEREBRO POSTQX-39975/11.000000-Ax T1 FSE-58787",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0038/03-23-2016-NA-CEREBRO POSTQX-39975/11.000000-Ax T1 FSE-58787",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0038/03-23-2016-NA-CEREBRO POSTQX-39975/11.000000-Ax T1 FSE-58787",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0038/09-10-2016-NA-RM CRANEO-46794/7.000000-Ax T1 FSE-55078",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0038/09-10-2016-NA-RM CRANEO-46794/7.000000-Ax T1 FSE-55078",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0038/09-10-2016-NA-RM CRANEO-46794/7.000000-Ax T1 FSE-55078",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0038/09-10-2016-NA-RM CRANEO-46794/7.000000-Ax T1 FSE-55078",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0038/09-10-2016-NA-RM CRANEO-46794/7.000000-Ax T1 FSE-55078",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0010",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0010",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0010/07-15-2013-NA-RM NEURONAVEGADOR-43001/7.000000-Ax T1 FSE-48019",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0010/07-15-2013-NA-RM NEURONAVEGADOR-43001/7.000000-Ax T1 FSE-48019",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0010/07-15-2013-NA-RM NEURONAVEGADOR-43001/7.000000-Ax T1 FSE-48019",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0010/07-15-2013-NA-RM NEURONAVEGADOR-43001/7.000000-Ax T1 FSE-48019",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0010/07-15-2013-NA-RM NEURONAVEGADOR-43001/7.000000-Ax T1 FSE-48019",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0010/07-17-2013-NA-RM CRANEO POST QX-70936/2.000000-Ax T1 FSE-81079",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0010/07-17-2013-NA-RM CRANEO POST QX-70936/2.000000-Ax T1 FSE-81079",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0010/07-17-2013-NA-RM CRANEO POST QX-70936/2.000000-Ax T1 FSE-81079",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0010/07-17-2013-NA-RM CRANEO POST QX-70936/2.000000-Ax T1 FSE-81079",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0010/07-17-2013-NA-RM CRANEO POST QX-70936/2.000000-Ax T1 FSE-81079",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0010/07-12-2014-NA-RM CEREBRAL-69207/5.000000-Ax T1 FSE-23323",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0010/07-12-2014-NA-RM CEREBRAL-69207/5.000000-Ax T1 FSE-23323",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0010/07-12-2014-NA-RM CEREBRAL-69207/5.000000-Ax T1 FSE-23323",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0010/07-12-2014-NA-RM CEREBRAL-69207/5.000000-Ax T1 FSE-23323",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0010/07-12-2014-NA-RM CEREBRAL-69207/5.000000-Ax T1 FSE-23323",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0013",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0013",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0013/10-21-2013-NA-RM CEREBRAL-80056/11.000000-Ax T1 FSE-03637",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0013/10-21-2013-NA-RM CEREBRAL-80056/11.000000-Ax T1 FSE-03637",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0013/10-21-2013-NA-RM CEREBRAL-80056/11.000000-Ax T1 FSE-03637",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0013/10-21-2013-NA-RM CEREBRAL-80056/11.000000-Ax T1 FSE-03637",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0013/10-21-2013-NA-RM CEREBRAL-80056/11.000000-Ax T1 FSE-03637",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0013/10-23-2013-NA-CEREBRAL-91909/6.000000-Ax T1 FSE-62791",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0013/10-23-2013-NA-CEREBRAL-91909/6.000000-Ax T1 FSE-62791",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0013/10-23-2013-NA-CEREBRAL-91909/6.000000-Ax T1 FSE-62791",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0013/10-23-2013-NA-CEREBRAL-91909/6.000000-Ax T1 FSE-62791",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0013/10-23-2013-NA-CEREBRAL-91909/6.000000-Ax T1 FSE-62791",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0013/02-11-2014-NA-e1 CEREBRAL-03687/8.000000-Ax T1 FSE-69112",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0013/02-11-2014-NA-e1 CEREBRAL-03687/8.000000-Ax T1 FSE-69112",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0013/02-11-2014-NA-e1 CEREBRAL-03687/8.000000-Ax T1 FSE-69112",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0013/02-11-2014-NA-e1 CEREBRAL-03687/8.000000-Ax T1 FSE-69112",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0013/02-11-2014-NA-e1 CEREBRAL-03687/8.000000-Ax T1 FSE-69112",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "RHUH-0020",
+      "patient_dir": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0020",
+      "exams": [
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0020/12-07-2016-NA-CEREBRO-55977/7.000000-Ax T1 FSE-51844",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0020/12-07-2016-NA-CEREBRO-55977/7.000000-Ax T1 FSE-51844",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0020/12-07-2016-NA-CEREBRO-55977/7.000000-Ax T1 FSE-51844",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0020/12-07-2016-NA-CEREBRO-55977/7.000000-Ax T1 FSE-51844",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0020/12-07-2016-NA-CEREBRO-55977/7.000000-Ax T1 FSE-51844",
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0020/12-12-2016-NA-RM CEREBRAL-03549/5.000000-Ax T1 FSE-34574",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0020/12-12-2016-NA-RM CEREBRAL-03549/5.000000-Ax T1 FSE-34574",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0020/12-12-2016-NA-RM CEREBRAL-03549/5.000000-Ax T1 FSE-34574",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0020/12-12-2016-NA-RM CEREBRAL-03549/5.000000-Ax T1 FSE-34574",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0020/12-12-2016-NA-RM CEREBRAL-03549/5.000000-Ax T1 FSE-34574",
+          "timepoint": "postop"
+        },
+        {
+          "t1": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0020/10-03-2017-NA-RM CEREBRAL-22793/6.000000-Ax T1 FSE-04834",
+          "t1c": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0020/10-03-2017-NA-RM CEREBRAL-22793/6.000000-Ax T1 FSE-04834",
+          "t2": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0020/10-03-2017-NA-RM CEREBRAL-22793/6.000000-Ax T1 FSE-04834",
+          "flair": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0020/10-03-2017-NA-RM CEREBRAL-22793/6.000000-Ax T1 FSE-04834",
+          "diffusion": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0020/10-03-2017-NA-RM CEREBRAL-22793/6.000000-Ax T1 FSE-04834",
+          "timepoint": "followup"
+        }
+      ]
+    }
+  ]
+}

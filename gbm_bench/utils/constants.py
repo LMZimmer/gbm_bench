@@ -54,6 +54,9 @@ DATA_DIR = PROJECT_DIR / "data"
 
 ATLAS_DIR = DATA_DIR / "sri24_atlas"
 GROWTH_MODEL_DIR = DATA_DIR / "models"
+DATASET_DIR = DATA_DIR / "datasets"
+
+RHUH_GBM_DIR = DATASET_DIR / "rhuh.json"
 
 
 # OUTPUT DIRECTORY NAMES
