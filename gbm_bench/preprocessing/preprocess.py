@@ -65,8 +65,6 @@ def preprocess_dicom(t1_dir: Path, t1c_dir: Path, t2_dir: Path, flair_dir: Path,
     logger.info(f"Finished conversion step in {time_spent_conversion:.2f} seconds.")
 
     # Step 2: Normalization, co-registration, skull stripping
-    preprocessed_dir = os.path.join(outdir, "skull_stripped")
-
     if perform_skullstripping:
         norm_ss_coregister(
                 t1_file=MODALITY_CONVERTED_SCHEMA.format(outdir=outdir, modality="t1"),
@@ -77,10 +75,6 @@ def preprocess_dicom(t1_dir: Path, t1c_dir: Path, t2_dir: Path, flair_dir: Path,
                 )
 
     # Step 3: Segment tumor
-    tumor_outdir = os.path.join(outdir, "tumor_segmentation")
-    tumor_outfile = os.path.join(tumor_outdir, "tumor_seg.nii.gz")
-    os.makedirs(tumor_outdir, exist_ok=True)
-
     if perform_tumorseg:
         run_brats(
                 t1_file=MODALITY_STRIPPED_SHEMA.format(outdir=outdir, modality="t1"),
