@@ -105,7 +105,7 @@ def preprocess_dicom(t1_dir: Path, t1c_dir: Path, t2_dir: Path, flair_dir: Path,
     logger.info(f"Finished preprocessing in {time_spent:.2f} seconds. Results saved to {outdir}.")
 
 
-def process_longitudinal(preop_exam: Path, postop_exam: Path, outdir: Path) -> None:
+def process_longitudinal(preop_exam_dir: Path, followup_exam_dir: Path, outdir: Path) -> None:
     """
     TODO
     """
@@ -113,9 +113,9 @@ def process_longitudinal(preop_exam: Path, postop_exam: Path, outdir: Path) -> N
     logger.info(f"Starting longitudinal processing.")
 
     # Prepare directories
-    t1c_pre_file = MODALITY_STRIPPED_SHEMA.format(outdir=preop_exam, modality="t1c")
-    t1c_post_file = MODALITY_STRIPPED_SHEMA.format(outdir=postop_exam, modality="t1c")
-    recurrence_seg_file = TUMORSEG_SCHEMA.format(outdir=postop_exam)
+    t1c_pre_file = MODALITY_STRIPPED_SHEMA.format(outdir=preop_exam_dir, modality="t1c")
+    t1c_post_file = MODALITY_STRIPPED_SHEMA.format(outdir=followup_exam_dir, modality="t1c")
+    recurrence_seg_file = TUMORSEG_SCHEMA.format(outdir=followup_exam_dir)
 
     register_recurrence(
             t1c_pre_file=t1c_pre_file,
@@ -163,7 +163,7 @@ if __name__ == "__main__":
 
     # Longitudinal example
     process_longitudinal(
-            preop_exam=Path("test_data/exam1"),
-            postop_exam=Path("test_data/exam3"),
+            preop_exam_dir=Path("test_data/exam1"),
+            followup_exam_dir=Path("test_data/exam3"),
             outdir=outdir_tmp / "longitudinal"
             )

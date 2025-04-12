@@ -43,22 +43,19 @@ class LongitudinalDataset():
         self.root_dir = root_dir
         self.patients = []
 
-    def _convert_path(path: Optional[Path]) -> Optional[str]:
+    def _convert_path(self, path: Optional[Path]) -> Optional[str]:
         """
         Helper function that converts Path objects to str while leaving None values as is.
         """
         return str(path) if path is not None else None
 
-    def _substitute_root(substitute_path: Path, old_root: Path, new_root: Path) -> Path:
+    def _substitute_root(self, substitute_path: Path, old_root: Path, new_root: Path) -> Path:
         """
         Helper function that replaces part of a Path object with a specified subpath.
         """
         substitu_str = str(substitute_path)
-        old_root_str = str(old_root)
-        new_root_str = str(new_root)
-
-        old_root_str.strip("/")
-        new_root_str.strip("/")
+        old_root_str = str(old_root).strip("/")
+        new_root_str = str(new_root).strip("/")
         return Path(substitu_str.replace(old_root_str, new_root_str))
 
     def parse(self):
@@ -170,9 +167,10 @@ class LongitudinalDataset():
         """
         path = Path(path)
         if not path.is_file() or path.suffix != ".json":
-            raise NotADirectoryError(f"Provided path {str(path)} is not a valid json file.")
+            raise ValueError(f"Provided path {str(path)} is not a valid json file.")
 
         self.patients = []
+        old_root = self.root_dir
 
         # Read json
         with open(path, "r") as f:
@@ -205,7 +203,11 @@ class LongitudinalDataset():
             }
             self.patients.append(patient)
 
-        logger.info(f"Successfully loaded {len(self.patients)} patients fomr {str(path)}.")
+        # Set old root dir and adapt paths if necessary
+        if old_root != self.root_dir:
+            self.set_root_dir(new_root_dir=old_root)
+
+        logger.info(f"Successfully loaded {len(self.patients)} patients from {str(path)}.")
 
     def set_root_dir(self, new_root_dir: Union[Path, str]) -> None:
         """
@@ -226,9 +228,26 @@ class LongitudinalDataset():
             for exam in patient['exams']:
                 for modality, path in exam.items():
                     if isinstance(path, Path):
-                        exam[modality] = self._substitute_root(exam[modality], old_root, new_root
+                        exam[modality] = self._substitute_root(exam[modality], old_root, new_root)
         
         logger.info(f"New root_dir set successfully.")
+
+    def get_patient_exams(self, patient_id: str, timepoint: Optional[str] = None) -> List[Exam]:
+        """
+        Retrieves exams for a specific patient, optionally filtered by timepoint (None, preop, postop, followup).
+        """
+        for patient in self.patients:
+            if patient["patient_id"] == patient_id:
+                if timepoint is None:
+                    return patient["exams"].copy()
+
+                filtered_exams = []
+                for exam in patient["exams"]:
+                    # Use t1 path to derive exam directory name
+                    if exam["timepoint"] == timepoint:
+                        filtered_exams.append(exam)
+                return filtered_exams
+        return []
 
 
 if __name__=="__main__":
@@ -256,4 +275,6 @@ if __name__=="__main__":
         raise ValueError(f"Dataset restoration failed. Loaded dataset is not the same as before saving.")
 
     # Try replacing root dir
+    out_tmp_newroot = "tmp_parsing/rhuh_newroot.json"
     rhuh_gbm.set_root_dir("/test/rootdir/")
+    rhuh_gbm.save(out_tmp_newroot)

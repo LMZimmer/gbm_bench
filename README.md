@@ -73,3 +73,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 ENTRYPOINT ["python", "inference.py"]
 ```
+
+
+## Adding new datasets
+
+Datasets are handled with the LongitudinalDataset class in utils.parsing. This class can parse datasets that have a specific directory structure and can save/load the paths as json. Therefore, the prefered method would be to create a json file that can be read from this class. An example for this is given e.g. in data/datasets/rhuh.json. LongitudinalDataset can also automatically parse specific directory structures, but then identifying preop, postop, followup is an issue.
