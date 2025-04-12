@@ -51,6 +51,7 @@ if __name__ == "__main__":
                     pred_file=prediction_dir,
                     model_id=model_id
                     )
+            all_results.append(results)
         except:
             print(f"Failed for {patient_identifier}. Possibly file not found. Continuing...")
 

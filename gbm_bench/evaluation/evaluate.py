@@ -227,7 +227,7 @@ if __name__ == "__main__":
     results = evaluate_tumor_model(
             preop_dir=Path(args.preop_dir),
             followup_dir=Path(args.followup_dir),
-            pred_file=Path(args.pred_file)
+            pred_file=Path(args.pred_file),
             model_id="test"
             )
 
