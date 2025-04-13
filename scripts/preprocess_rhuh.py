@@ -31,7 +31,6 @@ if __name__ == "__main__":
 
             is_preop = (exam["timepoint"] == "preop")
 
-            """
             preprocess_dicom(
                     t1_dir=exam["t1"],
                     t1c_dir=exam["t1c"],
@@ -46,7 +45,6 @@ if __name__ == "__main__":
                     perform_tumorseg=True,
                     perform_tissueseg=is_preop
                     )
-            """
 
     # Longitudinal registration
     for patient_ind, patient in enumerate(rhuh_gbm.patients):
@@ -62,12 +60,10 @@ if __name__ == "__main__":
         for followup_exam in followup_exams:
             followup_exam_dir = followup_exam["t1"].parent
             
-            """
             process_longitudinal(
                     preop_exam_dir=preop_exam_dir,
                     followup_exam_dir=followup_exam_dir,
                     outdir=followup_exam_dir
                     )
-            """
     
     print(f"Finished processing.")
