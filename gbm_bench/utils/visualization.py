@@ -5,34 +5,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import matplotlib.patches as mpatches
+from pathlib import Path
 from matplotlib import colormaps
 from typing import Dict, List, Union, Tuple
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 from gbm_bench.utils.utils import compute_center_of_mass, load_mri_data, load_and_resample_mri_data, merge_pdfs
-
-
-def get_image_dirs(preprocessing_dir: str) -> Dict:
-    MODALITY_ORDER = ["t1c", "t1", "t2", "flair"]
-    image_dirs = {
-            "stripped": [os.path.join(preprocessing_dir, "skull_stripped", m+"_bet_normalized.nii.gz") for m in MODALITY_ORDER],
-            "tumorseg": os.path.join(preprocessing_dir, "tumor_segmentation/tumor_seg.nii.gz"),
-            "tissueseg": [
-                os.path.join(preprocessing_dir, "tissue_segmentation/tissue_seg.nii.gz"),
-                os.path.join(preprocessing_dir, "tissue_segmentation/wm_pbmap.nii.gz"),
-                os.path.join(preprocessing_dir, "tissue_segmentation/gm_pbmap.nii.gz"),
-                os.path.join(preprocessing_dir, "tissue_segmentation/csf_pbmap.nii.gz")
-                ],
-            "lmi": os.path.join(preprocessing_dir, "lmi/lmi_tumor_patientSpace.nii"),
-            "sbtc": os.path.join(preprocessing_dir, "sbtc/tumorImage.nii.gz"),
-            "gliodil": os.path.join(preprocessing_dir, "gliodilx_pet__PDE1.0_/192_48_48_48_solution.nii"),
-            "masks": [
-                os.path.join(preprocessing_dir, "skull_stripped/t1c_bet_mask.nii.gz"),
-                os.path.join(preprocessing_dir, "tumor_segmentation/tumor_seg.nii.gz"),
-                os.path.join(preprocessing_dir, "tumor_segmentation/enhancing_non_enhancing_tumor.nii.gz"),
-                os.path.join(preprocessing_dir, "tumor_segmentation/peritumoral_edema.nii.gz")
-                ]
-            }
-    return image_dirs
+from gbm_bench.utils.constants import BRAIN_MASK_SCHEMA, MODALITY_STRIPPED_SCHEMA, PREDICTION_OUTPUT_SCHEMA, TISSUE_SEG_SCHEMA, TUMORSEG_SCHEMA
 
 
 def get_slices(center: Tuple[int, int, int], num_slices: int, step_size: int, patient_dim: Tuple[int, int, int]):
@@ -128,28 +106,26 @@ def grid_plot(image_tensor: np.ndarray, imshow_args: List[Dict], header: str, co
         fig.legend(handles=legend_handles, loc="upper right", bbox_to_anchor=(0.96, 0.890), ncol=3)
 
     plt.tight_layout(rect=[0, 0, 1, 0.9])
+    Path(outfile).parent.mkdir(parents=True, exist_ok=True)
     plt.savefig(outfile, format="pdf")
     print(f"Plot saved as {outfile}")
     plt.close(fig)
 
 
-def plot_model_multislice(patient_identifier: str, exam_identifier: str, algorithm_identifier: str, preprocessing_dir: str,
+def plot_model_multislice(patient_identifier: str, exam_identifier: str, algorithm_identifier: str, exam_dir: Path,
                           outfile: str, classes_of_interest: List[int] = [1, 2, 3]) -> None:
 
     c_threshold = 0.01    # tumor cell concentration threshold
     n_layers = 3    # one layer for each imshow config
 
     # Load data
-    image_dirs = get_image_dirs(preprocessing_dir)
-    t1c_data = load_mri_data(image_dirs["stripped"][0])
-    tumorseg_data = load_mri_data(image_dirs["tumorseg"])
-    tissueseg_data = load_mri_data(image_dirs["tissueseg"][0])
-
-    model_dir = image_dirs[algorithm_identifier.lower()]
-    model_data = load_and_resample_mri_data(model_dir, resample_params=t1c_data.shape, interp_type=1)
+    t1c_data = load_mri_data(MODALITY_STRIPPED_SCHEMA.format(base_dir=exam_dir, modality="t1c"))
+    tumorseg_data = load_mri_data(TUMORSEG_SCHEMA.format(base_dir=exam_dir))
+    tissueseg_data = load_mri_data(TISSUE_SEG_SCHEMA.format(base_dir=exam_dir))
+    model_data = load_and_resample_mri_data(PREDICTION_OUTPUT_SCHEMA.format(base_dir=exam_dir, algo_id=algorithm_identifier.lower()), resample_params=t1c_data.shape, interp_type=1)
+    brain_mask = load_mri_data(BRAIN_MASK_SCHEMA.format(base_dir=exam_dir))
 
     # Mask data outside of the brain
-    brain_mask = load_mri_data(image_dirs["masks"][0])
     model_data[brain_mask==0] = 0
 
     # Compute tumor center of mass
@@ -165,15 +141,16 @@ def plot_model_multislice(patient_identifier: str, exam_identifier: str, algorit
     cmap, norm, patches = get_cmap_norm_patches_tumorseg(classes_of_interest)
 
     # Read recurrence coverage for title
-    coverage_dir = os.path.join(os.path.dirname(model_dir), "coverage.pkl")
-    if os.path.isfile(coverage_dir):
-        coverage = pickle.load(open(coverage_dir, "rb"))
-        coverage_str = (
-                f"Coverage (conventional / model): {100*coverage['recurrence_coverage_standard']:.1f}% / {100*coverage['recurrence_coverage_model']:.1f}%\n"
-                f"CoverageAll (conventional / model): {100*coverage['recurrence_coverage_standard_all']:.1f}% / {100*coverage['recurrence_coverage_model_all']:.1f}%"
-                )
-    else:
-        coverage_str = ""
+    coverage_str = ""
+    #coverage_dir = os.path.join(os.path.dirname(model_dir), "coverage.pkl") #TODO: update path
+    #if os.path.isfile(coverage_dir):
+    #    coverage = pickle.load(open(coverage_dir, "rb"))
+    #    coverage_str = (
+    #            f"Coverage (conventional / model): {100*coverage['recurrence_coverage_standard']:.1f}% / {100*coverage['recurrence_coverage_model']:.1f}%\n"
+    #            f"CoverageAll (conventional / model): {100*coverage['recurrence_coverage_standard_all']:.1f}% / {100*coverage['recurrence_coverage_model_all']:.1f}%"
+    #            )
+    #else:
+    #    coverage_str = ""
 
     # Titles
     col_titles = ["T1C", "TUMORSEG", f"{algorithm_identifier.upper()}", "TISSUESEG"]
@@ -230,17 +207,17 @@ def plot_model_multislice(patient_identifier: str, exam_identifier: str, algorit
             )
 
 
-def plot_recurrence_multislice(patient_identifier: str, exam_identifier_pre: str, exam_identifier_post: str,
-                               preprocessing_dir_pre: str, preprocessing_dir_post: str, outfile: str,
+def plot_recurrence_multislice(patient_identifier: str, exam_identifier_pre: str, exam_identifier_followup: str,
+                               exam_dir_preop: Path, exam_dir_followup: Path, outfile: str,
                                classes_of_interest: List[int] = [1, 2, 3]) -> None:
 
     n_layers = 2    # one layer for each imshow config
 
     # Paths
-    t1c_pre_dir = os.path.join(preprocessing_dir_pre, "skull_stripped/t1c_bet_normalized.nii.gz")
-    t1c_post_dir = os.path.join(preprocessing_dir_post, "longitudinal/t1c_warped_longitudinal.nii.gz")
-    tumor_seg_dir = os.path.join(preprocessing_dir_pre, "tumor_segmentation/tumor_seg.nii.gz")
-    recurrence_seg_dir = os.path.join(preprocessing_dir_post, "longitudinal/recurrence_preop.nii.gz")
+    t1c_pre_dir = MODALITY_STRIPPED_SCHEMA.format(base_dir=exam_dir_preop, modality="t1c")
+    t1c_post_dir = MODALITY_STRIPPED_SCHEMA.format(base_dir=exam_dir_followup, modality="t1c")
+    tumor_seg_dir = TUMORSEG_SCHEMA.format(base_dir=exam_dir_preop)
+    recurrence_seg_dir = TUMORSEG_SCHEMA.format(base_dir=exam_dir_followup)
 
     # Load images
     t1c_data_pre = load_mri_data(t1c_pre_dir)
@@ -266,7 +243,7 @@ def plot_recurrence_multislice(patient_identifier: str, exam_identifier_pre: str
     header = (
             f"Patient: {patient_identifier}\n"
             f"Exam (preop): {exam_identifier_pre}\n"
-            f"Exam (postop): {exam_identifier_post}\n"
+            f"Exam (postop): {exam_identifier_followup}\n"
             f"CoM slice (axial/coronal): {center[2]}/{center[1]}\n"
             )
 
@@ -318,15 +295,15 @@ if __name__ == "__main__":
             patient_identifier="RHUH-0001",
             exam_identifier="01-25-2015",
             algorithm_identifier="LMI",
-            preprocessing_dir="test_data/exam1/preprocessing",
-            outfile="test_multislice.pdf"
+            exam_dir=Path("test_data/exam1/"),
+            outfile="tmp_visualization/test_multislice.pdf"
             )
 
     plot_recurrence_multislice(
             patient_identifier="RHUH-0001",
             exam_identifier_pre="Pre",
-            exam_identifier_post="Post",
-            preprocessing_dir_pre="test_data/exam1/preprocessing",
-            preprocessing_dir_post="test_data/exam3/preprocessing",
-            outfile="test_longitudinal.pdf"
+            exam_identifier_followup="Post",
+            exam_dir_preop=Path("test_data/exam1/"),
+            exam_dir_followup=Path("test_data/exam3/"),
+            outfile="tmp_visualization/test_longitudinal.pdf"
             )
