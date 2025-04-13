@@ -7,6 +7,7 @@ from pathlib import Path
 from gbm_bench.utils.constants import RHUH_GBM_DIR
 from gbm_bench.utils.parsing import LongitudinalDataset
 from gbm_bench.evaluation.evaluate import evaluate_tumor_model
+from gbm_bench.utils.constants import PREDICTION_OUTPUT_SCHEMA
 
 
 if __name__ == "__main__":
@@ -30,16 +31,9 @@ if __name__ == "__main__":
         if len(preop_exams) > 1:
             print(f"Warning: found {len(preop_exams)} preop exams for patient {patiend_ind, patiend}. Using first exam for evaluation.")
 
+        algo_id = "lmi" # sbtc, gliodil
         preop_exam_dir = preop_exams[0]["t1"].parent
-
-        #model_id = "lmi"
-        #prediction_dir = preop_exam_dir / "preprocessing/lmi/lmi_tumor_patientSpace.nii" #TODO: add constant (first relocate old model outputs)
-        
-        model_id = "sbtc"
-        prediction_dir = preop_exam_dir / "preprocessing/sbtc/recurrencePrediction.nii.gz"
-        
-        #model_id = "gliodil"
-        #prediction_dir = preop_exam_dir / "preprocessing/gliodilx_pet__PDE1.0_/192_48_48_48_solution.nii"
+        prediction_dir = PREDICTION_OUTPUT_SCHEMA.format(base_dir=preop_exam_dir, algo_id=algo_id)
         
         for followup_exam in followup_exams:
             followup_exam_dir = followup_exam["t1"].parent
