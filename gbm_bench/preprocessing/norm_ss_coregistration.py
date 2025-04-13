@@ -15,7 +15,7 @@ from gbm_bench.utils.constants import (
     LONGITUDINAL_TRAFO_SCHEMA,
     LONGITUDINAL_WARP_SCHEMA,
     MODALITY_CONVERTED_SCHEMA,
-    MODALITY_STRIPPED_SHEMA,
+    MODALITY_STRIPPED_SCHEMA,
     RECURRENCE_SCHEMA,
     TUMORSEG_SCHEMA,
 )
@@ -35,8 +35,8 @@ def initialize_center_modality(modality_file: Path, modality_name: str, normaliz
         CenterModality: An instance of CenterModality configured with the input file, normalization settings, 
                         and output paths for the normalized image and the associated brain mask.
     """
-    modality_outfile = MODALITY_STRIPPED_SHEMA.format(outdir=outdir, modality=modality_name)
-    mask_outfile = BRAIN_MASK_SCHEMA.format(outdir=outdir)
+    modality_outfile = MODALITY_STRIPPED_SCHEMA.format(base_dir=outdir, modality=modality_name)
+    mask_outfile = BRAIN_MASK_SCHEMA.format(base_dir=outdir)
 
     center = CenterModality(
             modality_name=modality_name,
@@ -65,7 +65,7 @@ def initialize_moving_modalities(modality_files: List[Path], modality_names: Lis
     moving_modalities = []
     for mod_file, mod_name in zip(modality_files, modality_names):
         
-        stripped_modality_outfile = MODALITY_STRIPPED_SHEMA.format(outdir=outdir, modality=mod_name)
+        stripped_modality_outfile = MODALITY_STRIPPED_SCHEMA.format(base_dir=outdir, modality=mod_name)
         
         m = Modality(
                 input_path=mod_file,
@@ -153,10 +153,10 @@ def register_recurrence(t1c_pre_file: Path, t1c_post_file: Path, recurrence_seg_
             smoothing_sigmas=(1, 0)
             )
 
-    recurrence_outdir = RECURRENCE_SCHEMA.format(outdir=outdir)
+    recurrence_outdir = RECURRENCE_SCHEMA.format(base_dir=outdir)
     recurrence_outdir.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copyfile(src=reg["fwdtransforms"][0], dst=str(LONGITUDINAL_TRAFO_SCHEMA.format(outdir=outdir)))
-    ants.image_write(reg["warpedmovout"], str(LONGITUDINAL_WARP_SCHEMA.format(outdir=outdir)))
+    shutil.copyfile(src=reg["fwdtransforms"][0], dst=str(LONGITUDINAL_TRAFO_SCHEMA.format(base_dir=outdir)))
+    ants.image_write(reg["warpedmovout"], str(LONGITUDINAL_WARP_SCHEMA.format(base_dir=outdir)))
 
     recurrence_seg = ants.image_read(str(recurrence_seg_file))
     recurrence_warped = ants.apply_transforms(
@@ -182,14 +182,14 @@ if __name__ == "__main__":
     preop_exam = Path("test_data/exam1")
     postop_exam = Path("test_data/exam3")
 
-    t1_nifti_file = MODALITY_CONVERTED_SCHEMA.format(outdir=preop_exam, modality="t1")
-    t1c_nifti_file = MODALITY_CONVERTED_SCHEMA.format(outdir=preop_exam, modality="t1c")
-    t2_nifti_file = MODALITY_CONVERTED_SCHEMA.format(outdir=preop_exam, modality="t2")
-    flair_nifti_file = MODALITY_CONVERTED_SCHEMA.format(outdir=preop_exam, modality="flair")
+    t1_nifti_file = MODALITY_CONVERTED_SCHEMA.format(base_dir=preop_exam, modality="t1")
+    t1c_nifti_file = MODALITY_CONVERTED_SCHEMA.format(base_dir=preop_exam, modality="t1c")
+    t2_nifti_file = MODALITY_CONVERTED_SCHEMA.format(base_dir=preop_exam, modality="t2")
+    flair_nifti_file = MODALITY_CONVERTED_SCHEMA.format(base_dir=preop_exam, modality="flair")
 
-    t1c_stripped_preop = MODALITY_STRIPPED_SHEMA.format(outdir=preop_exam, modality="t1c")
-    t1c_stripped_postop = MODALITY_STRIPPED_SHEMA.format(outdir=postop_exam, modality="t1c")
-    recurrence_seg_file = TUMORSEG_SCHEMA.format(outdir=postop_exam)
+    t1c_stripped_preop = MODALITY_STRIPPED_SCHEMA.format(base_dir=preop_exam, modality="t1c")
+    t1c_stripped_postop = MODALITY_STRIPPED_SCHEMA.format(base_dir=postop_exam, modality="t1c")
+    recurrence_seg_file = TUMORSEG_SCHEMA.format(base_dir=postop_exam)
 
     outdir_tmp = Path("./tmp_test_ss")
     norm_ss_coregister(

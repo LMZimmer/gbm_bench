@@ -4,9 +4,10 @@ import argparse
 import numpy as np
 import nibabel as nib
 from pathlib import Path
+from loguru import logger
 from typing import Any, Dict
 from scipy.ndimage import center_of_mass, distance_transform_edt
-from gbm_bench.utils.metrics import coverage
+from gbm_bench.evaluation.metrics import coverage
 from gbm_bench.utils.utils import load_mri_data, load_and_resample_mri_data, is_binary_array
 from gbm_bench.utils.constants import BRAIN_MASK_SCHEMA, METRICS_SCHEMA, RECURRENCE_SCHEMA, TUMORSEG_SCHEMA, TUMORSEG_CORE_SCHEMA
 
@@ -137,6 +138,7 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
         preop_dir (Path): Directory to the preoperative exam that has been preprocessed. Should contain the folder with the output.
         followup_dir (Path): Directory to the postoperative exam that has been preprocessed. Should contain the folder with the output.
         pred_file (Path): File path containing model prediction MRI data.
+        model_id (str): Identifier for the model. Used for the name of the output file.
         ctv_margin (int, optional): Margin used to expand the clinical target volume for the standard plan. Defaults to 15.
         tumor_conc_thresh (float, optional): Threshold for tumor concentration in the model predictions. Defaults to 0.1.
 
@@ -212,6 +214,8 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
     save_file = METRICS_SCHEMA.format(outdir=followup_dir, algo_id=model_id)
     with open(save_file, 'w', encoding="utf-8") as f:
         json.dump(results, f, indent=2)
+
+    logger.info(f"Finished evaluation of {preop_dir}. Saved results to {save_file}.")
     return results
 
 

@@ -79,7 +79,7 @@ def run_tissue_seg_registration(t1_file: Path, healthy_mask_file: Path, outdir: 
     atlas_tissues_dir = ATLAS_DIR / "tissues.nii"
     atlas_pbmap_dirs = {tissue: ATLAS_DIR / f"pbmap_{tissue}.nii" for tissue in ["csf", "gm", "wm"]}
     
-    outprefix = TISSUE_SEG_BASE_SCHEMA.format(outdir=outdir)
+    outprefix = TISSUE_SEG_BASE_SCHEMA.format(base_dir=outdir)
     outprefix.mkdir(parents=True, exist_ok=True)
 
     # Read images
@@ -140,9 +140,9 @@ def run_tissue_seg_registration(t1_file: Path, healthy_mask_file: Path, outdir: 
 
     # Save transformed tissue segmentation
     tissues_warped_nifti = tissues_warped.to_nibabel()
-    nib.save(tissues_warped_nifti, str(TISSUE_SEG_SCHEMA.format(outdir=outdir)))
+    nib.save(tissues_warped_nifti, str(TISSUE_SEG_SCHEMA.format(base_dir=outdir)))
 
-    logger.debug(f"Registration step done, saving output to {TISSUE_SEG_SCHEMA.format(outdir=outdir)}")
+    logger.debug(f"Registration step done, saving output to {TISSUE_SEG_SCHEMA.format(base_dir=outdir)}")
     logger.info(f"Generating pbmaps...")
 
     # Create single tissue masks from full tissue segmentation
@@ -151,7 +151,7 @@ def run_tissue_seg_registration(t1_file: Path, healthy_mask_file: Path, outdir: 
     for tissue, label in tissue_labels.items():
         tissue_mask = (tissues_warped.numpy() == label).astype(np.int32)
         tissue_mask_nifti = nib.Nifti1Image(tissue_mask, header=header, affine=aff)
-        nib.save(tissue_mask_nifti, str(TISSUE_SCHEMA.format(outdir=outdir, tissue=tissue)))
+        nib.save(tissue_mask_nifti, str(TISSUE_SCHEMA.format(base_dir=outdir, tissue=tissue)))
 
     # Create probability maps by transforming atlas pbmaps with the previously obtained transformation
     for tissue, pbmap_dir in atlas_pbmap_dirs.items():
@@ -177,7 +177,7 @@ def run_tissue_seg_registration(t1_file: Path, healthy_mask_file: Path, outdir: 
         """
 
         warped_pbmap_nifti = warped_pbmap.to_nibabel()
-        nib.save(warped_pbmap_nifti, str(TISSUE_PBMAP_SCHEMA.format(outdir=outdir, tissue=tissue)))
+        nib.save(warped_pbmap_nifti, str(TISSUE_PBMAP_SCHEMA.format(base_dir=outdir, tissue=tissue)))
     
     time_spent = time.time() - start_time
     logger.info(f"Finished tissue segmentation in {time_spent:.2f} seconds. Results saved to {outdir}.")
@@ -199,7 +199,7 @@ if __name__ == "__main__":
 
     outdir = Path("./tmp_test_tissueseg")
 
-    healthy_mask_file = HEALTHY_BRAIN_MASK_SCHEMA.format(outdir=outdir)
+    healthy_mask_file = HEALTHY_BRAIN_MASK_SCHEMA.format(base_dir=outdir)
     generate_healthy_brain_mask(
             brain_mask_file=brain_mask_file,
             tumor_seg_file=tumor_seg_file,

@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 import shutil
 import argparse
 import tempfile
@@ -7,9 +8,9 @@ from pathlib import Path
 from loguru import logger
 from contextlib import contextmanager
 from typing import Dict, Generator, List, Optional, Union
-from gbm_bench.evaluation.docker_funcs import *
+from gbm_bench.prediction.docker_funcs import *
 from gbm_bench.utils.utils import remove_tmp_folder
-from gbm_bench.utils.constants import GROWTH_MODEL_DIR, GROWTH_PRED_SCHEMA
+from gbm_bench.utils.constants import DOCKER_OUTPUT_SCHEMA, PREDICTION_OUTPUT_SCHEMA, GROWTH_MODEL_DIR 
 
 
 def load_algorithms(model_dir: Path = GROWTH_MODEL_DIR) -> Dict[str, Path]:
@@ -35,13 +36,13 @@ def InferenceSetup(log_file: str = None) -> Generator[Tuple[Path, Path], None, N
         logger_id = add_log_file_handler(log_file)
 
     tmp_data_dir = Path(tempfile.mkdtemp(prefix="data_"))
-    tmp_output_dir = Path(tempfile.mkdtemp(prefix="output_"))
+    tmp_outdir = Path(tempfile.mkdtemp(prefix="output_"))
 
     try:
-        yield tmp_data_dir, tmp_output_dir
+        yield tmp_data_dir, tmp_outdir
     finally:
         remove_tmp_folder(tmp_data_dir)
-        remove_tmp_folder(tmp_output_dir)
+        remove_tmp_folder(tmp_outdir)
 
         if log_file is not None:
             logger.remove(logger_id)
@@ -50,7 +51,7 @@ def InferenceSetup(log_file: str = None) -> Generator[Tuple[Path, Path], None, N
 class TumorGrowthModel():
     """A class that utilizes Docker images of tumor growth models to make tumor growth predictions."""
 
-    def __init__(self, algorithm: str, cuda_devices: Optional[str] = "0", force_cpu: bool = False):
+    def __init__(self, algorithm: str, cuda_device: Optional[str] = "0", force_cpu: bool = False):
         self.algorithm_list = load_algorithms()
         
         if algorithm not in self.algorithm_list.keys():
@@ -58,7 +59,7 @@ class TumorGrowthModel():
 
         self.algorithm = algorithm
         self.model_file = self.algorithm_list[algorithm]
-        self.cuda_devices = cuda_devices
+        self.cuda_device = cuda_device
         self.force_cpu = force_cpu
 
 
@@ -93,24 +94,21 @@ class TumorGrowthModel():
             logger.error(f"Error while standardizing files: {e}")
             sys.exit(1)
 
-    def _process_output(self, tmp_output_dir: Path, subject_id: str, output_dir: Path) -> None:
+    def _process_output(self, tmp_outdir: Path, subject_id: str, outdir: Path) -> None:
         """
-        Process the output of a docker growth model and save it in the specified file.
+        Moves the output of the docker model to the specified directory.
 
         Args:
-            tmp_output_dir: Folder with the algorithm output
+            tmp_outdir: Folder with the algorithm output
             subject_id: Subject ID of the output
-            output_dir: Path to the desired output file
+            outdir: Path to the desired output file
         """
-        # rename output
-        algorithm_output = tmp_output_dir / GROWTH_PRED_SCHEMA.format(subject_id=subject_id)
+        docker_outfile = tmp_outdir / DOCKER_OUTPUT_SCHEMA.format(subject_id=subject_id)
+        prediction_outfile = PREDICTION_OUTPUT_SCHEMA.format(base_dir=outdir.resolve(), algo_id=self.algorithm)
+        prediction_outfile.parent.mkdir(parents=True, exist_ok=True)
+        shutil.move(docker_outfile, prediction_outfile)
 
-        # ensure path exists and rename output to the desired path
-        output_dir = output_dir.resolve()
-        output_dir.mkdir(parents=True, exist_ok=True)
-        shutil.move(algorithm_output, output_dir)
-
-    def predict_single(self, t1c: Path, gm: Path, wm: Path, csf: Path, tumorseg: Path, output_dir: Path, pet: Optional[Path] = None, log_file: Optional[Path] = None) -> None:
+    def predict_single(self, t1c: Path, gm: Path, wm: Path, csf: Path, tumorseg: Path, outdir: Path, pet: Optional[Path] = None, log_file: Optional[Path] = None) -> None:
         """Predict tumor growth on a single subject with the provided images and save the result to the output file.
 
         Args:
@@ -120,15 +118,14 @@ class TumorGrowthModel():
             csf: Path to csf probability map
             tumorseg: Path to tumor segmentation
             pet: Path to pet image
-            output_dir: Path to save the segmentation
+            outdir: Path to save the segmentation
             log_file: Save logs to this file
         """
         inputs = {"t1c": t1c, "gm": gm, "wm": wm, "csf": csf, "tumorseg": tumorseg}
         if pet is not None:
             inputs["pet"] = pet
 
-
-        with InferenceSetup(log_file=log_file) as (tmp_data_dir, tmp_output_dir):
+        with InferenceSetup(log_file=log_file) as (tmp_data_dir, tmp_outdir):
 
             # the id here is arbitrary
             subject_id = "00000"
@@ -143,22 +140,22 @@ class TumorGrowthModel():
                 algorithm=self.algorithm,
                 model_file=self.model_file,
                 data_dir=tmp_data_dir,
-                output_dir=tmp_output_dir,
-                cuda_devices=self.cuda_devices,
+                outdir=tmp_outdir,
+                cuda_device=self.cuda_device,
                 force_cpu=self.force_cpu,
             )
 
             self._process_output(
-                tmp_output_dir=tmp_output_dir,
+                tmp_outdir=tmp_outdir,
                 subject_id=subject_id,
-                output_dir=output_dir,
+                outdir=outdir,
             )
-            logger.info(f"Saved output to: {output_dir.resolve()}")
+            logger.info(f"Finisehd growth prediction. Saved output to: {outdir.resolve()}")
 
 
 if __name__ == "__main__":
     # Example:
-    # python gbm_bench/evaluation/growth_model.py -cuda_device 0
+    # python gbm_bench/prediction/growth_model.py -cuda_device 0
     parser = argparse.ArgumentParser()
     parser.add_argument("-cuda_device", type=str, default="0", help="GPU id to run on.")
     args = parser.parse_args()
@@ -172,8 +169,8 @@ if __name__ == "__main__":
             "wm": base_dir / "tissue_segmentation/wm_pbmap.nii.gz",
             "csf": base_dir / "tissue_segmentation/csf_pbmap.nii.gz",
             "tumorseg": base_dir / "tumor_segmentation/tumor_seg.nii.gz",
-            "output_dir": Path("tmp/docker_test")
+            "outdir": Path("tmp/docker_test")
             }
 
-    model = TumorGrowthModel(algorithm="test_model", cuda_devices = "0")
+    model = TumorGrowthModel(algorithm="test_model", cuda_device = "0")
     model.predict_single(**test_kwargs)

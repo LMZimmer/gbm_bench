@@ -36,11 +36,11 @@ def _is_cuda_available() -> bool:
         return False
 
 
-def _handle_device_requests(cuda_devices: str, force_cpu: bool) -> List[docker.types.DeviceRequest]:
+def _handle_device_requests(cuda_device: str, force_cpu: bool) -> List[docker.types.DeviceRequest]:
     """Handle the device requests for the docker container (request cuda or cpu).
 
     Args:
-        cuda_devices (str): The CUDA devices to use
+        cuda_device (str): The CUDA devices to use
         force_cpu (bool): Whether to force CPU execution
     """
     cuda_available = _is_cuda_available()
@@ -50,16 +50,16 @@ def _handle_device_requests(cuda_devices: str, force_cpu: bool) -> List[docker.t
         return []
     # request gpu with chosen devices
     return [
-        docker.types.DeviceRequest(device_ids=[cuda_devices], capabilities=[["gpu"]])
+        docker.types.DeviceRequest(device_ids=[cuda_device], capabilities=[["gpu"]])
     ]
 
 
-def _get_volume_mappings(data_dir: Path, output_dir: Path) -> Dict:
+def _get_volume_mappings(data_dir: Path, outdir: Path) -> Dict:
     """Get the volume mappings for the docker container.
 
     Args:
         data_dir: The path to the input data
-        output_dir: The path to save the output
+        outdir: The path to save the output
 
     Returns:
         Dict: The volume mappings
@@ -72,7 +72,7 @@ def _get_volume_mappings(data_dir: Path, output_dir: Path) -> Dict:
             "mode": "rw",
         }
         for i, volume in enumerate(
-            [data_dir, output_dir]
+            [data_dir, outdir]
         )
     }
 
@@ -140,43 +140,43 @@ def _observe_docker_output(container: docker.models.containers.Container) -> str
     return container_output
 
 
-def _sanity_check_output(data_dir: Path, output_dir: Path, container_output: str) -> None:
+def _sanity_check_output(data_dir: Path, outdir: Path, container_output: str) -> None:
     """Sanity check that the number of output files matches the number of input files and the output is not empty.
 
     Args:
         data_dir: The path to the input data
-        output_dir: The path to the output data
+        outdir: The path to the output data
         container_output: The output of the docker container
     """
-    outputs = list(output_dir.iterdir())
+    outputs = list(outdir.iterdir())
     if len(outputs) != 1:
         logger.error(f"Docker container output: \n\r{container_output}")
         raise RuntimeError(f"Expected 1 output file but got {len(outputs)}. Please check the logging output of the docker container for more information.")
 
 
-def run_container(algorithm: str, model_file: Path, data_dir: Path, output_dir: Path, cuda_devices: str, force_cpu: bool) -> None:
+def run_container(algorithm: str, model_file: Path, data_dir: Path, outdir: Path, cuda_device: str, force_cpu: bool) -> None:
     """Run a docker container for the provided algorithm.
 
     Args:
         algorithm: Name of the algorithm
         model_file: Path to the growth model docker image.
         data_dir: The path to the input data
-        output_dir: The path to save the output
-        cuda_devices: The CUDA devices to use
+        outdir: The path to save the output
+        cuda_device: The CUDA devices to use
         force_cpu: Whether to force CPU execution
         internal_external_name_map: Dictionary mapping internal name (in standardized format) to external subject name provided by user (only used for batch inference)
     """
     # ensure output folder exists
-    output_dir.mkdir(parents=True, exist_ok=True)
+    outdir.mkdir(parents=True, exist_ok=True)
 
     volume_mappings = _get_volume_mappings(
         data_dir=data_dir,
-        output_dir=output_dir
+        outdir=outdir
     )
     logger.debug(f"Volume mappings: {volume_mappings}")
 
     # device setup
-    device_requests = _handle_device_requests(cuda_devices=cuda_devices, force_cpu=force_cpu)
+    device_requests = _handle_device_requests(cuda_device=cuda_device, force_cpu=force_cpu)
     logger.debug(f"GPU Device requests: {device_requests}")
 
     # load image if necessary
@@ -200,7 +200,7 @@ def run_container(algorithm: str, model_file: Path, data_dir: Path, output_dir: 
     container.remove()
     _sanity_check_output(
         data_dir=data_dir,
-        output_dir=output_dir,
+        outdir=outdir,
         container_output=container_output
     )
 

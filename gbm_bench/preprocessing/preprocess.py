@@ -7,7 +7,7 @@ from gbm_bench.preprocessing.dicom_to_nifti import convert_nifti
 from gbm_bench.preprocessing.tumor_segmentation import run_brats
 from gbm_bench.preprocessing.norm_ss_coregistration import norm_ss_coregister, register_recurrence
 from gbm_bench.preprocessing.tissue_segmentation import generate_healthy_brain_mask, run_tissue_seg_registration
-from gbm_bench.utils.constants import DCM2NIIX_LOCATION, MODALITY_CONVERTED_SCHEMA, MODALITY_STRIPPED_SHEMA, BRAIN_MASK_SCHEMA, HEALTHY_BRAIN_MASK_SCHEMA, TUMORSEG_SCHEMA
+from gbm_bench.utils.constants import DCM2NIIX_LOCATION, MODALITY_CONVERTED_SCHEMA, MODALITY_STRIPPED_SCHEMA, BRAIN_MASK_SCHEMA, HEALTHY_BRAIN_MASK_SCHEMA, TUMORSEG_SCHEMA
 
 
 def preprocess_dicom(t1_dir: Path, t1c_dir: Path, t2_dir: Path, flair_dir: Path, pre_treatment: bool, outdir: Path,
@@ -53,7 +53,7 @@ def preprocess_dicom(t1_dir: Path, t1c_dir: Path, t2_dir: Path, flair_dir: Path,
 
     for modality_name, dicom_dir in dicom_modalities.items():
         # Remove suffix since dicom2niix adds .nii.gz automatically
-        outfile_tmp = MODALITY_CONVERTED_SCHEMA.format(outdir=outdir, modality=modality_name).with_suffix("").with_suffix("")
+        outfile_tmp = MODALITY_CONVERTED_SCHEMA.format(base_dir=outdir, modality=modality_name).with_suffix("").with_suffix("")
 
         if perform_nifti_conversion:
             convert_nifti(
@@ -67,20 +67,20 @@ def preprocess_dicom(t1_dir: Path, t1c_dir: Path, t2_dir: Path, flair_dir: Path,
     # Step 2: Normalization, co-registration, skull stripping
     if perform_skullstripping:
         norm_ss_coregister(
-                t1_file=MODALITY_CONVERTED_SCHEMA.format(outdir=outdir, modality="t1"),
-                t1c_file=MODALITY_CONVERTED_SCHEMA.format(outdir=outdir, modality="t1c"),
-                t2_file=MODALITY_CONVERTED_SCHEMA.format(outdir=outdir, modality="t2"),
-                flair_file=MODALITY_CONVERTED_SCHEMA.format(outdir=outdir, modality="flair"),
+                t1_file=MODALITY_CONVERTED_SCHEMA.format(base_dir=outdir, modality="t1"),
+                t1c_file=MODALITY_CONVERTED_SCHEMA.format(base_dir=outdir, modality="t1c"),
+                t2_file=MODALITY_CONVERTED_SCHEMA.format(base_dir=outdir, modality="t2"),
+                flair_file=MODALITY_CONVERTED_SCHEMA.format(base_dir=outdir, modality="flair"),
                 outdir=outdir
                 )
 
     # Step 3: Segment tumor
     if perform_tumorseg:
         run_brats(
-                t1_file=MODALITY_STRIPPED_SHEMA.format(outdir=outdir, modality="t1"),
-                t1c_file=MODALITY_STRIPPED_SHEMA.format(outdir=outdir, modality="t1c"),
-                t2_file=MODALITY_STRIPPED_SHEMA.format(outdir=outdir, modality="t2"),
-                flair_file=MODALITY_STRIPPED_SHEMA.format(outdir=outdir, modality="flair"),
+                t1_file=MODALITY_STRIPPED_SCHEMA.format(base_dir=outdir, modality="t1"),
+                t1c_file=MODALITY_STRIPPED_SCHEMA.format(base_dir=outdir, modality="t1c"),
+                t2_file=MODALITY_STRIPPED_SCHEMA.format(base_dir=outdir, modality="t2"),
+                flair_file=MODALITY_STRIPPED_SCHEMA.format(base_dir=outdir, modality="flair"),
                 outdir=outdir,
                 pre_treatment=pre_treatment,
                 cuda_device=cuda_device
@@ -88,16 +88,16 @@ def preprocess_dicom(t1_dir: Path, t1c_dir: Path, t2_dir: Path, flair_dir: Path,
 
     # Step 4: Segment tissue
     generate_healthy_brain_mask(
-            brain_mask_file=BRAIN_MASK_SCHEMA.format(outdir=outdir),
-            tumor_seg_file=TUMORSEG_SCHEMA.format(outdir=outdir),
-            outfile=HEALTHY_BRAIN_MASK_SCHEMA.format(outdir=outdir)
+            brain_mask_file=BRAIN_MASK_SCHEMA.format(base_dir=outdir),
+            tumor_seg_file=TUMORSEG_SCHEMA.format(base_dir=outdir),
+            outfile=HEALTHY_BRAIN_MASK_SCHEMA.format(base_dir=outdir)
             )
 
     if perform_tissueseg:
         run_tissue_seg_registration(
-                t1_file = MODALITY_STRIPPED_SHEMA.format(outdir=outdir, modality="t1c"),
-                healthy_mask_file=HEALTHY_BRAIN_MASK_SCHEMA.format(outdir=outdir),
-                brain_mask_file=BRAIN_MASK_SCHEMA.format(outdir=outdir),
+                t1_file = MODALITY_STRIPPED_SCHEMA.format(base_dir=outdir, modality="t1c"),
+                healthy_mask_file=HEALTHY_BRAIN_MASK_SCHEMA.format(base_dir=outdir),
+                brain_mask_file=BRAIN_MASK_SCHEMA.format(base_dir=outdir),
                 outdir=outdir,
                 refit_brain=False
                 )
@@ -113,9 +113,9 @@ def process_longitudinal(preop_exam_dir: Path, followup_exam_dir: Path, outdir: 
     logger.info(f"Starting longitudinal processing.")
 
     # Prepare directories
-    t1c_pre_file = MODALITY_STRIPPED_SHEMA.format(outdir=preop_exam_dir, modality="t1c")
-    t1c_post_file = MODALITY_STRIPPED_SHEMA.format(outdir=followup_exam_dir, modality="t1c")
-    recurrence_seg_file = TUMORSEG_SCHEMA.format(outdir=followup_exam_dir)
+    t1c_pre_file = MODALITY_STRIPPED_SCHEMA.format(base_dir=preop_exam_dir, modality="t1c")
+    t1c_post_file = MODALITY_STRIPPED_SCHEMA.format(base_dir=followup_exam_dir, modality="t1c")
+    recurrence_seg_file = TUMORSEG_SCHEMA.format(base_dir=followup_exam_dir)
 
     register_recurrence(
             t1c_pre_file=t1c_pre_file,
