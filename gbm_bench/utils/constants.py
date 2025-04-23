@@ -65,7 +65,7 @@ GROWTH_MODEL_DIR = DATA_DIR / "models"
 
 
 # OUTPUT DIRECTOIES
-OUTPUT_FOLDER = "preprocessing"
+OUTPUT_FOLDER = "processed"
 CONVERSION_FOLDER = "nifti_conversion"
 SKULL_STRIP_FOLDER = "skull_stripped"
 TISSUE_SEGMENTATION_FOLDER = "tissue_segmentation"

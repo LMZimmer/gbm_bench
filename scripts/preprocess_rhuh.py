@@ -3,7 +3,7 @@ import argparse
 from pathlib import Path
 from gbm_bench.utils.constants import RHUH_GBM_DIR
 from gbm_bench.utils.parsing import LongitudinalDataset
-from gbm_bench.preprocessing.preprocess import preprocess_dicom, process_longitudinal
+from gbm_bench.preprocessing.preprocess import preprocess_exam, process_longitudinal
 
 
 if __name__ == "__main__":
@@ -31,7 +31,7 @@ if __name__ == "__main__":
 
             is_preop = (exam["timepoint"] == "preop")
 
-            preprocess_dicom(
+            preprocess_exam(
                     t1_dir=exam["t1"],
                     t1c_dir=exam["t1c"],
                     t2_dir=exam["t2"],

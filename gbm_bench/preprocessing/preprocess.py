@@ -10,11 +10,11 @@ from gbm_bench.preprocessing.tissue_segmentation import generate_healthy_brain_m
 from gbm_bench.utils.constants import DCM2NIIX_LOCATION, MODALITY_CONVERTED_SCHEMA, MODALITY_STRIPPED_SCHEMA, BRAIN_MASK_SCHEMA, HEALTHY_BRAIN_MASK_SCHEMA, TUMORSEG_SCHEMA
 
 
-def preprocess_dicom(t1_dir: Path, t1c_dir: Path, t2_dir: Path, flair_dir: Path, pre_treatment: bool, outdir: Path,
-                     dcm2niix_location: Path = DCM2NIIX_LOCATION, cuda_device: str = "2", perform_nifti_conversion: bool = True,
-                     perform_skullstripping: bool = True, perform_tumorseg: bool = True, perform_tissueseg: bool = True) -> None:
+def preprocess_exam(t1_dir: Path, t1c_dir: Path, t2_dir: Path, flair_dir: Path, pre_treatment: bool, outdir: Path,
+                    dcm2niix_location: Path = DCM2NIIX_LOCATION, cuda_device: str = "2", perform_nifti_conversion: bool = True,
+                    perform_skullstripping: bool = True, perform_tumorseg: bool = True, perform_tissueseg: bool = True) -> None:
     """
-    Performs a multitude of processing steps on raw DICOM data to prepare inputs for tumor growth models. DICOM data is first
+    Performs a multitude of processing steps to prepare inputs for tumor growth models. DICOM data is first
     converted to NIfTI, followed by normalization, skull stripping and co-registration on the T1c image. Next, tumor tissue
     is segmented using BRATS algorithms. Finally, tissue segmentation is performed for wm, gm, csf as a multitude of growth
     models require tissue maps as inputs.
@@ -139,7 +139,7 @@ if __name__ == "__main__":
     outdir_tmp = Path("tmp_preprocessing")
 
     # Pre-treatment example
-    preprocess_dicom(
+    preprocess_exam(
             t1_dir=Path("test_data/exam1/t1"),
             t1c_dir=Path("test_data/exam1/t1c"),
             t2_dir=Path("test_data/exam1/t2"),
@@ -150,7 +150,7 @@ if __name__ == "__main__":
             )
     
     # Post-treatment example
-    preprocess_dicom(
+    preprocess_exam(
             t1_dir=Path("test_data/exam3/t1"),
             t1c_dir=Path("test_data/exam3/t1c"),
             t2_dir=Path("test_data/exam3/t2"),
