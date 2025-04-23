@@ -55,17 +55,18 @@ def generate_healthy_brain_mask(brain_mask_file: Path, tumor_seg_file: Path, out
     logger.debug(f"Healthy brain mask generated succesfully and saved to {outfile}")
 
 
-def run_tissue_seg_registration(t1_file: Path, healthy_mask_file: Path, outdir: Path, brain_mask_file: Path = None, refit_brain: bool = False) -> None:
+def run_tissue_seg_registration(t1_file: Path, outdir: Path, healthy_mask_file: Path = None, mask_registration: bool = False, brain_mask_file: Path = None, refit_brain: bool = False) -> None:
     """
     Performs tissue segmentation for gm, wm, csf by registering an atlas to the input t1 file and transforming atlas tissue maps using
     the obtained transformation.
 
     Parameters:
         t1_file (Path): Path to the t1 nifti.
-        healthy_mask_file (Path): Path to the healthy brain mask nifti. 
         outdir (Path): Path to output directory. Usually exam directory.
-        brain_mask_file (Path): Path to the brain mask nifti as obtained from skull stripping.
-        refit_brain (bool): Wether to refit the outline of the warped atlas to the brain mask.
+        healthy_mask_file (Path): Path to the healthy brain mask nifti. Can be used for masking during registration.
+        mask_registration (bool): If true, uses the healthy brain mask to mask out tumor regions during registration.
+        brain_mask_file (Path): Path to the brain mask nifti as obtained from skull stripping. Used for refitting the brain mask.
+        refit_brain (bool): If true, refits the outline of the warped atlas to the brain mask.
 
     Returns:
         None
@@ -83,18 +84,23 @@ def run_tissue_seg_registration(t1_file: Path, healthy_mask_file: Path, outdir: 
     outprefix.mkdir(parents=True, exist_ok=True)
 
     # Read images
-    healthy_mask = ants.image_read(str(healthy_mask_file))
-
     t1_patient = ants.image_read(str(t1_file))
     t1_atlas = ants.image_read(str(atlas_t1_dir))
-    
+
+    reg_kwargs = {}
+    if mask_registration:
+        if healthy_mask_file is None:
+            raise ValueError(f"Please specify healthy_mask_file when using mask_registration=True.")
+        healthy_mask = ants.image_read(str(healthy_mask_file))
+        reg_kwargs = {"mask": healthy_mask}
+
     # Register atlas to patient deformably
     reg = ants.registration(
             fixed=t1_patient,
             moving=t1_atlas,
             type_of_transform="antsRegistrationSyN[s,2]",
-            #mask=healthy_mask,
-            outprefix=str(outprefix)+"/"
+            outprefix=str(outprefix)+"/",
+            **reg_kwargs
             )
     transforms_path = reg['fwdtransforms']
 
@@ -108,7 +114,7 @@ def run_tissue_seg_registration(t1_file: Path, healthy_mask_file: Path, outdir: 
             )
 
     """
-    # Refit tissue mask on the full brain mask, if desired
+    # Refit tissue mask on the full brain mask
     if refit_brain:
         if brain_mask_file is None:
             raise ValueError(f"Please specify brain_mask_file when using refit_brain=True")
