@@ -162,7 +162,7 @@ if __name__ == "__main__":
 
     os.environ["CUDA_VISIBLE_DEVICES"] = args.cuda_device
 
-    base_dir = Path("/home/home/lucas/projects/gbm_bench/test_data/exam1/preprocessing/")
+    base_dir = Path("/home/home/lucas/projects/gbm_bench/test_data/exam1/processed/")
     test_kwargs = {
             "t1c": base_dir / "skull_stripped/t1c_bet_normalized.nii.gz",
             "gm": base_dir / "tissue_segmentation/gm_pbmap.nii.gz",

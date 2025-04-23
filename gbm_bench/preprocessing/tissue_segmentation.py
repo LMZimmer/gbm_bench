@@ -198,7 +198,7 @@ if __name__ == "__main__":
 
     os.environ["CUDA_VISIBLE_DEVICES"] = args.cuda_device
 
-    outdir = Path("test_data/exam1/preprocessing/")
+    outdir = Path("test_data/exam1/processed/")
     t1c_file = outdir / "skull_stripped/t1c_bet_normalized.nii.gz"
     brain_mask_file = outdir / "skull_stripped/t1c_bet_mask.nii.gz"
     tumor_seg_file = outdir / "tumor_segmentation/tumor_seg.nii.gz"

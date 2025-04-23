@@ -31,7 +31,7 @@ if __name__ == "__main__":
 
             is_preop = (exam["timepoint"] == "preop")
 
-            preprocess_exam(
+            preprocess_dicom(
                     t1_dir=exam["t1"],
                     t1c_dir=exam["t1c"],
                     t2_dir=exam["t2"],
@@ -40,10 +40,6 @@ if __name__ == "__main__":
                     dcm2niix_location=dcm2niix_location,
                     pre_treatment=is_preop,
                     cuda_device=args.cuda_device,
-                    perform_nifti_conversion=True,
-                    perform_coregistration=True,
-                    perform_tumorseg=True,
-                    perform_tissueseg=is_preop
                     )
 
     # Longitudinal registration

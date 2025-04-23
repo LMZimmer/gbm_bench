@@ -13,7 +13,7 @@ from gbm_bench.utils.constants import DCM2NIIX_LOCATION, MODALITY_CONVERTED_SCHE
 
 
 def preprocess_dicom(t1_dir: Path, t1c_dir: Path, t2_dir: Path, flair_dir: Path, pre_treatment: bool, outdir: Path,
-                     dcm2niix_location: Path = DCM2NIIX_LOCATION, cuda_device: str = "2") -> None:
+                     dcm2niix_location: Path = DCM2NIIX_LOCATION, cuda_device: str = "0") -> None:
     """
     Performs a multitude of processing steps to prepare DICOM inputs for tumor growth models.
     DICOM data is first converted to NIfTI, then preprocess_exam is called for the rest. 
@@ -67,7 +67,7 @@ def preprocess_dicom(t1_dir: Path, t1c_dir: Path, t2_dir: Path, flair_dir: Path,
 
 
 def preprocess_nifti(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file: Path, pre_treatment: bool, outdir: Path,
-                     is_coregistered: bool, cuda_device: str = "2", tumorseg_file: Optional[Path] = None) -> None:
+                     is_coregistered: bool, tumorseg_file: Optional[Path] = None, cuda_device: str = "0") -> None:
     """
     Performs a multitude of precessing steps to prepare nifti inputs for tumor growth models. Allows passing
     available intermediate results like tumor segmentation or already skull stripped images. Starts by
@@ -121,8 +121,8 @@ def preprocess_nifti(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file: P
             )
 
 
-def preprocess_exam(outdir: Path, pre_treatment: bool, cuda_device: str = "2", perform_coregistration: bool = True,
-                    perform_tumorseg: bool = True, perform_tissueseg: bool = True) -> None:
+def preprocess_exam(outdir: Path, pre_treatment: bool, perform_coregistration: bool = True,
+                    perform_tumorseg: bool = True, perform_tissueseg: bool = True, cuda_device: str = "0") -> None:
     """
     This function is called by preprocess_nifti and preprocess_dicom and is not meant for end users. It assumes a fixed
     directory structure that is built by the aforementioned functions. It then performs normalization, co-registration,
@@ -225,6 +225,7 @@ if __name__ == "__main__":
 
     outdir_tmp = Path("tmp_preprocessing")
 
+    """
     # Pre-treatment example
     preprocess_dicom(
             t1_dir=Path("test_data/exam1/t1"),
@@ -244,13 +245,26 @@ if __name__ == "__main__":
             flair_dir=Path("test_data/exam3/flair"),
             outdir=outdir_tmp / "postop",
             pre_treatment=False,
-            perform_tissueseg=False,
             cuda_device=args.cuda_device
             )
-
+    """
+    # Nifti example
+    preprocess_nifti(
+            t1_file=Path("test_data/nifti/t1.nii.gz"),
+            t1c_file=Path("test_data/nifti/t1c.nii.gz"),
+            t2_file=Path("test_data/nifti/t2.nii.gz"),
+            flair_file=Path("test_data/nifti/flair.nii.gz"),
+            pre_treatment=True,
+            outdir=outdir_tmp / "nifti_preop",
+            is_coregistered=True,
+            tumorseg_file=Path("test_data/nifti/tumorseg.nii.gz"),
+            cuda_device=args.cuda_device
+            )
+    """
     # Longitudinal example
     process_longitudinal(
             preop_exam_dir=Path("test_data/exam1"),
             followup_exam_dir=Path("test_data/exam3"),
             outdir=outdir_tmp / "longitudinal"
             )
+    """

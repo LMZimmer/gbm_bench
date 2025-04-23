@@ -28,14 +28,15 @@ if __name__ == "__main__":
     outdir = Path("./tmp_testdata")
 
     # Preprocessing (if input is processed niftis, only use tissueseg and manually set folders)
-    preprocess_exam(
-            t1_dir=exam["t1"],
-            t1c_dir=exam["t1c"],
-            t2_dir=exam["t2"],
-            flair_dir=exam["flair"],
-            outdir=exam["t1"].parent,
-            dcm2niix_location=dcm2niix_location,
+    preprocess_nifti(
+            t1_file=Path("test_data/nifti/t1.nii.gz"),
+            t1c_file=Path("test_data/nifti/t1c.nii.gz"),
+            t2_file=Path("test_data/nifti/t2.nii.gz"),
+            flair_file=Path("test_data/nifti/flair.nii.gz"),
             pre_treatment=True,
+            outdir=outdir_tmp / "nifti_preop",
+            is_coregistered=True,
+            tumorseg_file=Path("test_data/nifti/tumorseg.nii.gz"),
             cuda_device=args.cuda_device
             )
 

@@ -225,7 +225,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-preop_dir", type=str, help="Path.")
     parser.add_argument("-followup_dir", type=str, help="Path.")
-    parser.add_argument("-pred_file", type=str, help="Algorithm identifier, should be the same as the folder for the algorithm in patient/exam/preprocessing/.")
+    parser.add_argument("-pred_file", type=str, help="Algorithm identifier, should be the same as the folder for the algorithm in patient/exam/processed/.")
     args = parser.parse_args()
 
     results = evaluate_tumor_model(
