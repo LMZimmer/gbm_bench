@@ -2,6 +2,7 @@ import os
 import ants
 import shutil
 import datetime
+import platform
 import numpy as np
 import nibabel as nib
 import matplotlib.pyplot as plt
@@ -43,6 +44,22 @@ def load_and_resample_mri_data(filepath: Union[str, Path], resample_params: Tupl
             interp_type=interp_type
             )
     return img.to_nibabel().get_fdata()
+
+
+def make_symlink(src: Path, dst: Path) -> None:
+    """
+    Create a symlink `dst` → `src`, replacing an existing file if necessary.
+    """
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        dst.unlink()          # remove stale link/file if present
+    except FileNotFoundError:
+        pass
+
+    kwargs = {}
+    if platform.system() == "Windows":
+        kwargs["target_is_directory"] = src.is_dir()
+    dst.symlink_to(src, **kwargs)
 
 
 def merge_pdfs(pdf_list: List[Union[str, Path]], output_pdf: Union[str, Path]) -> None:

@@ -7,17 +7,15 @@ from gbm_bench.preprocessing.dicom_to_nifti import convert_nifti
 from gbm_bench.preprocessing.tumor_segmentation import run_brats
 from gbm_bench.preprocessing.norm_ss_coregistration import norm_ss_coregister, register_recurrence
 from gbm_bench.preprocessing.tissue_segmentation import generate_healthy_brain_mask, run_tissue_seg_registration
+from gbm_bench.utils.utils import make_symlink
 from gbm_bench.utils.constants import DCM2NIIX_LOCATION, MODALITY_CONVERTED_SCHEMA, MODALITY_STRIPPED_SCHEMA, BRAIN_MASK_SCHEMA, HEALTHY_BRAIN_MASK_SCHEMA, TUMORSEG_SCHEMA
 
 
-def preprocess_exam(t1_dir: Path, t1c_dir: Path, t2_dir: Path, flair_dir: Path, pre_treatment: bool, outdir: Path,
-                    dcm2niix_location: Path = DCM2NIIX_LOCATION, cuda_device: str = "2", perform_nifti_conversion: bool = True,
-                    perform_skullstripping: bool = True, perform_tumorseg: bool = True, perform_tissueseg: bool = True) -> None:
+def preprocess_dicom(t1_dir: Path, t1c_dir: Path, t2_dir: Path, flair_dir: Path, pre_treatment: bool, outdir: Path,
+                     dcm2niix_location: Path = DCM2NIIX_LOCATION, cuda_device: str = "2") -> None:
     """
-    Performs a multitude of processing steps to prepare inputs for tumor growth models. DICOM data is first
-    converted to NIfTI, followed by normalization, skull stripping and co-registration on the T1c image. Next, tumor tissue
-    is segmented using BRATS algorithms. Finally, tissue segmentation is performed for wm, gm, csf as a multitude of growth
-    models require tissue maps as inputs.
+    Performs a multitude of processing steps to prepare DICOM inputs for tumor growth models.
+    DICOM data is first converted to NIfTI, then preprocess_exam is called for the rest. 
 
     Parameters:
          t1_dir (Path): Path to the directory with the DICOM files for T1.
@@ -37,11 +35,8 @@ def preprocess_exam(t1_dir: Path, t1c_dir: Path, t2_dir: Path, flair_dir: Path, 
     Returns:
         None
     """
-    start_time = time.time()
     os.environ["CUDA_VISIBLE_DEVICES"] = cuda_device
-    logger.info("Starting preprocessing.")
-
-    # Step 1: DICOM to NIfTI conversion
+    
     start_time_conversion = time.time()
     logger.info(f"Starting DICOM to NIfTI conversion.")
     dicom_modalities = {
@@ -64,7 +59,87 @@ def preprocess_exam(t1_dir: Path, t1c_dir: Path, t2_dir: Path, flair_dir: Path, 
     time_spent_conversion = time.time() - start_time_conversion
     logger.info(f"Finished conversion step in {time_spent_conversion:.2f} seconds.")
 
-    # Step 2: Normalization, co-registration, skull stripping
+    preprocess_exam(
+            outdir=outdir,
+            pre_treatment=pre_treatment,
+            cuda_device=cuda_device,
+            perform_skullstripping=True,
+            perform_tumorseg=True,
+            perform_tissueseg=pre_treatment
+            )
+
+
+def preprocess_nifti(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file: Path, pre_treatment: bool, outdir: Path,
+                     cuda_device: str = "2", is_coregistered: bool, tumorseg_file: Optional[Path] = None) -> None:
+    """
+    Performs a multitude of precessing steps to prepare nifti inputs for tumor growth models. Allows passing
+    available intermediate results like tumor segmentation or already skull stripped images. Starts by
+    preparing the directory structure and then calling preprocess_exam.
+
+    Parameters:
+        t1_file (Path): Path to the file with the t1 data.
+        t1c_file (Path): Path to the file with the t1c data.
+        t2_file (Path): Path to the file with the t2 data.
+        flair_file (Path): Path to the file with the flair data.
+        pre_treatment (bool): Wether the provided DICOM are preop (True) or postop (False).
+            Causes the BRATS segmentation algorithm to choose different models.
+        outdir (Path): Base directory for the output. Usually exam directory.
+        cuda_device (str): GPU device to use.
+        is_coregistered (bool): True if the provided data has already been normalized, skull stripped and co-registered.
+        tumorseg_file (Optional, Path): Path to the tumor segmentation.
+
+    Returns:
+        None
+    """
+    os.environ["CUDA_VISIBLE_DEVICES"] = cuda_device
+
+    # Prepare directory structure using if intermediate results are available
+    if is_coregistered:
+        logger.info(f"Running with provided skull stripped modality images.")
+        
+        modality_dict = {"t1": t1_file, "t1c": t1c_file, "t2": t2_file, "flair": flair_file}
+        for modality, path in modality_dict.items():
+            make_symlink(src=path, dst=MODALITY_CONVERTED_SCHEMA.format(base_dir=outdir, modality=modality))
+
+    if tumorseg_file is not None:
+        logger.warning(f"Running with provided tumor segmentation {tumorseg_file}. Expected labels: necrotic (1), edema (2), enhancing (3).")
+        make_symlink(src=tumorseg_file, dst=TUMORSEG_SCHEMA.format(base_dir=outdir))
+
+    preprocess_exam(
+            outdir=outdir,
+            pre_treatment=pre_treatment,
+            cuda_device=cuda_device,
+            perform_skullstripping=False if is_coregistered else True,
+            perform_tumorseg=False if tumorseg_file is not None else True,
+            perform_tissueseg=pre_treatment
+            )
+
+
+def preprocess_exam(outdir: Path, pre_treatment: bool, cuda_device: str = "2", perform_skullstripping: bool = True,
+                    perform_tumorseg: bool = True, perform_tissueseg: bool = True) -> None:
+    """
+    This function is called by preprocess_nifti and preprocess_dicom and is not meant for end users. It assumes a fixed
+    directory structure that is built by the aforementioned functions. It then performs normalization, co-registration,
+    skull stripping, tumor segmentation and tissue segmentation to prepare the input for tumor growth models.
+
+    Parameters:
+        outdir (Path): Output directory containing either nifti converted data or skull stripped niftis in the
+            expected directory structure.
+        pre_treatment (bool): Wether the provided DICOM are preop (True) or postop (False).
+            Causes the BRATS segmentation algorithm to choose different models.
+        cuda_device (str): GPU device to use.
+        perform_skullstripping (bool): If true, performs normalization, skull stripping, co-registration
+        perform_tumorseg (bool): If true, performs tumor segmentation via BRATS.
+        perform_tissueseg (bool): If true, performs tissue segmentation.
+
+    Returns:
+        None
+    """
+    start_time = time.time()
+    os.environ["CUDA_VISIBLE_DEVICES"] = cuda_device
+    logger.info("Starting preprocessing.")
+
+    # Step 1: Normalization, co-registration, skull stripping
     if perform_skullstripping:
         norm_ss_coregister(
                 t1_file=MODALITY_CONVERTED_SCHEMA.format(base_dir=outdir, modality="t1"),
@@ -74,7 +149,7 @@ def preprocess_exam(t1_dir: Path, t1c_dir: Path, t2_dir: Path, flair_dir: Path, 
                 outdir=outdir
                 )
 
-    # Step 3: Segment tumor
+    # Step 2: Segment tumor
     if perform_tumorseg:
         run_brats(
                 t1_file=MODALITY_STRIPPED_SCHEMA.format(base_dir=outdir, modality="t1"),
@@ -86,18 +161,21 @@ def preprocess_exam(t1_dir: Path, t1c_dir: Path, t2_dir: Path, flair_dir: Path, 
                 cuda_device=cuda_device
                 )
 
-    # Step 4: Segment tissue
-    generate_healthy_brain_mask(
-            brain_mask_file=BRAIN_MASK_SCHEMA.format(base_dir=outdir),
-            tumor_seg_file=TUMORSEG_SCHEMA.format(base_dir=outdir),
-            outfile=HEALTHY_BRAIN_MASK_SCHEMA.format(base_dir=outdir)
-            )
+    # Step 3: Segment tissue
+    brain_mask_file = None
+    if perform_skullstripping:
+        brain_mask_file = HEALTHY_BRAIN_MASK_SCHEMA.format(base_dir=outdir)
+        generate_healthy_brain_mask(
+                brain_mask_file=BRAIN_MASK_SCHEMA.format(base_dir=outdir),
+                tumor_seg_file=TUMORSEG_SCHEMA.format(base_dir=outdir),
+                outfile=brain_mask_file
+                )
 
     if perform_tissueseg:
         run_tissue_seg_registration(
                 t1_file = MODALITY_STRIPPED_SCHEMA.format(base_dir=outdir, modality="t1c"),
                 healthy_mask_file=HEALTHY_BRAIN_MASK_SCHEMA.format(base_dir=outdir),
-                brain_mask_file=BRAIN_MASK_SCHEMA.format(base_dir=outdir),
+                brain_mask_file=brain_mask_file,
                 outdir=outdir,
                 refit_brain=False
                 )
