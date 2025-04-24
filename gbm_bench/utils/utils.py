@@ -49,17 +49,21 @@ def load_and_resample_mri_data(filepath: Union[str, Path], resample_params: Tupl
 def make_symlink(src: Path, dst: Path) -> None:
     """
     Create a symlink `dst` → `src`, replacing an existing file if necessary.
+    The symlink will point to the absolute path of `src`.
     """
     dst.parent.mkdir(parents=True, exist_ok=True)
     try:
-        dst.unlink()          # remove stale link/file if present
+        dst.unlink()  # Remove existing file or symlink if present
     except FileNotFoundError:
         pass
 
+    # Resolve the absolute path of the source
+    src_abs = src.resolve(strict=False)
+
     kwargs = {}
     if platform.system() == "Windows":
-        kwargs["target_is_directory"] = src.is_dir()
-    dst.symlink_to(src, **kwargs)
+        kwargs["target_is_directory"] = src_abs.is_dir()
+    dst.symlink_to(src_abs, **kwargs)
 
 
 def merge_pdfs(pdf_list: List[Union[str, Path]], output_pdf: Union[str, Path]) -> None:

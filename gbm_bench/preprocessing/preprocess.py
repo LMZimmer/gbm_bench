@@ -216,7 +216,7 @@ def process_longitudinal(preop_exam_dir: Path, followup_exam_dir: Path, outdir: 
 
 if __name__ == "__main__":
     # Example:
-    # python gbm_bench/preprocessing/preprocess.py -cuda_device 4
+    # python gbm_bench/preprocessing/preprocess.py -cuda_device 0
     parser = argparse.ArgumentParser()
     parser.add_argument("-cuda_device", type=str, default="0", help="GPU id to run on.")
     args = parser.parse_args()
