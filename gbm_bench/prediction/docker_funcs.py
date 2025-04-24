@@ -7,6 +7,7 @@ import nibabel as nib
 from pathlib import Path
 from loguru import logger
 from rich.console import Console
+from wandb.apis import InternalApi
 from docker.errors import DockerException
 from typing import Dict, List, Optional, Tuple
 
@@ -34,6 +35,15 @@ def _is_cuda_available() -> bool:
         return True
     except:
         return False
+
+
+def _get_wandb_apikey():
+    """Retrieves wandb API key and returns it. If no key was found returns an empty string."""
+    api_key = InternalApi().api_key
+    if api_key is None:
+        api_key = ""
+        logger.warning(f"Could not find a wandb API key. Models using wandb might fail.")
+    return api_key
 
 
 def _handle_device_requests(cuda_device: str, force_cpu: bool) -> List[docker.types.DeviceRequest]:
@@ -182,6 +192,9 @@ def run_container(algorithm: str, model_file: Path, data_dir: Path, outdir: Path
     # load image if necessary
     image_tag = _ensure_image(algorithm, model_file)
 
+    # get wandb api key
+    wandb_apikey = _get_wandb_apikey()
+
     # Run the container
     logger.info(f"{'Starting growth prediction'}")
     start_time = time.time()
@@ -189,9 +202,10 @@ def run_container(algorithm: str, model_file: Path, data_dir: Path, outdir: Path
         image=image_tag,
         volumes=volume_mappings,
         device_requests=device_requests,
-        network_mode="none",
+        #network_mode="none",  #NOTE: with none wandb throws errors
         detach=True,
         shm_size="20gb", #TODO
+        environment={"WANDB_API_KEY": wandb_apikey},
         #user=f"{os.getuid()}:{os.getgid()}"  #this line disables running as root
     )
     container_output = _observe_docker_output(container=container)

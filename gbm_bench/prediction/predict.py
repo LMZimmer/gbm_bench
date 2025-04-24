@@ -49,7 +49,7 @@ if __name__ == "__main__":
 
     predict_tumor_growth(
             preop_dir=Path(args.preop_dir),
-            model_id="test_model",
+            model_id="sbtc",  # test_model
             cuda_device=args.cuda_device,
             outdir=outdir_tmp
             )

@@ -2,8 +2,14 @@
 test_data/__init__.py
 scripts/__init__.py
 __init__.py
+
+# Common outputs
 tmp*
 out.txt
+
+# Huge models except test
+gbm_bench/data/models/*
+!gbm_bench/data/models/test_model.tar
 
 # Non-package data
 *.log
