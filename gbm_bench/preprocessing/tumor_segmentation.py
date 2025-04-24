@@ -94,7 +94,7 @@ def run_brats(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file: Path, ou
 
 if __name__ == "__main__":
     # Example
-    # python gbm_bench/preprocessing/tumor_segmentation.py -cuda_device 4
+    # python gbm_bench/preprocessing/tumor_segmentation.py -cuda_device 0
     parser = argparse.ArgumentParser()
     parser.add_argument("-cuda_device", type=str, default="0", help="GPU id to run on.")
     args = parser.parse_args()

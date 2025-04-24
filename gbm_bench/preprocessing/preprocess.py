@@ -225,7 +225,6 @@ if __name__ == "__main__":
 
     outdir_tmp = Path("tmp_preprocessing")
 
-    """
     # Pre-treatment example
     preprocess_dicom(
             t1_dir=Path("test_data/exam1/t1"),
@@ -247,7 +246,7 @@ if __name__ == "__main__":
             pre_treatment=False,
             cuda_device=args.cuda_device
             )
-    """
+    
     # Nifti example
     preprocess_nifti(
             t1_file=Path("test_data/nifti/t1.nii.gz"),
@@ -260,11 +259,10 @@ if __name__ == "__main__":
             tumorseg_file=Path("test_data/nifti/tumorseg.nii.gz"),
             cuda_device=args.cuda_device
             )
-    """
+
     # Longitudinal example
     process_longitudinal(
             preop_exam_dir=Path("test_data/exam1"),
             followup_exam_dir=Path("test_data/exam3"),
             outdir=outdir_tmp / "longitudinal"
             )
-    """

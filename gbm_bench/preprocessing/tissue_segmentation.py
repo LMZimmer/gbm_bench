@@ -191,7 +191,7 @@ def run_tissue_seg_registration(t1_file: Path, outdir: Path, healthy_mask_file: 
 
 if __name__ == "__main__":
     # Example:
-    # python gbm_bench/preprocessing/tissue_segmentation.py -cuda_device 4
+    # python gbm_bench/preprocessing/tissue_segmentation.py -cuda_device 0
     parser = argparse.ArgumentParser()
     parser.add_argument("-cuda_device", type=str, default="0", help="GPU id to run on.")
     args = parser.parse_args()

@@ -172,7 +172,7 @@ def register_recurrence(t1c_pre_file: Path, t1c_post_file: Path, recurrence_seg_
 
 if __name__ == "__main__":
     # Example:
-    # python gbm_bench/preprocessing/norm_ss_coregistration.py -cuda_device 4
+    # python gbm_bench/preprocessing/norm_ss_coregistration.py -cuda_device 0
     parser = argparse.ArgumentParser(description="Normalize, skull strip and co-register brain imaging data in nifti format.")
     parser.add_argument("-cuda_device", type=str, default="0", help="GPU id to run on.")
     args = parser.parse_args()

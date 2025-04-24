@@ -221,7 +221,7 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
 
 if __name__ == "__main__":
     # Example:
-    # python gbm_bench/evaluation/evaluate.py -preop_dir test_data/exam1 -followup_dir test_data/exam3 -pred_file test_data/exam1/preprocessing/sbtc/recurrencePrediction.nii.gz
+    # python gbm_bench/evaluation/evaluate.py -preop_dir test_data/exam1 -followup_dir test_data/exam3 -pred_file test_data/exam1/processed/growth_models/sbtc/sbtc_pred.nii.gz
     parser = argparse.ArgumentParser()
     parser.add_argument("-preop_dir", type=str, help="Path.")
     parser.add_argument("-followup_dir", type=str, help="Path.")
