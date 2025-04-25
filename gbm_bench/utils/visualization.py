@@ -10,7 +10,7 @@ from matplotlib import colormaps
 from typing import Dict, List, Union, Tuple
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 from gbm_bench.utils.utils import compute_center_of_mass, load_mri_data, load_and_resample_mri_data, merge_pdfs
-from gbm_bench.utils.constants import BRAIN_MASK_SCHEMA, MODALITY_STRIPPED_SCHEMA, PREDICTION_OUTPUT_SCHEMA, TISSUE_SEG_SCHEMA, TUMORSEG_SCHEMA
+from gbm_bench.utils.constants import MODALITY_STRIPPED_SCHEMA, PREDICTION_OUTPUT_SCHEMA, TISSUE_SEG_SCHEMA, TUMORSEG_SCHEMA
 
 
 def get_slices(center: Tuple[int, int, int], num_slices: int, step_size: int, patient_dim: Tuple[int, int, int]):
@@ -123,10 +123,9 @@ def plot_model_multislice(patient_identifier: str, exam_identifier: str, algorit
     tumorseg_data = load_mri_data(TUMORSEG_SCHEMA.format(base_dir=exam_dir))
     tissueseg_data = load_mri_data(TISSUE_SEG_SCHEMA.format(base_dir=exam_dir))
     model_data = load_and_resample_mri_data(PREDICTION_OUTPUT_SCHEMA.format(base_dir=exam_dir, algo_id=algorithm_identifier.lower()), resample_params=t1c_data.shape, interp_type=1)
-    brain_mask = load_mri_data(BRAIN_MASK_SCHEMA.format(base_dir=exam_dir))
 
     # Mask data outside of the brain
-    model_data[brain_mask==0] = 0
+    #NOTE: do we want this
 
     # Compute tumor center of mass
     center = compute_center_of_mass(tumorseg_data, t1c_data, classes_of_interest)

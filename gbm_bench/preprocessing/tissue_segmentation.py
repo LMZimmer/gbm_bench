@@ -14,8 +14,11 @@ from brainles_preprocessing.registration import ANTsRegistrator
 from brainles_preprocessing.modality import Modality, CenterModality
 from brainles_preprocessing.normalization.percentile_normalizer import PercentileNormalizer
 from gbm_bench.utils.constants import (
-    ATLAS_DIR,
+    ATLAS_T1_DIR,
+    ATLAS_TISSUES_DIR,
+    ATLAS_TISSUE_PBMAPS_DIR,
     HEALTHY_BRAIN_MASK_SCHEMA,
+    TISSUE_LABELS,
     TISSUE_PBMAP_SCHEMA,
     TISSUE_SCHEMA,
     TISSUE_SEG_SCHEMA,
@@ -35,7 +38,7 @@ def generate_healthy_brain_mask(brain_mask_file: Path, tumor_seg_file: Path, out
     Returns:
         None
     """
-    logger.debug("Generating healthy brain mask.")
+    logger.info("Generating healthy brain mask.")
     # Load niftis
     brain_nifti = nib.load(str(brain_mask_file))
     affine, header = brain_nifti.affine, brain_nifti.header
@@ -52,10 +55,38 @@ def generate_healthy_brain_mask(brain_mask_file: Path, tumor_seg_file: Path, out
     healthy_mask_nifti = nib.Nifti1Image(healthy_data, affine, header)
     nib.save(healthy_mask_nifti, str(outfile))
     
-    logger.debug(f"Healthy brain mask generated succesfully and saved to {outfile}")
+    logger.info(f"Healthy brain mask generated succesfully and saved to {outfile}.")
 
 
-def run_tissue_seg_registration(t1_file: Path, outdir: Path, healthy_mask_file: Path = None, mask_registration: bool = False, brain_mask_file: Path = None, refit_brain: bool = False) -> None:
+def generate_registration_mask(tumor_seg_file: Path, outfile: Path) -> None:
+    """
+    Generate the inverse of the tumor mask to be used with registration during tissue segmentation.
+
+    Parameters:
+        tumor_seg_file (Path): Path to the tumor segmentation NIfTI file.
+        outfile (Path): Output file path where the mask will be saved.
+
+    Returns:
+        None
+    """
+    logger.info("Generating registration mask.")
+    
+    # Load data
+    tumor_nifti = nib.load(str(tumor_seg_file))
+    affine, header = tumor_nifti.affine, tumor_nifti.header
+    
+    # Generate mask
+    no_tumor_mask = (tumor_nifti.get_fdata() < 0.5).astype(np.float32)
+    
+    # Save
+    outfile.parent.mkdir(parents=True, exist_ok=True)
+    no_tumor_mask_nifti = nib.Nifti1Image(no_tumor_mask, affine, header)
+    nib.save(no_tumor_mask_nifti, str(outfile))
+
+    logger.info(f"Registration mask generated successfully and save to {outfile}.")
+    
+
+def run_tissue_seg_registration(t1_file: Path, outdir: Path, registration_mask_file: Path = None) -> None:
     """
     Performs tissue segmentation for gm, wm, csf by registering an atlas to the input t1 file and transforming atlas tissue maps using
     the obtained transformation.
@@ -63,10 +94,7 @@ def run_tissue_seg_registration(t1_file: Path, outdir: Path, healthy_mask_file: 
     Parameters:
         t1_file (Path): Path to the t1 nifti.
         outdir (Path): Path to output directory. Usually exam directory.
-        healthy_mask_file (Path): Path to the healthy brain mask nifti. Can be used for masking during registration.
-        mask_registration (bool): If true, uses the healthy brain mask to mask out tumor regions during registration.
-        brain_mask_file (Path): Path to the brain mask nifti as obtained from skull stripping. Used for refitting the brain mask.
-        refit_brain (bool): If true, refits the outline of the warped atlas to the brain mask.
+        registration_mask_file (Path): Path to a mask for registration metric. Voxel with value 0 are ignored.
 
     Returns:
         None
@@ -75,24 +103,20 @@ def run_tissue_seg_registration(t1_file: Path, outdir: Path, healthy_mask_file: 
     logger.info(f"Starting tissue segmentation.")
 
     # Prepare directories
-    atlas_base_dir = ATLAS_DIR
-    atlas_t1_dir = ATLAS_DIR / "t1.nii"
-    atlas_tissues_dir = ATLAS_DIR / "tissues.nii"
-    atlas_pbmap_dirs = {tissue: ATLAS_DIR / f"pbmap_{tissue}.nii" for tissue in ["csf", "gm", "wm"]}
+    atlas_pbmap_dirs = {tissue: ATLAS_TISSUE_PBMAPS_DIR.format(tissue=tissue) for tissue in ["csf", "gm", "wm"]}
     
     outprefix = TISSUE_SEG_BASE_SCHEMA.format(base_dir=outdir)
     outprefix.mkdir(parents=True, exist_ok=True)
 
     # Read images
     t1_patient = ants.image_read(str(t1_file))
-    t1_atlas = ants.image_read(str(atlas_t1_dir))
+    t1_atlas = ants.image_read(str(ATLAS_T1_DIR))
 
     reg_kwargs = {}
-    if mask_registration:
-        if healthy_mask_file is None:
-            raise ValueError(f"Please specify healthy_mask_file when using mask_registration=True.")
-        healthy_mask = ants.image_read(str(healthy_mask_file))
-        reg_kwargs = {"mask": healthy_mask}
+    if registration_mask_file is not None:
+        logger.info(f"Using provided mask for registration {str(registration_mask_file)}.")
+        registration_mask = ants.image_read(str(registration_mask_file))
+        reg_kwargs = {"mask": registration_mask}
 
     # Register atlas to patient deformably
     reg = ants.registration(
@@ -105,44 +129,13 @@ def run_tissue_seg_registration(t1_file: Path, outdir: Path, healthy_mask_file: 
     transforms_path = reg['fwdtransforms']
 
     # Transform atlas tissues deformably
-    tissues_atlas = ants.image_read(str(atlas_tissues_dir))
+    tissues_atlas = ants.image_read(str(ATLAS_TISSUES_DIR))
     tissues_warped = ants.apply_transforms(
             fixed=t1_patient,
             moving=tissues_atlas, 
             transformlist=transforms_path,
             interpolator="nearestNeighbor"
             )
-
-    """
-    # Refit tissue mask on the full brain mask
-    if refit_brain:
-        if brain_mask_file is None:
-            raise ValueError(f"Please specify brain_mask_file when using refit_brain=True")
-        
-        logger.info(f"refit_brain set to True. Refitting to the brain mask.")
-        brain_mask = ants.image_read(str(brain_mask_file))
-        tissue_mask_nib =  nib.Nifti1Image(
-                (tissues_warped.numpy() > 0.5).astype(np.int32),
-                header=tissues_warped.to_nibabel().header,
-                affine=tissues_warped.to_nibabel().affine
-                )
-        tissue_mask = ants.from_nibabel(tissue_mask_nib)
-
-        reg2 = ants.registration(
-                fixed=brain_mask,
-                moving=tissue_mask,
-                type_of_transform="antsRegistrationSyN[bo]",
-                outprefix=str(outprefix)+"/"
-                )
-        transforms_path_masks = reg2['fwdtransforms']
-
-        tissues_warped = ants.apply_transforms(
-                fixed=brain_mask,
-                moving=tissues_warped,
-                transformlist=transforms_path_masks,
-                interpolator="nearestNeighbor"
-                )
-    """
 
     # Save transformed tissue segmentation
     tissues_warped_nifti = tissues_warped.to_nibabel()
@@ -152,9 +145,8 @@ def run_tissue_seg_registration(t1_file: Path, outdir: Path, healthy_mask_file: 
     logger.info(f"Generating pbmaps...")
 
     # Create single tissue masks from full tissue segmentation
-    tissue_labels = {"csf": 1., "gm": 2., "wm": 3.}
     header, aff = tissues_warped_nifti.header, tissues_warped_nifti.affine
-    for tissue, label in tissue_labels.items():
+    for tissue, label in TISSUE_LABELS.items():
         tissue_mask = (tissues_warped.numpy() == label).astype(np.int32)
         tissue_mask_nifti = nib.Nifti1Image(tissue_mask, header=header, affine=aff)
         nib.save(tissue_mask_nifti, str(TISSUE_SCHEMA.format(base_dir=outdir, tissue=tissue)))
@@ -168,19 +160,6 @@ def run_tissue_seg_registration(t1_file: Path, outdir: Path, healthy_mask_file: 
                 transformlist=transforms_path,
                 interpolator="linear"
                 )
-
-        """
-        if refit_brain:
-            #warped_pbmap2 = ants.apply_transforms(
-            #        fixed=brain_mask,
-            #        moving=warped_pbmap,
-            #        transformlist=transforms_path_masks,
-            #        interpolator="linear"
-            #        )
-            #warped_pbmap_nifti2 = warped_pbmap2.to_nibabel()
-            #nib.save(warped_pbmap_nifti2, os.path.join(outdir, f"{tissue}_pbmap2.nii.gz"))
-            pass
-        """
 
         warped_pbmap_nifti = warped_pbmap.to_nibabel()
         nib.save(warped_pbmap_nifti, str(TISSUE_PBMAP_SCHEMA.format(base_dir=outdir, tissue=tissue)))
@@ -205,16 +184,16 @@ if __name__ == "__main__":
 
     outdir = Path("./tmp_test_tissueseg")
 
-    healthy_mask_file = HEALTHY_BRAIN_MASK_SCHEMA.format(base_dir=outdir)
+    registration_mask_file = HEALTHY_BRAIN_MASK_SCHEMA.format(base_dir=outdir)
     generate_healthy_brain_mask(
             brain_mask_file=brain_mask_file,
             tumor_seg_file=tumor_seg_file,
-            outfile=healthy_mask_file
+            outfile=registration_mask_file
             )
 
     run_tissue_seg_registration(
             t1_file=t1c_file,
-            healthy_mask_file=healthy_mask_file,
+            registration_mask_file=registration_mask_file,
             brain_mask_file=brain_mask_file,
             outdir=outdir,
             refit_brain=False

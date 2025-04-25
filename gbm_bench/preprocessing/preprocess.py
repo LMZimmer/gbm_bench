@@ -7,9 +7,18 @@ from typing import Optional
 from gbm_bench.preprocessing.dicom_to_nifti import convert_nifti
 from gbm_bench.preprocessing.tumor_segmentation import run_brats
 from gbm_bench.preprocessing.norm_ss_coregistration import norm_ss_coregister, register_recurrence
-from gbm_bench.preprocessing.tissue_segmentation import generate_healthy_brain_mask, run_tissue_seg_registration
+from gbm_bench.preprocessing.tissue_segmentation import generate_registration_mask, run_tissue_seg_registration
 from gbm_bench.utils.utils import make_symlink
-from gbm_bench.utils.constants import DCM2NIIX_LOCATION, MODALITY_CONVERTED_SCHEMA, MODALITY_STRIPPED_SCHEMA, BRAIN_MASK_SCHEMA, HEALTHY_BRAIN_MASK_SCHEMA, TUMORSEG_SCHEMA
+from gbm_bench.utils.constants import (
+        BRAIN_MASK_SCHEMA,
+        DCM2NIIX_LOCATION,
+        HEALTHY_BRAIN_MASK_SCHEMA,
+        MODALITY_CONVERTED_SCHEMA,
+        MODALITY_STRIPPED_SCHEMA,
+        TISSUE_REGISTRATION_MASK_SCHEMA,
+        TUMOR_LABELS,
+        TUMORSEG_SCHEMA
+        )
 
 
 def preprocess_dicom(t1_dir: Path, t1c_dir: Path, t2_dir: Path, flair_dir: Path, pre_treatment: bool, outdir: Path,
@@ -108,7 +117,7 @@ def preprocess_nifti(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file: P
             make_symlink(src=path, dst=MODALITY_CONVERTED_SCHEMA.format(base_dir=outdir, modality=modality))
 
     if tumorseg_file is not None:
-        logger.warning(f"Running with provided tumor segmentation {tumorseg_file}. Expected labels: necrotic (1), edema (2), enhancing (3).")
+        logger.warning(f"Running with provided tumor segmentation {tumorseg_file}. Expected labels: {TUMOR_LABELS}")
         make_symlink(src=tumorseg_file, dst=TUMORSEG_SCHEMA.format(base_dir=outdir))
 
     preprocess_exam(
@@ -121,7 +130,7 @@ def preprocess_nifti(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file: P
             )
 
 
-def preprocess_exam(outdir: Path, pre_treatment: bool, perform_coregistration: bool = True,
+def preprocess_exam(outdir: Path, pre_treatment: bool, mask_tissueseg: bool = False, perform_coregistration: bool = True, 
                     perform_tumorseg: bool = True, perform_tissueseg: bool = True, cuda_device: str = "0") -> None:
     """
     This function is called by preprocess_nifti and preprocess_dicom and is not meant for end users. It assumes a fixed
@@ -133,10 +142,11 @@ def preprocess_exam(outdir: Path, pre_treatment: bool, perform_coregistration: b
             expected directory structure.
         pre_treatment (bool): Wether the provided DICOM are preop (True) or postop (False).
             Causes the BRATS segmentation algorithm to choose different models.
-        cuda_device (str): GPU device to use.
+        mask_tissueseg (bool): If true, masks out the tumor region for the tissue segmentation step.
         perform_coregistration (bool): If true, performs normalization, skull stripping, co-registration
         perform_tumorseg (bool): If true, performs tumor segmentation via BRATS.
         perform_tissueseg (bool): If true, performs tissue segmentation.
+        cuda_device (str): GPU device to use.
 
     Returns:
         None
@@ -168,25 +178,20 @@ def preprocess_exam(outdir: Path, pre_treatment: bool, perform_coregistration: b
                 )
 
     # Step 3: Segment tissue
-    brain_mask_file = None
-    healthy_mask_file = None
-    if perform_coregistration:
-        brain_mask_file = BRAIN_MASK_SCHEMA.format(base_dir=outdir)
-        healthy_mask_file = HEALTHY_BRAIN_MASK_SCHEMA.format(base_dir=outdir)
-        generate_healthy_brain_mask(
-                brain_mask_file=BRAIN_MASK_SCHEMA.format(base_dir=outdir),
+    tissueseg_kwargs = {}
+    if mask_tissueseg:
+        registration_mask_file = TISSUE_REGISTRATION_MASK_SCHEMA.format(base_dir=outdir)
+        generate_registration_mask(
                 tumor_seg_file=TUMORSEG_SCHEMA.format(base_dir=outdir),
-                outfile=healthy_mask_file
+                outfile=registration_mask_file
                 )
+        tissueseg_kwargs["registration_mask_file"] = registration_mask_file
 
     if perform_tissueseg:
         run_tissue_seg_registration(
                 t1_file = MODALITY_STRIPPED_SCHEMA.format(base_dir=outdir, modality="t1c"),
                 outdir=outdir,
-                healthy_mask_file=healthy_mask_file,
-                mask_registration=False,
-                brain_mask_file=brain_mask_file,
-                refit_brain=False
+                **tissueseg_kwargs
                 )
     time_spent = time.time() - start_time
     logger.info(f"Finished preprocessing in {time_spent:.2f} seconds. Results saved to {outdir}.")
@@ -237,6 +242,7 @@ if __name__ == "__main__":
             )
     
     # Post-treatment example
+    """
     preprocess_dicom(
             t1_dir=Path("test_data/exam3/t1"),
             t1c_dir=Path("test_data/exam3/t1c"),
@@ -246,6 +252,7 @@ if __name__ == "__main__":
             pre_treatment=False,
             cuda_device=args.cuda_device
             )
+    """
     
     # Nifti example
     preprocess_nifti(
