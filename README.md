@@ -1,21 +1,20 @@
 # GBMbench
+
 Glioblastoma Model Benchmark (working title) is a work in progress with the goal of assessing the possible benefit of Glioblastoma models for better radiotherapy planning.
 
 
 ## Features
+
 - Standardized processing pipeline for Brain MRIs
 - Extensible benchmark framework for dockered Glioblastoma models
 - Easy-to-use minimal API
 
-
 ## Setting up
 
 ### Prerequisites
-- docker: A Docker installation for running BRATS models as well as Glioblstoma models. Notes on the docker setup with GPU support can be found in [Docker and NVIDIA Container Toolkit Setup][### Docker and NVIDIA Container Toolkit Setup]. Instructions on adding custom models are given in [Adding new growth models][## Adding new growth models].
 
-- dicom2niix: If you plan to process raw DICOM data.
-
-Any remaining dependencies are Python packages, such as brainles-preprocessing, brats and antspy, are listed in requirements.txt. They are installed alongside the Python package explained in the following section.
+- **Docker**: Required for running BRATS and custom Glioblastoma models. See [Docker and NVIDIA Container Toolkit Setup](#docker-and-nvidia-container-toolkit-setup).
+- **dicom2niix**: Required if you plan to process raw DICOM data.
 
 ### Installation
 
@@ -36,9 +35,10 @@ pip install .
 This repository can be used to perform inference or benchmark with your own tumor growth model. To this end, you need to create a docker image of your growth model. The following sections serve as guideline on how the image should be created. 
 
 ### Directory structure
-Data is passed to the docker container by mounting a directory /mlcube\_io0 and the output is read from a directory /mlcube\_io1. The directory structure is assumed as:
 
-INPUT:
+Input and output data are passed to/from the container using mounted directories:
+
+**Input:**
 
 ```bash
 /mlcube_io0
@@ -51,17 +51,18 @@ INPUT:
       ┗ 00000-pet.nii.gz
 ```
 
-OUTPUT:
+**Output:**
 
 ```bash
 /mlcube_io1
    ┗ 00000.nii.gz
 ```
 
-### Dockerfile
-As long as the container adheres to the directory structure outlined above, there are no further requirements to the container. An example Dockerfile could be:
+### Dockerfile Example
 
-```bash
+Ensure the container adheres to the above I/O structure. An example Dockerfile could be:
+
+```dockerfile
 # Image and environment variables
 FROM nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04
 
@@ -86,7 +87,11 @@ COPY . .
 ENTRYPOINT ["python3", "inference.py"]
 ```
 
-
 ## Adding new datasets
 
-Datasets are handled with the LongitudinalDataset class in utils.parsing. This class can parse datasets that have a specific directory structure and can save/load the paths as json. Therefore, the prefered method would be to create a json file that can be read from this class. An example for this is given e.g. in data/datasets/rhuh.json. LongitudinalDataset can also automatically parse specific directory structures, but then identifying preop, postop, followup is an issue.
+Datasets are handled by the `LongitudinalDataset` class in `utils.parsing`. This class supports:
+
+- Parsing from a specific directory structure
+- Reading/writing dataset paths via JSON
+
+The recommended approach is to provide a compatible `.json` file. Example: [`data/datasets/rhuh.json`](data/datasets/rhuh.json). Automatic parsing is also supported, though naming consistency (e.g., for `preop`, `postop`, `followup`) can be a challenge.
