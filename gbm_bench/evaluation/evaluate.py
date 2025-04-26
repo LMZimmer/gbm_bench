@@ -9,7 +9,15 @@ from typing import Any, Dict
 from scipy.ndimage import center_of_mass, distance_transform_edt
 from gbm_bench.evaluation.metrics import coverage
 from gbm_bench.utils.utils import load_mri_data, load_and_resample_mri_data, is_binary_array
-from gbm_bench.utils.constants import BRAIN_MASK_SCHEMA, METRICS_SCHEMA, RECURRENCE_SCHEMA, TUMORSEG_SCHEMA, TUMORSEG_CORE_SCHEMA
+from gbm_bench.utils.constants import (
+        BRAIN_MASK_SCHEMA,
+        METRICS_SCHEMA,
+        RECURRENCE_SCHEMA,
+        TISSUE_SEG_SCHEMA,
+        TISSUE_LABELS,
+        TUMORSEG_SCHEMA,
+        TUMORSEG_CORE_SCHEMA
+        )
 
 
 def create_standard_plan(core_segmentation: np.ndarray, ctv_margin: int) -> np.ndarray:
@@ -33,7 +41,7 @@ def create_standard_plan(core_segmentation: np.ndarray, ctv_margin: int) -> np.n
     return dilated_core
 
 
-def find_threshold(volume: np.ndarray, target_volume: float, tolerance: float = 0.01, initial_threshold: float = 0.5, maxIter: int = 10000):
+def find_threshold(volume: np.ndarray, target_volume: float, tolerance: float = 0.01, initial_threshold: float = 0.2, maxIter: int = 10000):
     """
     Compute the threshold that produces a specified volume after masking the input array using the threshold.
 
@@ -129,7 +137,7 @@ def recurrence_coverage(recurrence_segmentation: np.ndarray, target_volume: np.n
     return coverage
 
 
-def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, model_id: str, ctv_margin: int = 15, tumor_conc_thresh: float = 0.1) -> Dict[str, Any]:
+def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, model_id: str, ctv_margin: int = 15, csf_mask: bool = False) -> Dict[str, Any]:
     """
     Evaluate a tumor model by computing recurrence coverage for standard and 
     model-based radiotherapy plans using MRI segmentation data.
@@ -140,7 +148,7 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
         pred_file (Path): File path containing model prediction MRI data.
         model_id (str): Identifier for the model. Used for the name of the output file.
         ctv_margin (int, optional): Margin used to expand the clinical target volume for the standard plan. Defaults to 15.
-        tumor_conc_thresh (float, optional): Threshold for tumor concentration in the model predictions. Defaults to 0.1.
+        csf_mask (bool, optional): If true, does not consider predictions/recurrences in CSF in any way by masking it out.
 
     Returns:
         Dict[str, Any]: Dictionary with computed metrics
@@ -151,23 +159,30 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
     brain_mask_dir = BRAIN_MASK_SCHEMA.format(base_dir=str(preop_dir))
     brain_mask = load_mri_data(str(brain_mask_dir))
 
+    if csf_mask:
+        tissue_segmentation_dir = TISSUE_SEG_SCHEMA.format(base_dir=str(preop_dir))
+        tissue_segmentation = load_mri_data(str(tissue_segmentation_dir))
+        brain_mask[tissue_segmentation==TISSUE_LABELS["csf"]] = 0
+
     core_segmentation_dir = TUMORSEG_CORE_SCHEMA.format(base_dir=str(preop_dir))
     core_segmentation = load_mri_data(str(core_segmentation_dir))
-
+    
     full_segmentation_dir = TUMORSEG_SCHEMA.format(base_dir=str(preop_dir))
     full_segmentation = load_mri_data(str(full_segmentation_dir))
-    full_segmentation[full_segmentation==2] = 1                  # set all to 1
+    full_segmentation[full_segmentation==2] = 1
     full_segmentation[full_segmentation==3] = 1 
 
     recurrence_dir = RECURRENCE_SCHEMA.format(base_dir=str(followup_dir))   
     recurrence_segmentation = load_mri_data(str(recurrence_dir))
-    recurrence_segmentation[recurrence_segmentation == 2] = 0    # ignore edema
-    recurrence_segmentation[recurrence_segmentation == 3] = 1
-    recurrence_segmentation[recurrence_segmentation == 4] = 1
+    recurrence_segmentation[recurrence_segmentation == 2] = 1
+    recurrence_segmentation[recurrence_segmentation == 3] = 0  # ignore edema
+    recurrence_segmentation[recurrence_segmentation == 4] = 0  # ignore resection cavity
+    recurrence_segmentation[brain_mask == 0] = 0
     recurrence_segmentation_all = load_mri_data(recurrence_dir)
     recurrence_segmentation_all[recurrence_segmentation_all == 2] = 1
     recurrence_segmentation_all[recurrence_segmentation_all == 3] = 1
-    recurrence_segmentation_all[recurrence_segmentation_all == 4] = 1
+    recurrence_segmentation_all[recurrence_segmentation_all == 4] = 0
+    recurrence_segmentation_all[brain_mask == 0] = 0
 
     model_prediction = load_and_resample_mri_data(str(pred_file), resample_params=core_segmentation.shape, interp_type=0)
 
@@ -180,16 +195,16 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
 
     # Create model based plan
     tumor_threshold = find_threshold(model_prediction, standard_plan_volume, initial_threshold=0.2)
-    model_pan = model_prediction > tumor_threshold
-    model_pan[brain_mask == 0] = 0
-    model_recurrence_coverage = recurrence_coverage(recurrence_segmentation, model_pan)
-    model_recurrence_coverage_all = recurrence_coverage(recurrence_segmentation_all, model_pan)
+    model_plan = model_prediction > tumor_threshold
+    model_plan[brain_mask == 0] = 0
+    model_recurrence_coverage = recurrence_coverage(recurrence_segmentation, model_plan)
+    model_recurrence_coverage_all = recurrence_coverage(recurrence_segmentation_all, model_plan)
 
     # Analysis
     """
-    tmpdir = "tmp/radplans"
+    tmpdir = "tmp_radplans/"
     os.makedirs(tmpdir, exist_ok=True)
-    tmp = nib.load(model_prediction_dir)
+    tmp = nib.load(pred_file)
     model_aff, model_header = tmp.affine, tmp.header
     tmp = nib.load(core_segmentation_dir)
     std_aff, std_header = tmp.affine, tmp.header
@@ -210,7 +225,7 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
     results["recurrence_coverage_model"] = model_recurrence_coverage
     results["recurrence_coverage_model_all"] = model_recurrence_coverage_all
     
-    # Save results (would need an algo id or new models override this)
+    # Save results
     save_file = METRICS_SCHEMA.format(base_dir=followup_dir, algo_id=model_id)
     with open(save_file, 'w', encoding="utf-8") as f:
         json.dump(results, f, indent=2)
@@ -222,6 +237,7 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
 if __name__ == "__main__":
     # Example:
     # python gbm_bench/evaluation/evaluate.py -preop_dir test_data/exam1 -followup_dir test_data/exam3 -pred_file test_data/exam1/processed/growth_models/sbtc/sbtc_pred.nii.gz
+    # python gbm_bench/evaluation/evaluate.py -preop_dir "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/08-20-2016-NA-RM CEREBRO  C-49009" -followup_dir "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/07-09-2017-NA-RM CRANEO-52907" -pred_file "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/08-20-2016-NA-RM CEREBRO  C-49009/processed/growth_models/sbtc/tumorImage.nii.gz"
     parser = argparse.ArgumentParser()
     parser.add_argument("-preop_dir", type=str, help="Path.")
     parser.add_argument("-followup_dir", type=str, help="Path.")

@@ -224,6 +224,13 @@ def plot_recurrence_multislice(patient_identifier: str, exam_identifier_pre: str
     t1c_data_post = load_mri_data(t1c_post_dir)
     seg_data_post = load_mri_data(recurrence_seg_dir)
 
+    # Relabel recurrence to match preop
+    seg_data_post[seg_data_post==4] = 0  # tired ok
+    seg_data_post[seg_data_post==1] = 5
+    seg_data_post[seg_data_post==3] = 2
+    seg_data_post[seg_data_post==2] = 1
+    seg_data_post[seg_data_post==5] = 3
+
     # Compute tumor center of mass
     center = compute_center_of_mass(seg_data_pre, t1c_data_pre, classes_of_interest)
 

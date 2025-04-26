@@ -3,6 +3,7 @@ import shutil
 import pickle
 import argparse
 import numpy as np
+from scipy import stats
 from pathlib import Path
 from gbm_bench.utils.constants import RHUH_GBM_DIR
 from gbm_bench.utils.parsing import LongitudinalDataset
@@ -53,8 +54,8 @@ if __name__ == "__main__":
     recurrence_coverage_model_all = [r["recurrence_coverage_model_all"] for r in all_results]
 
     print(f"Finished evaluation.")
-    print(f"Standard plan coverge: {np.mean(recurrence_coverage_standard)} \u00B1 {np.std(recurrence_coverage_standard)}")
-    print(f"Standard plan coverge (all): {np.mean(recurrence_coverage_standard_all)} \u00B1 {np.std(recurrence_coverage_standard_all)}")
-    print(f"Model plan coverge: {np.mean(recurrence_coverage_model)} \u00B1 {np.std(recurrence_coverage_model)}")
-    print(f"Model plan coverge (all): {np.mean(recurrence_coverage_model_all)} \u00B1 {np.std(recurrence_coverage_model_all)}")
+    print(f"Standard plan coverge: {100*np.mean(recurrence_coverage_standard)} \u00B1 {100*stats.sem(recurrence_coverage_standard)}")
+    print(f"Standard plan coverge (all): {100*np.mean(recurrence_coverage_standard_all)} \u00B1 {100*stats.sem(recurrence_coverage_standard_all)}")
+    print(f"Model plan coverge: {100*np.mean(recurrence_coverage_model)} \u00B1 {100*stats.sem(recurrence_coverage_model)}")
+    print(f"Model plan coverge (all): {100*np.mean(recurrence_coverage_model_all)} \u00B1 {100*stats.sem(recurrence_coverage_model_all)}")
 

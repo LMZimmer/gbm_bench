@@ -49,6 +49,7 @@ class PathSchema:
 # LABELS
 TISSUE_LABELS = {"csf": 1., "gm": 2., "wm": 3.}
 TUMOR_LABELS = {"necrotic": 1, "edema": 2, "enhancing": 3}
+RECURRENCE_LABELS = {"enhancing": 1, "non-enhancing": 2, "edema": 3, "resection cavity": 4}
 
 
 # BASIC DIRECTORIES
