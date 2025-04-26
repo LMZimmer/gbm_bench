@@ -6,6 +6,7 @@ __init__.py
 # Common outputs
 tmp*
 out.txt
+out.tmp
 
 # Huge models except test
 gbm_bench/data/models/*
