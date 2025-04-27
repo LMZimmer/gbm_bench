@@ -18,7 +18,9 @@ classifiers = [
 dependencies = [
     "brats",
     "brainles-preprocessing",
-    "matplotlib"
+    "matplotlib",
+    "PyPDF2",
+    "wandb"
 ]
 
 [tool.setuptools.packages.find]

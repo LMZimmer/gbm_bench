@@ -22,7 +22,7 @@ if __name__ == "__main__":
     upenn_gbm.load(UPENN_GBM_DIR)
 
     # Individual exams
-    for patient_ind, patient in enumerate(upenn_gbm.patients):
+    for patient_ind, patient in enumerate(upenn_gbm.patients[32:]):  # hung at 33/39
         print(f"Processing {patient_ind}/{len(upenn_gbm.patients)}...")
 
         for exam in patient["exams"]:
@@ -44,6 +44,7 @@ if __name__ == "__main__":
                     )
 
     # Longitudinal registration
+    """
     for patient_ind, patient in enumerate(upenn_gbm.patients):
         print(f"Performing longitudinal registration {patient_ind}/{len(upenn_gbm.patients)}.")
 
@@ -62,5 +63,6 @@ if __name__ == "__main__":
                     followup_exam_dir=followup_exam_dir,
                     outdir=followup_exam_dir
                     )
+    """
     
     print(f"Finished processing.")

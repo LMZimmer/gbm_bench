@@ -101,10 +101,10 @@ if __name__ == "__main__":
 
     os.environ["CUDA_VISIBLE_DEVICES"] = args.cuda_device
 
-    t1_file = Path("test_data/exam1/processed/skull_stripped/t1_bet_normalized.nii.gz")
-    t1c_file = Path("test_data/exam1/processed/skull_stripped/t1c_bet_normalized.nii.gz")
-    t2_file = Path("test_data/exam1/processed/skull_stripped/t2_bet_normalized.nii.gz")
-    flair_file = Path("test_data/exam1/processed/skull_stripped/flair_bet_normalized.nii.gz")
+    t1_file = Path("test_data/exam3/processed/skull_stripped/t1_bet_normalized.nii.gz")
+    t1c_file = Path("test_data/exam3/processed/skull_stripped/t1c_bet_normalized.nii.gz")
+    t2_file = Path("test_data/exam3/processed/skull_stripped/t2_bet_normalized.nii.gz")
+    flair_file = Path("test_data/exam3/processed/skull_stripped/flair_bet_normalized.nii.gz")
     outdir = Path("tmp_test_tumorseg/")
 
     run_brats(
@@ -113,5 +113,6 @@ if __name__ == "__main__":
             t2_file=t2_file,
             flair_file=flair_file,
             outdir=outdir,
+            pre_treatment=False,
             cuda_device=args.cuda_device
             )

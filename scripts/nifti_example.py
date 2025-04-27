@@ -17,21 +17,21 @@ if __name__ == "__main__":
 
     # Example input, everything has to be pathlib.Path
     test_data_basedir = Path("/home/home/lucas/projects/gbm_bench/test_data/nifti/")
-    t1_dir = test_data_basedir / "t1.nii.gz"
-    t1c_dir = test_data_basedir / "t1c.nii.gz"
-    t2_dir = test_data_basedir / "t2.nii.gz"
-    flair_dir = test_data_basedir / "flair.nii.gz"
-    tumorseg_dir = test_data_basedir / "tumoresg.nii.gz"
+    t1_file = test_data_basedir / "t1.nii.gz"
+    t1c_file = test_data_basedir / "t1c.nii.gz"
+    t2_file = test_data_basedir / "t2.nii.gz"
+    flair_file = test_data_basedir / "flair.nii.gz"
+    tumorseg_file = test_data_basedir / "tumoresg.nii.gz"
     outdir = Path("./tmp_testdata")  # This is where all output is stored, I usually set it to the exam directory
 
     model_id = "sbtc"  # spatial brain tumor estimation
 
     # Preprocessing
     preprocess_nifti(
-            t1_file=Path("test_data/nifti/t1.nii.gz"),
-            t1c_file=Path("test_data/nifti/t1c.nii.gz"),
-            t2_file=Path("test_data/nifti/t2.nii.gz"),
-            flair_file=Path("test_data/nifti/flair.nii.gz"),
+            t1_file=t1_file,
+            t1c_file=t1c_file,
+            t2_file=t2_file,
+            flair_file=flair_file,
             pre_treatment=True,
             outdir=outdir,
             is_coregistered=True,
@@ -41,7 +41,7 @@ if __name__ == "__main__":
 
     # Growth Model Inference
     predict_tumor_growth(
-            preop_dir=outdir,
+            preop_file=outdir,
             model_id=model_id,
             cuda_device=args.cuda_device
             )
@@ -52,6 +52,6 @@ if __name__ == "__main__":
             patient_identifier="test",
             exam_identifier="test",
             algorithm_identifier=model_id,
-            exam_dir=outdir,
+            exam_file=outdir,
             outfile=pdf_outfile
             )
