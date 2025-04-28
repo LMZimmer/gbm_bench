@@ -10,7 +10,18 @@ from matplotlib import colormaps
 from typing import Dict, List, Union, Tuple
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 from gbm_bench.utils.utils import compute_center_of_mass, load_mri_data, load_and_resample_mri_data, merge_pdfs
-from gbm_bench.utils.constants import MODALITY_STRIPPED_SCHEMA, PREDICTION_OUTPUT_SCHEMA, TISSUE_SEG_SCHEMA, TUMORSEG_SCHEMA
+from gbm_bench.utils.constants import (
+        BRAIN_MASK_SCHEMA,
+        LONGITUDINAL_WARP_SCHEMA,
+        MODALITY_CONVERTED_SCHEMA,
+        MODALITY_STRIPPED_SCHEMA,
+        PREDICTION_OUTPUT_SCHEMA,
+        RECURRENCE_SCHEMA,
+        TISSUE_SEG_SCHEMA,
+        TISSUE_PBMAP_SCHEMA,
+        TUMORSEG_CORE_SCHEMA,
+        TUMORSEG_SCHEMA
+        )
 
 
 def get_slices(center: Tuple[int, int, int], num_slices: int, step_size: int, patient_dim: Tuple[int, int, int]):
@@ -216,7 +227,8 @@ def plot_recurrence_multislice(patient_identifier: str, exam_identifier_pre: str
     t1c_pre_dir = MODALITY_STRIPPED_SCHEMA.format(base_dir=exam_dir_preop, modality="t1c")
     t1c_post_dir = MODALITY_STRIPPED_SCHEMA.format(base_dir=exam_dir_followup, modality="t1c")
     tumor_seg_dir = TUMORSEG_SCHEMA.format(base_dir=exam_dir_preop)
-    recurrence_seg_dir = TUMORSEG_SCHEMA.format(base_dir=exam_dir_followup)
+    recurrence_seg_dir = RECURRENCE_SCHEMA.format(base_dir=exam_dir_followup)
+    #recurrence_seg_dir = TUMORSEG_SCHEMA.format(base_dir=exam_dir_followup)  # non-co-registered version
 
     # Load images
     t1c_data_pre = load_mri_data(t1c_pre_dir)
@@ -293,10 +305,151 @@ def plot_recurrence_multislice(patient_identifier: str, exam_identifier_pre: str
             )
 
 
+def plot_pipeline(patient_identifier: str, exam_identifier_pre: str, exam_identifier_followup: str,
+                  exam_dir_preop: Path, exam_dir_followup: Path, outfile: str,
+                  classes_of_interest: List[int] = [1, 2, 3]) -> None:
+
+    n_layers = 3    # one layer for each imshow config
+    modalities = ["t1c", "t1", "t2", "flair"]
+    tissues = ["gm", "wm", "csf"]
+
+    # Paths
+    preop_converted_files = {modality: MODALITY_CONVERTED_SCHEMA.format(base_dir=exam_dir_preop, modality=modality) for modality in modalities}
+    followup_converted_files = {modality: MODALITY_CONVERTED_SCHEMA.format(base_dir=exam_dir_followup, modality=modality) for modality in modalities}
+
+    preop_stripped_files = {modality: MODALITY_STRIPPED_SCHEMA.format(base_dir=exam_dir_preop, modality=modality) for modality in modalities}
+    followup_stripped_files = {modality: MODALITY_STRIPPED_SCHEMA.format(base_dir=exam_dir_followup, modality=modality) for modality in modalities}
+
+    tumor_seg_file = TUMORSEG_SCHEMA.format(base_dir=exam_dir_preop)
+    recurrence_seg_file = TUMORSEG_SCHEMA.format(base_dir=exam_dir_followup)
+
+    tissue_seg_file = TISSUE_SEG_SCHEMA.format(base_dir=exam_dir_preop)
+    tissue_pbmaps_files = {tissue: TISSUE_PBMAP_SCHEMA.format(base_dir=exam_dir_preop, tissue=tissue) for tissue in tissues}
+
+    brain_mask_file = BRAIN_MASK_SCHEMA.format(base_dir=exam_dir_preop)
+    tumor_mask_file = TUMORSEG_CORE_SCHEMA.format(base_dir=exam_dir_preop)
+
+    longitudinal_t1c_file = LONGITUDINAL_WARP_SCHEMA.format(base_dir=exam_dir_followup)
+    longitudinal_rec_file = RECURRENCE_SCHEMA.format(base_dir=exam_dir_followup)
+
+    model_output_file = PREDICTION_OUTPUT_SCHEMA.format(base_dir=exam_dir_preop, algo_id="sbtc")
+
+    #standard_plan = ""
+    #model_plan = ""
+
+    # Load images
+    t1c_data_pre = load_mri_data(preop_stripped_files["t1c"])
+    seg_data_pre = load_mri_data(tumor_seg_file)
+    seg_data_post = load_mri_data(recurrence_seg_file)
+    longitudinal_rec = load_mri_data(longitudinal_rec_file)
+    model_data = load_and_resample_mri_data(model_output_file, resample_params=t1c_data_pre.shape, interp_type=1)
+
+    # Relabel recurrence to match preop
+    seg_data_post[seg_data_post==4] = 0  # tired ok
+    seg_data_post[seg_data_post==1] = 5
+    seg_data_post[seg_data_post==3] = 2
+    seg_data_post[seg_data_post==2] = 1
+    seg_data_post[seg_data_post==5] = 3
+
+    longitudinal_rec[longitudinal_rec==4] = 0
+    longitudinal_rec[longitudinal_rec==1] = 5
+    longitudinal_rec[longitudinal_rec==3] = 2
+    longitudinal_rec[longitudinal_rec==2] = 1
+    longitudinal_rec[longitudinal_rec==5] = 3
+
+    # Compute tumor center of mass
+    center = compute_center_of_mass(seg_data_pre, t1c_data_pre, classes_of_interest)
+    ax_slice = center[2]
+
+    # Tumor segmentation legend (1: non enhancing, 2: edema, 3: enhancing)
+    cmap, norm, patches = get_cmap_norm_patches_tumorseg(classes_of_interest)
+
+    # Titles
+    col_titles = ["T1c", "T1", "T2", "Flair"]
+    row_titles = ["Converted (preop)", "Converted (follow)", "Stripped (preop)", "Stripped (follow)", "Tumorseg", "Tissueseg", "Masks"]
+    header = (
+            f"Patient: {patient_identifier}\n"
+            f"Exam (preop): {exam_identifier_pre}\n"
+            f"Exam (postop): {exam_identifier_followup}\n"
+            f"CoM slice (axial/coronal): {center[2]}/{center[1]}\n"
+            )
+
+    # Build image tensor
+    image_tensor = np.empty((n_layers, 7, 4), dtype=object)
+
+    # Layer 1: T1c, T1c, T1c, Tissueseg
+    layer_1_args = {"cmap": "gray"}
+
+    tmp = load_and_resample_mri_data(followup_converted_files["t1c"], resample_params=t1c_data_pre.shape, interp_type=1)[:, :, ax_slice]
+    tmp = tmp[::2, :]
+    t1c_converted_followup = np.zeros_like(t1c_data_pre[:,:,0])
+    t1c_converted_followup[60:180, :] = tmp
+    
+    image_tensor[0, 0, 0] = load_and_resample_mri_data(preop_converted_files["t1c"], resample_params=t1c_data_pre.shape, interp_type=1)[:, :, ax_slice]
+    image_tensor[0, 0, 1] = load_and_resample_mri_data(preop_converted_files["t1"], resample_params=t1c_data_pre.shape, interp_type=1)[::-1, :, ax_slice]
+    image_tensor[0, 0, 2] = load_and_resample_mri_data(preop_converted_files["t2"], resample_params=t1c_data_pre.shape, interp_type=1)[::-1, :, ax_slice]
+    image_tensor[0, 0, 3] = load_and_resample_mri_data(preop_converted_files["flair"], resample_params=t1c_data_pre.shape, interp_type=1)[::-1, :, ax_slice]
+
+    image_tensor[0, 1, 0] = t1c_converted_followup
+    image_tensor[0, 1, 1] = load_and_resample_mri_data(followup_converted_files["t1"], resample_params=t1c_data_pre.shape, interp_type=1)[::-1, :, ax_slice]
+    image_tensor[0, 1, 2] = load_and_resample_mri_data(followup_converted_files["t2"], resample_params=t1c_data_pre.shape, interp_type=1)[::-1, :, ax_slice]
+    image_tensor[0, 1, 3] = load_and_resample_mri_data(followup_converted_files["flair"], resample_params=t1c_data_pre.shape, interp_type=1)[::-1, :, ax_slice]
+    
+    image_tensor[0, 2, 0] = load_mri_data(preop_stripped_files["t1c"])[:, :, ax_slice]
+    image_tensor[0, 2, 1] = load_mri_data(preop_stripped_files["t1"])[:, :, ax_slice]
+    image_tensor[0, 2, 2] = load_mri_data(preop_stripped_files["t2"])[:, :, ax_slice]
+    image_tensor[0, 2, 3] = load_mri_data(preop_stripped_files["flair"])[:, :, ax_slice]
+
+    image_tensor[0, 3, 0] = load_mri_data(followup_stripped_files["t1c"])[:, :, ax_slice]
+    image_tensor[0, 3, 1] = load_mri_data(followup_stripped_files["t1"])[:, :, ax_slice]
+    image_tensor[0, 3, 2] = load_mri_data(followup_stripped_files["t2"])[:, :, ax_slice]
+    image_tensor[0, 3, 3] = load_mri_data(followup_stripped_files["flair"])[:, :, ax_slice]
+
+    image_tensor[0, 4, 0] = load_mri_data(preop_stripped_files["t1c"])[:, :, ax_slice]
+    image_tensor[0, 4, 1] = load_mri_data(followup_stripped_files["t1c"])[:, :, ax_slice]
+    image_tensor[0, 4, 2] = load_mri_data(longitudinal_t1c_file)[:, :, ax_slice]
+    image_tensor[0, 4, 3] = load_mri_data(tumor_mask_file)[:, :, ax_slice]
+
+    image_tensor[0, 5, 0] = load_mri_data(tissue_seg_file)[:, :, ax_slice]
+    image_tensor[0, 5, 1] = load_mri_data(tissue_pbmaps_files["gm"])[:, :, ax_slice]
+    image_tensor[0, 5, 2] = load_mri_data(tissue_pbmaps_files["wm"])[:, :, ax_slice]
+    image_tensor[0, 5, 3] = load_mri_data(tissue_pbmaps_files["csf"])[:, :, ax_slice]
+
+    image_tensor[0, 6, 0] = load_mri_data(longitudinal_t1c_file)[:, :, ax_slice]
+    image_tensor[0, 6, 1] = load_mri_data(longitudinal_t1c_file)[:, :, ax_slice]
+
+    # Layer 2: None, Tumorseg, None, None
+    layer_2_args = {"cmap": cmap, "norm": norm, "alpha": 0.9}
+        
+    image_tensor[1, 4, 0] = load_mri_data(tumor_seg_file)[:, :, ax_slice]
+    image_tensor[1, 4, 1] = load_mri_data(recurrence_seg_file)[:, :, ax_slice]
+    image_tensor[1, 4, 2] = load_mri_data(longitudinal_rec_file)[:, :, ax_slice]
+
+    # Layer 3: None, None, Model, None
+    layer_3_args = {"cmap": "inferno", "alpha": 0.90, "vmin": 0.0, "vmax": 1.0}
+        
+    image_tensor[2, 6, 1] = model_data[:, :, ax_slice]
+
+    # Imshow arguments
+    imshow_args = [layer_1_args, layer_2_args, layer_3_args]
+
+    grid_plot(
+            image_tensor=image_tensor,
+            imshow_args=imshow_args,
+            header=header,
+            col_titles=col_titles,
+            row_titles=row_titles,
+            outfile=outfile,
+            legend_handles=patches
+            )
+
+
+
 if __name__ == "__main__":
     # Example:
     # python gbm_bench/utils/visualization.py
 
+    """
     plot_model_multislice(
             patient_identifier="RHUH-0001",
             exam_identifier="01-25-2015",
@@ -312,4 +465,13 @@ if __name__ == "__main__":
             exam_dir_preop=Path("test_data/exam1/"),
             exam_dir_followup=Path("test_data/exam3/"),
             outfile="tmp_visualization/test_longitudinal.pdf"
+            )
+    """
+    plot_pipeline(
+            patient_identifier="RHUH-0009",
+            exam_identifier_pre="Pre",
+            exam_identifier_followup="Post",
+            exam_dir_preop=Path("/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0009/12-26-2015-NA-RM CEREBRO-43886"),
+            exam_dir_followup=Path("/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0009/10-11-2016-NA-CRANEO-74507"),
+            outfile="tmp_visualization/pipeline.pdf"
             )
