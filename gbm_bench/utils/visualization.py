@@ -236,13 +236,6 @@ def plot_recurrence_multislice(patient_identifier: str, exam_identifier_pre: str
     t1c_data_post = load_mri_data(t1c_post_dir)
     seg_data_post = load_mri_data(recurrence_seg_dir)
 
-    # Relabel recurrence to match preop
-    seg_data_post[seg_data_post==4] = 0  # tired ok
-    seg_data_post[seg_data_post==1] = 5
-    seg_data_post[seg_data_post==3] = 2
-    seg_data_post[seg_data_post==2] = 1
-    seg_data_post[seg_data_post==5] = 3
-
     # Compute tumor center of mass
     center = compute_center_of_mass(seg_data_pre, t1c_data_pre, classes_of_interest)
 
@@ -344,19 +337,6 @@ def plot_pipeline(patient_identifier: str, exam_identifier_pre: str, exam_identi
     longitudinal_rec = load_mri_data(longitudinal_rec_file)
     model_data = load_and_resample_mri_data(model_output_file, resample_params=t1c_data_pre.shape, interp_type=1)
 
-    # Relabel recurrence to match preop
-    seg_data_post[seg_data_post==4] = 0  # tired ok
-    seg_data_post[seg_data_post==1] = 5
-    seg_data_post[seg_data_post==3] = 2
-    seg_data_post[seg_data_post==2] = 1
-    seg_data_post[seg_data_post==5] = 3
-
-    longitudinal_rec[longitudinal_rec==4] = 0
-    longitudinal_rec[longitudinal_rec==1] = 5
-    longitudinal_rec[longitudinal_rec==3] = 2
-    longitudinal_rec[longitudinal_rec==2] = 1
-    longitudinal_rec[longitudinal_rec==5] = 3
-
     # Compute tumor center of mass
     center = compute_center_of_mass(seg_data_pre, t1c_data_pre, classes_of_interest)
     ax_slice = center[2]
@@ -442,7 +422,6 @@ def plot_pipeline(patient_identifier: str, exam_identifier_pre: str, exam_identi
             outfile=outfile,
             legend_handles=patches
             )
-
 
 
 if __name__ == "__main__":

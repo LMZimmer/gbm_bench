@@ -174,8 +174,8 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
 
     recurrence_dir = RECURRENCE_SCHEMA.format(base_dir=str(followup_dir))   
     recurrence_segmentation = load_mri_data(str(recurrence_dir))
-    recurrence_segmentation[recurrence_segmentation == 2] = 1
-    recurrence_segmentation[recurrence_segmentation == 3] = 0  # ignore edema
+    recurrence_segmentation[recurrence_segmentation == 2] = 0  # ignore edema
+    recurrence_segmentation[recurrence_segmentation == 3] = 1
     recurrence_segmentation[recurrence_segmentation == 4] = 0  # ignore resection cavity
     recurrence_segmentation[brain_mask == 0] = 0
     recurrence_segmentation_all = load_mri_data(recurrence_dir)

@@ -9,6 +9,7 @@ from gbm_bench.preprocessing.preprocess import preprocess_dicom, process_longitu
 if __name__ == "__main__":
     # Example:
     # python scripts/preprocess_upenngbm.py -cuda_device 0
+    # nohup python -u scripts/preprocess_upenngbm.py -cuda_device 0 > tmp.out 2>&1 &
     parser = argparse.ArgumentParser()
     parser.add_argument("-cuda_device", type=str, default="0", help="GPU id to run on.")
     args = parser.parse_args()
@@ -22,7 +23,7 @@ if __name__ == "__main__":
     upenn_gbm.load(UPENN_GBM_DIR)
 
     # Individual exams
-    for patient_ind, patient in enumerate(upenn_gbm.patients[32:]):  # hung at 33/39
+    for patient_ind, patient in enumerate(upenn_gbm.patients):
         print(f"Processing {patient_ind}/{len(upenn_gbm.patients)}...")
 
         for exam in patient["exams"]:
@@ -31,7 +32,7 @@ if __name__ == "__main__":
 
             is_preop = (exam["timepoint"] == "preop")
 
-            print(exam["t1"])
+            """
             preprocess_dicom(
                     t1_dir=exam["t1"],
                     t1c_dir=exam["t1c"],
@@ -42,9 +43,9 @@ if __name__ == "__main__":
                     pre_treatment=is_preop,
                     cuda_device=args.cuda_device,
                     )
+            """
 
     # Longitudinal registration
-    """
     for patient_ind, patient in enumerate(upenn_gbm.patients):
         print(f"Performing longitudinal registration {patient_ind}/{len(upenn_gbm.patients)}.")
 
@@ -63,6 +64,5 @@ if __name__ == "__main__":
                     followup_exam_dir=followup_exam_dir,
                     outdir=followup_exam_dir
                     )
-    """
     
     print(f"Finished processing.")
