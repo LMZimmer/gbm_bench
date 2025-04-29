@@ -35,6 +35,7 @@ if __name__ == "__main__":
             pre_treatment=True,
             outdir=outdir,
             is_coregistered=True,
+            is_skull_stripped=True,
             tumorseg_file=Path("test_data/nifti/tumorseg.nii.gz"),
             cuda_device=args.cuda_device
             )

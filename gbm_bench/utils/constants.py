@@ -71,7 +71,7 @@ DATASET_DIR = DATA_DIR / "datasets"
 
 RHUH_GBM_DIR = DATASET_DIR / "rhuh.json"
 UPENN_GBM_DIR = DATASET_DIR / "upenn_gbm.json"
-
+LUMIERE_DIR = DATASET_DIR / "lumiere.json"
 
 # MODELS
 GROWTH_MODEL_DIR = DATA_DIR / "models"

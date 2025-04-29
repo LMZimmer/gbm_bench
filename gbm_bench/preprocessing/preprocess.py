@@ -76,7 +76,7 @@ def preprocess_dicom(t1_dir: Path, t1c_dir: Path, t2_dir: Path, flair_dir: Path,
 
 
 def preprocess_nifti(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file: Path, pre_treatment: bool, outdir: Path,
-                     is_coregistered: bool, tumorseg_file: Optional[Path] = None, cuda_device: str = "0") -> None:
+        is_coregistered: bool, is_skull_stripped: bool, tumorseg_file: Optional[Path] = None, cuda_device: str = "0") -> None:
     """
     Performs a multitude of precessing steps to prepare nifti inputs for tumor growth models. Allows passing
     available intermediate results like tumor segmentation or already skull stripped images. Starts by
@@ -91,7 +91,8 @@ def preprocess_nifti(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file: P
             Causes the BRATS segmentation algorithm to choose different models.
         outdir (Path): Base directory for the output. Usually exam directory.
         cuda_device (str): GPU device to use.
-        is_coregistered (bool): True if the provided data has already been normalized, skull stripped and co-registered.
+        is_coregistered (bool): True if the provided data has already been co-registered to SRI-24 space and skull stripped.
+        is_skull_stripped (bool): True if the provided data has already been normalized, skull stripped and co-registered.
         tumorseg_file (Optional, Path): Path to the tumor segmentation.
 
     Returns:
@@ -125,13 +126,15 @@ def preprocess_nifti(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file: P
             pre_treatment=pre_treatment,
             cuda_device=cuda_device,
             perform_coregistration=not is_coregistered,
+            perform_skull_stripping=not is_skull_stripped,
             perform_tumorseg=False if tumorseg_file is not None else True,
             perform_tissueseg=pre_treatment
             )
 
 
 def preprocess_exam(outdir: Path, pre_treatment: bool, mask_tissueseg: bool = False, perform_coregistration: bool = True, 
-                    perform_tumorseg: bool = True, perform_tissueseg: bool = True, cuda_device: str = "0") -> None:
+                    perform_skull_stripping: bool = True, perform_tumorseg: bool = True, perform_tissueseg: bool = True,
+                    cuda_device: str = "0") -> None:
     """
     This function is called by preprocess_nifti and preprocess_dicom and is not meant for end users. It assumes a fixed
     directory structure that is built by the aforementioned functions. It then performs normalization, co-registration,
@@ -144,6 +147,7 @@ def preprocess_exam(outdir: Path, pre_treatment: bool, mask_tissueseg: bool = Fa
             Causes the BRATS segmentation algorithm to choose different models.
         mask_tissueseg (bool): If true, masks out the tumor region for the tissue segmentation step.
         perform_coregistration (bool): If true, performs normalization, skull stripping, co-registration
+        perform_skull_stripping (bool): If true, performs skull stripping during co-registration step.
         perform_tumorseg (bool): If true, performs tumor segmentation via BRATS.
         perform_tissueseg (bool): If true, performs tissue segmentation.
         cuda_device (str): GPU device to use.
@@ -162,6 +166,7 @@ def preprocess_exam(outdir: Path, pre_treatment: bool, mask_tissueseg: bool = Fa
                 t1c_file=MODALITY_CONVERTED_SCHEMA.format(base_dir=outdir, modality="t1c"),
                 t2_file=MODALITY_CONVERTED_SCHEMA.format(base_dir=outdir, modality="t2"),
                 flair_file=MODALITY_CONVERTED_SCHEMA.format(base_dir=outdir, modality="flair"),
+                skull_strip=perform_skull_stripping,
                 outdir=outdir
                 )
 

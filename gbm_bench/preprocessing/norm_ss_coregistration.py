@@ -23,7 +23,7 @@ from gbm_bench.utils.constants import (
 )
 
 
-def initialize_center_modality(modality_file: Path, modality_name: str, normalizer: Normalizer, outdir: Path) -> CenterModality:
+def initialize_center_modality(modality_file: Path, modality_name: str, normalizer: Normalizer, outdir: Path, skull_strip: bool = True) -> CenterModality:
     """
     Initializes and returns a CenterModality object configured for a specific imaging modality.
 
@@ -32,6 +32,7 @@ def initialize_center_modality(modality_file: Path, modality_name: str, normaliz
         modality_name (str): A descriptive name for the modality (e.g., 't1c').
         normalizer (Normalizer): An instance of the Normalizer class that defines the normalization parameters.
         outdir (Path): The directory where the output files (normalized image and mask) will be saved. Usually the exam dir.
+        skull_strip (bool): If true, performs skull stripping via HDBet
 
     Returns:
         CenterModality: An instance of CenterModality configured with the input file, normalization settings, 
@@ -40,18 +41,27 @@ def initialize_center_modality(modality_file: Path, modality_name: str, normaliz
     modality_outfile = MODALITY_STRIPPED_SCHEMA.format(base_dir=outdir, modality=modality_name)
     mask_outfile = BRAIN_MASK_SCHEMA.format(base_dir=outdir)
 
-    center = CenterModality(
-            modality_name=modality_name,
-            input_path=str(modality_file),
-            normalizer=normalizer,
-            normalized_bet_output_path=str(modality_outfile),
-            bet_mask_output_path=str(mask_outfile),
-            )
+    if skull_strip:
+        center = CenterModality(
+                modality_name=modality_name,
+                input_path=str(modality_file),
+                normalizer=normalizer,
+                normalized_bet_output_path=str(modality_outfile),
+                bet_mask_output_path=str(mask_outfile),
+                )
+    else:
+        logger.info(f"normalized_skull_output_path: {str(modality_outfile)}")
+        center = CenterModality(
+                modality_name=modality_name,
+                input_path=str(modality_file),
+                normalizer=normalizer,
+                normalized_skull_output_path=str(modality_outfile)
+                )
     
     return center
 
 
-def initialize_moving_modalities(modality_files: List[Path], modality_names: List[Path], normalizer: Normalizer, outdir: Path) -> Modality:
+def initialize_moving_modalities(modality_files: List[Path], modality_names: List[Path], normalizer: Normalizer, outdir: Path, skull_strip: bool = True) -> Modality:
     """
     Initializes and returns a list of Modality objects with moving modalities for registration.
 
@@ -60,6 +70,7 @@ def initialize_moving_modalities(modality_files: List[Path], modality_names: Lis
         modality_name (List[Path]): List of descriptive names for the modalities.
         normalizer (Normalizer): An instance of the Normalizer class that defines the normalization parameters.
         outdir (Path): The directory where the output files will be saved. Usually the exam dir.
+        skull_strip (bool): If true, performs skull stripping via HDBet
 
     Returns:
         List[Modality]: A list of Modality instances configured for the moving modalities.
@@ -69,33 +80,44 @@ def initialize_moving_modalities(modality_files: List[Path], modality_names: Lis
         
         stripped_modality_outfile = MODALITY_STRIPPED_SCHEMA.format(base_dir=outdir, modality=mod_name)
         
-        m = Modality(
-                input_path=mod_file,
-                modality_name=mod_name,
-                normalizer=normalizer,
-                normalized_bet_output_path=stripped_modality_outfile,
-                )
+        if skull_strip:
+            m = Modality(
+                    input_path=mod_file,
+                    modality_name=mod_name,
+                    normalizer=normalizer,
+                    normalized_bet_output_path=stripped_modality_outfile,
+                    )
+        else:
+            logger.info(f"normalized_skull_output_path: {stripped_modality_outfile}")
+            m = Modality(
+                    input_path=mod_file,
+                    modality_name=mod_name,
+                    normalizer=normalizer,
+                    normalized_skull_output_path=stripped_modality_outfile
+                    )
 
         moving_modalities.append(m)
     return moving_modalities
 
 
-def norm_ss_coregister(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file: Path, outdir: Path) -> None:
+def norm_ss_coregister(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file: Path, outdir: Path, skull_strip: bool = True) -> None:
     """
     Performs normalization, skull stripping and co-registration based on the brainles preprocessing module.
 
     Parameters:
-        t1_file: Path to the t1 nifti.
-        t1c_file: Path to the t1c nifti.
-        t2_file: Path to the t2 nifti.
-        flair_file: Path to the flair nifti.
-        outdir: Base directory where the output will be saved. Usually exam dir.
+        t1_file (Path): Path to the t1 nifti.
+        t1c_file (Path): Path to the t1c nifti.
+        t2_file (Path): Path to the t2 nifti.
+        flair_file (Path): Path to the flair nifti.
+        outdir (Path): Base directory where the output will be saved. Usually exam dir.
+        skull_strip (bool): If true, performs skull stripping via HDBet
     
     Returns:
         None
     """
     start_time = time.time()
     logger.info(f"Starting normalization, skull strippping, co-registration step. Starting brainles preprocessing.")
+    logger.info(f"skull_strip: {skull_strip}")
     percentile_normalizer = PercentileNormalizer(
             lower_percentile=0.1,
             upper_percentile=99,
@@ -107,13 +129,15 @@ def norm_ss_coregister(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file:
             modality_file=str(t1c_file),
             modality_name="t1c",
             normalizer=percentile_normalizer,
-            outdir=str(outdir)
+            outdir=str(outdir),
+            skull_strip=skull_strip
             )
     moving = initialize_moving_modalities(
             modality_files=[str(t1_file), str(t2_file), str(flair_file)],
             modality_names=["t1", "t2", "flair"],
             normalizer=percentile_normalizer,
-            outdir=str(outdir)
+            outdir=str(outdir),
+            skull_strip=skull_strip
             )
 
     preprocessor = Preprocessor(
