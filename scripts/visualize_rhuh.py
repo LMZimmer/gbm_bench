@@ -36,6 +36,7 @@ if __name__ == "__main__":
         # Model plot
         outfile_model = os.path.join(tmp_dir_model, f"{patient_identifier}_{algorithm_identifier}.pdf")
 
+        """
         try:
             plot_model_multislice(
                     patient_identifier=patient_identifier,
@@ -45,9 +46,10 @@ if __name__ == "__main__":
                     outfile=outfile_model
                     )
             outfiles_model.append(outfile_model)
-        except:
-            print(f"Plotting failed for {exam_identifier_preop}, method {algorithm_identifier}. Possibly file not found. Continuing...")
-        
+        except Exception as e:
+            raise e
+            #print(f"Plotting failed for {exam_identifier_preop}, method {algorithm_identifier}. Possibly file not found. Continuing...")
+        """
         # Recurrences
         outfile_recurrence = os.path.join(tmp_dir_rec, f"{patient_identifier}_recurrence.pdf")
         outfiles_recurrences.append(outfile_recurrence)
@@ -62,10 +64,11 @@ if __name__ == "__main__":
             )
 
     # Merge PDFs
-    outfiles_model.sort(), outfiles_recurrences.sort()
-    merge_pdfs(outfiles_model, f"./tmp/RHUH_{algorithm_identifier}.pdf")
+    #outfiles_model.sort()
+    outfiles_recurrences.sort()
+    #merge_pdfs(outfiles_model, f"./tmp/RHUH_{algorithm_identifier}.pdf")
     merge_pdfs(outfiles_recurrences, f"./tmp/RHUH_recurrences.pdf")
 
     # Delete temporary files
-    shutil.rmtree(tmp_dir_model)
+    #shutil.rmtree(tmp_dir_model)
     shutil.rmtree(tmp_dir_rec)

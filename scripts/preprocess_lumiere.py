@@ -22,7 +22,7 @@ if __name__ == "__main__":
     lumiere.load(LUMIERE_DIR)
 
     # Individual exams
-    for patient_ind, patient in enumerate(lumiere.patients):
+    for patient_ind, patient in enumerate(lumiere.patients[8:]):  # hung at 8
         print(f"Processing {patient_ind}/{len(lumiere.patients)}...")
 
         for exam in patient["exams"]:
@@ -30,6 +30,7 @@ if __name__ == "__main__":
                 continue
 
             is_preop = (exam["timepoint"] == "preop")
+            print(f"{exam['t1']}")
 
             preprocess_nifti(
                     t1_file=exam["t1"],

@@ -176,7 +176,7 @@ def plot_model_multislice(patient_identifier: str, exam_identifier: str, algorit
     image_tensor = np.empty((n_layers, num_slices*2, 4), dtype=object)
     
     # Layer 1: T1c, T1c, T1c, Tissueseg
-    layer_1_args = {"cmap": "gray"}
+    layer_1_args = {"cmap": "gray", "interpolation": "none"}
     for ind, ax_slice, cor_slice in zip(range(num_slices), axial_slices, coronal_slices):
         
         image_tensor[0, ind, 0] = t1c_data[:, :, ax_slice]
@@ -190,14 +190,14 @@ def plot_model_multislice(patient_identifier: str, exam_identifier: str, algorit
         image_tensor[0, ind+num_slices, 3] = tissueseg_data[:, cor_slice, :]
 
     # Layer 2: None, Tumorseg, None, None
-    layer_2_args = {"cmap": cmap, "norm": norm, "alpha": 0.9}
+    layer_2_args = {"cmap": cmap, "norm": norm, "alpha": 0.9, "interpolation": "none"}
     for ind, ax_slice, cor_slice in zip(range(num_slices), axial_slices, coronal_slices):
         
         image_tensor[1, ind, 1] = tumorseg_data[:, :, ax_slice]
         image_tensor[1, ind+num_slices, 1] = tumorseg_data[:, cor_slice, :]
 
     # Layer 3: None, None, Model, None
-    layer_3_args = {"cmap": "inferno", "alpha": 0.90, "vmin": 0.0, "vmax": 1.0}
+    layer_3_args = {"cmap": "inferno", "alpha": 0.90, "vmin": 0.0, "vmax": 1.0, "interpolation": "none"}
     for ind, ax_slice, cor_slice in zip(range(num_slices), axial_slices, coronal_slices):
         
         image_tensor[2, ind, 2] = model_data[:, :, ax_slice]
@@ -225,7 +225,8 @@ def plot_recurrence_multislice(patient_identifier: str, exam_identifier_pre: str
 
     # Paths
     t1c_pre_dir = MODALITY_STRIPPED_SCHEMA.format(base_dir=exam_dir_preop, modality="t1c")
-    t1c_post_dir = MODALITY_STRIPPED_SCHEMA.format(base_dir=exam_dir_followup, modality="t1c")
+    t1c_post_dir = LONGITUDINAL_WARP_SCHEMA.format(base_dir=exam_dir_followup)
+    #t1c_post_dir = MODALITY_STRIPPED_SCHEMA.format(base_dir=exam_dir_followup, modality="t1c")  # non-co-registered version
     tumor_seg_dir = TUMORSEG_SCHEMA.format(base_dir=exam_dir_preop)
     recurrence_seg_dir = RECURRENCE_SCHEMA.format(base_dir=exam_dir_followup)
     #recurrence_seg_dir = TUMORSEG_SCHEMA.format(base_dir=exam_dir_followup)  # non-co-registered version
@@ -235,6 +236,8 @@ def plot_recurrence_multislice(patient_identifier: str, exam_identifier_pre: str
     seg_data_pre = load_mri_data(tumor_seg_dir)
     t1c_data_post = load_mri_data(t1c_post_dir)
     seg_data_post = load_mri_data(recurrence_seg_dir)
+
+    seg_data_post[seg_data_post==4] = 0  # ignore ressection cavity label
 
     # Compute tumor center of mass
     center = compute_center_of_mass(seg_data_pre, t1c_data_pre, classes_of_interest)
@@ -254,7 +257,7 @@ def plot_recurrence_multislice(patient_identifier: str, exam_identifier_pre: str
     header = (
             f"Patient: {patient_identifier}\n"
             f"Exam (preop): {exam_identifier_pre}\n"
-            f"Exam (postop): {exam_identifier_followup}\n"
+            f"Exam (follow up): {exam_identifier_followup}\n"
             f"CoM slice (axial/coronal): {center[2]}/{center[1]}\n"
             )
 
@@ -262,7 +265,7 @@ def plot_recurrence_multislice(patient_identifier: str, exam_identifier_pre: str
     image_tensor = np.empty((n_layers, num_slices*2, 4), dtype=object)
 
     # Layer 1: T1c (pre), T1c (pre), T1c (post, T1c (post)
-    layer_1_args = {"cmap": "gray"}
+    layer_1_args = {"cmap": "gray", "interpolation": "none"}
     for ind, ax_slice, cor_slice in zip(range(num_slices), axial_slices, coronal_slices):
 
         image_tensor[0, ind, 0] = t1c_data_pre[:, :, ax_slice]
@@ -276,7 +279,7 @@ def plot_recurrence_multislice(patient_identifier: str, exam_identifier_pre: str
         image_tensor[0, ind+num_slices, 3] = t1c_data_post[:, cor_slice, :]
 
     # Layer 2: None, Tumorseg (pre), None, Tumorseg (post)
-    layer_2_args = {"cmap": cmap, "norm": norm, "alpha": 0.9}
+    layer_2_args = {"cmap": cmap, "norm": norm, "alpha": 0.9, "interpolation": "none"}
     for ind, ax_slice, cor_slice in zip(range(num_slices), axial_slices, coronal_slices):
 
         image_tensor[1, ind, 1] = seg_data_pre[:, :, ax_slice]
@@ -358,7 +361,7 @@ def plot_pipeline(patient_identifier: str, exam_identifier_pre: str, exam_identi
     image_tensor = np.empty((n_layers, 7, 4), dtype=object)
 
     # Layer 1: T1c, T1c, T1c, Tissueseg
-    layer_1_args = {"cmap": "gray"}
+    layer_1_args = {"cmap": "gray", "interpolation": "none"}
 
     tmp = load_and_resample_mri_data(followup_converted_files["t1c"], resample_params=t1c_data_pre.shape, interp_type=1)[:, :, ax_slice]
     tmp = tmp[::2, :]
@@ -399,14 +402,14 @@ def plot_pipeline(patient_identifier: str, exam_identifier_pre: str, exam_identi
     image_tensor[0, 6, 1] = load_mri_data(longitudinal_t1c_file)[:, :, ax_slice]
 
     # Layer 2: None, Tumorseg, None, None
-    layer_2_args = {"cmap": cmap, "norm": norm, "alpha": 0.9}
+    layer_2_args = {"cmap": cmap, "norm": norm, "alpha": 0.9, "interpolation": "none"}
         
     image_tensor[1, 4, 0] = load_mri_data(tumor_seg_file)[:, :, ax_slice]
     image_tensor[1, 4, 1] = load_mri_data(recurrence_seg_file)[:, :, ax_slice]
     image_tensor[1, 4, 2] = load_mri_data(longitudinal_rec_file)[:, :, ax_slice]
 
     # Layer 3: None, None, Model, None
-    layer_3_args = {"cmap": "inferno", "alpha": 0.90, "vmin": 0.0, "vmax": 1.0}
+    layer_3_args = {"cmap": "inferno", "alpha": 0.90, "vmin": 0.0, "vmax": 1.0, "interpolation": "none"}
         
     image_tensor[2, 6, 1] = model_data[:, :, ax_slice]
 

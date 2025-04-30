@@ -120,7 +120,7 @@ def norm_ss_coregister(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file:
     logger.info(f"skull_strip: {skull_strip}")
     percentile_normalizer = PercentileNormalizer(
             lower_percentile=0.1,
-            upper_percentile=99,
+            upper_percentile=99.99,  # was 99
             lower_limit=0,
             upper_limit=1,
             )
@@ -226,11 +226,9 @@ if __name__ == "__main__":
         flair_file=flair_nifti_file,
         outdir=outdir_tmp
     )
-
     register_recurrence(
         t1c_pre_file=t1c_stripped_preop,
         t1c_post_file=t1c_stripped_postop,
         recurrence_seg_file=recurrence_seg_file,
         outdir=postop_exam
     )
-
