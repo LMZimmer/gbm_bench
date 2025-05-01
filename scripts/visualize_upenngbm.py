@@ -26,17 +26,16 @@ if __name__ == "__main__":
         print(f"Visualizing {patient_ind}/{len(upenn_gbm.patients)}...")
         
         patient_identifier = patient["patient_id"]
-        exam_dir_preopop = upenn_gbm.get_patient_exams(patient_id=patient_identifier, timepoint="preop")[0]["t1c"].parent
-        exam_dir_followup = upenn_gbm.get_patient_exams(patient_id=patient_identifier, timepoint="followup")[0]["t1c"].parent
+        exam_dir_preopop = upenn_gbm.get_patient_exams(patient_id=patient_identifier, timepoint="preop")[0]["t1"].parent
+        exam_dir_followup = upenn_gbm.get_patient_exams(patient_id=patient_identifier, timepoint="followup")[0]["t1"].parent
         exam_identifier_preop = str(exam_dir_preopop.name)
         exam_identifier_followup = str(exam_dir_followup.name)
 
-        algorithm_identifier = "sbtc"                       # LMI, SBTC, GLIODIL
+        algorithm_identifier = "lmi"                       # LMI, SBTC, GLIODIL
         
         # Model plot
         outfile_model = os.path.join(tmp_dir_model, f"{patient_identifier}_{algorithm_identifier}.pdf")
 
-        """
         try:
             plot_model_multislice(
                     patient_identifier=patient_identifier,
@@ -49,11 +48,12 @@ if __name__ == "__main__":
         except Exception as e:
             raise e
             #print(f"Plotting failed for {exam_identifier_preop}, method {algorithm_identifier}. Possibly file not found. Continuing...")
-        """
+        
         # Recurrences
         outfile_recurrence = os.path.join(tmp_dir_rec, f"{patient_identifier}_recurrence.pdf")
         outfiles_recurrences.append(outfile_recurrence)
         
+        """
         plot_recurrence_multislice(
             patient_identifier=patient_identifier,
             exam_identifier_pre=exam_identifier_preop,
@@ -62,13 +62,14 @@ if __name__ == "__main__":
             exam_dir_followup=exam_dir_followup,
             outfile=outfile_recurrence
             )
+       """
 
     # Merge PDFs
-    #outfiles_model.sort()
-    outfiles_recurrences.sort()
-    #merge_pdfs(outfiles_model, f"./tmp/UPENN_{algorithm_identifier}.pdf")
-    merge_pdfs(outfiles_recurrences, f"./tmp/UPENN_recurrences.pdf")
+    outfiles_model.sort()
+    #outfiles_recurrences.sort()
+    merge_pdfs(outfiles_model, f"./tmp/UPENN_{algorithm_identifier}.pdf")
+    #merge_pdfs(outfiles_recurrences, f"./tmp/UPENN_recurrences.pdf")
 
     # Delete temporary files
-    #shutil.rmtree(tmp_dir_model)
-    shutil.rmtree(tmp_dir_rec)
+    shutil.rmtree(tmp_dir_model)
+    #shutil.rmtree(tmp_dir_rec)

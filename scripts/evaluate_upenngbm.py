@@ -32,7 +32,7 @@ if __name__ == "__main__":
         if len(preop_exams) > 1:
             print(f"Warning: found {len(preop_exams)} preop exams for patient {patiend_ind, patiend}. Using first exam for evaluation.")
 
-        algo_id = "sbtc" # sbtc, gliodil
+        algo_id = "lmi" # sbtc, gliodil
         preop_exam_dir = preop_exams[0]["t1"].parent
         prediction_dir = PREDICTION_OUTPUT_SCHEMA.format(base_dir=preop_exam_dir, algo_id=algo_id)
         

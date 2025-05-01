@@ -1,6 +1,6 @@
 {
   "dataset_id": "UPENN-GBM",
-  "root_dir": "/home/home/lucas/data/UPENN-GBM/UPENN-GBM",
+  "root_dir": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM",
   "patients": [
     {
       "patient_id": "UPENN-GBM-00036",
