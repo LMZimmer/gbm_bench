@@ -120,7 +120,7 @@ def norm_ss_coregister(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file:
     logger.info(f"skull_strip: {skull_strip}")
     percentile_normalizer = PercentileNormalizer(
             lower_percentile=0.1,
-            upper_percentile=99.99,  # was 99
+            upper_percentile=99.9,
             lower_limit=0,
             upper_limit=1,
             )

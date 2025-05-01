@@ -9,7 +9,7 @@ from gbm_bench.prediction.predict import predict_tumor_growth
 if __name__ == "__main__":
     # Example:
     # python scripts/predict_lumiere.py -cuda_device 0
-    # nohup python -u scripts/predict_lumiere.py -cuda_device 0 > tmp.out 2>&1 &
+    # nohup python -u scripts/predict_lumiere.py -cuda_device 5 > tmp_lumiere_pred.out 2>&1 &
     parser = argparse.ArgumentParser()
     parser.add_argument("-cuda_device", type=str, default="0", help="GPU id to run on.")
     args = parser.parse_args()
