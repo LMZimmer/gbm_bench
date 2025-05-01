@@ -9,6 +9,7 @@ from gbm_bench.preprocessing.preprocess import preprocess_dicom, process_longitu
 if __name__ == "__main__":
     # Example:
     # python scripts/preprocess_rhuh.py -cuda_device 0
+    # nohup python -u scripts/preprocess_rhuh.py -cuda_device 0 > tmp_rhuh_preproc.out 2>&1 &
     parser = argparse.ArgumentParser()
     parser.add_argument("-cuda_device", type=str, default="0", help="GPU id to run on.")
     args = parser.parse_args()
