@@ -1,6 +1,6 @@
 {
   "dataset_id": "LUMIERE",
-  "root_dir": "/Users/cherubim/Desktop/LUMIERE/Imaging",
+  "root_dir": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging",
   "patients": [
     {
       "patient_id": "Patient-001",
