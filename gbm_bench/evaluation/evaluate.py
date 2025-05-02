@@ -12,6 +12,7 @@ from gbm_bench.utils.utils import load_mri_data, load_and_resample_mri_data, is_
 from gbm_bench.utils.constants import (
         BRAIN_MASK_SCHEMA,
         METRICS_SCHEMA,
+        MODALITY_STRIPPED_SCHEMA,
         RECURRENCE_SCHEMA,
         TISSUE_SEG_SCHEMA,
         TISSUE_LABELS,
@@ -157,7 +158,12 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
 
     # Load data
     brain_mask_dir = BRAIN_MASK_SCHEMA.format(base_dir=str(preop_dir))
-    brain_mask = load_mri_data(str(brain_mask_dir))
+    if brain_mask_dir.exists():
+        brain_mask = load_mri_data(str(brain_mask_dir))
+    else:
+        t1c_file = MODALITY_STRIPPED_SCHEMA.format(base_dir=str(preop_dir), modality="t1c")
+        t1c = load_mri_data(str(t1c_file))
+        brain_mask = (t1c > 0.).astype(np.float64)
 
     if csf_mask:
         tissue_segmentation_dir = TISSUE_SEG_SCHEMA.format(base_dir=str(preop_dir))
