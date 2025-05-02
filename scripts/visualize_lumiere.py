@@ -10,7 +10,7 @@ from gbm_bench.utils.visualization import plot_model_multislice, plot_recurrence
 
 if __name__ == "__main__":
     # Example:
-    # python scripts/visualize_upenngbm.py
+    # python scripts/visualize_lumiere.py
 
     # Read dataset
     lumiere_root = "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging"
@@ -36,7 +36,6 @@ if __name__ == "__main__":
         # Model plot
         outfile_model = os.path.join(tmp_dir_model, f"{patient_identifier}_{algorithm_identifier}.pdf")
 
-        """
         try:
             plot_model_multislice(
                     patient_identifier=patient_identifier,
@@ -47,10 +46,11 @@ if __name__ == "__main__":
                     )
             outfiles_model.append(outfile_model)
         except Exception as e:
-            raise e
-            #print(f"Plotting failed for {exam_identifier_preop}, method {algorithm_identifier}. Possibly file not found. Continuing...")
-        """
+            #raise e
+            print(f"Plotting failed for {exam_identifier_preop}, method {algorithm_identifier}. Possibly file not found. Continuing...")
+        
         # Recurrences
+        """
         outfile_recurrence = os.path.join(tmp_dir_rec, f"{patient_identifier}_recurrence.pdf")
         outfiles_recurrences.append(outfile_recurrence)
         
@@ -62,13 +62,14 @@ if __name__ == "__main__":
             exam_dir_followup=exam_dir_followup,
             outfile=outfile_recurrence
             )
+        """
 
     # Merge PDFs
-    #outfiles_model.sort()
-    outfiles_recurrences.sort()
-    #merge_pdfs(outfiles_model, f"./tmp/LUMIERE_{algorithm_identifier}.pdf")
-    merge_pdfs(outfiles_recurrences, f"./tmp/LUMIERE_recurrences.pdf")
+    outfiles_model.sort()
+    #outfiles_recurrences.sort()
+    merge_pdfs(outfiles_model, f"./tmp/LUMIERE_{algorithm_identifier}.pdf")
+    #merge_pdfs(outfiles_recurrences, f"./tmp/LUMIERE_recurrences.pdf")
 
     # Delete temporary files
-    #shutil.rmtree(tmp_dir_model)
-    shutil.rmtree(tmp_dir_rec)
+    shutil.rmtree(tmp_dir_model)
+    #shutil.rmtree(tmp_dir_rec)
