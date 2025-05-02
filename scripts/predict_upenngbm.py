@@ -36,3 +36,4 @@ if __name__ == "__main__":
                     model_id="sbtc", # lmi, sbtc, gliodil
                     cuda_device=args.cuda_device
                     )
+    print("Done.")

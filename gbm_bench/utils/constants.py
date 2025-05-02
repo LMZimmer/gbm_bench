@@ -73,8 +73,10 @@ RHUH_GBM_DIR = DATASET_DIR / "rhuh.json"
 UPENN_GBM_DIR = DATASET_DIR / "upenn_gbm.json"
 LUMIERE_DIR = DATASET_DIR / "lumiere.json"
 
+
 # MODELS
-GROWTH_MODEL_DIR = DATA_DIR / "models"
+#GROWTH_MODEL_DIR = DATA_DIR / "models"  #TODO: change for release
+GROWTH_MODEL_DIR = Path("/mnt/Drive2/lucas/models/dockered")
 
 
 # OUTPUT DIRECTOIES
