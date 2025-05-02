@@ -22,7 +22,6 @@ if __name__ == "__main__":
     lumiere.load(LUMIERE_DIR)
 
     # Individual exams
-    """
     for patient_ind, patient in enumerate(lumiere.patients):
         print(f"Processing {patient_ind}/{len(lumiere.patients)}...")
 
@@ -44,26 +43,3 @@ if __name__ == "__main__":
                     is_coregistered=False,
                     cuda_device=args.cuda_device
                     )
-    """
-
-    # Longitudinal registration
-    for patient_ind, patient in enumerate(lumiere.patients[60:]):
-        print(f"Performing longitudinal registration {patient_ind}/{len(lumiere.patients)}.")
-
-        patient_id = patient["patient_id"]
-        preop_exam = lumiere.get_patient_exams(patient_id=patient_id, timepoint="preop")[0]  # Find first preop exam
-        preop_exam_dir = preop_exam["t1"].parent
-
-        # Loop through followup exams
-        followup_exams = lumiere.get_patient_exams(patient_id=patient_id, timepoint="followup")
-        
-        for followup_exam in followup_exams:
-            followup_exam_dir = followup_exam["t1"].parent
-            
-            process_longitudinal(
-                    preop_exam_dir=preop_exam_dir,
-                    followup_exam_dir=followup_exam_dir,
-                    outdir=followup_exam_dir
-                    )
-    
-    print(f"Finished processing.")

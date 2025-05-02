@@ -26,6 +26,8 @@ def remove_postfixes(export_dir: Path) -> None:
             # Construct the new filename using the modality and the original extensions
             new_name = ".".join([modality] + parts[1:])
             new_path = export_dir / new_name
+            while os.path.isfile(new_path):  # prevent overiding, in case a dicom has to be converted manually
+                new_path = new_path.split(".")[0] + "_a" + ".nii.gz"
             f.rename(new_path)
             logger.info(f"Renamed postfix file {f} to {new_path}.")
 

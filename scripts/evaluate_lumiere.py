@@ -14,6 +14,7 @@ from gbm_bench.utils.constants import PREDICTION_OUTPUT_SCHEMA
 if __name__ == "__main__":
     # Example:
     # python scripts/evaluate_lumiere.py
+    # nohup python -u scripts/evaluate_lumiere.py -cuda_device 5 > tmp_lumiere_sbtc.out 2>&1 &
     
     # Read dataset
     lumiere_root = "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging"
