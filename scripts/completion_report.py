@@ -1,29 +1,43 @@
 import os   
 import argparse
 from pathlib import Path
-from gbm_bench.utils.constants import LUMIERE_DIR
+from gbm_bench.utils.constants import LUMIERE_DIR, RHUH_DIR, UPENN_DIR
 from gbm_bench.utils.parsing import LongitudinalDataset
-from gbm_bench.preprocessing.preprocess import preprocess_nifti, process_longitudinal
+
+
+ROOT_DIRS = {
+        "rhuh": "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM",
+        "lumiere": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging",
+        "upenn": "/home/home/lucas/data/UPENN-GBM/UPENN-GBM"
+        }
+
+DATASET_DIRS = {
+        "rhuh": RHUH_DIR,
+        "lumiere": LUMIERE_DIR,
+        "upenn": UPENN_DIR
+        }
+
+
+def load_dataset(dataset_id):
+    root_dir = ROOT_DIRS[dataset_id]
+    dataset_dir = DATASET_DIRS[dataset_id]
+    dataset = LongitudinalDataset(dataset_id=dataset_id.upper(), root_dir=root_dir)
+    dataset.load(dataset_dir)
+    return dataset
 
 
 if __name__ == "__main__":
     # Example:
-    # python scripts/preprocess_lumiere.py -cuda_device 0
-    # nohup python -u scripts/preprocess_lumiere.py -cuda_device 0 > tmp_lumiere_preproc.out 2>&1 &
+    # python scripts/completion_report.py -dataset rhuh
     parser = argparse.ArgumentParser()
-    parser.add_argument("-cuda_device", type=str, default="0", help="GPU id to run on.")
+    parser.add_argument("-dataset_id", type=str)
     args = parser.parse_args()
 
-    os.environ["CUDA_VISIBLE_DEVICES"] = args.cuda_device
-
     # Read dataset
-    lumiere_root = "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging"
-    lumiere = LongitudinalDataset(dataset_id="LUMIERE", root_dir=lumiere_root)
-    lumiere.load(LUMIERE_DIR)
+    dataset = load_dataset(args.dataset_id)
 
     # Individual exams
-    for patient_ind, patient in enumerate(lumiere.patients):
-        print(f"Processing {patient_ind}/{len(lumiere.patients)}...")
+    for patient_ind, patient in enumerate(dataset.patients):
 
         for exam in patient["exams"]:
             if exam["timepoint"] == "postop":  # skip postop
@@ -32,14 +46,4 @@ if __name__ == "__main__":
             is_preop = (exam["timepoint"] == "preop")
             print(f"{exam['t1']}")
 
-            preprocess_nifti(
-                    t1_file=exam["t1"],
-                    t1c_file=exam["t1c"],
-                    t2_file=exam["t2"],
-                    flair_file=exam["flair"],
-                    pre_treatment=is_preop,
-                    outdir=exam["t1"].parent,
-                    is_skull_stripped=True,
-                    is_coregistered=False,
-                    cuda_device=args.cuda_device
-                    )
+            #TODO
