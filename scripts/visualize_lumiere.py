@@ -50,7 +50,6 @@ if __name__ == "__main__":
             print(f"Plotting failed for {exam_identifier_preop}, method {algorithm_identifier}. Possibly file not found. Continuing...")
         
         # Recurrences
-        """
         outfile_recurrence = os.path.join(tmp_dir_rec, f"{patient_identifier}_recurrence.pdf")
         outfiles_recurrences.append(outfile_recurrence)
         
@@ -62,14 +61,13 @@ if __name__ == "__main__":
             exam_dir_followup=exam_dir_followup,
             outfile=outfile_recurrence
             )
-        """
 
     # Merge PDFs
     outfiles_model.sort()
-    #outfiles_recurrences.sort()
+    outfiles_recurrences.sort()
     merge_pdfs(outfiles_model, f"./tmp/LUMIERE_{algorithm_identifier}.pdf")
-    #merge_pdfs(outfiles_recurrences, f"./tmp/LUMIERE_recurrences.pdf")
+    merge_pdfs(outfiles_recurrences, f"./tmp/LUMIERE_recurrences.pdf")
 
     # Delete temporary files
     shutil.rmtree(tmp_dir_model)
-    #shutil.rmtree(tmp_dir_rec)
+    shutil.rmtree(tmp_dir_rec)

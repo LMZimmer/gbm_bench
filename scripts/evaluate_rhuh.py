@@ -39,14 +39,17 @@ if __name__ == "__main__":
         for followup_exam in followup_exams:
             followup_exam_dir = followup_exam["t1"].parent
 
-            results = evaluate_tumor_model(
-                    preop_dir=preop_exam_dir,
-                    followup_dir=followup_exam_dir,
-                    pred_file=prediction_dir,
-                    model_id=algo_id
-                    )
-            all_results.append(results)
-            print(f"{patient_identifier}: {results}")
+            try:
+                results = evaluate_tumor_model(
+                        preop_dir=preop_exam_dir,
+                        followup_dir=followup_exam_dir,
+                        pred_file=prediction_dir,
+                        model_id=algo_id
+                        )
+                all_results.append(results)
+                print(f"{patient_identifier}: {results}")
+            except Exception as e:
+                print(f"Exception: {e}")
 
     recurrence_coverage_standard = [r["recurrence_coverage_standard"] for r in all_results]
     recurrence_coverage_standard_all = [r["recurrence_coverage_standard_all"] for r in all_results]
@@ -54,8 +57,8 @@ if __name__ == "__main__":
     recurrence_coverage_model_all = [r["recurrence_coverage_model_all"] for r in all_results]
 
     print(f"Finished evaluation.")
-    print(f"Standard plan coverge: {100*np.mean(recurrence_coverage_standard)} \u00B1 {100*stats.sem(recurrence_coverage_standard)}")
-    print(f"Standard plan coverge (all): {100*np.mean(recurrence_coverage_standard_all)} \u00B1 {100*stats.sem(recurrence_coverage_standard_all)}")
-    print(f"Model plan coverge: {100*np.mean(recurrence_coverage_model)} \u00B1 {100*stats.sem(recurrence_coverage_model)}")
-    print(f"Model plan coverge (all): {100*np.mean(recurrence_coverage_model_all)} \u00B1 {100*stats.sem(recurrence_coverage_model_all)}")
+    print(f"Standard plan coverge: {100*np.mean(recurrence_coverage_standard):.2f} \u00B1 {100*stats.sem(recurrence_coverage_standard):.2f}")
+    print(f"Standard plan coverge (all): {100*np.mean(recurrence_coverage_standard_all):.2f} \u00B1 {100*stats.sem(recurrence_coverage_standard_all):.2f}")
+    print(f"Model plan coverge: {100*np.mean(recurrence_coverage_model):.2f} \u00B1 {100*stats.sem(recurrence_coverage_model):.2f}")
+    print(f"Model plan coverge (all): {100*np.mean(recurrence_coverage_model_all):.2f} \u00B1 {100*stats.sem(recurrence_coverage_model_all):.2f}")
 

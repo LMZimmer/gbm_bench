@@ -54,8 +54,8 @@ if __name__ == "__main__":
     recurrence_coverage_model_all = [r["recurrence_coverage_model_all"] for r in all_results]
 
     print(f"Finished evaluation.")
-    print(f"Standard plan coverge: {100*np.mean(recurrence_coverage_standard)} \u00B1 {100*stats.sem(recurrence_coverage_standard)}")
-    print(f"Standard plan coverge (all): {100*np.mean(recurrence_coverage_standard_all)} \u00B1 {100*stats.sem(recurrence_coverage_standard_all)}")
-    print(f"Model plan coverge: {100*np.mean(recurrence_coverage_model)} \u00B1 {100*stats.sem(recurrence_coverage_model)}")
-    print(f"Model plan coverge (all): {100*np.mean(recurrence_coverage_model_all)} \u00B1 {100*stats.sem(recurrence_coverage_model_all)}")
+    print(f"Standard plan coverge: {100*np.mean(recurrence_coverage_standard):.2f} \u00B1 {100*stats.sem(recurrence_coverage_standard):.2f}")
+    print(f"Standard plan coverge (all): {100*np.mean(recurrence_coverage_standard_all):.2f} \u00B1 {100*stats.sem(recurrence_coverage_standard_all):.2f}")
+    print(f"Model plan coverge: {100*np.mean(recurrence_coverage_model):.2f} \u00B1 {100*stats.sem(recurrence_coverage_model):.2f}")
+    print(f"Model plan coverge (all): {100*np.mean(recurrence_coverage_model_all):.2f} \u00B1 {100*stats.sem(recurrence_coverage_model_all):.2f}")
 

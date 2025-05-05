@@ -9,6 +9,7 @@ from gbm_bench.prediction.predict import predict_tumor_growth
 if __name__ == "__main__":
     # Example:
     # python scripts/predict_rhuh.py -cuda_device 0
+    # nohup python -u scripts/predict_rhuh.py -cuda_device 4 > tmp_rhuh_pred.out 2>&1 &
     parser = argparse.ArgumentParser()
     parser.add_argument("-cuda_device", type=str, default="0", help="GPU id to run on.")
     args = parser.parse_args()
@@ -21,7 +22,7 @@ if __name__ == "__main__":
     rhuh_gbm.load(RHUH_GBM_DIR)
 
     # Predict on preop exams
-    for patient_ind, patient in enumerate(rhuh_gbm.patients):
+    for patient_ind, patient in enumerate(rhuh_gbm.patients[32:]):
         print(f"Predicting {patient_ind}/{len(rhuh_gbm.patients)}...")
         
         for exam in patient["exams"]:
