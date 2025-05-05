@@ -15,8 +15,10 @@ from gbm_bench.utils.constants import (
         LONGITUDINAL_WARP_SCHEMA,
         MODALITY_CONVERTED_SCHEMA,
         MODALITY_STRIPPED_SCHEMA,
+        MODEL_PLAN_SCHEMA,
         PREDICTION_OUTPUT_SCHEMA,
         RECURRENCE_SCHEMA,
+        STANDARD_PLAN_SCHEMA,
         TISSUE_SEG_SCHEMA,
         TISSUE_PBMAP_SCHEMA,
         TUMORSEG_CORE_SCHEMA,
@@ -330,8 +332,8 @@ def plot_pipeline(patient_identifier: str, exam_identifier_pre: str, exam_identi
 
     model_output_file = PREDICTION_OUTPUT_SCHEMA.format(base_dir=exam_dir_preop, algo_id="sbtc")
 
-    #standard_plan = ""
-    #model_plan = ""
+    standard_plan_file = STANDARD_PLAN_SCHEMA.format(base_dir=exam_dir_preop)
+    model_plan_file = MODEL_PLAN_SCHEMA.format(base_dir=exam_dir_preop, algo_id="sbtc")
 
     # Load images
     t1c_data_pre = load_mri_data(preop_stripped_files["t1c"])
@@ -363,10 +365,11 @@ def plot_pipeline(patient_identifier: str, exam_identifier_pre: str, exam_identi
     # Layer 1: T1c, T1c, T1c, Tissueseg
     layer_1_args = {"cmap": "gray", "interpolation": "none"}
 
-    tmp = load_and_resample_mri_data(followup_converted_files["t1c"], resample_params=t1c_data_pre.shape, interp_type=1)[:, :, ax_slice]
-    tmp = tmp[::2, :]
-    t1c_converted_followup = np.zeros_like(t1c_data_pre[:,:,0])
-    t1c_converted_followup[60:180, :] = tmp
+    #tmp = load_and_resample_mri_data(followup_converted_files["t1c"], resample_params=t1c_data_pre.shape, interp_type=1)[:, :, ax_slice]  #TODO pad and resample for nicer visualization before registration
+    #tmp = tmp[::2, :]
+    #t1c_converted_followup = np.zeros_like(t1c_data_pre[:,:,0])
+    #t1c_converted_followup[60:180, :] = tmp
+    t1c_converted_followup = load_and_resample_mri_data(followup_converted_files["t1c"], resample_params=t1c_data_pre.shape, interp_type=1)[:, :, ax_slice]
     
     image_tensor[0, 0, 0] = load_and_resample_mri_data(preop_converted_files["t1c"], resample_params=t1c_data_pre.shape, interp_type=1)[:, :, ax_slice]
     image_tensor[0, 0, 1] = load_and_resample_mri_data(preop_converted_files["t1"], resample_params=t1c_data_pre.shape, interp_type=1)[::-1, :, ax_slice]
@@ -400,6 +403,8 @@ def plot_pipeline(patient_identifier: str, exam_identifier_pre: str, exam_identi
 
     image_tensor[0, 6, 0] = load_mri_data(longitudinal_t1c_file)[:, :, ax_slice]
     image_tensor[0, 6, 1] = load_mri_data(longitudinal_t1c_file)[:, :, ax_slice]
+    image_tensor[0, 6, 2] = load_mri_data(longitudinal_t1c_file)[:, :, ax_slice]
+    image_tensor[0, 6, 3] = load_mri_data(longitudinal_t1c_file)[:, :, ax_slice]
 
     # Layer 2: None, Tumorseg, None, None
     layer_2_args = {"cmap": cmap, "norm": norm, "alpha": 0.9, "interpolation": "none"}
@@ -408,10 +413,103 @@ def plot_pipeline(patient_identifier: str, exam_identifier_pre: str, exam_identi
     image_tensor[1, 4, 1] = load_mri_data(recurrence_seg_file)[:, :, ax_slice]
     image_tensor[1, 4, 2] = load_mri_data(longitudinal_rec_file)[:, :, ax_slice]
 
+    image_tensor[1, 6, 2] = load_mri_data(standard_plan_file)[:, :, ax_slice]
+    image_tensor[1, 6, 3] = load_mri_data(model_plan_file)[:, :, ax_slice]
+
     # Layer 3: None, None, Model, None
     layer_3_args = {"cmap": "inferno", "alpha": 0.90, "vmin": 0.0, "vmax": 1.0, "interpolation": "none"}
         
     image_tensor[2, 6, 1] = model_data[:, :, ax_slice]
+
+    # Imshow arguments
+    imshow_args = [layer_1_args, layer_2_args, layer_3_args]
+
+    grid_plot(
+            image_tensor=image_tensor,
+            imshow_args=imshow_args,
+            header=header,
+            col_titles=col_titles,
+            row_titles=row_titles,
+            outfile=outfile,
+            legend_handles=patches
+            )
+
+
+def plot_plans(patient_identifier: str, exam_identifier_pre: str, exam_identifier_followup: str,
+               exam_dir_preop: Path, exam_dir_followup: Path, outfile: str,
+               classes_of_interest: List[int] = [1, 2, 3]) -> None:
+
+    n_layers = 3    # one layer for each imshow config
+
+    # Paths
+    longitudinal_t1c_file = LONGITUDINAL_WARP_SCHEMA.format(base_dir=exam_dir_followup)
+    longitudinal_rec_file = RECURRENCE_SCHEMA.format(base_dir=exam_dir_followup)
+    model_output_file = PREDICTION_OUTPUT_SCHEMA.format(base_dir=exam_dir_preop, algo_id="sbtc")
+    standard_plan_file = STANDARD_PLAN_SCHEMA.format(base_dir=exam_dir_preop)
+    model_plan_file = MODEL_PLAN_SCHEMA.format(base_dir=exam_dir_preop, algo_id="sbtc")
+
+    # Load images
+    t1c_data_post = load_mri_data(longitudinal_t1c_file)
+    longitudinal_rec = load_mri_data(longitudinal_rec_file)
+    model_data = load_and_resample_mri_data(model_output_file, resample_params=t1c_data_post.shape, interp_type=1)
+    standard_plan = load_mri_data(standard_plan_file)
+    model_plan = load_mri_data(model_plan_file)
+
+    # Ignore resection cavity label
+    longitudinal_rec[longitudinal_rec==4] = 0
+
+    # Compute tumor center of mass
+    center = compute_center_of_mass(longitudinal_rec, t1c_data_post, classes_of_interest)
+    step_size = 10
+    num_slices = 5
+    patient_dim = t1c_data_post.shape
+    axial_slices, coronal_slices = get_slices(center, num_slices, step_size, patient_dim)
+
+    # Tumor segmentation legend (1: non enhancing, 2: edema, 3: enhancing)
+    cmap, norm, patches = get_cmap_norm_patches_tumorseg(classes_of_interest)
+
+    # Titles
+    col_titles = ["T1c", "Standard", "Model-based", "Model"]
+    row_titles = axial_slices + coronal_slices
+    header = (
+            f"Patient: {patient_identifier}\n"
+            f"Exam (preop): {exam_identifier_pre}\n"
+            f"Exam (postop): {exam_identifier_followup}\n"
+            f"CoM slice (axial/coronal): {center[2]}/{center[1]}\n"
+            )
+
+    # Build image tensor
+    image_tensor = np.empty((n_layers, num_slices*2, 4), dtype=object)
+
+    # Layer 1: T1c, T1c, T1c, Tissueseg
+    layer_1_args = {"cmap": "gray", "interpolation": "none"}
+
+    layer_1_args = {"cmap": "gray"}
+    for ind, ax_slice, cor_slice in zip(range(num_slices), axial_slices, coronal_slices):
+        image_tensor[0, ind, 0] = t1c_data_post[:, :, ax_slice]
+        image_tensor[0, ind, 1] = t1c_data_post[:, :, ax_slice]
+        image_tensor[0, ind, 2] = t1c_data_post[:, :, ax_slice]
+        image_tensor[0, ind, 3] = t1c_data_post[:, :, ax_slice]
+
+        image_tensor[0, ind+num_slices, 0] = t1c_data_post[:, cor_slice, :]
+        image_tensor[0, ind+num_slices, 1] = t1c_data_post[:, cor_slice, :]
+        image_tensor[0, ind+num_slices, 2] = t1c_data_post[:, cor_slice, :]
+        image_tensor[0, ind+num_slices, 3] = t1c_data_post[:, cor_slice, :]
+
+    layer_2_args = {"cmap": cmap, "norm": norm, "alpha": 0.9, "interpolation": "none"}
+    for ind, ax_slice, cor_slice in zip(range(num_slices), axial_slices, coronal_slices):
+        image_tensor[1, ind, 0] = longitudinal_rec[:, :, ax_slice]
+        image_tensor[1, ind, 1] = standard_plan[:, :, ax_slice]
+        image_tensor[1, ind, 2] = model_plan[:, :, ax_slice]
+
+        image_tensor[1, ind+num_slices, 0] = longitudinal_rec[:, cor_slice, :]
+        image_tensor[1, ind+num_slices, 1] = standard_plan[:, cor_slice, :]
+        image_tensor[1, ind+num_slices, 2] = model_plan[:, cor_slice, :]
+
+    layer_3_args = {"cmap": "inferno", "alpha": 0.90, "vmin": 0.0, "vmax": 1.0, "interpolation": "none"}
+    for ind, ax_slice, cor_slice in zip(range(num_slices), axial_slices, coronal_slices):
+        image_tensor[2, ind, 3] = model_data[:, :, ax_slice]
+        image_tensor[2, ind+num_slices, 3] = model_data[:, cor_slice, :]
 
     # Imshow arguments
     imshow_args = [layer_1_args, layer_2_args, layer_3_args]
@@ -450,10 +548,21 @@ if __name__ == "__main__":
             )
     """
     plot_pipeline(
-            patient_identifier="RHUH-0009",
+            patient_identifier="RHUH-0011",
             exam_identifier_pre="Pre",
             exam_identifier_followup="Post",
-            exam_dir_preop=Path("/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0009/12-26-2015-NA-RM CEREBRO-43886"),
-            exam_dir_followup=Path("/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0009/10-11-2016-NA-CRANEO-74507"),
+            exam_dir_preop=Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/09-27-2015-NA-Craneo-26679"),
+            exam_dir_followup=Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/04-05-2016-NA-RM CEREBRO-94961"),
             outfile="tmp_visualization/pipeline.pdf"
             )
+    
+    plot_plans(
+            patient_identifier="RHUH-0011",
+            exam_identifier_pre="Pre",
+            exam_identifier_followup="Post",
+            exam_dir_preop=Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/09-27-2015-NA-Craneo-26679"),
+            exam_dir_followup=Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/04-05-2016-NA-RM CEREBRO-94961"),
+            outfile="tmp_visualization/plans.pdf"
+            )
+
+

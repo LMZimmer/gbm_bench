@@ -13,7 +13,9 @@ from gbm_bench.utils.constants import (
         BRAIN_MASK_SCHEMA,
         METRICS_SCHEMA,
         MODALITY_STRIPPED_SCHEMA,
+        MODEL_PLAN_SCHEMA,
         RECURRENCE_SCHEMA,
+        STANDARD_PLAN_SCHEMA,
         TISSUE_SEG_SCHEMA,
         TISSUE_LABELS,
         TUMORSEG_SCHEMA,
@@ -170,13 +172,14 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
         tissue_segmentation = load_mri_data(str(tissue_segmentation_dir))
         brain_mask[tissue_segmentation==TISSUE_LABELS["csf"]] = 0
 
-    core_segmentation_dir = TUMORSEG_CORE_SCHEMA.format(base_dir=str(preop_dir))
-    core_segmentation = load_mri_data(str(core_segmentation_dir))
-    
     full_segmentation_dir = TUMORSEG_SCHEMA.format(base_dir=str(preop_dir))
     full_segmentation = load_mri_data(str(full_segmentation_dir))
     full_segmentation[full_segmentation==2] = 1
-    full_segmentation[full_segmentation==3] = 1 
+    full_segmentation[full_segmentation==3] = 1
+
+    core_segmentation = load_mri_data(str(full_segmentation_dir))
+    core_segmentation[core_segmentation==2] = 0  # ignore edma
+    core_segmentation[core_segmentation==3] = 1
 
     recurrence_dir = RECURRENCE_SCHEMA.format(base_dir=str(followup_dir))
     recurrence_segmentation = load_mri_data(str(recurrence_dir))
@@ -206,24 +209,17 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
     model_recurrence_coverage = recurrence_coverage(recurrence_segmentation, model_plan)
     model_recurrence_coverage_all = recurrence_coverage(recurrence_segmentation_all, model_plan)
 
-    # Analysis
-    """
-    tmpdir = "tmp_radplans/"
-    os.makedirs(tmpdir, exist_ok=True)
+    # Save plans
+    outfile_standard = STANDARD_PLAN_SCHEMA.format(base_dir=str(preop_dir))
+    outfile_model = MODEL_PLAN_SCHEMA.format(base_dir=str(preop_dir), algo_id=model_id)
     tmp = nib.load(pred_file)
-    model_aff, model_header = tmp.affine, tmp.header
-    tmp = nib.load(core_segmentation_dir)
-    std_aff, std_header = tmp.affine, tmp.header
+    aff, header = tmp.affine, tmp.header
     
-    standard_img = nib.Nifti1Image(standard_plan, std_aff, std_header)
-    nib.save(standard_img, os.path.join(tmpdir, "standard.nii"))
+    standard_plan = nib.Nifti1Image(standard_plan, aff, header)
+    nib.save(standard_plan, outfile_standard)
 
-    model_img = nib.Nifti1Image(model_prediction > tumor_threshold, model_aff, model_header)
-    nib.save(model_img, os.path.join(tmpdir, "model.nii"))
-
-    recurrence_img = nib.Nifti1Image(recurrence_segmentation, std_aff, std_header)
-    nib.save(recurrence_img, os.path.join(tmpdir, "recurrence.nii"))
-    """
+    model_img = nib.Nifti1Image(model_prediction > tumor_threshold, aff, header)
+    nib.save(model_img, outfile_model)
 
     # Compute metrics
     results["recurrence_coverage_standard"] = standard_plan_coverage
