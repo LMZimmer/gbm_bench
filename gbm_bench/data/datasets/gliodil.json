@@ -1,0 +1,1148 @@
+{
+  "dataset_id": "GLIODIL",
+  "root_dir": "/Users/cherubim/Desktop/tgm_munchen71",
+  "patients": [
+    {
+      "patient_id": "tgm001",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm001",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm001/preop/sub-tgm001_ses-preop_space-sri_seg-rec.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm001/preop/sub-tgm001_ses-preop_space-sri_dti.bval",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm001/preop/sub-tgm001_ses-preop_space-sri_seg.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm001/preop/sub-tgm001_ses-preop_space-sri_t1.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm001/preop/sub-tgm001_ses-preop_space-sri_t1c.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm001/preop/sub-tgm001_ses-preop_space-sri_flair.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm001/preop/sub-tgm001_ses-preop_space-sri_fet.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm001/preop/sub-tgm001_ses-preop_space-sri_t1c-rec.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm002",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm002",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm002/preop/sub-tgm002_ses-preop_space-sri_dti.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm002/preop/sub-tgm002_ses-preop_space-sri_t1c.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm002/preop/sub-tgm002_ses-preop_space-sri_t1c-rec.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm002/preop/sub-tgm002_ses-preop_space-sri_fet.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm002/preop/sub-tgm002_ses-preop_space-sri_seg.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm002/preop/sub-tgm002_ses-preop_space-sri_t1.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm002/preop/sub-tgm002_ses-preop_space-sri_seg-rec.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm002/preop/sub-tgm002_ses-preop_space-sri_flair.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm003",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm003",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm003/preop/sub-tgm003_ses-preop_space-sri_t1c.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm003/preop/sub-tgm003_ses-preop_space-org_dti.bvec",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm003/preop/sub-tgm003_ses-preop_space-sri_fet.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm003/preop/sub-tgm003_ses-preop_space-sri_t1c-rec.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm003/preop/sub-tgm003_ses-preop_space-sri_flair.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm003/preop/sub-tgm003_ses-preop_space-sri_seg-rec.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm003/preop/sub-tgm003_ses-preop_space-sri_seg.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm003/preop/sub-tgm003_ses-preop_space-sri_t1.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm004",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm004",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm004/preop/sub-tgm004_ses-preop_space-sri_flair.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm004/preop/sub-tgm004_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm004/preop/sub-tgm004_ses-preop_space-sri_t1c.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm004/preop/sub-tgm004_ses-preop_space-sri_fet.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm004/preop/sub-tgm004_ses-preop_space-sri_t2.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm004/preop/sub-tgm004_ses-preop_space-sri_seg.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm004/preop/sub-tgm004_ses-preop_space-sri_t1.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm004/preop/sub-tgm004_ses-preop_space-sri_seg-rec.nii.gz",
+          "needs_manual": true
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm005",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm005",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm005/preop/sub-tgm005_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm005/preop/sub-tgm005_ses-preop_space-sri_t1c.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm005/preop/sub-tgm005_ses-preop_space-org_dti.bval",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm005/preop/sub-tgm005_ses-preop_space-sri_t2.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm005/preop/sub-tgm005_ses-preop_space-sri_fet.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm005/preop/sub-tgm005_ses-preop_space-sri_flair.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm005/preop/sub-tgm005_ses-preop_space-sri_t1.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm005/preop/sub-tgm005_ses-preop_space-sri_seg-rec.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm005/preop/sub-tgm005_ses-preop_space-sri_seg.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm006",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm006",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm006/preop/sub-tgm006_ses-preop_space-sri_seg.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm006/preop/sub-tgm006_ses-preop_space-org_dti.bval",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm006/preop/sub-tgm006_ses-preop_space-sri_t1.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm006/preop/sub-tgm006_ses-preop_space-sri_seg-rec.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm006/preop/sub-tgm006_ses-preop_space-sri_t2.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm006/preop/sub-tgm006_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm006/preop/sub-tgm006_ses-preop_space-sri_t1c.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm006/preop/sub-tgm006_ses-preop_space-sri_fet.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm006/preop/sub-tgm006_ses-preop_space-sri_flair.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm008",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm008",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm008/preop/sub-tgm008_ses-preop_space-sri_flair.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm008/preop/sub-tgm008_ses-preop_space-sri_dti.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm008/preop/sub-tgm008_ses-preop_space-sri_t1.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm008/preop/sub-tgm008_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm008/preop/sub-tgm008_ses-preop_space-sri_t1c.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm008/preop/sub-tgm008_ses-preop_space-sri_fet.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm008/preop/sub-tgm008_ses-preop_space-sri_seg-rec.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm008/preop/sub-tgm008_ses-preop_space-sri_seg.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm008/preop/sub-tgm008_ses-preop_space-sri_t2.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm009",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm009",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm009/preop/sub-tgm009_ses-preop_space-sri_t1c.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm009/preop/sub-tgm009_ses-preop_space-sri_fet.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm009/preop/sub-tgm009_ses-preop_space-sri_dti.bvec",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm009/preop/sub-tgm009_ses-preop_space-sri_t1.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm009/preop/sub-tgm009_ses-preop_space-sri_t1c-rec.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm009/preop/sub-tgm009_ses-preop_space-sri_flair.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm009/preop/sub-tgm009_ses-preop_space-sri_seg-rec.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm009/preop/sub-tgm009_ses-preop_space-sri_seg.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm009/preop/sub-tgm009_ses-preop_space-sri_t2.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm010",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm010",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm010/preop/sub-tgm010_ses-preop_space-org_dti.bval",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm010/preop/sub-tgm010_ses-preop_space-sri_t1c.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm010/preop/sub-tgm010_ses-preop_space-sri_fet.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm010/preop/sub-tgm010_ses-preop_space-sri_t1.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm010/preop/sub-tgm010_ses-preop_space-sri_flair.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm010/preop/sub-tgm010_ses-preop_space-sri_t1c-rec.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm010/preop/sub-tgm010_ses-preop_space-sri_seg-rec.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm010/preop/sub-tgm010_ses-preop_space-sri_seg.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm010/preop/sub-tgm010_ses-preop_space-sri_t2.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm011",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm011",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm011/preop/sub-tgm011_ses-preop_space-sri_t1.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm011/preop/sub-tgm011_ses-preop_space-sri_dti.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm011/preop/sub-tgm011_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm011/preop/sub-tgm011_ses-preop_space-sri_t1c.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm011/preop/sub-tgm011_ses-preop_space-sri_fet.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm011/preop/sub-tgm011_ses-preop_space-sri_seg-rec.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm011/preop/sub-tgm011_ses-preop_space-sri_seg.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm011/preop/sub-tgm011_ses-preop_space-sri_t2.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm011/preop/sub-tgm011_ses-preop_space-sri_flair.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm013",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm013",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm013/preop/sub-tgm013_ses-preop_space-sri_flair.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm013/preop/sub-tgm013_ses-preop_space-sri_seg-rec.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm013/preop/sub-tgm013_ses-preop_space-sri_seg.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm013/preop/sub-tgm013_ses-preop_space-sri_t2.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm013/preop/sub-tgm013_ses-preop_space-org_dti.bval",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm013/preop/sub-tgm013_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm013/preop/sub-tgm013_ses-preop_space-sri_t1.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm013/preop/sub-tgm013_ses-preop_space-sri_t1c.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm013/preop/sub-tgm013_ses-preop_space-sri_fet.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm014",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm014",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm014/preop/sub-tgm014_ses-preop_space-sri_dti.bval",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm014/preop/sub-tgm014_ses-preop_space-sri_t2.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm014/preop/sub-tgm014_ses-preop_space-sri_seg.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm014/preop/sub-tgm014_ses-preop_space-sri_flair.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm014/preop/sub-tgm014_ses-preop_space-sri_seg-rec.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm014/preop/sub-tgm014_ses-preop_space-sri_t1c.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm014/preop/sub-tgm014_ses-preop_space-sri_t1.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm014/preop/sub-tgm014_ses-preop_space-sri_fet.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm014/preop/sub-tgm014_ses-preop_space-sri_t1c-rec.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm015",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm015",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm015/preop/sub-tgm015_ses-preop_space-sri_seg.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm015/preop/sub-tgm015_ses-preop_space-org_dti.bvec",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm015/preop/sub-tgm015_ses-preop_space-sri_seg-rec.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm015/preop/sub-tgm015_ses-preop_space-sri_t2.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm015/preop/sub-tgm015_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm015/preop/sub-tgm015_ses-preop_space-sri_t1.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm015/preop/sub-tgm015_ses-preop_space-sri_flair.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm015/preop/sub-tgm015_ses-preop_space-sri_t1c.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm015/preop/sub-tgm015_ses-preop_space-sri_fet.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm016",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm016",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm016/preop/sub-tgm016_ses-preop_space-sri_t1c.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm016/preop/sub-tgm016_ses-preop_space-org_dti.bvec",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm016/preop/sub-tgm016_ses-preop_space-sri_t1.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm016/preop/sub-tgm016_ses-preop_space-sri_fet.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm016/preop/sub-tgm016_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm016/preop/sub-tgm016_ses-preop_space-sri_t2.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm016/preop/sub-tgm016_ses-preop_space-sri_flair.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm016/preop/sub-tgm016_ses-preop_space-sri_seg.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm016/preop/sub-tgm016_ses-preop_space-sri_seg-rec.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm017",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm017",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm017/preop/sub-tgm017_ses-preop_space-sri_t1c-rec.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm017/preop/sub-tgm017_ses-preop_space-sri_dti.bval",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm017/preop/sub-tgm017_ses-preop_space-sri_flair.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm017/preop/sub-tgm017_ses-preop_space-sri_t1c.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm017/preop/sub-tgm017_ses-preop_space-sri_fet.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm017/preop/sub-tgm017_ses-preop_space-sri_t1.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm017/preop/sub-tgm017_ses-preop_space-sri_seg.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm017/preop/sub-tgm017_ses-preop_space-sri_seg-rec.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm017/preop/sub-tgm017_ses-preop_space-sri_t2.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm018",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm018",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm018/preop/sub-tgm018_ses-preop_space-sri_seg-rec.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm018/preop/sub-tgm018_ses-preop_space-org_dti.bvec",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm018/preop/sub-tgm018_ses-preop_space-sri_flair.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm018/preop/sub-tgm018_ses-preop_space-sri_seg.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm018/preop/sub-tgm018_ses-preop_space-sri_t1.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm018/preop/sub-tgm018_ses-preop_space-sri_t1c.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm018/preop/sub-tgm018_ses-preop_space-sri_t1c-rec.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm018/preop/sub-tgm018_ses-preop_space-sri_fet.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm018/preop/sub-tgm018_ses-preop_space-sri_t2.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm019",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm019",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm019/preop/sub-tgm019_ses-preop_space-sri_seg.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm019/preop/sub-tgm019_ses-preop_space-sri_dti.bval",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm019/preop/sub-tgm019_ses-preop_space-sri_t1.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm019/preop/sub-tgm019_ses-preop_space-sri_seg-rec.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm019/preop/sub-tgm019_ses-preop_space-sri_t2.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm019/preop/sub-tgm019_ses-preop_space-sri_t1c.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm019/preop/sub-tgm019_ses-preop_space-sri_flair.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm019/preop/sub-tgm019_ses-preop_space-sri_t1c-rec.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm019/preop/sub-tgm019_ses-preop_space-sri_fet.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm021",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm021",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm021/preop/sub-tgm021_ses-preop_space-sri_t1c-rec.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm021/preop/sub-tgm021_ses-preop_space-org_dti.bval",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm021/preop/sub-tgm021_ses-preop_space-sri_fet.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm021/preop/sub-tgm021_ses-preop_space-sri_t1c.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm021/preop/sub-tgm021_ses-preop_space-sri_t2.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm021/preop/sub-tgm021_ses-preop_space-sri_flair.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm021/preop/sub-tgm021_ses-preop_space-sri_seg-rec.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm021/preop/sub-tgm021_ses-preop_space-sri_t1.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm021/preop/sub-tgm021_ses-preop_space-sri_seg.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm022",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm022",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm022/preop/sub-tgm022_ses-preop_space-sri_seg.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm022/preop/sub-tgm022_ses-preop_space-org_dti.bval",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm022/preop/sub-tgm022_ses-preop_space-sri_t1.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm022/preop/sub-tgm022_ses-preop_space-sri_seg-rec.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm022/preop/sub-tgm022_ses-preop_space-sri_t2.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm022/preop/sub-tgm022_ses-preop_space-sri_fet.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm022/preop/sub-tgm022_ses-preop_space-sri_flair.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm022/preop/sub-tgm022_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm022/preop/sub-tgm022_ses-preop_space-sri_t1c.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm023",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm023",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm023/preop/sub-tgm023_ses-preop_space-sri_dti.bvec",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm023/preop/sub-tgm023_ses-preop_space-sri_seg-rec.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm023/preop/sub-tgm023_ses-preop_space-sri_t1.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm023/preop/sub-tgm023_ses-preop_space-sri_seg.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm023/preop/sub-tgm023_ses-preop_space-sri_flair.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm023/preop/sub-tgm023_ses-preop_space-sri_fet.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm023/preop/sub-tgm023_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm023/preop/sub-tgm023_ses-preop_space-sri_t1c.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm023/preop/sub-tgm023_ses-preop_space-sri_t2.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm024",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm024",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm024/preop/sub-tgm024_ses-preop_space-sri_flair.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm024/preop/sub-tgm024_ses-preop_space-org_dti.bvec",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm024/preop/sub-tgm024_ses-preop_space-sri_seg.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm024/preop/sub-tgm024_ses-preop_space-sri_t1.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm024/preop/sub-tgm024_ses-preop_space-sri_seg-rec.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm024/preop/sub-tgm024_ses-preop_space-sri_fet.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm024/preop/sub-tgm024_ses-preop_space-sri_t1c.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm024/preop/sub-tgm024_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm024/preop/sub-tgm024_ses-preop_space-sri_t2.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm025",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm025",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm025/preop/sub-tgm025_ses-preop_space-sri_dti.bval",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm025/preop/sub-tgm025_ses-preop_space-sri_seg-rec.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm025/preop/sub-tgm025_ses-preop_space-sri_t1.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm025/preop/sub-tgm025_ses-preop_space-sri_seg.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm025/preop/sub-tgm025_ses-preop_space-sri_fet.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm025/preop/sub-tgm025_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm025/preop/sub-tgm025_ses-preop_space-sri_t1c.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm025/preop/sub-tgm025_ses-preop_space-sri_t2.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm025/preop/sub-tgm025_ses-preop_space-sri_flair.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm026",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm026",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm026/preop/sub-tgm026_ses-preop_space-org_dti.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm026/preop/sub-tgm026_ses-preop_space-sri_t2.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm026/preop/sub-tgm026_ses-preop_space-sri_fet.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm026/preop/sub-tgm026_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm026/preop/sub-tgm026_ses-preop_space-sri_t1c.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm026/preop/sub-tgm026_ses-preop_space-sri_seg.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm026/preop/sub-tgm026_ses-preop_space-sri_seg-rec.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm026/preop/sub-tgm026_ses-preop_space-sri_flair.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm026/preop/sub-tgm026_ses-preop_space-sri_t1.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm027",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm027",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm027/preop/sub-tgm027_ses-preop_space-sri_t2.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm027/preop/sub-tgm027_ses-preop_space-org_dti.bvec",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm027/preop/sub-tgm027_ses-preop_space-sri_fet.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm027/preop/sub-tgm027_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm027/preop/sub-tgm027_ses-preop_space-sri_t1c.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm027/preop/sub-tgm027_ses-preop_space-sri_flair.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm027/preop/sub-tgm027_ses-preop_space-sri_seg-rec.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm027/preop/sub-tgm027_ses-preop_space-sri_t1.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm027/preop/sub-tgm027_ses-preop_space-sri_seg.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm028",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm028",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm028/preop/sub-tgm028_ses-preop_space-sri_dti.bval",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm028/preop/sub-tgm028_ses-preop_space-sri_t2.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm028/preop/sub-tgm028_ses-preop_space-sri_flair.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm028/preop/sub-tgm028_ses-preop_space-sri_seg-rec.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm028/preop/sub-tgm028_ses-preop_space-sri_seg.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm028/preop/sub-tgm028_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm028/preop/sub-tgm028_ses-preop_space-sri_t1.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm028/preop/sub-tgm028_ses-preop_space-sri_fet.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm028/preop/sub-tgm028_ses-preop_space-sri_t1c.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm029",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm029",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm029/preop/sub-tgm029_ses-preop_space-org_dti.bvec",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm029/preop/sub-tgm029_ses-preop_space-sri_t2.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm029/preop/sub-tgm029_ses-preop_space-sri_seg-rec.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm029/preop/sub-tgm029_ses-preop_space-sri_seg.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm029/preop/sub-tgm029_ses-preop_space-sri_fet.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm029/preop/sub-tgm029_ses-preop_space-sri_flair.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm029/preop/sub-tgm029_ses-preop_space-sri_t1c.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm029/preop/sub-tgm029_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm029/preop/sub-tgm029_ses-preop_space-sri_t1.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm030",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm030",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm030/preop/sub-tgm030_ses-preop_space-sri_dti.bval",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm030/preop/sub-tgm030_ses-preop_space-sri_flair.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm030/preop/sub-tgm030_ses-preop_space-sri_t2.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm030/preop/sub-tgm030_ses-preop_space-sri_fet.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm030/preop/sub-tgm030_ses-preop_space-sri_t1c.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm030/preop/sub-tgm030_ses-preop_space-sri_t1.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm030/preop/sub-tgm030_ses-preop_space-sri_t1c-rec.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm031",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm031",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm031/preop/sub-tgm031_ses-preop_space-sri_seg-rec.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm031/preop/sub-tgm031_ses-preop_space-org_dti.bvec",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm031/preop/sub-tgm031_ses-preop_space-sri_seg.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm031/preop/sub-tgm031_ses-preop_space-sri_t2.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm031/preop/sub-tgm031_ses-preop_space-sri_t1.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm031/preop/sub-tgm031_ses-preop_space-sri_t1c-rec.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm031/preop/sub-tgm031_ses-preop_space-sri_fet.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm031/preop/sub-tgm031_ses-preop_space-sri_flair.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm031/preop/sub-tgm031_ses-preop_space-sri_t1c.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm033",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm033",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm033/preop/sub-tgm033_ses-preop_space-sri_dti.bval",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm033/preop/sub-tgm033_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm033/preop/sub-tgm033_ses-preop_space-sri_t1.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm033/preop/sub-tgm033_ses-preop_space-sri_flair.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm033/preop/sub-tgm033_ses-preop_space-sri_fet.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm033/preop/sub-tgm033_ses-preop_space-sri_t1c.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm033/preop/sub-tgm033_ses-preop_space-sri_t2.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm033/preop/sub-tgm033_ses-preop_space-sri_seg-rec.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm033/preop/sub-tgm033_ses-preop_space-sri_seg.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm034",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm034",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm034/preop/sub-tgm034_ses-preop_space-sri_t1.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm034/preop/sub-tgm034_ses-preop_space-sri_fet.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm034/preop/sub-tgm034_ses-preop_space-org_dti.bval",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm034/preop/sub-tgm034_ses-preop_space-sri_t1c.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm034/preop/sub-tgm034_ses-preop_space-sri_flair.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm034/preop/sub-tgm034_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm034/preop/sub-tgm034_ses-preop_space-sri_t2.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm034/preop/sub-tgm034_ses-preop_space-sri_seg-rec.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm034/preop/sub-tgm034_ses-preop_space-sri_seg.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm035",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm035",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm035/preop/sub-tgm035_ses-preop_space-org_dti.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm035/preop/sub-tgm035_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm035/preop/sub-tgm035_ses-preop_space-sri_t1.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm035/preop/sub-tgm035_ses-preop_space-sri_fet.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm035/preop/sub-tgm035_ses-preop_space-sri_t1c.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm035/preop/sub-tgm035_ses-preop_space-sri_seg-rec.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm035/preop/sub-tgm035_ses-preop_space-sri_seg.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm035/preop/sub-tgm035_ses-preop_space-sri_flair.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm036",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm036",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm036/preop/sub-tgm036_ses-preop_space-sri_t2.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm036/preop/sub-tgm036_ses-preop_space-sri_seg-rec.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm036/preop/sub-tgm036_ses-preop_space-sri_seg.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm036/preop/sub-tgm036_ses-preop_space-sri_fet.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm036/preop/sub-tgm036_ses-preop_space-sri_flair.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm036/preop/sub-tgm036_ses-preop_space-sri_t1c.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm036/preop/sub-tgm036_ses-preop_space-sri_t1.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm036/preop/sub-tgm036_ses-preop_space-sri_t1c-rec.nii.gz",
+          "needs_manual": true
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm037",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm037",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm037/preop/sub-tgm037_ses-preop_space-sri_seg-rec.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm037/preop/sub-tgm037_ses-preop_space-sri_flair.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm037/preop/sub-tgm037_ses-preop_space-org_dti.bval",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm037/preop/sub-tgm037_ses-preop_space-sri_seg.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm037/preop/sub-tgm037_ses-preop_space-sri_t2.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm037/preop/sub-tgm037_ses-preop_space-sri_t1c-rec.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm037/preop/sub-tgm037_ses-preop_space-sri_fet.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm037/preop/sub-tgm037_ses-preop_space-sri_t1c.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm037/preop/sub-tgm037_ses-preop_space-sri_t1.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm038",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm038",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm038/preop/sub-tgm038_ses-preop_space-sri_fet.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm038/preop/sub-tgm038_ses-preop_space-sri_t1c-rec.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm038/preop/sub-tgm038_ses-preop_space-sri_dti.bvec",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm038/preop/sub-tgm038_ses-preop_space-sri_t1c.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm038/preop/sub-tgm038_ses-preop_space-sri_t2.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm038/preop/sub-tgm038_ses-preop_space-sri_flair.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm038/preop/sub-tgm038_ses-preop_space-sri_seg-rec.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm038/preop/sub-tgm038_ses-preop_space-sri_seg.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm038/preop/sub-tgm038_ses-preop_space-sri_t1.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm039",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm039",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm039/preop/sub-tgm039_ses-preop_space-sri_t2.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm039/preop/sub-tgm039_ses-preop_space-org_dti.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm039/preop/sub-tgm039_ses-preop_space-sri_fet.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm039/preop/sub-tgm039_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm039/preop/sub-tgm039_ses-preop_space-sri_t1c.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm039/preop/sub-tgm039_ses-preop_space-sri_t1.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm039/preop/sub-tgm039_ses-preop_space-sri_seg.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm039/preop/sub-tgm039_ses-preop_space-sri_flair.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm039/preop/sub-tgm039_ses-preop_space-sri_seg-rec.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm041",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm041",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm041/preop/sub-tgm041_ses-preop_space-sri_dti.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm041/preop/sub-tgm041_ses-preop_space-sri_t1c.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm041/preop/sub-tgm041_ses-preop_space-sri_flair.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm041/preop/sub-tgm041_ses-preop_space-sri_t1c-rec.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm041/preop/sub-tgm041_ses-preop_space-sri_fet.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm041/preop/sub-tgm041_ses-preop_space-sri_t2.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm041/preop/sub-tgm041_ses-preop_space-sri_seg.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm041/preop/sub-tgm041_ses-preop_space-sri_t1.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm041/preop/sub-tgm041_ses-preop_space-sri_seg-rec.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm042",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm042",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm042/preop/sub-tgm042_ses-preop_space-org_dti.bvec",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm042/preop/sub-tgm042_ses-preop_space-sri_seg-rec.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm042/preop/sub-tgm042_ses-preop_space-sri_t1.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm042/preop/sub-tgm042_ses-preop_space-sri_flair.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm042/preop/sub-tgm042_ses-preop_space-sri_seg.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm042/preop/sub-tgm042_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm042/preop/sub-tgm042_ses-preop_space-sri_t1c.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm042/preop/sub-tgm042_ses-preop_space-sri_t2.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm042/preop/sub-tgm042_ses-preop_space-sri_fet.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm044",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm044",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm044/preop/sub-tgm044_ses-preop_space-sri_seg-rec.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm044/preop/sub-tgm044_ses-preop_space-sri_t1.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm044/preop/sub-tgm044_ses-preop_space-sri_seg.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm044/preop/sub-tgm044_ses-preop_space-sri_t1c.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm044/preop/sub-tgm044_ses-preop_space-sri_t1c-rec.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm044/preop/sub-tgm044_ses-preop_space-sri_fet.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm044/preop/sub-tgm044_ses-preop_space-sri_flair.nii.gz",
+          "needs_manual": true
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm045",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm045",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm045/preop/sub-tgm045_ses-preop_space-sri_seg.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm045/preop/sub-tgm045_ses-preop_space-sri_t1.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm045/preop/sub-tgm045_ses-preop_space-sri_dti.bvec",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm045/preop/sub-tgm045_ses-preop_space-sri_flair.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm045/preop/sub-tgm045_ses-preop_space-sri_seg-rec.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm045/preop/sub-tgm045_ses-preop_space-sri_t1c.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm045/preop/sub-tgm045_ses-preop_space-sri_t1c-rec.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm045/preop/sub-tgm045_ses-preop_space-sri_fet.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm046",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm046",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm046/preop/sub-tgm046_ses-preop_space-sri_t1c.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm046/preop/sub-tgm046_ses-preop_space-sri_fet.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm046/preop/sub-tgm046_ses-preop_space-sri_flair.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm046/preop/sub-tgm046_ses-preop_space-sri_t1c-rec.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm046/preop/sub-tgm046_ses-preop_space-sri_seg-rec.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm046/preop/sub-tgm046_ses-preop_space-sri_seg.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm046/preop/sub-tgm046_ses-preop_space-sri_t1.nii.gz",
+          "needs_manual": true
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm047",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm047",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm047/preop/sub-tgm047_ses-preop_space-org_dti.bval",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm047/preop/sub-tgm047_ses-preop_space-sri_t1c.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm047/preop/sub-tgm047_ses-preop_space-sri_fet.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm047/preop/sub-tgm047_ses-preop_space-sri_t1c-rec.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm047/preop/sub-tgm047_ses-preop_space-sri_seg.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm047/preop/sub-tgm047_ses-preop_space-sri_flair.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm047/preop/sub-tgm047_ses-preop_space-sri_t1.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm047/preop/sub-tgm047_ses-preop_space-sri_seg-rec.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm048",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm048",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm048/preop/sub-tgm048_ses-preop_space-sri_dti.bvec",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm048/preop/sub-tgm048_ses-preop_space-sri_seg.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm048/preop/sub-tgm048_ses-preop_space-sri_seg-rec.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm048/preop/sub-tgm048_ses-preop_space-sri_t1c.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm048/preop/sub-tgm048_ses-preop_space-sri_fet.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm048/preop/sub-tgm048_ses-preop_space-sri_t1.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm048/preop/sub-tgm048_ses-preop_space-sri_t1c-rec.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm048/preop/sub-tgm048_ses-preop_space-sri_flair.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm049",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm049",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm049/preop/sub-tgm049_ses-preop_space-sri_seg.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm049/preop/sub-tgm049_ses-preop_space-org_dti.bval",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm049/preop/sub-tgm049_ses-preop_space-sri_seg-rec.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm049/preop/sub-tgm049_ses-preop_space-sri_t2.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm049/preop/sub-tgm049_ses-preop_space-sri_flair.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm049/preop/sub-tgm049_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm049/preop/sub-tgm049_ses-preop_space-sri_t1c.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm049/preop/sub-tgm049_ses-preop_space-sri_fet.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm049/preop/sub-tgm049_ses-preop_space-sri_t1.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm050",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm050",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm050/preop/sub-tgm050_ses-preop_space-sri_seg.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm050/preop/sub-tgm050_ses-preop_space-sri_seg-rec.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm050/preop/sub-tgm050_ses-preop_space-sri_t1c-rec.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm050/preop/sub-tgm050_ses-preop_space-sri_flair.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm050/preop/sub-tgm050_ses-preop_space-sri_t1.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm050/preop/sub-tgm050_ses-preop_space-sri_t1c.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm050/preop/sub-tgm050_ses-preop_space-sri_fet.nii.gz",
+          "needs_manual": true
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm051",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm051",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm051/preop/sub-tgm051_ses-preop_space-org_dti.bval",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm051/preop/sub-tgm051_ses-preop_space-sri_flair.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm051/preop/sub-tgm051_ses-preop_space-sri_seg.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm051/preop/sub-tgm051_ses-preop_space-sri_seg-rec.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm051/preop/sub-tgm051_ses-preop_space-sri_t1c.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm051/preop/sub-tgm051_ses-preop_space-sri_t1.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm051/preop/sub-tgm051_ses-preop_space-sri_fet.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm051/preop/sub-tgm051_ses-preop_space-sri_t1c-rec.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm052",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm052",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm052/preop/sub-tgm052_ses-preop_space-sri_dti.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm052/preop/sub-tgm052_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm052/preop/sub-tgm052_ses-preop_space-sri_t1c.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm052/preop/sub-tgm052_ses-preop_space-sri_fet.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm052/preop/sub-tgm052_ses-preop_space-sri_flair.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm052/preop/sub-tgm052_ses-preop_space-sri_t1.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm052/preop/sub-tgm052_ses-preop_space-sri_seg.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm052/preop/sub-tgm052_ses-preop_space-sri_seg-rec.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm053",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm053",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm053/preop/sub-tgm053_ses-preop_space-sri_dti.bvec",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm053/preop/sub-tgm053_ses-preop_space-sri_t1c.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm053/preop/sub-tgm053_ses-preop_space-sri_fet.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm053/preop/sub-tgm053_ses-preop_space-sri_t1.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm053/preop/sub-tgm053_ses-preop_space-sri_t1c-rec.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm053/preop/sub-tgm053_ses-preop_space-sri_flair.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm053/preop/sub-tgm053_ses-preop_space-sri_seg.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm053/preop/sub-tgm053_ses-preop_space-sri_seg-rec.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm054",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm054",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm054/preop/sub-tgm054_ses-preop_space-sri_t1.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm054/preop/sub-tgm054_ses-preop_space-sri_dti.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm054/preop/sub-tgm054_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm054/preop/sub-tgm054_ses-preop_space-sri_t1c.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm054/preop/sub-tgm054_ses-preop_space-sri_fet.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm054/preop/sub-tgm054_ses-preop_space-sri_seg.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm054/preop/sub-tgm054_ses-preop_space-sri_seg-rec.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm054/preop/sub-tgm054_ses-preop_space-sri_t2.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm054/preop/sub-tgm054_ses-preop_space-sri_flair.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm055",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm055",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm055/preop/sub-tgm055_ses-preop_space-sri_t1c.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm055/preop/sub-tgm055_ses-preop_space-sri_flair.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm055/preop/sub-tgm055_ses-preop_space-sri_dti.bval",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm055/preop/sub-tgm055_ses-preop_space-sri_fet.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm055/preop/sub-tgm055_ses-preop_space-sri_t1.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm055/preop/sub-tgm055_ses-preop_space-sri_t1c-rec.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm055/preop/sub-tgm055_ses-preop_space-sri_seg.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm055/preop/sub-tgm055_ses-preop_space-sri_seg-rec.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm056",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm056",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm056/preop/sub-tgm056_ses-preop_space-sri_seg.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm056/preop/sub-tgm056_ses-preop_space-sri_seg-rec.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm056/preop/sub-tgm056_ses-preop_space-sri_dti.bval",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm056/preop/sub-tgm056_ses-preop_space-sri_flair.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm056/preop/sub-tgm056_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm056/preop/sub-tgm056_ses-preop_space-sri_t1.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm056/preop/sub-tgm056_ses-preop_space-sri_t1c.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm056/preop/sub-tgm056_ses-preop_space-sri_fet.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm057",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm057",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm057/preop/sub-tgm057_ses-preop_space-org_dti.bvec",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm057/preop/sub-tgm057_ses-preop_space-sri_seg-rec.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm057/preop/sub-tgm057_ses-preop_space-sri_seg.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm057/preop/sub-tgm057_ses-preop_space-sri_t1c.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm057/preop/sub-tgm057_ses-preop_space-sri_fet.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm057/preop/sub-tgm057_ses-preop_space-sri_flair.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm057/preop/sub-tgm057_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm057/preop/sub-tgm057_ses-preop_space-sri_t1.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm058",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm058",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm058/preop/sub-tgm058_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm058/preop/sub-tgm058_ses-preop_space-sri_t1c.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm058/preop/sub-tgm058_ses-preop_space-sri_t2.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm058/preop/sub-tgm058_ses-preop_space-sri_fet.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm058/preop/sub-tgm058_ses-preop_space-sri_seg.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm058/preop/sub-tgm058_ses-preop_space-sri_flair.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm058/preop/sub-tgm058_ses-preop_space-sri_seg-rec.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm058/preop/sub-tgm058_ses-preop_space-sri_t1.nii.gz",
+          "needs_manual": true
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm060",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm060",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm060/preop/sub-tgm060_ses-preop_space-sri_seg-rec.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm060/preop/sub-tgm060_ses-preop_space-org_dti.bval",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm060/preop/sub-tgm060_ses-preop_space-sri_t1.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm060/preop/sub-tgm060_ses-preop_space-sri_seg.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm060/preop/sub-tgm060_ses-preop_space-sri_fet.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm060/preop/sub-tgm060_ses-preop_space-sri_t1c.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm060/preop/sub-tgm060_ses-preop_space-sri_t1c-rec.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm060/preop/sub-tgm060_ses-preop_space-sri_flair.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm061",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm061",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm061/preop/sub-tgm061_ses-preop_space-sri_seg.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm061/preop/sub-tgm061_ses-preop_space-sri_dti.bvec",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm061/preop/sub-tgm061_ses-preop_space-sri_t1.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm061/preop/sub-tgm061_ses-preop_space-sri_seg-rec.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm061/preop/sub-tgm061_ses-preop_space-sri_flair.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm061/preop/sub-tgm061_ses-preop_space-sri_fet.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm061/preop/sub-tgm061_ses-preop_space-sri_t1c.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm061/preop/sub-tgm061_ses-preop_space-sri_t1c-rec.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm062",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm062",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm062/preop/sub-tgm062_ses-preop_space-sri_flair.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm062/preop/sub-tgm062_ses-preop_space-sri_fet.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm062/preop/sub-tgm062_ses-preop_space-sri_dti.bvec",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm062/preop/sub-tgm062_ses-preop_space-sri_t1c.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm062/preop/sub-tgm062_ses-preop_space-sri_t1.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm062/preop/sub-tgm062_ses-preop_space-sri_seg.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm063",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm063",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm063/preop/sub-tgm063_ses-preop_space-sri_fet.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm063/preop/sub-tgm063_ses-preop_space-sri_t1c.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm063/preop/sub-tgm063_ses-preop_space-sri_t1c-rec.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm063/preop/sub-tgm063_ses-preop_space-sri_seg.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm063/preop/sub-tgm063_ses-preop_space-sri_flair.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm063/preop/sub-tgm063_ses-preop_space-sri_seg-rec.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm063/preop/sub-tgm063_ses-preop_space-sri_t1.nii.gz",
+          "needs_manual": true
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm064",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm064",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm064/preop/sub-tgm064_ses-preop_space-sri_fet.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm064/preop/sub-tgm064_ses-preop_space-sri_t1c-rec.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm064/preop/sub-tgm064_ses-preop_space-sri_dti.bval",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm064/preop/sub-tgm064_ses-preop_space-sri_t1c.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm064/preop/sub-tgm064_ses-preop_space-sri_seg-rec.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm064/preop/sub-tgm064_ses-preop_space-sri_flair.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm064/preop/sub-tgm064_ses-preop_space-sri_t1.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm064/preop/sub-tgm064_ses-preop_space-sri_seg.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm065",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm065",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm065/preop/sub-tgm065_ses-preop_space-org_dti.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm065/preop/sub-tgm065_ses-preop_space-sri_t1c-rec.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm065/preop/sub-tgm065_ses-preop_space-sri_fet.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm065/preop/sub-tgm065_ses-preop_space-sri_t1c.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm065/preop/sub-tgm065_ses-preop_space-sri_flair.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm065/preop/sub-tgm065_ses-preop_space-sri_t1.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm065/preop/sub-tgm065_ses-preop_space-sri_seg.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm065/preop/sub-tgm065_ses-preop_space-sri_seg-rec.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm066",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm066",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm066/preop/sub-tgm066_ses-preop_space-org_dti.bvec",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm066/preop/sub-tgm066_ses-preop_space-sri_flair.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm066/preop/sub-tgm066_ses-preop_space-sri_seg-rec.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm066/preop/sub-tgm066_ses-preop_space-sri_t1.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm066/preop/sub-tgm066_ses-preop_space-sri_seg.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm066/preop/sub-tgm066_ses-preop_space-sri_t1c-rec.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm066/preop/sub-tgm066_ses-preop_space-sri_fet.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm066/preop/sub-tgm066_ses-preop_space-sri_t1c.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm067",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm067",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm067/preop/sub-tgm067_ses-preop_space-sri_dti.bval",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm067/preop/sub-tgm067_ses-preop_space-sri_seg.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm067/preop/sub-tgm067_ses-preop_space-sri_t1.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm067/preop/sub-tgm067_ses-preop_space-sri_seg-rec.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm067/preop/sub-tgm067_ses-preop_space-sri_flair.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm067/preop/sub-tgm067_ses-preop_space-sri_t1c-rec.nii.gz",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm067/preop/sub-tgm067_ses-preop_space-sri_fet.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm067/preop/sub-tgm067_ses-preop_space-sri_t1c.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm068",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm068",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm068/preop/sub-tgm068_ses-preop_space-sri_fet.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm068/preop/sub-tgm068_ses-preop_space-sri_t1.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm068/preop/sub-tgm068_ses-preop_space-sri_t1c.nii.gz",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm068/preop/sub-tgm068_ses-preop_space-org_dti.bvec",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm068/preop/sub-tgm068_ses-preop_space-sri_t1c-rec.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm068/preop/sub-tgm068_ses-preop_space-sri_seg-rec.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm068/preop/sub-tgm068_ses-preop_space-sri_flair.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm068/preop/sub-tgm068_ses-preop_space-sri_seg.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm071",
+      "patient_dir": "/Users/cherubim/Desktop/tgm_munchen71/tgm071",
+      "exams": [
+        {
+          "timepoint": "preop",
+          "dti": "/Users/cherubim/Desktop/tgm_munchen71/tgm071/preop/sub-tgm071_ses-preop_space-sri_dti.bval",
+          "pet": "/Users/cherubim/Desktop/tgm_munchen71/tgm071/preop/sub-tgm071_ses-preop_space-sri_fet.nii.gz",
+          "t1": "/Users/cherubim/Desktop/tgm_munchen71/tgm071/preop/sub-tgm071_ses-preop_space-sri_t1.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/tgm_munchen71/tgm071/preop/sub-tgm071_ses-preop_space-sri_t1c.nii.gz",
+          "flair": "/Users/cherubim/Desktop/tgm_munchen71/tgm071/preop/sub-tgm071_ses-preop_space-sri_flair.nii.gz",
+          "t1c_followup": "/Users/cherubim/Desktop/tgm_munchen71/tgm071/preop/sub-tgm071_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t2": "/Users/cherubim/Desktop/tgm_munchen71/tgm071/preop/sub-tgm071_ses-preop_space-sri_t2.nii.gz",
+          "recurrenceseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm071/preop/sub-tgm071_ses-preop_space-sri_seg-rec.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/tgm_munchen71/tgm071/preop/sub-tgm071_ses-preop_space-sri_seg.nii.gz",
+          "needs_manual": false
+        }
+      ]
+    }
+  ]
+}
