@@ -3838,32 +3838,6 @@
       ]
     },
     {
-      "patient_id": "tgm030",
-      "patient_dir": "/Users/cherubim/Desktop/GLIODIL/tgm030",
-      "exams": [
-        {
-          "dti": "/Users/cherubim/Desktop/GLIODIL/tgm030/preop/sub-tgm030_ses-preop_space-sri_dti.bval",
-          "flair": "/Users/cherubim/Desktop/GLIODIL/tgm030/preop/sub-tgm030_ses-preop_space-sri_flair.nii.gz",
-          "pet": "/Users/cherubim/Desktop/GLIODIL/tgm030/preop/sub-tgm030_ses-preop_space-sri_fet.nii.gz",
-          "t1": "/Users/cherubim/Desktop/GLIODIL/tgm030/preop/sub-tgm030_ses-preop_space-sri_t1.nii.gz",
-          "t1c": "/Users/cherubim/Desktop/GLIODIL/tgm030/preop/sub-tgm030_ses-preop_space-sri_t1c.nii.gz",
-          "t2": "/Users/cherubim/Desktop/GLIODIL/tgm030/preop/sub-tgm030_ses-preop_space-sri_t2.nii.gz",
-          "tumorseg": "",
-          "timepoint": "preop"
-        },
-        {
-          "dti": "",
-          "flair": "",
-          "pet": "",
-          "t1": "",
-          "t1c": "/Users/cherubim/Desktop/GLIODIL/tgm030/preop/sub-tgm030_ses-preop_space-sri_t1c-rec.nii.gz",
-          "t2": "",
-          "tumorseg": "",
-          "timepoint": "followup"
-        }
-      ]
-    },
-    {
       "patient_id": "tgm031",
       "patient_dir": "/Users/cherubim/Desktop/GLIODIL/tgm031",
       "exams": [

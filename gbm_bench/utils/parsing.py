@@ -17,6 +17,7 @@ class Exam(TypedDict):
     pet: Optional[Path]
     diffusion: Optional[Path] = None
     perfusion: Optional[Path] = None
+    tumorseg: Optional[Path] = None
     timepoint: Optional[Literal["preop", "postop", "followup"]]
 
 
@@ -92,6 +93,7 @@ class LongitudinalDataset():
                     "pet": exam_dir / "pet.nii.gz",
                     "diffusion": exam_dir / "diffusion.nii.gz",
                     "perfusion": exam_dir / "perfusion.nii.gz",
+                    "tumorseg": exam_dir / "tumorseg.nii.gz"
                 }
                 exam_data = {
                         "t1": required_modalities["t1"],
@@ -101,6 +103,7 @@ class LongitudinalDataset():
                         "pet": path if (path := optional_modalities["pet"]).exists() else None,
                         "diffusion": path if (path := optional_modalities["diffusion"]).exists() else None,
                         "perfusion": path if (path := optional_modalities["perfusion"]).exists() else None,
+                        "tumorseg": path if (path := optional_modalities["tumorseg"]).exists() else None
                         }
                 exams.append(exam_data)
                 valid_exams += 1
@@ -192,6 +195,7 @@ class LongitudinalDataset():
                         "pet": Path(e_data["pet"]) if ("pet" in e_data.keys() and e_data["pet"] is not None) else None,
                         "diffusion": Path(e_data["diffusion"]) if ("diffusion" in e_data.keys() and e_data["diffusion"] is not None) else None,
                         "perfusion": Path(e_data["perfusion"]) if ("perfusion" in e_data.keys() and e_data["perfusion"] is not None) else None,
+                        "tumorseg": Path(e_data["tumorseg"]) if ("tumorseg" in e_data.keys() and e_data["tumorseg"] is not None) else None,
                         "timepoint": e_data["timepoint"]
                         }
                 exams.append(exam)
