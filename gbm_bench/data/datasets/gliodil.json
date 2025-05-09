@@ -69,6 +69,7 @@
           "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_003/d285/sub-respond_tum_003_ses-d285_space-sri_t1c.nii.gz",
           "dti": "/Users/cherubim/Desktop/GLIODIL/respond_tum_003/d285/sub-respond_tum_003_ses-d285_space-org_dti.nii.gz",
           "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_003/d285/sub-respond_tum_003_ses-d285_space-sri_t1.nii.gz",
+          "t2": "",
           "timepoint": "followup"
         }
       ]
@@ -821,6 +822,7 @@
           "tumorseg": "/Users/cherubim/Desktop/GLIODIL/respond_tum_037/d0/sub-respond_tum_037_ses-d0_space-sri_seg.nii.gz",
           "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_037/d0/sub-respond_tum_037_ses-d0_space-sri_t1c.nii.gz",
           "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_037/d0/sub-respond_tum_037_ses-d0_space-sri_t1.nii.gz",
+          "t2": "",
           "timepoint": "preop"
         },
         {
@@ -844,6 +846,7 @@
           "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_038/d0/sub-respond_tum_038_ses-d0_space-sri_t1c.nii.gz",
           "dti": "/Users/cherubim/Desktop/GLIODIL/respond_tum_038/d0/sub-respond_tum_038_ses-d0_space-org_dti.nii.gz",
           "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_038/d0/sub-respond_tum_038_ses-d0_space-sri_t1.nii.gz",
+          "t2": "",
           "timepoint": "preop"
         },
         {
@@ -1056,6 +1059,7 @@
           "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_049/d0/sub-respond_tum_049_ses-d0_space-sri_t1c.nii.gz",
           "dti": "/Users/cherubim/Desktop/GLIODIL/respond_tum_049/d0/sub-respond_tum_049_ses-d0_space-org_dti.nii.gz",
           "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_049/d0/sub-respond_tum_049_ses-d0_space-sri_t1.nii.gz",
+          "t2": "",
           "timepoint": "preop"
         },
         {
@@ -1102,6 +1106,7 @@
           "tumorseg": "/Users/cherubim/Desktop/GLIODIL/respond_tum_052/d0/sub-respond_tum_052_ses-d0_space-sri_seg.nii.gz",
           "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_052/d0/sub-respond_tum_052_ses-d0_space-sri_t1c.nii.gz",
           "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_052/d0/sub-respond_tum_052_ses-d0_space-sri_t1.nii.gz",
+          "t2": "",
           "timepoint": "preop"
         },
         {
@@ -1109,6 +1114,7 @@
           "tumorseg": "/Users/cherubim/Desktop/GLIODIL/respond_tum_052/d64/sub-respond_tum_052_ses-d64_space-sri_seg.nii.gz",
           "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_052/d64/sub-respond_tum_052_ses-d64_space-sri_t1c.nii.gz",
           "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_052/d64/sub-respond_tum_052_ses-d64_space-sri_t1.nii.gz",
+          "t2": "",
           "timepoint": "followup"
         }
       ]
@@ -1817,6 +1823,7 @@
           "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_086/d0/sub-respond_tum_086_ses-d0_space-sri_t1c.nii.gz",
           "dti": "/Users/cherubim/Desktop/GLIODIL/respond_tum_086/d0/sub-respond_tum_086_ses-d0_space-org_dti.nii.gz",
           "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_086/d0/sub-respond_tum_086_ses-d0_space-sri_t1.nii.gz",
+          "t2": "",
           "timepoint": "preop"
         },
         {
@@ -1824,6 +1831,7 @@
           "tumorseg": "/Users/cherubim/Desktop/GLIODIL/respond_tum_086/d40/sub-respond_tum_086_ses-d40_space-sri_seg.nii.gz",
           "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_086/d40/sub-respond_tum_086_ses-d40_space-sri_t1c.nii.gz",
           "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_086/d40/sub-respond_tum_086_ses-d40_space-sri_t1.nii.gz",
+          "t2": "",
           "timepoint": "followup"
         }
       ]
@@ -1838,6 +1846,7 @@
           "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_087/d0/sub-respond_tum_087_ses-d0_space-sri_t1c.nii.gz",
           "dti": "/Users/cherubim/Desktop/GLIODIL/respond_tum_087/d0/sub-respond_tum_087_ses-d0_space-org_dti.nii.gz",
           "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_087/d0/sub-respond_tum_087_ses-d0_space-sri_t1.nii.gz",
+          "t2": "",
           "timepoint": "preop"
         },
         {
@@ -1954,6 +1963,7 @@
           "tumorseg": "/Users/cherubim/Desktop/GLIODIL/respond_tum_092/d0/sub-respond_tum_092_ses-d0_space-sri_seg.nii.gz",
           "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_092/d0/sub-respond_tum_092_ses-d0_space-sri_t1c.nii.gz",
           "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_092/d0/sub-respond_tum_092_ses-d0_space-sri_t1.nii.gz",
+          "t2": "",
           "timepoint": "preop"
         },
         {
@@ -2217,6 +2227,7 @@
           "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_106/d0/sub-respond_tum_106_ses-d0_space-sri_t1c.nii.gz",
           "dti": "/Users/cherubim/Desktop/GLIODIL/respond_tum_106/d0/sub-respond_tum_106_ses-d0_space-org_dti.nii.gz",
           "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_106/d0/sub-respond_tum_106_ses-d0_space-sri_t1.nii.gz",
+          "t2": "",
           "timepoint": "preop"
         },
         {
@@ -2651,6 +2662,7 @@
           "tumorseg": "/Users/cherubim/Desktop/GLIODIL/respond_tum_129/d58/sub-respond_tum_129_ses-d58_space-sri_seg.nii.gz",
           "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_129/d58/sub-respond_tum_129_ses-d58_space-sri_t1c.nii.gz",
           "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_129/d58/sub-respond_tum_129_ses-d58_space-sri_t1.nii.gz",
+          "t2": "",
           "timepoint": "followup"
         }
       ]
@@ -2906,6 +2918,7 @@
           "tumorseg": "/Users/cherubim/Desktop/GLIODIL/respond_tum_142/d162/sub-respond_tum_142_ses-d162_space-sri_seg.nii.gz",
           "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_142/d162/sub-respond_tum_142_ses-d162_space-sri_t1c.nii.gz",
           "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_142/d162/sub-respond_tum_142_ses-d162_space-sri_t1.nii.gz",
+          "t2": "",
           "timepoint": "followup"
         }
       ]
@@ -2920,6 +2933,7 @@
           "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_143/d0/sub-respond_tum_143_ses-d0_space-sri_t1c.nii.gz",
           "dti": "/Users/cherubim/Desktop/GLIODIL/respond_tum_143/d0/sub-respond_tum_143_ses-d0_space-org_dti.nii.gz",
           "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_143/d0/sub-respond_tum_143_ses-d0_space-sri_t1.nii.gz",
+          "t2": "",
           "timepoint": "preop"
         },
         {
@@ -2928,6 +2942,7 @@
           "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_143/d165/sub-respond_tum_143_ses-d165_space-sri_t1c.nii.gz",
           "dti": "/Users/cherubim/Desktop/GLIODIL/respond_tum_143/d165/sub-respond_tum_143_ses-d165_space-org_dti.nii.gz",
           "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_143/d165/sub-respond_tum_143_ses-d165_space-sri_t1.nii.gz",
+          "t2": "",
           "timepoint": "followup"
         }
       ]
@@ -2975,6 +2990,7 @@
           "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_145/d141/sub-respond_tum_145_ses-d141_space-sri_t1c.nii.gz",
           "dti": "/Users/cherubim/Desktop/GLIODIL/respond_tum_145/d141/sub-respond_tum_145_ses-d141_space-org_dti.nii.gz",
           "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_145/d141/sub-respond_tum_145_ses-d141_space-sri_t1.nii.gz",
+          "t2": "",
           "timepoint": "followup"
         }
       ]
@@ -3107,6 +3123,7 @@
           "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_156/d0/sub-respond_tum_156_ses-d0_space-sri_t1c.nii.gz",
           "dti": "/Users/cherubim/Desktop/GLIODIL/respond_tum_156/d0/sub-respond_tum_156_ses-d0_space-org_dti.nii.gz",
           "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_156/d0/sub-respond_tum_156_ses-d0_space-sri_t1.nii.gz",
+          "t2": "",
           "timepoint": "preop"
         },
         {

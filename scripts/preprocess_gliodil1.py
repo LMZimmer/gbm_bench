@@ -8,8 +8,8 @@ from gbm_bench.preprocessing.preprocess import preprocess_nifti, process_longitu
 
 if __name__ == "__main__":
     # Example:
-    # python scripts/preprocess_gliodil.py -cuda_device 5
-    # nohup python -u scripts/preprocess_gliodil.py -cuda_device 5 > tmp_gliodil_preproc.out 2>&1 &
+    # python scripts/preprocess_gliodil1.py -cuda_device 2
+    # nohup python -u scripts/preprocess_gliodil1.py -cuda_device 2 > tmp_gliodil_preproc1.out 2>&1 &
     parser = argparse.ArgumentParser()
     parser.add_argument("-cuda_device", type=str, default="0", help="GPU id to run on.")
     args = parser.parse_args()
@@ -22,7 +22,7 @@ if __name__ == "__main__":
     gliodil.load(GLIODIL_DIR)
 
     # Individual exams
-    for patient_ind, patient in enumerate(gliodil.patients[0:80]):  # 0:80
+    for patient_ind, patient in enumerate(gliodil.patients[80:]):  #started 80
         print(f"Processing {patient_ind}/{len(gliodil.patients)}...")
 
         for exam in patient["exams"]:
