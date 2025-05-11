@@ -171,6 +171,7 @@ def register_recurrence(t1c_pre_file: Path, t1c_post_file: Path, recurrence_seg_
     t1c_pre_img = ants.image_read(str(t1c_pre_file))
     t1c_post_img = ants.image_read(str(t1c_post_file))
 
+    # SyN
     reg = ants.registration(
             fixed=t1c_pre_img,
             moving=t1c_post_img,
@@ -179,6 +180,14 @@ def register_recurrence(t1c_pre_file: Path, t1c_post_file: Path, recurrence_seg_
             shrink_factors=(2, 1),
             smoothing_sigmas=(1, 0)
             )
+
+    # rigid
+    #reg = ants.registration(
+    #        fixed=t1c_pre_img,
+    #        moving=t1c_post_img,
+    #        type_of_transform="Rigid"
+    #        )
+
 
     recurrence_outdir = RECURRENCE_SCHEMA.format(base_dir=outdir)
     recurrence_outdir.parent.mkdir(parents=True, exist_ok=True)

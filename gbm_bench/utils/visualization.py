@@ -548,14 +548,15 @@ if __name__ == "__main__":
             )
     """
     plot_pipeline(
-            patient_identifier="RHUH-0011",
+            patient_identifier="RHUH-0030",
             exam_identifier_pre="Pre",
             exam_identifier_followup="Post",
-            exam_dir_preop=Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/09-27-2015-NA-Craneo-26679"),
-            exam_dir_followup=Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/04-05-2016-NA-RM CEREBRO-94961"),
+            exam_dir_preop=Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0030/11-25-2013-NA-RM CEREBRALC-02749"),
+            exam_dir_followup=Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0030/08-11-2014-NA-RM DE CEREBRO SINCON CONTRASTE-96321"),
             outfile="tmp_visualization/pipeline.pdf"
             )
     
+    """
     plot_plans(
             patient_identifier="RHUH-0011",
             exam_identifier_pre="Pre",
@@ -564,5 +565,6 @@ if __name__ == "__main__":
             exam_dir_followup=Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/04-05-2016-NA-RM CEREBRO-94961"),
             outfile="tmp_visualization/plans.pdf"
             )
+    """
 
 
