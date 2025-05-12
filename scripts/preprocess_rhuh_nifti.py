@@ -1,7 +1,7 @@
 import os   
 import argparse
 from pathlib import Path
-from gbm_bench.utils.constants import RHUH_NIFTI_DIR
+from gbm_bench.utils.constants import RHUH_NIFTI_DIR, RECURRENCE_SCHEMA, TUMORSEG_SCHEMA
 from gbm_bench.utils.parsing import LongitudinalDataset
 from gbm_bench.preprocessing.preprocess import preprocess_nifti, process_longitudinal
 
@@ -32,6 +32,7 @@ if __name__ == "__main__":
             is_preop = (exam["timepoint"] == "preop")
             print(f"{exam['t1']}")
 
+            """
             preprocess_nifti(
                     t1_file=exam["t1"],
                     t1c_file=exam["t1c"],
@@ -43,9 +44,10 @@ if __name__ == "__main__":
                     is_coregistered=False,
                     cuda_device=args.cuda_device
                     )
+            """
 
     # Longitudinal registration
-    for patient_ind, patient in enumerate(rhuh.patients):
+    for patient_ind, patient in enumerate(rhuh.patients[0:1]):
         print(f"Performing longitudinal registration {patient_ind}/{len(rhuh.patients)}.")
 
         patient_id = patient["patient_id"]
@@ -58,6 +60,8 @@ if __name__ == "__main__":
         for followup_exam in followup_exams:
             followup_exam_dir = followup_exam["t1"].parent
             
+            #recurrence_file = RECURRENCE_SCHEMA.format(base_dir=followup_exam_dir)
+            #tumorseg_file = TUMORSEG_SCHEMA.format(base_dir=preop_exam_dir)
             process_longitudinal(
                     preop_exam_dir=preop_exam_dir,
                     followup_exam_dir=followup_exam_dir,

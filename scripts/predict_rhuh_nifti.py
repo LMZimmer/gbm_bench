@@ -22,7 +22,7 @@ if __name__ == "__main__":
     rhuh.load(RHUH_NIFTI_DIR)
 
     # Predict on preop exams
-    for patient_ind, patient in enumerate(rhuh.patients):
+    for patient_ind, patient in enumerate(rhuh.patients[0:1]):
         print(f"Predicting {patient_ind}/{len(rhuh.patients)}...")
         
         for exam in patient["exams"]:

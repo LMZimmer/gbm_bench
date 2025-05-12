@@ -22,12 +22,12 @@ if __name__ == "__main__":
 
     all_results = []
 
-    for patient_ind, patient in enumerate(rhuh_gbm.patients):
-        print(f"Processing {patient_ind}/{len(rhuh_gbm.patients)}...")
+    for patient_ind, patient in enumerate(rhuh.patients):
+        print(f"Processing {patient_ind}/{len(rhuh.patients)}...")
 
         patient_identifier = patient["patient_id"]
-        preop_exams = rhuh_gbm.get_patient_exams(patient_id=patient_identifier, timepoint="preop")
-        followup_exams = rhuh_gbm.get_patient_exams(patient_id=patient_identifier, timepoint="followup")
+        preop_exams = rhuh.get_patient_exams(patient_id=patient_identifier, timepoint="preop")
+        followup_exams = rhuh.get_patient_exams(patient_id=patient_identifier, timepoint="followup")
 
         if len(preop_exams) > 1:
             print(f"Warning: found {len(preop_exams)} preop exams for patient {patiend_ind, patiend}. Using first exam for evaluation.")

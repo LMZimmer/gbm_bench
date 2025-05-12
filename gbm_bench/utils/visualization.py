@@ -401,10 +401,10 @@ def plot_pipeline(patient_identifier: str, exam_identifier_pre: str, exam_identi
     image_tensor[0, 5, 2] = load_mri_data(tissue_pbmaps_files["wm"])[:, :, ax_slice]
     image_tensor[0, 5, 3] = load_mri_data(tissue_pbmaps_files["csf"])[:, :, ax_slice]
 
-    image_tensor[0, 6, 0] = load_mri_data(longitudinal_t1c_file)[:, :, ax_slice]
-    image_tensor[0, 6, 1] = load_mri_data(longitudinal_t1c_file)[:, :, ax_slice]
-    image_tensor[0, 6, 2] = load_mri_data(longitudinal_t1c_file)[:, :, ax_slice]
-    image_tensor[0, 6, 3] = load_mri_data(longitudinal_t1c_file)[:, :, ax_slice]
+    image_tensor[0, 6, 0] = load_mri_data(preop_stripped_files["t1c"])[:, :, ax_slice]
+    image_tensor[0, 6, 1] = load_mri_data(preop_stripped_files["t1c"])[:, :, ax_slice]
+    image_tensor[0, 6, 2] = load_mri_data(preop_stripped_files["t1c"])[:, :, ax_slice]
+    image_tensor[0, 6, 3] = load_mri_data(preop_stripped_files["t1c"])[:, :, ax_slice]
 
     # Layer 2: None, Tumorseg, None, None
     layer_2_args = {"cmap": cmap, "norm": norm, "alpha": 0.9, "interpolation": "none"}
@@ -525,6 +525,64 @@ def plot_plans(patient_identifier: str, exam_identifier_pre: str, exam_identifie
             )
 
 
+def plot_tumor_volumes(recurrence_exam_paths: List[Path], outfile: Path, bins="auto") -> None:
+    """
+    Plot a histogram of tumor volumes.
+    """
+    if not recurrence_exam_paths:
+        raise ValueError("The 'volumes' sequence is empty.")
+
+    volumes = []
+    print(f"Got {len(recurrence_exam_paths)} exam paths. Extracting volumes...")
+    for ind, exam_path in enumerate(recurrence_exam_paths):
+        print(f"{ind} / {len(recurrence_exam_paths)}")
+        recurrence_seg_file = TUMORSEG_SCHEMA.format(base_dir=exam_path)
+        if recurrence_seg_file.is_file():
+            recurrence_seg = load_mri_data(TUMORSEG_SCHEMA.format(base_dir=exam_path))
+            recurrence_seg[recurrence_seg==2] = 0  # ingores edema
+            recurrence_seg[recurrence_seg==3] = 1
+            recurrence_seg[recurrence_seg==4] = 0  # ignores cavity
+            volumes.append(np.sum(recurrence_seg))
+        else:
+            print(f"{recurrence_seg_file} does not exist.")
+
+    fig, ax = plt.subplots()
+    ax.hist(volumes, bins=bins, edgecolor="black")
+    ax.set_title("Distribution of Tumor Volumes")
+    ax.set_xlabel("Volume (mm³)")
+    ax.set_ylabel("Frequency")
+    ax.grid(True, linestyle="--", alpha=0.5)
+
+    plt.tight_layout()
+    Path(outfile).parent.mkdir(parents=True, exist_ok=True)
+    plt.savefig(outfile, format="pdf")
+    print(f"Plot saved as {outfile}")
+    plt.close(fig)
+
+
+def scatter_plot(xvals: List[float], yvals: List[float], outfile: Path) -> None:
+    """
+    Create a scatter plot of paired numeric values.
+    """
+    if len(xvals) != len(yvals):
+        raise ValueError("xvals and yvals must be the same length.")
+    if len(xvals) == 0:
+        raise ValueError("Input sequences are empty.")
+
+    fig, ax = plt.subplots()
+    ax.scatter(xvals, yvals)
+    ax.set_title("")
+    ax.set_xlabel("X")
+    ax.set_ylabel("Y")
+    ax.grid(True, linestyle="--", alpha=0.5)
+
+    plt.tight_layout()
+    Path(outfile).parent.mkdir(parents=True, exist_ok=True)
+    plt.savefig(outfile, format="pdf")
+    print(f"Plot saved as {outfile}")
+    plt.close(fig)
+
+
 if __name__ == "__main__":
     # Example:
     # python gbm_bench/utils/visualization.py
@@ -546,7 +604,7 @@ if __name__ == "__main__":
             exam_dir_followup=Path("test_data/exam3/"),
             outfile="tmp_visualization/test_longitudinal.pdf"
             )
-    """
+
     plot_pipeline(
             patient_identifier="RHUH-0030",
             exam_identifier_pre="Pre",
@@ -556,7 +614,6 @@ if __name__ == "__main__":
             outfile="tmp_visualization/pipeline.pdf"
             )
     
-    """
     plot_plans(
             patient_identifier="RHUH-0011",
             exam_identifier_pre="Pre",

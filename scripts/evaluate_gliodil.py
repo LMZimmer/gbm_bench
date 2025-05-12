@@ -39,14 +39,17 @@ if __name__ == "__main__":
         for followup_exam in followup_exams:
             followup_exam_dir = followup_exam["t1"].parent
 
-            results = evaluate_tumor_model(
-                    preop_dir=preop_exam_dir,
-                    followup_dir=followup_exam_dir,
-                    pred_file=prediction_dir,
-                    model_id=algo_id
-                    )
-            all_results.append(results)
-            print(f"{patient_identifier}: {results}")
+            try:
+                results = evaluate_tumor_model(
+                        preop_dir=preop_exam_dir,
+                        followup_dir=followup_exam_dir,
+                        pred_file=prediction_dir,
+                        model_id=algo_id
+                        )
+                all_results.append(results)
+                print(f"{patient_identifier}: {results}")
+            except Exception as e:
+                print(f"Exception for {followup_exam_dir}: {e}")
 
     recurrence_coverage_standard = [r["recurrence_coverage_standard"] for r in all_results]
     recurrence_coverage_standard_all = [r["recurrence_coverage_standard_all"] for r in all_results]
