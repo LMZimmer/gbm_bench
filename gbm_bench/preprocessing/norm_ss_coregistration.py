@@ -19,6 +19,7 @@ from gbm_bench.utils.constants import (
     MODALITY_CONVERTED_SCHEMA,
     MODALITY_STRIPPED_SCHEMA,
     RECURRENCE_SCHEMA,
+    REGISTRATION_MASK_SCHEMA,
     TUMORSEG_SCHEMA,
 )
 
@@ -152,7 +153,8 @@ def norm_ss_coregister(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file:
     logger.info(f"Finished normalization, skull stripping, co-registration step in {time_spent:.2f} seconds. Output saved to {outdir}.")
 
 
-def register_recurrence(t1c_pre_file: Path, t1c_post_file: Path, recurrence_seg_file: Path, outdir: Path) -> None:
+def register_recurrence(t1c_pre_file: Path, t1c_post_file: Path, recurrence_seg_file: Path, outdir: Path,
+                        fixed_mask_file: Path = None, moving_mask_file: Path = None) -> None:
     """
     Register a postop image with recurrence to preop.
 
@@ -161,6 +163,8 @@ def register_recurrence(t1c_pre_file: Path, t1c_post_file: Path, recurrence_seg_
         t1c_post_file (Path): Path to the post-operative T1c image.
         recurrence_seg_file (Path): Path to the tumor segmentation.
         outdir (Path): Directory where the output files will be saved.
+        fixed_mask_file (Path): Path to a mask in fixed space used for registration.
+        moving_mask_file (Path): Path to a mask in moving space used for registration.
 
     Returns:
         None
@@ -171,17 +175,33 @@ def register_recurrence(t1c_pre_file: Path, t1c_post_file: Path, recurrence_seg_
     t1c_pre_img = ants.image_read(str(t1c_pre_file))
     t1c_post_img = ants.image_read(str(t1c_post_file))
 
-    # SyN
+    # Masks
+    reg_kwargs = {}
+    if fixed_mask_file is not None:
+        reg_kwargs["mask"] = ants.image_read(str(fixed_mask_file))
+        logger.info(f"Running with provided mask (fixed space) {str(fixed_mask_file)}.")
+    if moving_mask_file is not None:
+        reg_kwargs["moving_mask"] = ants.image_read(str(moving_mask_file))
+        logger.info(f"Running with provided mask (moving space) {str(moving_mask_file)}.")
+
+    # SyN Registration
     reg = ants.registration(
             fixed=t1c_pre_img,
             moving=t1c_post_img,
-            type_of_transform="SyN",
-            reg_iterations=(50, 20),
-            shrink_factors=(2, 1),
-            smoothing_sigmas=(1, 0)
+            type_of_transform="antsRegistrationSyN[s,2]"
             )
 
-    # rigid
+    # Custom SyN Registration
+    #reg = ants.registration(
+    #        fixed=t1c_pre_img,
+    #        moving=t1c_post_img,
+    #        type_of_transform="SyN",
+    #        reg_iterations=(50, 20),
+    #        shrink_factors=(2, 1),
+    #        smoothing_sigmas=(1, 0)
+    #        )
+
+    # Rigid Registration
     #reg = ants.registration(
     #        fixed=t1c_pre_img,
     #        moving=t1c_post_img,

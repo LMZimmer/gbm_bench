@@ -15,7 +15,7 @@ from gbm_bench.utils.constants import (
         HEALTHY_BRAIN_MASK_SCHEMA,
         MODALITY_CONVERTED_SCHEMA,
         MODALITY_STRIPPED_SCHEMA,
-        TISSUE_REGISTRATION_MASK_SCHEMA,
+        REGISTRATION_MASK_SCHEMA,
         TUMOR_LABELS,
         TUMORSEG_SCHEMA
         )
@@ -183,13 +183,14 @@ def preprocess_exam(outdir: Path, pre_treatment: bool, mask_tissueseg: bool = Fa
                 )
 
     # Step 3: Segment tissue
+    registration_mask_file = REGISTRATION_MASK_SCHEMA.format(base_dir=outdir)
+    generate_registration_mask(
+            tumor_seg_file=TUMORSEG_SCHEMA.format(base_dir=outdir),
+            outfile=registration_mask_file
+            )
+
     tissueseg_kwargs = {}
     if mask_tissueseg:
-        registration_mask_file = TISSUE_REGISTRATION_MASK_SCHEMA.format(base_dir=outdir)
-        generate_registration_mask(
-                tumor_seg_file=TUMORSEG_SCHEMA.format(base_dir=outdir),
-                outfile=registration_mask_file
-                )
         tissueseg_kwargs["registration_mask_file"] = registration_mask_file
 
     if perform_tissueseg:
@@ -214,11 +215,17 @@ def process_longitudinal(preop_exam_dir: Path, followup_exam_dir: Path, outdir: 
     t1c_post_file = MODALITY_STRIPPED_SCHEMA.format(base_dir=followup_exam_dir, modality="t1c")
     recurrence_seg_file = TUMORSEG_SCHEMA.format(base_dir=followup_exam_dir)
 
+    # Mask
+    fixed_mask_file = REGISTRATION_MASK_SCHEMA.format(base_dir=preop_exam_dir)
+    moving_mask_file = REGISTRATION_MASK_SCHEMA.format(base_dir=followup_exam_dir)
+
     register_recurrence(
             t1c_pre_file=t1c_pre_file,
             t1c_post_file=t1c_post_file,
             recurrence_seg_file=recurrence_seg_file,
-            outdir=outdir
+            outdir=outdir,
+            fixed_mask_file=fixed_mask_file,
+            moving_mask_file=moving_mask_file
             )
     time_spent = time.time() - start_time
     logger.info(f"Finished longitudinal preprocessing in {time_spent:.2f} seconds. Results saved to {outdir}.")

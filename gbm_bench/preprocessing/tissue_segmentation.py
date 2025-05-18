@@ -76,7 +76,9 @@ def generate_registration_mask(tumor_seg_file: Path, outfile: Path) -> None:
     affine, header = tumor_nifti.affine, tumor_nifti.header
     
     # Generate mask
-    no_tumor_mask = (tumor_nifti.get_fdata() < 0.5).astype(np.float32)
+    tumor_seg = tumor_nifti.get_fdata()
+    tumor_seg[tumor_seg==2] = 0  # discard edema, only use core as mask
+    no_tumor_mask = (tumor_seg < 0.5).astype(np.float32)
     
     # Save
     outfile.parent.mkdir(parents=True, exist_ok=True)
