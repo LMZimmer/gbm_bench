@@ -22,7 +22,7 @@ if __name__ == "__main__":
     rhuh.load(RHUH_NIFTI_DIR)
 
     # Individual exams
-    for patient_ind, patient in enumerate(rhuh.patients):
+    for patient_ind, patient in enumerate(rhuh.patients[34:]):
         print(f"Processing {patient_ind}/{len(rhuh.patients)}...")
 
         for exam in patient["exams"]:
@@ -32,7 +32,6 @@ if __name__ == "__main__":
             is_preop = (exam["timepoint"] == "preop")
             print(f"{exam['t1']}")
 
-            """
             preprocess_nifti(
                     t1_file=exam["t1"],
                     t1c_file=exam["t1c"],
@@ -41,13 +40,13 @@ if __name__ == "__main__":
                     pre_treatment=is_preop,
                     outdir=exam["t1"].parent,
                     is_skull_stripped=True,
-                    is_coregistered=False,
-                    cuda_device=args.cuda_device
+                    is_coregistered=True,
+                    cuda_device=args.cuda_device,
+                    tumorseg_file=exam["tumorseg"]
                     )
-            """
 
     # Longitudinal registration
-    for patient_ind, patient in enumerate(rhuh.patients[0:1]):
+    for patient_ind, patient in enumerate(rhuh.patients):
         print(f"Performing longitudinal registration {patient_ind}/{len(rhuh.patients)}.")
 
         patient_id = patient["patient_id"]
@@ -60,8 +59,6 @@ if __name__ == "__main__":
         for followup_exam in followup_exams:
             followup_exam_dir = followup_exam["t1"].parent
             
-            #recurrence_file = RECURRENCE_SCHEMA.format(base_dir=followup_exam_dir)
-            #tumorseg_file = TUMORSEG_SCHEMA.format(base_dir=preop_exam_dir)
             process_longitudinal(
                     preop_exam_dir=preop_exam_dir,
                     followup_exam_dir=followup_exam_dir,

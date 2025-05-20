@@ -1152,7 +1152,8 @@
           "flair": "/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0035/2/RHUH-0035_2_flair.nii.gz",
           "t1": "/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0035/2/RHUH-0035_2_t1.nii.gz",
           "t1c": "/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0035/2/RHUH-0035_2_t1ce.nii.gz",
-          "t2": "/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0035/2/RHUH-0035_2_t2.nii.gz"
+          "t2": "/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0035/2/RHUH-0035_2_t2.nii.gz",
+          "tumorseg": "/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0035/2/segmentation.nii.gz"
         }
       ]
     },

@@ -124,9 +124,11 @@ def recurrence_coverage(recurrence_segmentation: np.ndarray, target_volume: np.n
             Returns 1.0 if there is no tumor recurrence.
     """
     if not is_binary_array(recurrence_segmentation):
-        raise ValueError(f"recurrence_segmentation values have to be in (True, False, 0, 1, 0.0, 1.1).")
+        raise ValueError(f"recurrence_segmentation values have to be in (True, False, 0, 1, 0.0, 1.0).")
     if not is_binary_array(target_volume):
-        raise ValueError(f"target_volume values have to be in (True, False, 0, 1, 0.0, 1.1).")
+        raise ValueError(f"target_volume values have to be in (True, False, 0, 1, 0.0, 1.0).")
+    if recurrence_segmentation.shape != target_volume.shape:
+        raise ValueError(f"Dimension mismatch between recurrence_segmentation and target_volume.")
     
     # If there is no recurrence, return 1
     if np.sum(recurrence_segmentation) <=  0.00001:
@@ -150,7 +152,7 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
         followup_dir (Path): Directory to the postoperative exam that has been preprocessed. Should contain the folder with the output.
         pred_file (Path): File path containing model prediction MRI data.
         model_id (str): Identifier for the model. Used for the name of the output file.
-        ctv_margin (int, optional): Margin used to expand the clinical target volume for the standard plan. Defaults to 15.
+        ctv_margin (int, optional): Margin used to expand the clinical target volume for the standard plan in mm. Defaults to 15.
         csf_mask (bool, optional): If true, does not consider predictions/recurrences in CSF in any way by masking it out.
 
     Returns:
@@ -165,19 +167,16 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
     else:
         t1c_file = MODALITY_STRIPPED_SCHEMA.format(base_dir=str(preop_dir), modality="t1c")
         t1c = load_mri_data(str(t1c_file))
-        brain_mask = (t1c > 0.).astype(np.float64)
+        background = np.min(t1c)
+        brain_mask = (t1c > background).astype(np.float64)
 
     if csf_mask:
         tissue_segmentation_dir = TISSUE_SEG_SCHEMA.format(base_dir=str(preop_dir))
         tissue_segmentation = load_mri_data(str(tissue_segmentation_dir))
         brain_mask[tissue_segmentation==TISSUE_LABELS["csf"]] = 0
 
-    full_segmentation_dir = TUMORSEG_SCHEMA.format(base_dir=str(preop_dir))
-    full_segmentation = load_mri_data(str(full_segmentation_dir))
-    full_segmentation[full_segmentation==2] = 1
-    full_segmentation[full_segmentation==3] = 1
-
-    core_segmentation = load_mri_data(str(full_segmentation_dir))
+    tumorseg_dir = TUMORSEG_SCHEMA.format(base_dir=str(preop_dir))
+    core_segmentation = load_mri_data(str(tumorseg_dir ))
     core_segmentation[core_segmentation==2] = 0  # ignore edma
     core_segmentation[core_segmentation==3] = 1
 
@@ -194,7 +193,7 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
     recurrence_segmentation_all[recurrence_segmentation_all == 4] = 0
     recurrence_segmentation_all[brain_mask == 0] = 0
 
-    model_prediction = load_and_resample_mri_data(str(pred_file), resample_params=core_segmentation.shape, interp_type=0)
+    model_prediction = load_and_resample_mri_data(str(pred_file), resample_params=core_segmentation.shape, interp_type=1)
 
     # Create standard plan
     standard_plan = create_standard_plan(core_segmentation, ctv_margin)
@@ -216,8 +215,8 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
     tmp = nib.load(pred_file)
     aff, header = tmp.affine, tmp.header
     
-    standard_plan = nib.Nifti1Image(standard_plan, aff, header)
-    nib.save(standard_plan, outfile_standard)
+    standard_plan_nifti = nib.Nifti1Image(standard_plan, aff, header)
+    nib.save(standard_plan_nifti, outfile_standard)
 
     model_img = nib.Nifti1Image(model_prediction > tumor_threshold, aff, header)
     nib.save(model_img, outfile_model)
@@ -240,7 +239,8 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
 if __name__ == "__main__":
     # Example:
     # python gbm_bench/evaluation/evaluate.py -preop_dir test_data/exam1 -followup_dir test_data/exam3 -pred_file test_data/exam1/processed/growth_models/sbtc/sbtc_pred.nii.gz
-    # python gbm_bench/evaluation/evaluate.py -preop_dir "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/08-20-2016-NA-RM CEREBRO  C-49009" -followup_dir "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/07-09-2017-NA-RM CRANEO-52907" -pred_file "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/08-20-2016-NA-RM CEREBRO  C-49009/processed/growth_models/sbtc/tumorImage.nii.gz"
+    # python gbm_bench/evaluation/evaluate.py -preop_dir /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0024/0 -followup_dir /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0024/2 -pred_file /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0024/0/processed/growth_models/sbtc/sbtc_pred.nii.gz
+    # python gbm_bench/evaluation/evaluate.py -preop_dir /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0001/0 -followup_dir /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0001/2 -pred_file /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0001/0/processed/growth_models/sbtc/sbtc_pred.nii.gz
     parser = argparse.ArgumentParser()
     parser.add_argument("-preop_dir", type=str, help="Path.")
     parser.add_argument("-followup_dir", type=str, help="Path.")
@@ -251,7 +251,7 @@ if __name__ == "__main__":
             preop_dir=Path(args.preop_dir),
             followup_dir=Path(args.followup_dir),
             pred_file=Path(args.pred_file),
-            model_id="test"
+            model_id="sbtc"  # "test"
             )
 
     print(results)
