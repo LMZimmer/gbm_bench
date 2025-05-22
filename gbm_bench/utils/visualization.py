@@ -28,9 +28,9 @@ from gbm_bench.utils.constants import (
 
 def get_slices(center: Tuple[int, int, int], num_slices: int, step_size: int, patient_dim: Tuple[int, int, int]):
     axial_slices = [center[2] + ind * step_size - 2 * step_size for ind in range(0, num_slices)]
-    axial_slices = [min(max(0, ax_slice), patient_dim[2]) for ax_slice in axial_slices]
+    axial_slices = [min(max(0, ax_slice), patient_dim[2]-1) for ax_slice in axial_slices]
     coronal_slices = [center[1] + ind * step_size - 2 * step_size for ind in range(0, num_slices)]
-    coronal_slices = [min(max(0, cor_slice), patient_dim[1]) for cor_slice in coronal_slices]
+    coronal_slices = [min(max(0, cor_slice), patient_dim[1]-1) for cor_slice in coronal_slices]
     return axial_slices, coronal_slices
 
 
@@ -43,6 +43,13 @@ def get_cmap_norm_patches_tumorseg(classes_of_interest: List[int]):
     norm = mcolors.BoundaryNorm(bounds, cmap.N)
     patches = [mpatches.Patch(color=c, label=l) for (c, l) in zip(colors[1:], color_labels)]
     return cmap, norm, patches
+
+
+def get_segmentation_projection(segmentation: np.ndarray, label: int, axis: int) -> np.ndarray:
+    seg_data = segmentation.copy()
+    seg_data[seg_data!=label]=0
+    projection = (np.sum(seg_data, axis=axis) > 0).astype(int)
+    return projection
 
 
 def grid_plot(image_tensor: np.ndarray, imshow_args: List[Dict], header: str, col_titles: List[str], row_titles: List[str],
@@ -102,7 +109,7 @@ def grid_plot(image_tensor: np.ndarray, imshow_args: List[Dict], header: str, co
         axs[ind, 0].set_ylabel(row_title, fontweight="bold", labelpad=20, fontsize=16)
 
     # Header
-    fig.subplots_adjust(top=0.85)
+    fig.subplots_adjust(top=0.85, wspace=0, hspace=0)
     fig.suptitle(
             header,
             horizontalalignment="left",
@@ -525,6 +532,99 @@ def plot_plans(patient_identifier: str, exam_identifier_pre: str, exam_identifie
             )
 
 
+def plot_full_brain(patient_identifier: str, exam_identifier_pre: str, exam_identifier_followup: str,
+                    exam_dir_preop: Path, exam_dir_followup: Path, outfile: str,
+                    classes_of_interest: List[int] = [1, 2, 3]) -> None:
+
+    n_layers = 3    # one layer for each imshow config
+    modalities = ["t1c", "t1", "t2", "flair"]
+
+    # Paths
+    preop_stripped_files = {modality: MODALITY_STRIPPED_SCHEMA.format(base_dir=exam_dir_preop, modality=modality) for modality in modalities}
+    followup_stripped_files = {modality: MODALITY_STRIPPED_SCHEMA.format(base_dir=exam_dir_followup, modality=modality) for modality in modalities}
+    tumor_seg_file = TUMORSEG_SCHEMA.format(base_dir=exam_dir_preop)
+    recurrence_seg_file = TUMORSEG_SCHEMA.format(base_dir=exam_dir_followup)
+    standard_plan_file = STANDARD_PLAN_SCHEMA.format(base_dir=exam_dir_preop)
+
+    # Load images
+    t1c_pre = load_mri_data(preop_stripped_files["t1c"])
+    t1c_post = load_mri_data(followup_stripped_files["t1c"])
+    flair_pre = load_mri_data(preop_stripped_files["flair"])
+    flair_post = load_mri_data(followup_stripped_files["flair"])
+    tumor_seg = load_mri_data(tumor_seg_file)
+    recurrence_seg = load_mri_data(recurrence_seg_file)
+    standard_plan = load_mri_data(standard_plan_file)
+
+    # Generate projections
+    tumor_projections = [get_segmentation_projection(tumor_seg, label=label, axis=2) for label in classes_of_interest]
+    recurrence_projections = [get_segmentation_projection(recurrence_seg, label=label, axis=2) for label in classes_of_interest]
+    radplan_projection = get_segmentation_projection(standard_plan, label=1, axis=2)
+
+    # Ignore resection cavity label
+    recurrence_seg[recurrence_seg==4] = 0  # ignore cavity
+
+    # Compute tumor center of mass
+    #center = compute_center_of_mass(longitudinal_rec, t1c_data_post, classes_of_interest)
+    center = [d // 2 for d in t1c_post.shape]
+    step_size = 10
+    num_slices = 15
+    patient_dim = t1c_post.shape
+    axial_slices = [k*10 for k in range(0, 15)]
+    coronal_slices = axial_slices
+    #axial_slices, coronal_slices = get_slices(center, num_slices, step_size, patient_dim)
+
+    # Tumor segmentation legend (1: non enhancing, 2: edema, 3: enhancing)
+    cmap, norm, patches = get_cmap_norm_patches_tumorseg(classes_of_interest)
+
+    # Titles
+    col_titles = ["Projection"] + axial_slices
+    row_titles = ["T1c\n(preop)", "FLAIR\n(preop)", "TumorSeg\n(preop)", "RecurrenceSeg\n(followup)", "FLAIR\n(followup)", "T1c\n(followup)", "StandardPlan\n(followup)"]
+    header = (
+            f"Patient: {patient_identifier}\n"
+            f"Exam (preop): {exam_identifier_pre}\n"
+            f"Exam (postop): {exam_identifier_followup}\n"
+            )
+
+    # Build image tensor
+    image_tensor = np.empty((n_layers, len(row_titles), num_slices+1), dtype=object)
+
+    # Layer 1: T1c, T1c, T1c, Tissueseg
+    layer_1_args = {"cmap": "gray", "interpolation": "none"}
+    for ind, ax_slice, cor_slice in zip(range(num_slices), axial_slices, coronal_slices):
+        image_tensor[0, 0, ind+1] = t1c_pre[:, :, ax_slice]
+        image_tensor[0, 1, ind+1] = flair_pre[:, :, ax_slice]
+        image_tensor[0, 2, ind+1] = t1c_pre[:, :, ax_slice]
+        image_tensor[0, 3, ind+1] = t1c_post[:, :, ax_slice]
+        image_tensor[0, 4, ind+1] = flair_post[:, :, ax_slice]
+        image_tensor[0, 5, ind+1] = t1c_post[:, :, ax_slice]
+        image_tensor[0, 6, ind+1] = standard_plan[:, :, ax_slice]
+
+    # Layer 2: Tumor segmentations
+    layer_2_args = {"cmap": cmap, "norm": norm, "alpha": 0.9, "interpolation": "none"}
+    for ind, ax_slice, cor_slice in zip(range(num_slices), axial_slices, coronal_slices):
+        image_tensor[1, 2, ind+1] = tumor_seg[:, :, ax_slice]
+        image_tensor[1, 3, ind+1] = recurrence_seg[:, :, ax_slice]
+
+    # Layer 3: Projections
+    layer_3_args = {"cmap": "gray", "interpolation": "none"}
+    image_tensor[2, 2, 0] = tumor_projections[2]
+    image_tensor[2, 3, 0] = recurrence_projections[2]
+    image_tensor[2, 6, 0] = radplan_projection
+
+    # Imshow arguments
+    imshow_args = [layer_1_args, layer_2_args, layer_3_args]
+
+    grid_plot(
+            image_tensor=image_tensor,
+            imshow_args=imshow_args,
+            header=header,
+            col_titles=col_titles,
+            row_titles=row_titles,
+            outfile=outfile,
+            legend_handles=patches
+            )
+
+
 def plot_tumor_volumes(recurrence_exam_paths: List[Path], outfile: Path, bins="auto") -> None:
     """
     Plot a histogram of tumor volumes.
@@ -623,5 +723,13 @@ if __name__ == "__main__":
             outfile="tmp_visualization/plans.pdf"
             )
     """
+    plot_full_brain(
+            patient_identifier="RHUH-0024",
+            exam_identifier_pre="Pre",
+            exam_identifier_followup="Post",
+            exam_dir_preop=Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0024/11-10-2013-NA-Craneo-58463"),
+            exam_dir_followup=Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0024/01-29-2014-NA-RM CEREBRO-96283"),
+            outfile="tmp_visualization/qualitycontrol.pdf"
+            )
 
 
