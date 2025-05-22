@@ -583,6 +583,7 @@ def plot_full_brain(patient_identifier: str, exam_identifier_pre: str, exam_iden
             f"Patient: {patient_identifier}\n"
             f"Exam (preop): {exam_identifier_pre}\n"
             f"Exam (postop): {exam_identifier_followup}\n"
+            f"CoM slice (axial/coronal): {center[2]}/{center[1]}\n"
             )
 
     # Build image tensor
@@ -607,8 +608,12 @@ def plot_full_brain(patient_identifier: str, exam_identifier_pre: str, exam_iden
 
     # Layer 3: Projections
     layer_3_args = {"cmap": "gray", "interpolation": "none"}
+    image_tensor[2, 0, 0] = tumor_projections[0]
+    image_tensor[2, 1, 0] = tumor_projections[1]
     image_tensor[2, 2, 0] = tumor_projections[2]
-    image_tensor[2, 3, 0] = recurrence_projections[2]
+    image_tensor[2, 3, 0] = recurrence_projections[0]
+    image_tensor[2, 4, 0] = recurrence_projections[1]
+    image_tensor[2, 5, 0] = recurrence_projections[2]
     image_tensor[2, 6, 0] = radplan_projection
 
     # Imshow arguments
