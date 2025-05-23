@@ -6,7 +6,7 @@ from loguru import logger
 from typing import Optional
 from gbm_bench.preprocessing.dicom_to_nifti import convert_nifti
 from gbm_bench.preprocessing.tumor_segmentation import run_brats
-from gbm_bench.preprocessing.norm_ss_coregistration import norm_ss_coregister, register_recurrence
+from gbm_bench.preprocessing.norm_ss_coregistration import normalize, norm_ss_coregister, register_recurrence
 from gbm_bench.preprocessing.tissue_segmentation import generate_registration_mask, run_tissue_seg_registration
 from gbm_bench.utils.utils import make_symlink
 from gbm_bench.utils.constants import (
@@ -76,7 +76,7 @@ def preprocess_dicom(t1_dir: Path, t1c_dir: Path, t2_dir: Path, flair_dir: Path,
 
 
 def preprocess_nifti(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file: Path, pre_treatment: bool, outdir: Path,
-        is_coregistered: bool, is_skull_stripped: bool, tumorseg_file: Optional[Path] = None, cuda_device: str = "0") -> None:
+                     is_coregistered: bool, is_skull_stripped: bool, tumorseg_file: Optional[Path] = None, cuda_device: str = "0") -> None:
     """
     Performs a multitude of precessing steps to prepare nifti inputs for tumor growth models. Allows passing
     available intermediate results like tumor segmentation or already skull stripped images. Starts by
@@ -111,8 +111,7 @@ def preprocess_nifti(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file: P
     if is_coregistered:
         logger.info(f"Running with provided skull stripped modality images.")
         for modality, path in modality_dict.items():
-            make_symlink(src=path, dst=MODALITY_STRIPPED_SCHEMA.format(base_dir=outdir, modality=modality))
-        
+            normalize(img_file=path, outfile=MODALITY_STRIPPED_SCHEMA.format(base_dir=outdir, modality=modality))
     else:
         for modality, path in modality_dict.items():
             make_symlink(src=path, dst=MODALITY_CONVERTED_SCHEMA.format(base_dir=outdir, modality=modality))

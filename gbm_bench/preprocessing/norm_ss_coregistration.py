@@ -24,6 +24,31 @@ from gbm_bench.utils.constants import (
 )
 
 
+def normalize(img_file: Path, outfile: Path) -> None:
+    """
+    Only performs the normalization step from norm_ss_coregister using a percentile normalizer.
+    """
+    print(outfile)
+    start_time = time.time()
+    logger.info(f"Running plain normalization for {img_file}.")
+    percentile_normalizer = PercentileNormalizer(
+            lower_percentile=0.1,
+            upper_percentile=99.9,
+            lower_limit=0,
+            upper_limit=1,
+            )
+
+    mod = Modality(
+            modality_name="tmp",
+            input_path=str(img_file),
+            normalizer=percentile_normalizer,
+            normalized_bet_output_path="test"
+            )
+
+    mod.save_current_image(str(outfile), normalization=True)
+    print(f"Normalization done.")
+
+
 def initialize_center_modality(modality_file: Path, modality_name: str, normalizer: Normalizer, outdir: Path, skull_strip: bool = True) -> CenterModality:
     """
     Initializes and returns a CenterModality object configured for a specific imaging modality.
@@ -185,11 +210,11 @@ def register_recurrence(t1c_pre_file: Path, t1c_post_file: Path, recurrence_seg_
         logger.info(f"Running with provided mask (moving space) {str(moving_mask_file)}.")
 
     # SyN Registration
-    #reg = ants.registration(
-    #        fixed=t1c_pre_img,
-    #        moving=t1c_post_img,
-    #        type_of_transform="antsRegistrationSyN[s,2]"
-    #        )
+    reg = ants.registration(
+            fixed=t1c_pre_img,
+            moving=t1c_post_img,
+            type_of_transform="antsRegistrationSyN[s,2]"
+            )
 
     # Custom SyN Registration
     #reg = ants.registration(
@@ -202,11 +227,11 @@ def register_recurrence(t1c_pre_file: Path, t1c_post_file: Path, recurrence_seg_
     #        )
 
     # Rigid Registration
-    reg = ants.registration(
-            fixed=t1c_pre_img,
-            moving=t1c_post_img,
-            type_of_transform="Rigid"
-            )
+    #reg = ants.registration(
+    #        fixed=t1c_pre_img,
+    #        moving=t1c_post_img,
+    #        type_of_transform="Rigid"
+    #        )
 
 
     recurrence_outdir = RECURRENCE_SCHEMA.format(base_dir=outdir)

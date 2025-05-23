@@ -126,7 +126,7 @@ def run_tissue_seg_registration(t1_file: Path, outdir: Path, registration_mask_f
             moving=t1_atlas,
             type_of_transform="antsRegistrationSyN[s,2]",
             outprefix=str(outprefix)+"/",
-            **reg_kwargs
+            #**reg_kwargs
             )
     transforms_path = reg['fwdtransforms']
 
