@@ -105,14 +105,20 @@ def run_tissue_seg_registration(t1_file: Path, outdir: Path, registration_mask_f
     logger.info(f"Starting tissue segmentation.")
 
     # Prepare directories
-    atlas_pbmap_dirs = {tissue: ATLAS_TISSUE_PBMAPS_DIR.format(tissue=tissue) for tissue in ["csf", "gm", "wm"]}
+    #atlas_pbmap_dirs = {tissue: ATLAS_TISSUE_PBMAPS_DIR.format(tissue=tissue) for tissue in ["csf", "gm", "wm"]}  #TODO
+    atlas_pbmap_dirs = {
+            "csf": "/mnt/Drive2/lucas/datasets/ATLAS/andeleyev/sub-mni152_tissue-with-antsN4_csf_space-sri.nii.gz",
+            "gm": "/mnt/Drive2/lucas/datasets/ATLAS/andeleyev/sub-mni152_tissue-with-antsN4_gm_space-sri.nii.gz",
+            "wm": "/mnt/Drive2/lucas/datasets/ATLAS/andeleyev/sub-mni152_tissue-with-antsN4_wm_space-sri.nii.gz"
+            }
     
     outprefix = TISSUE_SEG_BASE_SCHEMA.format(base_dir=outdir)
     outprefix.mkdir(parents=True, exist_ok=True)
 
     # Read images
     t1_patient = ants.image_read(str(t1_file))
-    t1_atlas = ants.image_read(str(ATLAS_T1_DIR))
+    #t1_atlas = ants.image_read(str(ATLAS_T1_DIR))  #TODO
+    t1_atlas = ants.image_read("/mnt/Drive2/lucas/datasets/ATLAS/andeleyev/sub-mni152_t1-inside-brain_space-sri.nii.gz")
 
     reg_kwargs = {}
     if registration_mask_file is not None:

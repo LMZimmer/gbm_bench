@@ -210,11 +210,12 @@ def register_recurrence(t1c_pre_file: Path, t1c_post_file: Path, recurrence_seg_
         logger.info(f"Running with provided mask (moving space) {str(moving_mask_file)}.")
 
     # SyN Registration
-    reg = ants.registration(
-            fixed=t1c_pre_img,
-            moving=t1c_post_img,
-            type_of_transform="antsRegistrationSyN[s,2]"
-            )
+    #reg = ants.registration(
+    #        fixed=t1c_pre_img,
+    #        moving=t1c_post_img,
+    #        type_of_transform="antsRegistrationSyN[s,2]",
+    #        **reg_kwargs
+    #        )
 
     # Custom SyN Registration
     #reg = ants.registration(
@@ -223,15 +224,16 @@ def register_recurrence(t1c_pre_file: Path, t1c_post_file: Path, recurrence_seg_
     #        type_of_transform="SyN",
     #        reg_iterations=(50, 20),
     #        shrink_factors=(2, 1),
-    #        smoothing_sigmas=(1, 0)
+    #        smoothing_sigmas=(1, 0),
+    #        **reg_kwargs
     #        )
 
     # Rigid Registration
-    #reg = ants.registration(
-    #        fixed=t1c_pre_img,
-    #        moving=t1c_post_img,
-    #        type_of_transform="Rigid"
-    #        )
+    reg = ants.registration(
+            fixed=t1c_pre_img,
+            moving=t1c_post_img,
+            type_of_transform="Rigid"
+            )
 
 
     recurrence_outdir = RECURRENCE_SCHEMA.format(base_dir=outdir)
