@@ -17,6 +17,7 @@ def convert_tumorseg_labels(inpath, outpath):
     data[data == 4] = 3
 
     new_img = nib.Nifti1Image(data, affine=img.affine, header=img.header)
+    outpath.parent.mkdir(exist_ok=True)
     nib.save(new_img, str(outpath))
 
 
@@ -31,36 +32,18 @@ if __name__ == "__main__":
     os.environ["CUDA_VISIBLE_DEVICES"] = args.cuda_device
 
     # Read dataset
-    {
-      "patient_id": "tgm001",
-      "patient_dir": "/Users/cherubim/Desktop/GLIODIL/tgm001",
-      "exams": [
-        {
-          "flair": "/Users/cherubim/Desktop/GLIODIL/tgm001/preop/sub-tgm001_ses-preop_space-sri_flair.nii.gz",
-          "t1": "/Users/cherubim/Desktop/GLIODIL/tgm001/preop/sub-tgm001_ses-preop_space-sri_t1.nii.gz",
-          "t1c": "/Users/cherubim/Desktop/GLIODIL/tgm001/preop/sub-tgm001_ses-preop_space-sri_t1c.nii.gz",
-          "t2": "",
-          "tumorseg": "/Users/cherubim/Desktop/GLIODIL/tgm001/preop/sub-tgm001_ses-preop_space-sri_seg.nii.gz",
-          "timepoint": "preop"
-        },
-        {
-          "t1c": "/Users/cherubim/Desktop/GLIODIL/tgm001/preop/sub-tgm001_ses-preop_space-sri_t1c-rec.nii.gz",
-          "tumorseg": "/Users/cherubim/Desktop/GLIODIL/tgm001/preop/sub-tgm001_ses-preop_space-sri_seg-rec.nii.gz",
-          "timepoint": "followup"
-        }
-
     patient_id = "tgm001"
     algo_id ="sbtc"
 
-    t1_file = Path("/Users/cherubim/Desktop/GLIODIL/tgm001/preop/sub-tgm001_ses-preop_space-sri_t1.nii.gz")
-    t1c_file = Path("/Users/cherubim/Desktop/GLIODIL/tgm001/preop/sub-tgm001_ses-preop_space-sri_t1c.nii.gz")
+    t1_file = Path("/mnt/Drive2/lucas/datasets/GLIODIL/tgm001/preop/sub-tgm001_ses-preop_space-sri_t1.nii.gz")
+    t1c_file = Path("/mnt/Drive2/lucas/datasets/GLIODIL/tgm001/preop/sub-tgm001_ses-preop_space-sri_t1c.nii.gz")
     t2_file = Path("")
-    flair_file = Path("/Users/cherubim/Desktop/GLIODIL/tgm001/preop/sub-tgm001_ses-preop_space-sri_flair.nii.gz")
-    tumorseg_file = Path("/Users/cherubim/Desktop/GLIODIL/tgm001/preop/sub-tgm001_ses-preop_space-sri_seg.nii.gz")
-    t1c_followup_file = Path("/Users/cherubim/Desktop/GLIODIL/tgm001/preop/sub-tgm001_ses-preop_space-sri_t1c-rec.nii.gz")
-    recurrenceseg_file = Path("/Users/cherubim/Desktop/GLIODIL/tgm001/preop/sub-tgm001_ses-preop_space-sri_seg-rec.nii.gz")
-    exam_dir_preop = Path("/Users/cherubim/Desktop/GLIODIL/tgm001/preop/preop")
-    exam_dir_followup = Path("/Users/cherubim/Desktop/GLIODIL/tgm001/preop/followup")
+    flair_file = Path("/mnt/Drive2/lucas/datasets/GLIODIL/tgm001/preop/sub-tgm001_ses-preop_space-sri_flair.nii.gz")
+    tumorseg_file = Path("/mnt/Drive2/lucas/datasets/GLIODIL/tgm001/preop/sub-tgm001_ses-preop_space-sri_seg.nii.gz")
+    t1c_followup_file = Path("/mnt/Drive2/lucas/datasets/GLIODIL/tgm001/preop/sub-tgm001_ses-preop_space-sri_t1c-rec.nii.gz")
+    recurrenceseg_file = Path("/mnt/Drive2/lucas/datasets/GLIODIL/tgm001/preop/sub-tgm001_ses-preop_space-sri_seg-rec.nii.gz")
+    exam_dir_preop = Path("/mnt/Drive2/lucas/datasets/GLIODIL/tgm001/preop/preop")
+    exam_dir_followup = Path("/mnt/Drive2/lucas/datasets/GLIODIL/tgm001/preop/followup")
     
     # Convert tumor segmentations
     converted_tumorseg_file_preop = exam_dir_preop / "tumorseg_123.nii.gz"

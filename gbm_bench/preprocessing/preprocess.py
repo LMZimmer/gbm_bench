@@ -111,6 +111,8 @@ def preprocess_nifti(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file: P
     if is_coregistered:
         logger.info(f"Running with provided skull stripped modality images.")
         for modality, path in modality_dict.items():
+            if str(path) == ".":
+                continue  # ignore missing modalities
             normalize(img_file=path, outfile=MODALITY_STRIPPED_SCHEMA.format(base_dir=outdir, modality=modality))
     else:
         for modality, path in modality_dict.items():
