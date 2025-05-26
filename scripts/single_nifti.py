@@ -82,7 +82,7 @@ if __name__ == "__main__":
     process_longitudinal(
             preop_exam_dir=exam_dir_preop,
             followup_exam_dir=exam_dir_followup,
-            outdir=t1c_followup_file
+            outdir=exam_dir_followup
             )
 
     # Predict
@@ -100,3 +100,5 @@ if __name__ == "__main__":
             pred_file=prediction_dir,
             model_id=algo_id
             )
+
+    print(f"Done: {results}")
