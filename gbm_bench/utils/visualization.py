@@ -549,11 +549,26 @@ def plot_full_brain(patient_identifier: str, exam_identifier_pre: str, exam_iden
     # Load images
     t1c_pre = load_mri_data(preop_stripped_files["t1c"])
     t1c_post = load_mri_data(followup_stripped_files["t1c"])
-    flair_pre = load_mri_data(preop_stripped_files["flair"])
-    flair_post = load_mri_data(followup_stripped_files["flair"])
+    
+    try:
+        flair_pre = load_mri_data(preop_stripped_files["flair"])
+    except:
+        flair_pre = np.ones(t1c_pre.shape)
+        print(f"Preop FLAIR MRI not found. Conitnuing with empty image.")
+    try:
+        flair_post = load_mri_data(followup_stripped_files["flair"])
+    except:
+        flair_post = np.ones(t1c_post.shape)
+        print(f"Followup FLAIR MRI not found. Conitnuing with empty image.")
+
     tumor_seg = load_mri_data(tumor_seg_file)
     recurrence_seg = load_mri_data(recurrence_seg_file)
-    standard_plan = load_mri_data(standard_plan_file)
+    
+    try:
+        standard_plan = load_mri_data(standard_plan_file)
+    except:
+        standard_plan = np.zeros(t1c_pre.shape)
+        print(f"Standard plan not found. Continuing with emtpy image.")
 
     # Generate projections
     tumor_projections = [get_segmentation_projection(tumor_seg, label=label, axis=2) for label in classes_of_interest]
@@ -627,6 +642,57 @@ def plot_full_brain(patient_identifier: str, exam_identifier_pre: str, exam_iden
             row_titles=row_titles,
             outfile=outfile,
             legend_handles=patches
+            )
+
+
+def plot_difference(img1_file, img2_file, identifier, outfile) -> None:
+
+    n_layers = 1
+
+    # Load images
+    img1 = load_mri_data(img1_file)
+    img2 = load_mri_data(img2_file)
+    diff = np.abs(img1 - img2)
+
+    if img1.shape != img2.shape:
+        raise ValueError(f"Dimension mismatch. Images need to be the same dimension.")
+
+    center = [d // 2 for d in img1.shape]
+    step_size = 10
+    num_slices = 15
+    axial_slices = [k*10 for k in range(0, 15)]
+    coronal_slices = axial_slices
+
+    # Titles
+    col_titles = axial_slices
+    row_titles = ["img1", "img2", "difference"]
+    header = (
+            f"Patient: {identifier}\n"
+            f"Volume 1: {np.sum(img1 > 0)}\n"
+            f"Volume 2: {np.sum(img2 > 0)}\n"
+            f"Difference: {np.sum(diff > 0)}"
+            )
+
+    # Build image tensor
+    image_tensor = np.empty((n_layers, len(row_titles), len(col_titles)), dtype=object)
+
+    # Layer 1: T1c, T1c, T1c, Tissueseg
+    layer_1_args = {"cmap": "gray", "interpolation": "none", "vmin": 0, "vmax": 1}
+    for ind, ax_slice, cor_slice in zip(range(num_slices), axial_slices, coronal_slices):
+        image_tensor[0, 0, ind] = img1[:, :, ax_slice]
+        image_tensor[0, 1, ind] = img2[:, :, ax_slice]
+        image_tensor[0, 2, ind] = diff[:, :, ax_slice]
+
+    # Imshow arguments
+    imshow_args = [layer_1_args]
+
+    grid_plot(
+            image_tensor=image_tensor,
+            imshow_args=imshow_args,
+            header=header,
+            col_titles=col_titles,
+            row_titles=row_titles,
+            outfile=outfile
             )
 
 
@@ -727,7 +793,7 @@ if __name__ == "__main__":
             exam_dir_followup=Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/04-05-2016-NA-RM CEREBRO-94961"),
             outfile="tmp_visualization/plans.pdf"
             )
-    """
+    
     plot_full_brain(
             patient_identifier="RHUH-0024",
             exam_identifier_pre="Pre",
@@ -736,5 +802,9 @@ if __name__ == "__main__":
             exam_dir_followup=Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0024/01-29-2014-NA-RM CEREBRO-96283"),
             outfile="tmp_visualization/qualitycontrol.pdf"
             )
-
-
+    """
+    plot_difference(
+            img1_file="/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-25-2015-NA-RM CEREBRAL6NEURNAV-21029/processed/tumor_segmentation/standard_plan.nii.gz",
+            img2_file="/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/08-20-2016-NA-RM CEREBRO  C-49009/processed/tumor_segmentation/standard_plan.nii.gz",
+            identifier="test",
+            outfile="tmp/difference_test.pdf")

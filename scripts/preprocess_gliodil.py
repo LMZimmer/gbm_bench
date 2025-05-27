@@ -33,7 +33,7 @@ if __name__ == "__main__":
     gliodil.load(GLIODIL_DIR)
 
     # Individual exams
-    for patient_ind, patient in enumerate(gliodil.patients):
+    for patient_ind, patient in enumerate(gliodil.patients[174:]):  # hung at 175
         print(f"Processing {patient_ind}/{len(gliodil.patients)}...")
 
         for exam in patient["exams"]:
@@ -68,7 +68,7 @@ if __name__ == "__main__":
                     )
 
     # Longitudinal registration
-    for patient_ind, patient in enumerate(gliodil.patients[60:]):
+    for patient_ind, patient in enumerate(gliodil.patients):
         print(f"Performing longitudinal registration {patient_ind}/{len(gliodil.patients)}.")
 
         patient_id = patient["patient_id"]
