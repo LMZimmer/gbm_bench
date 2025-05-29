@@ -168,7 +168,7 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
         t1c_file = MODALITY_STRIPPED_SCHEMA.format(base_dir=str(preop_dir), modality="t1c")
         t1c = load_mri_data(str(t1c_file))
         background = np.min(t1c)
-        brain_mask = (t1c > background).astype(np.float64)
+        brain_mask = np.rint(t1c > background)
 
     if csf_mask:
         tissue_segmentation_dir = TISSUE_SEG_SCHEMA.format(base_dir=str(preop_dir))

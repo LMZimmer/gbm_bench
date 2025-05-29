@@ -45,7 +45,7 @@ def generate_healthy_brain_mask(brain_mask_file: Path, tumor_seg_file: Path, out
     brain_data = brain_nifti.get_fdata()
 
     tumor_data = nib.load(str(tumor_seg_file)).get_fdata()
-    tumor_mask = (tumor_data > 0).astype(np.float32)
+    tumor_mask = np.rint(tumor_data > 0)
 
     # Generate the healthy brain mask.
     healthy_data = np.where(tumor_mask > 0, 0, brain_data).astype(np.float32)
@@ -155,7 +155,7 @@ def run_tissue_seg_registration(t1_file: Path, outdir: Path, registration_mask_f
     # Create single tissue masks from full tissue segmentation
     header, aff = tissues_warped_nifti.header, tissues_warped_nifti.affine
     for tissue, label in TISSUE_LABELS.items():
-        tissue_mask = (tissues_warped.numpy() == label).astype(np.int32)
+        tissue_mask = np.rint(tissues_warped.numpy() == label)
         tissue_mask_nifti = nib.Nifti1Image(tissue_mask, header=header, affine=aff)
         nib.save(tissue_mask_nifti, str(TISSUE_SCHEMA.format(base_dir=outdir, tissue=tissue)))
 

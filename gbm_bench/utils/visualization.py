@@ -48,7 +48,7 @@ def get_cmap_norm_patches_tumorseg(classes_of_interest: List[int]):
 def get_segmentation_projection(segmentation: np.ndarray, label: int, axis: int) -> np.ndarray:
     seg_data = segmentation.copy()
     seg_data[seg_data!=label]=0
-    projection = (np.sum(seg_data, axis=axis) > 0).astype(int)
+    projection = np.rint(np.sum(seg_data, axis=axis) > 0)
     return projection
 
 
@@ -804,7 +804,7 @@ if __name__ == "__main__":
             )
     """
     plot_difference(
-            img1_file="/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-25-2015-NA-RM CEREBRAL6NEURNAV-21029/processed/tumor_segmentation/standard_plan.nii.gz",
-            img2_file="/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/08-20-2016-NA-RM CEREBRO  C-49009/processed/tumor_segmentation/standard_plan.nii.gz",
-            identifier="test",
-            outfile="tmp/difference_test.pdf")
+            img1_file="/home/home/lucas/standardPlan.nii.gz",
+            img2_file="/home/home/lucas/testing/tmpess/data_716_std_plan.nii.gz",
+            identifier="tgm016",
+            outfile="tmp/standard_difference.pdf")
