@@ -33,7 +33,7 @@ if __name__ == "__main__":
     gliodil.load(GLIODIL_DIR)
 
     # Individual exams
-    for patient_ind, patient in enumerate(gliodil.patients[174:]):  # hung at 175
+    for patient_ind, patient in enumerate(gliodil.patients):
         print(f"Processing {patient_ind}/{len(gliodil.patients)}...")
 
         for exam in patient["exams"]:
@@ -87,7 +87,8 @@ if __name__ == "__main__":
             process_longitudinal(
                     preop_exam_dir=preop_exam_dir,
                     followup_exam_dir=followup_exam_dir,
-                    outdir=followup_exam_dir
+                    outdir=followup_exam_dir,
+                    is_coregistered=True
                     )
     
     print(f"Finished processing.")

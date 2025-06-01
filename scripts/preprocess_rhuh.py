@@ -32,6 +32,7 @@ if __name__ == "__main__":
 
             is_preop = (exam["timepoint"] == "preop")
 
+            """
             preprocess_dicom(
                     t1_dir=exam["t1"],
                     t1c_dir=exam["t1c"],
@@ -42,6 +43,7 @@ if __name__ == "__main__":
                     pre_treatment=is_preop,
                     cuda_device=args.cuda_device,
                     )
+            """
 
     # Longitudinal registration
     for patient_ind, patient in enumerate(rhuh_gbm.patients):

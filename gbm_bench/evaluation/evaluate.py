@@ -176,18 +176,20 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
         brain_mask[tissue_segmentation==TISSUE_LABELS["csf"]] = 0
 
     tumorseg_dir = TUMORSEG_SCHEMA.format(base_dir=str(preop_dir))
-    core_segmentation = load_mri_data(str(tumorseg_dir ))
+    core_segmentation = np.rint(load_mri_data(str(tumorseg_dir)))
     core_segmentation[core_segmentation==2] = 0  # ignore edma
     core_segmentation[core_segmentation==3] = 1
 
     recurrence_dir = RECURRENCE_SCHEMA.format(base_dir=str(followup_dir))
     #recurrence_dir = TUMORSEG_SCHEMA.format(base_dir=str(followup_dir))  # tests without longitudinal registration
-    recurrence_segmentation = load_mri_data(str(recurrence_dir))
+    recurrence_segmentation = np.rint(load_mri_data(str(recurrence_dir)))
+    recurrence_segmentation[recurrence_segmentation == 1] = 0  # TODO: include necrosis as recurrence?
     recurrence_segmentation[recurrence_segmentation == 2] = 0  # ignore edema
-    recurrence_segmentation[recurrence_segmentation == 4] = 0  # ignore resection cavity 
     recurrence_segmentation[recurrence_segmentation == 3] = 1
+    recurrence_segmentation[recurrence_segmentation == 4] = 0  # ignore resection cavity 
     recurrence_segmentation[brain_mask == 0] = 0
-    recurrence_segmentation_all = load_mri_data(recurrence_dir)
+    recurrence_segmentation_all = np.rint(load_mri_data(recurrence_dir))
+    recurrence_segmentation_all[recurrence_segmentation_all == 1] = 1  # TODO
     recurrence_segmentation_all[recurrence_segmentation_all == 2] = 1
     recurrence_segmentation_all[recurrence_segmentation_all == 3] = 1
     recurrence_segmentation_all[recurrence_segmentation_all == 4] = 0
@@ -233,6 +235,10 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
         json.dump(results, f, indent=2)
 
     logger.info(f"Finished evaluation of {preop_dir}. Saved results to {save_file}.")
+
+    print(tumorseg_dir)
+    print(recurrence_dir)
+    print(outfile_standard)
     return results
 
 

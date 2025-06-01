@@ -10,6 +10,7 @@ from gbm_bench.evaluation.evaluate import evaluate_tumor_model
 from gbm_bench.utils.constants import PREDICTION_OUTPUT_SCHEMA
 
 
+# for tgm
 def convert_tumorseg_labels(inpath, outpath):
     img = nib.load(str(inpath))
     data = img.get_fdata()
@@ -32,18 +33,24 @@ if __name__ == "__main__":
     os.environ["CUDA_VISIBLE_DEVICES"] = args.cuda_device
 
     # Read dataset
-    patient_id = "tgm001"
-    algo_id ="sbtc"
+    patient_id = "tgm016"
+    algo_id ="gliodil"
 
-    t1_file = Path("/mnt/Drive2/lucas/datasets/GLIODIL/tgm001/preop/sub-tgm001_ses-preop_space-sri_t1.nii.gz")
-    t1c_file = Path("/mnt/Drive2/lucas/datasets/GLIODIL/tgm001/preop/sub-tgm001_ses-preop_space-sri_t1c.nii.gz")
-    t2_file = Path("")
-    flair_file = Path("/mnt/Drive2/lucas/datasets/GLIODIL/tgm001/preop/sub-tgm001_ses-preop_space-sri_flair.nii.gz")
-    tumorseg_file = Path("/mnt/Drive2/lucas/datasets/GLIODIL/tgm001/preop/sub-tgm001_ses-preop_space-sri_seg.nii.gz")
-    t1c_followup_file = Path("/mnt/Drive2/lucas/datasets/GLIODIL/tgm001/preop/sub-tgm001_ses-preop_space-sri_t1c-rec.nii.gz")
-    recurrenceseg_file = Path("/mnt/Drive2/lucas/datasets/GLIODIL/tgm001/preop/sub-tgm001_ses-preop_space-sri_seg-rec.nii.gz")
-    exam_dir_preop = Path("/mnt/Drive2/lucas/datasets/GLIODIL/tgm001/preop/preop")
-    exam_dir_followup = Path("/mnt/Drive2/lucas/datasets/GLIODIL/tgm001/preop/followup")
+    glio_root = Path("/mnt/Drive2/lucas/datasets/GLIODIL/tgm016/preop")
+    t1_file = glio_root / "sub-tgm016_ses-preop_space-sri_t1.nii.gz"
+    t1c_file = glio_root / "sub-tgm016_ses-preop_space-sri_t1c.nii.gz"
+    t2_file = glio_root / "sub-tgm016_ses-preop_space-sri_t2.nii.gz"
+    flair_file = glio_root / "sub-tgm016_ses-preop_space-sri_flair.nii.gz"
+    tumorseg_file = glio_root / "sub-tgm016_ses-preop_space-sri_seg.nii.gz"
+    t1c_followup_file = glio_root / "sub-tgm016_ses-preop_space-sri_t1c-rec.nii.gz"
+    recurrenceseg_file = glio_root / "sub-tgm016_ses-preop_space-sri_seg-rec.nii.gz"
+    exam_dir_preop = glio_root / "preop"
+    exam_dir_followup = glio_root / "followup"
+
+    glio_ess_root = Path("/mnt/Drive2/lucas/datasets/data_GliODIL_essential/data_716")
+    wm_file = glio_ess_root / "t1_wm.nii.gz"
+    gm_file = glio_ess_root / "t1_gm.nii.gz"
+    csf_file = glio_ess_root / "t1_csf.nii.gz"
     
     # Convert tumor segmentations
     converted_tumorseg_file_preop = exam_dir_preop / "tumorseg_123.nii.gz"
@@ -52,6 +59,7 @@ if __name__ == "__main__":
     convert_tumorseg_labels(recurrenceseg_file, converted_tumorseg_file_followup)
 
     # Preprocessing
+    """
     preprocess_nifti(
         t1_file=t1_file,
         t1c_file=t1c_file,
@@ -82,7 +90,8 @@ if __name__ == "__main__":
     process_longitudinal(
             preop_exam_dir=exam_dir_preop,
             followup_exam_dir=exam_dir_followup,
-            outdir=exam_dir_followup
+            outdir=exam_dir_followup,
+            is_coregistered=True
             )
 
     # Predict
@@ -93,6 +102,7 @@ if __name__ == "__main__":
             )
 
     # Evaluate
+    """
     prediction_dir = PREDICTION_OUTPUT_SCHEMA.format(base_dir=exam_dir_preop, algo_id=algo_id)
     results = evaluate_tumor_model(
             preop_dir=exam_dir_preop,
