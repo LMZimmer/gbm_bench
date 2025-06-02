@@ -647,12 +647,12 @@ def plot_full_brain(patient_identifier: str, exam_identifier_pre: str, exam_iden
 
 def plot_difference(img1_file, img2_file, identifier, outfile) -> None:
 
-    n_layers = 1
+    n_layers = 2
 
     # Load images
     img1 = load_mri_data(img1_file)
     img2 = load_mri_data(img2_file)
-    diff = np.abs(img1 - img2)
+    diff = (img1 - img2)
 
     if img1.shape != img2.shape:
         raise ValueError(f"Dimension mismatch. Images need to be the same dimension.")
@@ -681,10 +681,13 @@ def plot_difference(img1_file, img2_file, identifier, outfile) -> None:
     for ind, ax_slice, cor_slice in zip(range(num_slices), axial_slices, coronal_slices):
         image_tensor[0, 0, ind] = img1[:, :, ax_slice]
         image_tensor[0, 1, ind] = img2[:, :, ax_slice]
-        image_tensor[0, 2, ind] = diff[:, :, ax_slice]
+
+    layer_2_args = {"cmap": "inferno", "vmin": -1.0, "vmax": 1.0, "interpolation": "none"}
+    for ind, ax_slice, cor_slice in zip(range(num_slices), axial_slices, coronal_slices):
+        image_tensor[1, 2, ind] = diff[:, :, ax_slice]
 
     # Imshow arguments
-    imshow_args = [layer_1_args]
+    imshow_args = [layer_1_args, layer_2_args]
 
     grid_plot(
             image_tensor=image_tensor,
@@ -804,7 +807,7 @@ if __name__ == "__main__":
             )
     """
     plot_difference(
-            img1_file="/home/home/lucas/standardPlan.nii.gz",
-            img2_file="/home/home/lucas/testing/tmpess/data_716_std_plan.nii.gz",
+            img1_file="/home/home/lucas/jonasplans/standardPlan.nii.gz",
+            img2_file="/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0012/0/processed/tumor_segmentation/standard_plan.nii.gz",
             identifier="tgm016",
             outfile="tmp/standard_difference.pdf")
