@@ -183,31 +183,29 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
     recurrence_dir = RECURRENCE_SCHEMA.format(base_dir=str(followup_dir))
     #recurrence_dir = TUMORSEG_SCHEMA.format(base_dir=str(followup_dir))  # tests without longitudinal registration
     recurrence_segmentation = np.rint(load_mri_data(str(recurrence_dir)))
-    recurrence_segmentation[recurrence_segmentation == 1] = 0  # TODO: include necrosis as recurrence?
+    recurrence_segmentation[recurrence_segmentation == 1] = 1  # TODO: include necrosis as recurrence?
     recurrence_segmentation[recurrence_segmentation == 2] = 0  # ignore edema
     recurrence_segmentation[recurrence_segmentation == 3] = 1
     recurrence_segmentation[recurrence_segmentation == 4] = 0  # ignore resection cavity 
-    recurrence_segmentation[brain_mask == 0] = 0
     recurrence_segmentation_all = np.rint(load_mri_data(recurrence_dir))
     recurrence_segmentation_all[recurrence_segmentation_all == 1] = 1  # TODO
     recurrence_segmentation_all[recurrence_segmentation_all == 2] = 1
     recurrence_segmentation_all[recurrence_segmentation_all == 3] = 1
     recurrence_segmentation_all[recurrence_segmentation_all == 4] = 0
-    recurrence_segmentation_all[brain_mask == 0] = 0
 
-    model_prediction = load_and_resample_mri_data(str(pred_file), resample_params=core_segmentation.shape, interp_type=1)
+    model_prediction = load_and_resample_mri_data(str(pred_file), resample_params=core_segmentation.shape, interp_type=0)
 
     # Create standard plan
     standard_plan = create_standard_plan(core_segmentation, ctv_margin)
-    standard_plan[brain_mask == 0] = 0
+    standard_plan[brain_mask==0] = 0
     standard_plan_volume = np.sum(standard_plan)
     standard_plan_coverage = recurrence_coverage(recurrence_segmentation, standard_plan)
     standard_plan_coverage_all = recurrence_coverage(recurrence_segmentation_all, standard_plan)
 
     # Create model based plan
     tumor_threshold = find_threshold(model_prediction, standard_plan_volume, initial_threshold=0.2)
-    model_plan = model_prediction > tumor_threshold
-    model_plan[brain_mask == 0] = 0
+    model_plan = np.rint(model_prediction > tumor_threshold)
+    #model_plan[brain_mask == 0] = 0
     model_recurrence_coverage = recurrence_coverage(recurrence_segmentation, model_plan)
     model_recurrence_coverage_all = recurrence_coverage(recurrence_segmentation_all, model_plan)
 

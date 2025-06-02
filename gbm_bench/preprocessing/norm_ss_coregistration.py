@@ -214,7 +214,7 @@ def register_recurrence(t1c_pre_file: Path, t1c_post_file: Path, recurrence_seg_
             fixed=t1c_pre_img,
             moving=t1c_post_img,
             type_of_transform="antsRegistrationSyN[s,2]",
-            **reg_kwargs
+            #**reg_kwargs
             )
 
     # Custom SyN Registration

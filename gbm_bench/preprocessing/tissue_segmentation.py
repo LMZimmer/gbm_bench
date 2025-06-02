@@ -45,10 +45,10 @@ def generate_healthy_brain_mask(brain_mask_file: Path, tumor_seg_file: Path, out
     brain_data = brain_nifti.get_fdata()
 
     tumor_data = nib.load(str(tumor_seg_file)).get_fdata()
-    tumor_mask = np.rint(tumor_data > 0)
+    tumor_mask = (tumor_data > 0).astype(np.uint8)
 
     # Generate the healthy brain mask.
-    healthy_data = np.where(tumor_mask > 0, 0, brain_data).astype(np.float32)
+    healthy_data = np.where(tumor_mask > 0, 0, brain_data).astype(np.uint8)
 
     # Generate output nifti and save it
     outfile.parent.mkdir(parents=True, exist_ok=True)
@@ -78,7 +78,7 @@ def generate_registration_mask(tumor_seg_file: Path, outfile: Path) -> None:
     # Generate mask
     tumor_seg = tumor_nifti.get_fdata()
     tumor_seg[tumor_seg==2] = 0  # discard edema, only use core as mask
-    no_tumor_mask = (tumor_seg < 0.5).astype(np.float32)
+    no_tumor_mask = (tumor_seg < 0.5).astype(np.uint8)
     
     # Save
     outfile.parent.mkdir(parents=True, exist_ok=True)
@@ -105,20 +105,20 @@ def run_tissue_seg_registration(t1_file: Path, outdir: Path, registration_mask_f
     logger.info(f"Starting tissue segmentation.")
 
     # Prepare directories
-    #atlas_pbmap_dirs = {tissue: ATLAS_TISSUE_PBMAPS_DIR.format(tissue=tissue) for tissue in ["csf", "gm", "wm"]}  #TODO
-    atlas_pbmap_dirs = {
-            "csf": "/mnt/Drive2/lucas/datasets/ATLAS/andeleyev/sub-mni152_tissue-with-antsN4_csf_space-sri.nii.gz",
-            "gm": "/mnt/Drive2/lucas/datasets/ATLAS/andeleyev/sub-mni152_tissue-with-antsN4_gm_space-sri.nii.gz",
-            "wm": "/mnt/Drive2/lucas/datasets/ATLAS/andeleyev/sub-mni152_tissue-with-antsN4_wm_space-sri.nii.gz"
-            }
+    atlas_pbmap_dirs = {tissue: ATLAS_TISSUE_PBMAPS_DIR.format(tissue=tissue) for tissue in ["csf", "gm", "wm"]}  #TODO
+    #atlas_pbmap_dirs = {
+    #        "csf": "/mnt/Drive2/lucas/datasets/ATLAS/andeleyev/sub-mni152_tissue-with-antsN4_csf_space-sri.nii.gz",
+    #        "gm": "/mnt/Drive2/lucas/datasets/ATLAS/andeleyev/sub-mni152_tissue-with-antsN4_gm_space-sri.nii.gz",
+    #        "wm": "/mnt/Drive2/lucas/datasets/ATLAS/andeleyev/sub-mni152_tissue-with-antsN4_wm_space-sri.nii.gz"
+    #        }
     
     outprefix = TISSUE_SEG_BASE_SCHEMA.format(base_dir=outdir)
     outprefix.mkdir(parents=True, exist_ok=True)
 
     # Read images
     t1_patient = ants.image_read(str(t1_file))
-    #t1_atlas = ants.image_read(str(ATLAS_T1_DIR))  #TODO
-    t1_atlas = ants.image_read("/mnt/Drive2/lucas/datasets/ATLAS/andeleyev/sub-mni152_t1-inside-brain_space-sri.nii.gz")
+    t1_atlas = ants.image_read(str(ATLAS_T1_DIR))  #TODO
+    #t1_atlas = ants.image_read("/mnt/Drive2/lucas/datasets/ATLAS/andeleyev/sub-mni152_t1-inside-brain_space-sri.nii.gz")
 
     reg_kwargs = {}
     if registration_mask_file is not None:
@@ -155,7 +155,9 @@ def run_tissue_seg_registration(t1_file: Path, outdir: Path, registration_mask_f
     # Create single tissue masks from full tissue segmentation
     header, aff = tissues_warped_nifti.header, tissues_warped_nifti.affine
     for tissue, label in TISSUE_LABELS.items():
-        tissue_mask = np.rint(tissues_warped.numpy() == label)
+        eq = tissues_warped.numpy()
+        tissue_mask = (np.isclose(eq, label)).astype(np.uint8)
+        #tissue_mask = np.rint(tissues_warped.numpy() == label)
         tissue_mask_nifti = nib.Nifti1Image(tissue_mask, header=header, affine=aff)
         nib.save(tissue_mask_nifti, str(TISSUE_SCHEMA.format(base_dir=outdir, tissue=tissue)))
 
@@ -204,5 +206,4 @@ if __name__ == "__main__":
             registration_mask_file=registration_mask_file,
             brain_mask_file=brain_mask_file,
             outdir=outdir,
-            refit_brain=False
             )

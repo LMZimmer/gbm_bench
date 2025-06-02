@@ -4,7 +4,7 @@ from pathlib import Path
 from loguru import logger
 from typing import Optional
 from gbm_bench.prediction.growth_model import TumorGrowthModel
-from gbm_bench.utils.constants import MODALITY_STRIPPED_SCHEMA, TISSUE_PBMAP_SCHEMA, TUMORSEG_SCHEMA
+from gbm_bench.utils.constants import MODALITY_STRIPPED_SCHEMA, TISSUE_SCHEMA, TISSUE_PBMAP_SCHEMA, TUMORSEG_SCHEMA
 
 
 def predict_tumor_growth(preop_dir: Path, model_id: str, cuda_device: Optional[str] = "0", outdir: Optional[Path] = None) -> None:
@@ -24,9 +24,12 @@ def predict_tumor_growth(preop_dir: Path, model_id: str, cuda_device: Optional[s
 
     model_kwargs = {
             "t1c": MODALITY_STRIPPED_SCHEMA.format(base_dir=preop_dir, modality="t1c"),
-            "gm": TISSUE_PBMAP_SCHEMA.format(base_dir=preop_dir, tissue="gm"),
-            "wm": TISSUE_PBMAP_SCHEMA.format(base_dir=preop_dir, tissue="wm"),
-            "csf": TISSUE_PBMAP_SCHEMA.format(base_dir=preop_dir, tissue="csf"),
+            #"gm": TISSUE_PBMAP_SCHEMA.format(base_dir=preop_dir, tissue="gm"),  #pbmaps
+            #"wm": TISSUE_PBMAP_SCHEMA.format(base_dir=preop_dir, tissue="wm"),
+            #"csf": TISSUE_PBMAP_SCHEMA.format(base_dir=preop_dir, tissue="csf"),
+            "gm": TISSUE_SCHEMA.format(base_dir=preop_dir, tissue="gm"),
+            "wm": TISSUE_SCHEMA.format(base_dir=preop_dir, tissue="wm"),
+            "csf": TISSUE_SCHEMA.format(base_dir=preop_dir, tissue="csf"),
             "tumorseg": TUMORSEG_SCHEMA.format(base_dir=preop_dir),
             "outdir": outdir if outdir is not None else preop_dir
             }

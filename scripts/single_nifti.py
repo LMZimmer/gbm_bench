@@ -34,7 +34,10 @@ if __name__ == "__main__":
 
     # Read dataset
     patient_id = "tgm016"
-    algo_id ="gliodil"
+    algo_id = "sbtc"
+    #algo_id = "gliodil_ess"
+    #algo_id = "gliodil_ess_pet"
+    #algo_id = "gliodilgbm"
 
     glio_root = Path("/mnt/Drive2/lucas/datasets/GLIODIL/tgm016/preop")
     t1_file = glio_root / "sub-tgm016_ses-preop_space-sri_t1.nii.gz"
@@ -59,7 +62,6 @@ if __name__ == "__main__":
     convert_tumorseg_labels(recurrenceseg_file, converted_tumorseg_file_followup)
 
     # Preprocessing
-    """
     preprocess_nifti(
         t1_file=t1_file,
         t1c_file=t1c_file,
@@ -102,7 +104,6 @@ if __name__ == "__main__":
             )
 
     # Evaluate
-    """
     prediction_dir = PREDICTION_OUTPUT_SCHEMA.format(base_dir=exam_dir_preop, algo_id=algo_id)
     results = evaluate_tumor_model(
             preop_dir=exam_dir_preop,
