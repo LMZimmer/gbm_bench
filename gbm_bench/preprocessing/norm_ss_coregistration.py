@@ -246,7 +246,8 @@ def register_recurrence(t1c_pre_file: Path, t1c_post_file: Path, recurrence_seg_
             fixed=t1c_pre_img,
             moving=recurrence_seg,
             transformlist=reg["fwdtransforms"],
-            interpolator='nearestNeighbor'
+            interpolator='nearestNeighbor',
+            pixeltype='uint8'
             )
     ants.image_write(recurrence_warped, str(recurrence_outdir))
     time_spent = time.time() - start_time

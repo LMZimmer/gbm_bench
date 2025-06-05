@@ -39,6 +39,8 @@ if __name__ == "__main__":
     #algo_id = "gliodil_ess_pet"
     #algo_id = "gliodilgbm"
 
+    # tgm16
+    """
     glio_root = Path("/mnt/Drive2/lucas/datasets/GLIODIL/tgm016/preop")
     t1_file = glio_root / "sub-tgm016_ses-preop_space-sri_t1.nii.gz"
     t1c_file = glio_root / "sub-tgm016_ses-preop_space-sri_t1c.nii.gz"
@@ -54,12 +56,28 @@ if __name__ == "__main__":
     wm_file = glio_ess_root / "t1_wm.nii.gz"
     gm_file = glio_ess_root / "t1_gm.nii.gz"
     csf_file = glio_ess_root / "t1_csf.nii.gz"
-    
+
     # Convert tumor segmentations
     converted_tumorseg_file_preop = exam_dir_preop / "tumorseg_123.nii.gz"
     converted_tumorseg_file_followup = exam_dir_followup / "tumorseg_123.nii.gz"
     convert_tumorseg_labels(tumorseg_file, converted_tumorseg_file_preop)
     convert_tumorseg_labels(recurrenceseg_file, converted_tumorseg_file_followup)
+    """
+
+    # rhuh0012
+    rhuh_root = Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0012/")
+    t1_file = rhuh_root / "0/RHUH-0012_0_t1.nii.gz"
+    t1c_file = rhuh_root / "0/RHUH-0012_0_t1ce.nii.gz"
+    t2_file = rhuh_root / "0/RHUH-0012_0_t2.nii.gz"
+    flair_file = rhuh_root / "0/RHUH-0012_0_flair.nii.gz"
+    tumorseg_file = rhuh_root / "0/RHUH-0012_0_segmentations.nii.gz"
+    t1c_followup_file = rhuh_root / "2/RHUH-0012_2_t1ce.nii.gz"
+    recurrenceseg_file = rhuh_root / "2/RHUH-0012_2_segmentations.nii.gz"
+    exam_dir_preop = rhuh_root / "0"
+    exam_dir_followup = rhuh_root / "2"
+
+    converted_tumorseg_file_preop = tumorseg_file
+    converted_tumorseg_file_followup = recurrenceseg_file
 
     # Preprocessing
     preprocess_nifti(

@@ -105,20 +105,20 @@ def run_tissue_seg_registration(t1_file: Path, outdir: Path, registration_mask_f
     logger.info(f"Starting tissue segmentation.")
 
     # Prepare directories
-    atlas_pbmap_dirs = {tissue: ATLAS_TISSUE_PBMAPS_DIR.format(tissue=tissue) for tissue in ["csf", "gm", "wm"]}  #TODO
-    #atlas_pbmap_dirs = {
-    #        "csf": "/mnt/Drive2/lucas/datasets/ATLAS/andeleyev/sub-mni152_tissue-with-antsN4_csf_space-sri.nii.gz",
-    #        "gm": "/mnt/Drive2/lucas/datasets/ATLAS/andeleyev/sub-mni152_tissue-with-antsN4_gm_space-sri.nii.gz",
-    #        "wm": "/mnt/Drive2/lucas/datasets/ATLAS/andeleyev/sub-mni152_tissue-with-antsN4_wm_space-sri.nii.gz"
-    #        }
+    #atlas_pbmap_dirs = {tissue: ATLAS_TISSUE_PBMAPS_DIR.format(tissue=tissue) for tissue in ["csf", "gm", "wm"]}  #TODO
+    atlas_pbmap_dirs = {
+            "csf": "/mnt/Drive2/lucas/datasets/ATLAS/andeleyev/sub-mni152_tissue-with-antsN4_csf_space-sri.nii.gz",
+            "gm": "/mnt/Drive2/lucas/datasets/ATLAS/andeleyev/sub-mni152_tissue-with-antsN4_gm_space-sri.nii.gz",
+            "wm": "/mnt/Drive2/lucas/datasets/ATLAS/andeleyev/sub-mni152_tissue-with-antsN4_wm_space-sri.nii.gz"
+            }
     
     outprefix = TISSUE_SEG_BASE_SCHEMA.format(base_dir=outdir)
     outprefix.mkdir(parents=True, exist_ok=True)
 
     # Read images
     t1_patient = ants.image_read(str(t1_file))
-    t1_atlas = ants.image_read(str(ATLAS_T1_DIR))  #TODO
-    #t1_atlas = ants.image_read("/mnt/Drive2/lucas/datasets/ATLAS/andeleyev/sub-mni152_t1-inside-brain_space-sri.nii.gz")
+    #t1_atlas = ants.image_read(str(ATLAS_T1_DIR))  #TODO
+    t1_atlas = ants.image_read("/mnt/Drive2/lucas/datasets/ATLAS/andeleyev/sub-mni152_t1-inside-brain_space-sri.nii.gz")
 
     reg_kwargs = {}
     if registration_mask_file is not None:
@@ -147,15 +147,16 @@ def run_tissue_seg_registration(t1_file: Path, outdir: Path, registration_mask_f
 
     # Save transformed tissue segmentation
     tissues_warped_nifti = tissues_warped.to_nibabel()
-    nib.save(tissues_warped_nifti, str(TISSUE_SEG_SCHEMA.format(base_dir=outdir)))
+    ants.image_write(tissues_warped, str(TISSUE_SEG_SCHEMA.format(base_dir=outdir)))
 
     logger.debug(f"Registration step done, saving output to {TISSUE_SEG_SCHEMA.format(base_dir=outdir)}")
     logger.info(f"Generating pbmaps...")
 
     # Create single tissue masks from full tissue segmentation
+    tissues_warped_nifti = nib.load(str(TISSUE_SEG_SCHEMA.format(base_dir=outdir)))
     header, aff = tissues_warped_nifti.header, tissues_warped_nifti.affine
     for tissue, label in TISSUE_LABELS.items():
-        eq = tissues_warped.numpy()
+        eq = tissues_warped_nifti.get_fdata()
         tissue_mask = (np.isclose(eq, label)).astype(np.uint8)
         #tissue_mask = np.rint(tissues_warped.numpy() == label)
         tissue_mask_nifti = nib.Nifti1Image(tissue_mask, header=header, affine=aff)
@@ -170,9 +171,7 @@ def run_tissue_seg_registration(t1_file: Path, outdir: Path, registration_mask_f
                 transformlist=transforms_path,
                 interpolator="linear"
                 )
-
-        warped_pbmap_nifti = warped_pbmap.to_nibabel()
-        nib.save(warped_pbmap_nifti, str(TISSUE_PBMAP_SCHEMA.format(base_dir=outdir, tissue=tissue)))
+        ants.image_write(warped_pbmap, str(TISSUE_PBMAP_SCHEMA.format(base_dir=outdir, tissue=tissue)))
     
     time_spent = time.time() - start_time
     logger.info(f"Finished tissue segmentation in {time_spent:.2f} seconds. Results saved to {outdir}.")
