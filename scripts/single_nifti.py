@@ -33,7 +33,7 @@ if __name__ == "__main__":
     os.environ["CUDA_VISIBLE_DEVICES"] = args.cuda_device
 
     # Read dataset
-    patient_id = "tgm016"
+    patient_id = "RHUH-0002"
     algo_id = "sbtc"
     #algo_id = "gliodil_ess"
     #algo_id = "gliodil_ess_pet"
@@ -64,15 +64,15 @@ if __name__ == "__main__":
     convert_tumorseg_labels(recurrenceseg_file, converted_tumorseg_file_followup)
     """
 
-    # rhuh0012
-    rhuh_root = Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0012/")
-    t1_file = rhuh_root / "0/RHUH-0012_0_t1.nii.gz"
-    t1c_file = rhuh_root / "0/RHUH-0012_0_t1ce.nii.gz"
-    t2_file = rhuh_root / "0/RHUH-0012_0_t2.nii.gz"
-    flair_file = rhuh_root / "0/RHUH-0012_0_flair.nii.gz"
-    tumorseg_file = rhuh_root / "0/RHUH-0012_0_segmentations.nii.gz"
-    t1c_followup_file = rhuh_root / "2/RHUH-0012_2_t1ce.nii.gz"
-    recurrenceseg_file = rhuh_root / "2/RHUH-0012_2_segmentations.nii.gz"
+    # rhuh0002
+    rhuh_root = Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0002/")
+    t1_file = rhuh_root / "0/RHUH-0002_0_t1.nii.gz"
+    t1c_file = rhuh_root / "0/RHUH-0002_0_t1ce.nii.gz"
+    t2_file = rhuh_root / "0/RHUH-0002_0_t2.nii.gz"
+    flair_file = rhuh_root / "0/RHUH-0002_0_flair.nii.gz"
+    tumorseg_file = rhuh_root / "0/RHUH-0002_0_segmentations.nii.gz"
+    t1c_followup_file = rhuh_root / "2/RHUH-0002_2_t1ce.nii.gz"
+    recurrenceseg_file = rhuh_root / "2/RHUH-0002_2_segmentations.nii.gz"
     exam_dir_preop = rhuh_root / "0"
     exam_dir_followup = rhuh_root / "2"
 
@@ -80,6 +80,7 @@ if __name__ == "__main__":
     converted_tumorseg_file_followup = recurrenceseg_file
 
     # Preprocessing
+    """
     preprocess_nifti(
         t1_file=t1_file,
         t1c_file=t1c_file,
@@ -115,12 +116,13 @@ if __name__ == "__main__":
             )
 
     # Predict
+    """
     predict_tumor_growth(
             preop_dir=exam_dir_preop,
             model_id=algo_id,
             cuda_device=args.cuda_device
             )
-
+    """
     # Evaluate
     prediction_dir = PREDICTION_OUTPUT_SCHEMA.format(base_dir=exam_dir_preop, algo_id=algo_id)
     results = evaluate_tumor_model(
@@ -129,5 +131,6 @@ if __name__ == "__main__":
             pred_file=prediction_dir,
             model_id=algo_id
             )
+    """
 
     print(f"Done: {results}")

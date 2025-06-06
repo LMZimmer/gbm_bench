@@ -41,18 +41,17 @@ def generate_healthy_brain_mask(brain_mask_file: Path, tumor_seg_file: Path, out
     logger.info("Generating healthy brain mask.")
     # Load niftis
     brain_nifti = nib.load(str(brain_mask_file))
-    affine, header = brain_nifti.affine, brain_nifti.header
-    brain_data = brain_nifti.get_fdata()
+    brain_data = np.rint(brain_nifti.get_fdata()).astype(np.int32)
 
-    tumor_data = nib.load(str(tumor_seg_file)).get_fdata()
-    tumor_mask = (tumor_data > 0).astype(np.uint8)
+    tumor_data = np.rint(nib.load(str(tumor_seg_file)).get_fdata()).astype(np.int32)
+    tumor_mask = (tumor_data > 0).astype(np.int32)
 
     # Generate the healthy brain mask.
-    healthy_data = np.where(tumor_mask > 0, 0, brain_data).astype(np.uint8)
+    healthy_data = np.where(tumor_mask > 0, 0, brain_data).astype(np.int32)
 
     # Generate output nifti and save it
     outfile.parent.mkdir(parents=True, exist_ok=True)
-    healthy_mask_nifti = nib.Nifti1Image(healthy_data, affine, header)
+    healthy_mask_nifti = nib.Nifti1Image(healthy_data, affine=np.eye(4))
     nib.save(healthy_mask_nifti, str(outfile))
     
     logger.info(f"Healthy brain mask generated succesfully and saved to {outfile}.")
@@ -73,16 +72,15 @@ def generate_registration_mask(tumor_seg_file: Path, outfile: Path) -> None:
     
     # Load data
     tumor_nifti = nib.load(str(tumor_seg_file))
-    affine, header = tumor_nifti.affine, tumor_nifti.header
     
     # Generate mask
-    tumor_seg = tumor_nifti.get_fdata()
+    tumor_seg = np.rint(tumor_nifti.get_fdata()).astype(np.int32)
     tumor_seg[tumor_seg==2] = 0  # discard edema, only use core as mask
-    no_tumor_mask = (tumor_seg < 0.5).astype(np.uint8)
+    no_tumor_mask = (tumor_seg < 0.5).astype(np.int32)
     
     # Save
     outfile.parent.mkdir(parents=True, exist_ok=True)
-    no_tumor_mask_nifti = nib.Nifti1Image(no_tumor_mask, affine, header)
+    no_tumor_mask_nifti = nib.Nifti1Image(no_tumor_mask, affine=np.ey=np.eye(4)))
     nib.save(no_tumor_mask_nifti, str(outfile))
 
     logger.info(f"Registration mask generated successfully and save to {outfile}.")
@@ -146,7 +144,6 @@ def run_tissue_seg_registration(t1_file: Path, outdir: Path, registration_mask_f
             )
 
     # Save transformed tissue segmentation
-    tissues_warped_nifti = tissues_warped.to_nibabel()
     ants.image_write(tissues_warped, str(TISSUE_SEG_SCHEMA.format(base_dir=outdir)))
 
     logger.debug(f"Registration step done, saving output to {TISSUE_SEG_SCHEMA.format(base_dir=outdir)}")
@@ -154,12 +151,11 @@ def run_tissue_seg_registration(t1_file: Path, outdir: Path, registration_mask_f
 
     # Create single tissue masks from full tissue segmentation
     tissues_warped_nifti = nib.load(str(TISSUE_SEG_SCHEMA.format(base_dir=outdir)))
-    header, aff = tissues_warped_nifti.header, tissues_warped_nifti.affine
     for tissue, label in TISSUE_LABELS.items():
-        eq = tissues_warped_nifti.get_fdata()
-        tissue_mask = (np.isclose(eq, label)).astype(np.uint8)
+        eq = np.rint(tissues_warped_nifti.get_fdata()).astype(np.int32)
+        tissue_mask = (np.isclose(eq, label)).astype(np.int32)
         #tissue_mask = np.rint(tissues_warped.numpy() == label)
-        tissue_mask_nifti = nib.Nifti1Image(tissue_mask, header=header, affine=aff)
+        tissue_mask_nifti = nib.Nifti1Image(tissue_mask, affine=np.eye(4))
         nib.save(tissue_mask_nifti, str(TISSUE_SCHEMA.format(base_dir=outdir, tissue=tissue)))
 
     # Create probability maps by transforming atlas pbmaps with the previously obtained transformation

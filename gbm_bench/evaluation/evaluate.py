@@ -41,7 +41,7 @@ def create_standard_plan(core_segmentation: np.ndarray, ctv_margin: int) -> np.n
         raise ValueError("ctv_margin must be a positive int.")
     distance_transform = distance_transform_edt(~ (core_segmentation >0))
     dilated_core = distance_transform <= ctv_margin
-    return dilated_core
+    return dilated_core.astype(np.int32)
 
 
 def find_threshold(volume: np.ndarray, target_volume: float, tolerance: float = 0.01, initial_threshold: float = 0.2, maxIter: int = 10000):
@@ -163,7 +163,7 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
     # Load data
     brain_mask_dir = BRAIN_MASK_SCHEMA.format(base_dir=str(preop_dir))
     if brain_mask_dir.exists():
-        brain_mask = load_mri_data(str(brain_mask_dir))
+        brain_mask = np.rint(load_mri_data(str(brain_mask_dir))).astype(np.int32)
     else:
         t1c_file = MODALITY_STRIPPED_SCHEMA.format(base_dir=str(preop_dir), modality="t1c")
         t1c = load_mri_data(str(t1c_file))
@@ -172,22 +172,22 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
 
     if csf_mask:
         tissue_segmentation_dir = TISSUE_SEG_SCHEMA.format(base_dir=str(preop_dir))
-        tissue_segmentation = load_mri_data(str(tissue_segmentation_dir))
+        tissue_segmentation = np.rint(load_mri_data(str(tissue_segmentation_dir))).astype(np.int32)
         brain_mask[tissue_segmentation==TISSUE_LABELS["csf"]] = 0
 
     tumorseg_dir = TUMORSEG_SCHEMA.format(base_dir=str(preop_dir))
-    core_segmentation = np.rint(load_mri_data(str(tumorseg_dir)))
+    core_segmentation = np.rint(load_mri_data(str(tumorseg_dir))).astype(np.int32)
     core_segmentation[core_segmentation==2] = 0  # ignore edma
     core_segmentation[core_segmentation==3] = 1
 
     recurrence_dir = RECURRENCE_SCHEMA.format(base_dir=str(followup_dir))
     #recurrence_dir = TUMORSEG_SCHEMA.format(base_dir=str(followup_dir))  # tests without longitudinal registration
-    recurrence_segmentation = np.rint(load_mri_data(str(recurrence_dir)))
+    recurrence_segmentation = np.rint(load_mri_data(str(recurrence_dir))).astype(np.int32)
     recurrence_segmentation[recurrence_segmentation == 1] = 1  # TODO: include necrosis as recurrence?
     recurrence_segmentation[recurrence_segmentation == 2] = 0  # ignore edema
     recurrence_segmentation[recurrence_segmentation == 3] = 1
     recurrence_segmentation[recurrence_segmentation == 4] = 0  # ignore resection cavity 
-    recurrence_segmentation_all = np.rint(load_mri_data(recurrence_dir))
+    recurrence_segmentation_all = np.rint(load_mri_data(recurrence_dir)).astype(np.int32)
     recurrence_segmentation_all[recurrence_segmentation_all == 1] = 1  # TODO
     recurrence_segmentation_all[recurrence_segmentation_all == 2] = 1
     recurrence_segmentation_all[recurrence_segmentation_all == 3] = 1
@@ -204,7 +204,7 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
 
     # Create model based plan
     tumor_threshold = find_threshold(model_prediction, standard_plan_volume, initial_threshold=0.2)
-    model_plan = np.rint(model_prediction > tumor_threshold)
+    model_plan = (model_prediction > tumor_threshold).astype(np.int32)
     #model_plan[brain_mask == 0] = 0
     model_recurrence_coverage = recurrence_coverage(recurrence_segmentation, model_plan)
     model_recurrence_coverage_all = recurrence_coverage(recurrence_segmentation_all, model_plan)
@@ -212,13 +212,11 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
     # Save plans
     outfile_standard = STANDARD_PLAN_SCHEMA.format(base_dir=str(preop_dir))
     outfile_model = MODEL_PLAN_SCHEMA.format(base_dir=str(preop_dir), algo_id=model_id)
-    tmp = nib.load(pred_file)
-    aff, header = tmp.affine, tmp.header
     
-    standard_plan_nifti = nib.Nifti1Image(standard_plan, aff, header)
+    standard_plan_nifti = nib.Nifti1Image(standard_plan, affine=np.eye(4))
     nib.save(standard_plan_nifti, outfile_standard)
 
-    model_img = nib.Nifti1Image(model_prediction > tumor_threshold, aff, header)
+    model_img = nib.Nifti1Image(model_plan, affine=np.eye(4))
     nib.save(model_img, outfile_model)
 
     # Compute metrics
