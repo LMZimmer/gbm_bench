@@ -80,7 +80,6 @@ if __name__ == "__main__":
     converted_tumorseg_file_followup = recurrenceseg_file
 
     # Preprocessing
-    """
     preprocess_nifti(
         t1_file=t1_file,
         t1c_file=t1c_file,
@@ -112,17 +111,16 @@ if __name__ == "__main__":
             preop_exam_dir=exam_dir_preop,
             followup_exam_dir=exam_dir_followup,
             outdir=exam_dir_followup,
-            is_coregistered=True
+            is_coregistered=False    # change for tgm
             )
-
+    
     # Predict
-    """
     predict_tumor_growth(
             preop_dir=exam_dir_preop,
             model_id=algo_id,
             cuda_device=args.cuda_device
             )
-    """
+
     # Evaluate
     prediction_dir = PREDICTION_OUTPUT_SCHEMA.format(base_dir=exam_dir_preop, algo_id=algo_id)
     results = evaluate_tumor_model(
@@ -131,6 +129,5 @@ if __name__ == "__main__":
             pred_file=prediction_dir,
             model_id=algo_id
             )
-    """
 
     print(f"Done: {results}")

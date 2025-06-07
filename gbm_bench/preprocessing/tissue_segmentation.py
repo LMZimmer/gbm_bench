@@ -80,7 +80,7 @@ def generate_registration_mask(tumor_seg_file: Path, outfile: Path) -> None:
     
     # Save
     outfile.parent.mkdir(parents=True, exist_ok=True)
-    no_tumor_mask_nifti = nib.Nifti1Image(no_tumor_mask, affine=np.ey=np.eye(4)))
+    no_tumor_mask_nifti = nib.Nifti1Image(no_tumor_mask, affine=np.eye(4))
     nib.save(no_tumor_mask_nifti, str(outfile))
 
     logger.info(f"Registration mask generated successfully and save to {outfile}.")
@@ -137,7 +137,7 @@ def run_tissue_seg_registration(t1_file: Path, outdir: Path, registration_mask_f
     # Transform atlas tissues deformably
     tissues_atlas = ants.image_read(str(ATLAS_TISSUES_DIR))
     tissues_warped = ants.apply_transforms(
-            fixed=t1_patient,
+            fixed=t1_patient.clone("unsigned int"),
             moving=tissues_atlas, 
             transformlist=transforms_path,
             interpolator="nearestNeighbor"

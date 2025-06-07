@@ -33,11 +33,11 @@ if __name__ == "__main__":
             print(f"Warning: found {len(preop_exams)} preop exams for patient {patiend_ind, patiend}. Using first exam for evaluation.")
 
         algo_id = "sbtc" # sbtc, gliodil
-        preop_exam_dir = preop_exams[0]["t1"].parent
+        preop_exam_dir = preop_exams[0]["t1c"].parent / "preop"
         prediction_dir = PREDICTION_OUTPUT_SCHEMA.format(base_dir=preop_exam_dir, algo_id=algo_id)
         
         for followup_exam in followup_exams:
-            followup_exam_dir = followup_exam["t1"].parent
+            followup_exam_dir = followup_exam["t1"].parent / "followup"
 
             try:
                 results = evaluate_tumor_model(

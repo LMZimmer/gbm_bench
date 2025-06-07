@@ -40,9 +40,9 @@ if __name__ == "__main__":
             if exam["timepoint"] == "postop":  # skip postop
                 continue
 
-            if not patient["patient_id"].startswith("tgm"):
-                print(f"Only processing tgm, skipping {patient['patient_id']}")  #TODO
-                continue
+            #if not patient["patient_id"].startswith("tgm"):
+            #    print(f"Only processing tgm, skipping {patient['patient_id']}")  #TODO
+            #    continue
 
             is_preop = (exam["timepoint"] == "preop")
             print(f"{exam['t1c']}")
@@ -75,8 +75,8 @@ if __name__ == "__main__":
         preop_exam = gliodil.get_patient_exams(patient_id=patient_id, timepoint="preop")[0]  # Find first preop exam
         preop_exam_dir = preop_exam["t1c"].parent / "preop"
 
-        if not patient_id.startswith("tgm"):  #TODO
-            continue
+        #if not patient_id.startswith("tgm"):  #TODO
+        #    continue
 
         # Loop through followup exams
         followup_exams = gliodil.get_patient_exams(patient_id=patient_id, timepoint="followup")
