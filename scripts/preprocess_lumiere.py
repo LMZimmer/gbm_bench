@@ -22,7 +22,6 @@ if __name__ == "__main__":
     lumiere.load(LUMIERE_DIR)
 
     # Individual exams
-    """
     for patient_ind, patient in enumerate(lumiere.patients):
         print(f"Processing {patient_ind}/{len(lumiere.patients)}...")
 
@@ -44,10 +43,9 @@ if __name__ == "__main__":
                     is_coregistered=False,
                     cuda_device=args.cuda_device
                     )
-    """
 
     # Longitudinal registration
-    for patient_ind, patient in enumerate(lumiere.patients[60:]):
+    for patient_ind, patient in enumerate(lumiere.patients):
         print(f"Performing longitudinal registration {patient_ind}/{len(lumiere.patients)}.")
 
         patient_id = patient["patient_id"]

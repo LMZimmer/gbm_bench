@@ -14,6 +14,7 @@ from gbm_bench.utils.constants import PREDICTION_OUTPUT_SCHEMA
 if __name__ == "__main__":
     # Example:
     # python scripts/evaluate_upenngbm.py
+    # nohup python -u scripts/evaluate_upenngbm.py > tmp_upenn_eval.out 2>&1 &
     
     # Read dataset
     upenn_gbm_root = "/home/home/lucas/data/UPENN-GBM/UPENN-GBM"

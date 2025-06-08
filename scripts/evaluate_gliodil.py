@@ -14,6 +14,7 @@ from gbm_bench.utils.constants import PREDICTION_OUTPUT_SCHEMA
 if __name__ == "__main__":
     # Example:
     # python scripts/evaluate_gliodil.py
+    # nohup python -u scripts/evaluate_gliodil.py > tmp_gliodil_eval.out 2>&1 &
     
     # Read dataset
     gliodil_root = "/mnt/Drive2/lucas/datasets/GLIODIL"
@@ -37,7 +38,7 @@ if __name__ == "__main__":
         prediction_dir = PREDICTION_OUTPUT_SCHEMA.format(base_dir=preop_exam_dir, algo_id=algo_id)
         
         for followup_exam in followup_exams:
-            followup_exam_dir = followup_exam["t1"].parent / "followup"
+            followup_exam_dir = followup_exam["t1c"].parent / "followup"
 
             try:
                 results = evaluate_tumor_model(

@@ -14,6 +14,7 @@ from gbm_bench.utils.constants import PREDICTION_OUTPUT_SCHEMA
 if __name__ == "__main__":
     # Example:
     # python scripts/evaluate_rhuh.py
+    # nohup python -u scripts/evaluate_rhuh.py > tmp_rhuh_eval.out 2>&1 &
     
     # Read dataset
     rhuh_root = "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM"

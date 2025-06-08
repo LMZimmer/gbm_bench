@@ -22,7 +22,7 @@ if __name__ == "__main__":
     rhuh.load(RHUH_NIFTI_DIR)
 
     # Individual exams
-    for patient_ind, patient in enumerate(rhuh.patients[1:2]):
+    for patient_ind, patient in enumerate(rhuh.patients):
         print(f"Processing {patient_ind}/{len(rhuh.patients)}...")
 
         for exam in patient["exams"]:
@@ -32,6 +32,7 @@ if __name__ == "__main__":
             is_preop = (exam["timepoint"] == "preop")
             print(f"{exam['t1']}")
 
+            """
             preprocess_nifti(
                     t1_file=exam["t1"],
                     t1c_file=exam["t1c"],
@@ -44,9 +45,10 @@ if __name__ == "__main__":
                     cuda_device=args.cuda_device,
                     tumorseg_file=exam["tumorseg"]
                     )
+            """
 
     # Longitudinal registration
-    for patient_ind, patient in enumerate(rhuh.patients[1:2]):
+    for patient_ind, patient in enumerate(rhuh.patients[5:]):  # hung at 5
         print(f"Performing longitudinal registration {patient_ind}/{len(rhuh.patients)}.")
 
         patient_id = patient["patient_id"]

@@ -31,13 +31,13 @@ def split_segmentation(tumor_seg_file: Path, outdir: Path, necrotic_label: int =
 
     # Create a binary mask for non-enhancing and enhancing tumor (labels 1 and 3).
     enhancing_non_enhancing = nib.Nifti1Image(
-        np.rint((seg_data == necrotic_label) | (seg_data == enhancing_label)),
+        np.rint((seg_data == necrotic_label) | (seg_data == enhancing_label)).astype(np.int32),
         affine=np.eye(4)
     )
 
     # Create a binary mask for edema (label 2).
     edema = nib.Nifti1Image(
-        np.rint(seg_data == edema_label),
+        np.rint(seg_data == edema_label).astype(np.int32),
         affine=np.eye(4)
     )
 
