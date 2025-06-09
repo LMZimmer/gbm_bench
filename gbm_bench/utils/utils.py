@@ -8,6 +8,7 @@ import nibabel as nib
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 from pathlib import Path
+from loguru import logger
 from PyPDF2 import PdfMerger
 from scipy.ndimage import center_of_mass
 from typing import List, Tuple, Optional, Union

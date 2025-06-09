@@ -77,6 +77,7 @@ if __name__ == "__main__":
     """
 
     # Preprocessing
+    """
     preprocess_nifti(
         t1_file=t1_file,
         t1c_file=t1c_file,
@@ -110,6 +111,7 @@ if __name__ == "__main__":
             outdir=exam_dir_followup,
             is_coregistered=True    # change for tgm/rhuh
             )
+    """
     
     # Predict
     predict_tumor_growth(
