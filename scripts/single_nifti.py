@@ -60,7 +60,6 @@ if __name__ == "__main__":
     convert_tumorseg_labels(recurrenceseg_file, converted_tumorseg_file_followup)
 
     # rhuh0002
-    """
     rhuh_root = Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0002/")
     t1_file = rhuh_root / "0/RHUH-0002_0_t1.nii.gz"
     t1c_file = rhuh_root / "0/RHUH-0002_0_t1ce.nii.gz"
@@ -74,7 +73,6 @@ if __name__ == "__main__":
 
     converted_tumorseg_file_preop = tumorseg_file
     converted_tumorseg_file_followup = recurrenceseg_file
-    """
 
     # Preprocessing
     """

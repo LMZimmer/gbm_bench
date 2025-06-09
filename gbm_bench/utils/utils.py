@@ -3,6 +3,7 @@ import ants
 import shutil
 import datetime
 import platform
+import tempfile
 import numpy as np
 import nibabel as nib
 import matplotlib.pyplot as plt
@@ -10,6 +11,7 @@ import matplotlib.colors as mcolors
 from pathlib import Path
 from loguru import logger
 from PyPDF2 import PdfMerger
+from contextlib import contextmanager
 from scipy.ndimage import center_of_mass
 from typing import List, Tuple, Optional, Union
 
@@ -97,3 +99,23 @@ def remove_tmp_folder(folder: Union[str, Path]) -> None:
         )
     except FileNotFoundError as e:
         logger.warning(f"Failed to delete folder {folder}. {e}")
+
+
+@contextmanager
+def temporary_tmpdir(base_dir: Union[str, Path]) -> Path:
+    """Create and clean up a temporary directory used as TMPDIR.
+
+    All files written to the system temporary directory during the context
+    lifetime will be redirected to this folder.
+    """
+    tmpdir = Path(tempfile.mkdtemp(dir=str(base_dir), prefix="tmp_"))
+    old_tmpdir = os.environ.get("TMPDIR")
+    os.environ["TMPDIR"] = str(tmpdir)
+    try:
+        yield tmpdir
+    finally:
+        if old_tmpdir is not None:
+            os.environ["TMPDIR"] = old_tmpdir
+        else:
+            os.environ.pop("TMPDIR", None)
+        remove_tmp_folder(tmpdir)

@@ -10,6 +10,7 @@ from brainles_preprocessing.normalization import Normalizer
 from brainles_preprocessing.preprocessor import Preprocessor
 from brainles_preprocessing.modality import Modality, CenterModality
 from brainles_preprocessing.normalization.percentile_normalizer import PercentileNormalizer
+from gbm_bench.utils.utils import temporary_tmpdir
 from gbm_bench.utils.constants import (
     ATLAS_T1_DIR,
     BRAIN_MASK_SCHEMA,
@@ -172,8 +173,9 @@ def norm_ss_coregister(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file:
             #atlas_image_path=ATLAS_T1_DIR  #NOTE: not needed since the exact same atlas is used
             )
 
-    #preprocessor.run(save_dir_atlas_registration=output_path / "atlas_registration")
-    preprocessor.run(log_file=BRAINLES_LOGFILE_SCHEMA.format(base_dir=outdir))
+    #preprocessor.run(log_file=BRAINLES_LOGFILE_SCHEMA.format(base_dir=outdir))  #TODO
+    with temporary_tmpdir(outdir):
+        preprocessor.run(log_file=BRAINLES_LOGFILE_SCHEMA.format(base_dir=outdir))
     time_spent = time.time() - start_time
     logger.info(f"Finished normalization, skull stripping, co-registration step in {time_spent:.2f} seconds. Output saved to {outdir}.")
 
