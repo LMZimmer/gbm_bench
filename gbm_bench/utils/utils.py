@@ -106,11 +106,15 @@ def temporary_tmpdir(base_dir: Union[str, Path]) -> Path:
     """Create and clean up a temporary directory used as TMPDIR.
 
     All files written to the system temporary directory during the context
-    lifetime will be redirected to this folder.
+    lifetime will be redirected to this folder. In addition to setting the
+    ``TMPDIR`` environment variable, this also updates ``tempfile.tempdir`` so
+    libraries that cache the temporary directory respect the new location.
     """
     tmpdir = Path(tempfile.mkdtemp(dir=str(base_dir), prefix="tmp_"))
     old_tmpdir = os.environ.get("TMPDIR")
+    old_tempfile_dir = tempfile.tempdir
     os.environ["TMPDIR"] = str(tmpdir)
+    tempfile.tempdir = str(tmpdir)
     try:
         yield tmpdir
     finally:
@@ -118,4 +122,5 @@ def temporary_tmpdir(base_dir: Union[str, Path]) -> Path:
             os.environ["TMPDIR"] = old_tmpdir
         else:
             os.environ.pop("TMPDIR", None)
+        tempfile.tempdir = old_tempfile_dir
         remove_tmp_folder(tmpdir)
