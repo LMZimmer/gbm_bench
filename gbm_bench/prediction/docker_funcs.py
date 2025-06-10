@@ -159,9 +159,9 @@ def _sanity_check_output(data_dir: Path, outdir: Path, container_output: str) ->
         container_output: The output of the docker container
     """
     outputs = list(outdir.iterdir())
-    if len(outputs) != 1:
+    if len(outputs) < 1:
         logger.error(f"Docker container output: \n\r{container_output}")
-        raise RuntimeError(f"Expected 1 output file but got {len(outputs)}. Please check the logging output of the docker container for more information.")
+        raise RuntimeError(f"Expected 1 or more output files but got {len(outputs)}. Please check the logging output of the docker container for more information.")
 
 
 def run_container(algorithm: str, model_file: Path, data_dir: Path, outdir: Path, cuda_device: str, force_cpu: bool) -> None:

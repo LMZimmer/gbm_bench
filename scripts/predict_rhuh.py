@@ -33,7 +33,7 @@ if __name__ == "__main__":
 
             predict_tumor_growth(
                     preop_dir=exam["t1"].parent,
-                    model_id="sbtc", # lmi, sbtc, gliodil
+                    model_id="gliodil", # lmi, sbtc, gliodil
                     cuda_device=args.cuda_device
                     )
     print("Done.")

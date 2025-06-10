@@ -25,7 +25,7 @@ def convert_tumorseg_labels(inpath, outpath):
 if __name__ == "__main__":
     # Example:
     # python scripts/single_nifti.py -cuda_device 2
-    # nohup python -u scripts/single_nifti.py -cuda_device 2 > tmp_single_nifti.out 2>&1 &
+    # nohup python -u scripts/single_nifti.py -cuda_device 5 > tmp_single_nifti.out 2>&1 &
     parser = argparse.ArgumentParser()
     parser.add_argument("-cuda_device", type=str, default="0", help="GPU id to run on.")
     args = parser.parse_args()
@@ -76,7 +76,6 @@ if __name__ == "__main__":
     converted_tumorseg_file_followup = recurrenceseg_file
     
     # Preprocessing
-    """
     preprocess_nifti(
         t1_file=t1_file,
         t1c_file=t1c_file,
@@ -110,6 +109,7 @@ if __name__ == "__main__":
             outdir=exam_dir_followup,
             is_coregistered=True    # change for tgm/rhuh
             )
+    """
     
     # Predict
     predict_tumor_growth(
