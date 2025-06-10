@@ -34,7 +34,7 @@ if __name__ == "__main__":
 
     # Read dataset
     patient_id = "tgm016"
-    algo_id = "gliodil"
+    algo_id = "lmi"
 
     # tgm16
     glio_root = Path("/mnt/Drive2/lucas/datasets/GLIODIL/tgm016/preop")
@@ -58,6 +58,7 @@ if __name__ == "__main__":
     converted_tumorseg_file_followup = exam_dir_followup / "tumorseg_123.nii.gz"
     convert_tumorseg_labels(tumorseg_file, converted_tumorseg_file_preop)
     convert_tumorseg_labels(recurrenceseg_file, converted_tumorseg_file_followup)
+    """
 
     # rhuh0002
     rhuh_root = Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0002/")
@@ -73,7 +74,7 @@ if __name__ == "__main__":
 
     converted_tumorseg_file_preop = tumorseg_file
     converted_tumorseg_file_followup = recurrenceseg_file
-
+    
     # Preprocessing
     """
     preprocess_nifti(
@@ -109,7 +110,6 @@ if __name__ == "__main__":
             outdir=exam_dir_followup,
             is_coregistered=True    # change for tgm/rhuh
             )
-    """
     
     # Predict
     predict_tumor_growth(

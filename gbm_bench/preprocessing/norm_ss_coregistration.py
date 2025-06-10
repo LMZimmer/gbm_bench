@@ -145,6 +145,8 @@ def norm_ss_coregister(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file:
     start_time = time.time()
     logger.info(f"Starting normalization, skull strippping, co-registration step. Starting brainles preprocessing.")
     logger.info(f"skull_strip: {skull_strip}")
+    
+    Path(outdir).mkdir(parents=True, exist_ok=True)
     percentile_normalizer = PercentileNormalizer(
             lower_percentile=0.1,
             upper_percentile=99.9,
@@ -173,9 +175,9 @@ def norm_ss_coregister(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file:
             #atlas_image_path=ATLAS_T1_DIR  #NOTE: not needed since the exact same atlas is used
             )
 
-    #preprocessor.run(log_file=BRAINLES_LOGFILE_SCHEMA.format(base_dir=outdir))  #TODO
-    with temporary_tmpdir(outdir):
-        preprocessor.run(log_file=BRAINLES_LOGFILE_SCHEMA.format(base_dir=outdir))
+    preprocessor.run(log_file=BRAINLES_LOGFILE_SCHEMA.format(base_dir=outdir))  #TODO
+    #with temporary_tmpdir(outdir):
+    #    preprocessor.run(log_file=BRAINLES_LOGFILE_SCHEMA.format(base_dir=outdir))
     time_spent = time.time() - start_time
     logger.info(f"Finished normalization, skull stripping, co-registration step in {time_spent:.2f} seconds. Output saved to {outdir}.")
 

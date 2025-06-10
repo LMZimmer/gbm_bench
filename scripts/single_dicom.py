@@ -21,7 +21,7 @@ if __name__ == "__main__":
     dcm2niix_location = Path("/home/home/lucas/bin/dcm2niix")
 
     # Read dataset
-    rhuh_root = "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM"
+    rhuh_root = "/mnt/Drive4/lucas"
     rhuh_gbm = LongitudinalDataset(dataset_id="RHUH", root_dir=rhuh_root)
     rhuh_gbm.load(RHUH_GBM_DIR)
 

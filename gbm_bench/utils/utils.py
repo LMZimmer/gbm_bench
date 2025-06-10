@@ -109,8 +109,12 @@ def temporary_tmpdir(base_dir: Union[str, Path]) -> Path:
     lifetime will be redirected to this folder. In addition to setting the
     ``TMPDIR`` environment variable, this also updates ``tempfile.tempdir`` so
     libraries that cache the temporary directory respect the new location.
+    The ``base_dir`` folder will be created if it does not already exist.
     """
+    base_dir = Path(base_dir)
+    base_dir.mkdir(parents=True, exist_ok=True)
     tmpdir = Path(tempfile.mkdtemp(dir=str(base_dir), prefix="tmp_"))
+    logger.info(f"Created temporary directory at {tmpdir}")
     old_tmpdir = os.environ.get("TMPDIR")
     old_tempfile_dir = tempfile.tempdir
     os.environ["TMPDIR"] = str(tmpdir)
@@ -124,3 +128,4 @@ def temporary_tmpdir(base_dir: Union[str, Path]) -> Path:
             os.environ.pop("TMPDIR", None)
         tempfile.tempdir = old_tempfile_dir
         remove_tmp_folder(tmpdir)
+        logger.info(f"Removed temporary directory at {tmpdir}")
