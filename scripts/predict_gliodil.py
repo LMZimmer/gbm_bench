@@ -22,7 +22,7 @@ if __name__ == "__main__":
     gliodil.load(GLIODIL_DIR)
 
     # Predict on preop exams
-    for patient_ind, patient in enumerate(gliodil.patients):
+    for patient_ind, patient in enumerate(gliodil.patients[5:]):  # hung at 5
         print(f"Predicting {patient_ind}/{len(gliodil.patients)}...")
         
         for exam in patient["exams"]:
