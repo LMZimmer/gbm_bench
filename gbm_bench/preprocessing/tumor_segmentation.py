@@ -1,10 +1,13 @@
 import os
 import time
+import tempfile
 import argparse
 import numpy as np
 import nibabel as nib
 from pathlib import Path
 from loguru import logger
+import brats.core.docker as brats_docker
+import brats.core.docker as brats_docker
 from brats import AdultGliomaPreTreatmentSegmenter, AdultGliomaPostTreatmentSegmenter
 from brats.constants import AdultGliomaPreTreatmentAlgorithms, AdultGliomaPostTreatmentAlgorithms
 from gbm_bench.utils.constants import TUMORSEG_EDEMA_SCHEMA, TUMORSEG_SCHEMA, TUMORSEG_CORE_SCHEMA
@@ -65,26 +68,46 @@ def run_brats(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file: Path, ou
     """
     start_time = time.time()
     logger.info(f"Starting tumor segmentation via BRATS.")
-    if pre_treatment:
-        segmenter = AdultGliomaPreTreatmentSegmenter(
-                algorithm=AdultGliomaPreTreatmentAlgorithms.BraTS23_1,
-                cuda_devices=cuda_device
-                )
-    else:
-        segmenter = AdultGliomaPostTreatmentSegmenter(
-                algorithm=AdultGliomaPostTreatmentAlgorithms.BraTS24_1,
-                cuda_devices=cuda_device
+
+    workspace_dir = Path(tempfile.gettempdir()) / "brats_workspace"
+    workspace_dir.mkdir(parents=True, exist_ok=True)
+
+    _orig = brats_docker._get_volume_mappings
+
+    def _patched(data_path: Path, additional_files_path: Path, output_path: Path, parameters_path: Path):
+        volumes = _orig(data_path, additional_files_path, output_path, parameters_path)
+        volumes[workspace_dir.resolve()] = {
+            "bind": "/mlcube_project",
+            "mode": "rw",
+        }
+        return volumes
+
+    brats_docker._get_volume_mappings = _patched
+    try:
+        if pre_treatment:
+            segmenter = AdultGliomaPreTreatmentSegmenter(
+                    algorithm=AdultGliomaPreTreatmentAlgorithms.BraTS23_1,
+                    cuda_devices=cuda_device,
+                    )
+        else:
+            segmenter = AdultGliomaPostTreatmentSegmenter(
+                    algorithm=AdultGliomaPostTreatmentAlgorithms.BraTS24_1,
+                    cuda_devices=cuda_device,
+                    )
+
+        seg_outfile = str(TUMORSEG_SCHEMA.format(base_dir=outdir))
+        segmenter.infer_single(
+                t1n=str(t1_file),
+                t1c=str(t1c_file),
+                t2w=str(t2_file),
+                t2f=str(flair_file),
+                output_file=seg_outfile,
                 )
 
-    seg_outfile = str(TUMORSEG_SCHEMA.format(base_dir=outdir))
-    segmenter.infer_single(
-            t1n=str(t1_file),
-            t1c=str(t1c_file),
-            t2w=str(t2_file),
-            t2f=str(flair_file),
-            output_file=seg_outfile)
-
-    split_segmentation(seg_outfile, outdir)
+        split_segmentation(seg_outfile, outdir)
+    except Exception as e:
+        brats_docker._get_volume_mappings = _orig
+        raise e
 
     time_spent = time.time() - start_time
     logger.info(f"Finished tumor segmentation in {time_spent:.2f} seconds. Saved output to {seg_outfile}.")
