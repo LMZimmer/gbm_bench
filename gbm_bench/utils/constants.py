@@ -60,10 +60,10 @@ DCM2NIIX_LOCATION = Path("/home/home/lucas/bin/dcm2niix")
 
 
 # ATLAS
-ATLAS_DIR = DATA_DIR / "sri24_atlas"
-ATLAS_T1_DIR = ATLAS_DIR / "t1_stripped.nii.gz"
-ATLAS_TISSUES_DIR = ATLAS_DIR / "tissues.nii.gz"
-ATLAS_TISSUE_PBMAPS_DIR = PathSchema(ATLAS_DIR / "pbmap_{tissue}.nii.gz")
+ATLAS_DIR = DATA_DIR / "mni152_atlas"
+ATLAS_T1_DIR = ATLAS_DIR / "mni_icbm152_t1_stripped.nii.gz"
+ATLAS_TISSUES_DIR = ATLAS_DIR / "mni_icbm152_tissues.nii.gz"
+ATLAS_TISSUE_PBMAPS_DIR = PathSchema(ATLAS_DIR / "mni_icbm152_{tissue}_pbmap.nii.gz")
 
 
 # DATASETS
