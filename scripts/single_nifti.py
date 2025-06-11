@@ -35,8 +35,28 @@ if __name__ == "__main__":
     # Read dataset
     patient_id = "tgm016"
     algo_id = "lmi"
+    
+    # tgm016 (ess tissues)
+    """
+    glio_root = Path("/mnt/Drive2/lucas/datasets/test_data/tgm016_ess_tissues/preop")
+    t1_file = glio_root / "sub-tgm016_ses-preop_space-sri_t1.nii.gz"
+    t1c_file = glio_root / "sub-tgm016_ses-preop_space-sri_t1c.nii.gz"
+    t2_file = glio_root / "sub-tgm016_ses-preop_space-sri_t2.nii.gz"
+    flair_file = glio_root / "sub-tgm016_ses-preop_space-sri_flair.nii.gz"
+    tumorseg_file = glio_root / "sub-tgm016_ses-preop_space-sri_seg.nii.gz"
+    t1c_followup_file = glio_root / "sub-tgm016_ses-preop_space-sri_t1c-rec.nii.gz"
+    recurrenceseg_file = glio_root / "sub-tgm016_ses-preop_space-sri_seg-rec.nii.gz"
+    exam_dir_preop = glio_root / "preop"
+    exam_dir_followup = glio_root / "followup"
 
-    # tgm16
+    # Convert tumor segmentations
+    converted_tumorseg_file_preop = exam_dir_preop / "tumorseg_123.nii.gz"
+    converted_tumorseg_file_followup = exam_dir_followup / "tumorseg_123.nii.gz"
+    convert_tumorseg_labels(tumorseg_file, converted_tumorseg_file_preop)
+    convert_tumorseg_labels(recurrenceseg_file, converted_tumorseg_file_followup)
+
+    # tgm16 (gbmdata)
+    """
     glio_root = Path("/mnt/Drive2/lucas/datasets/GLIODIL/tgm016/preop")
     t1_file = glio_root / "sub-tgm016_ses-preop_space-sri_t1.nii.gz"
     t1c_file = glio_root / "sub-tgm016_ses-preop_space-sri_t1c.nii.gz"
@@ -48,19 +68,14 @@ if __name__ == "__main__":
     exam_dir_preop = glio_root / "preop"
     exam_dir_followup = glio_root / "followup"
 
-    glio_ess_root = Path("/mnt/Drive2/lucas/datasets/data_GliODIL_essential/data_716")
-    wm_file = glio_ess_root / "t1_wm.nii.gz"
-    gm_file = glio_ess_root / "t1_gm.nii.gz"
-    csf_file = glio_ess_root / "t1_csf.nii.gz"
-
     # Convert tumor segmentations
     converted_tumorseg_file_preop = exam_dir_preop / "tumorseg_123.nii.gz"
     converted_tumorseg_file_followup = exam_dir_followup / "tumorseg_123.nii.gz"
     convert_tumorseg_labels(tumorseg_file, converted_tumorseg_file_preop)
     convert_tumorseg_labels(recurrenceseg_file, converted_tumorseg_file_followup)
-    """
 
     # rhuh0002
+    """
     rhuh_root = Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0002/")
     t1_file = rhuh_root / "0/RHUH-0002_0_t1.nii.gz"
     t1c_file = rhuh_root / "0/RHUH-0002_0_t1ce.nii.gz"
