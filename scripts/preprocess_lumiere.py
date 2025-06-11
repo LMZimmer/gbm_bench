@@ -22,7 +22,7 @@ if __name__ == "__main__":
     lumiere.load(LUMIERE_DIR)
 
     # Individual exams
-    for patient_ind, patient in enumerate(lumiere.patients):
+    for patient_ind, patient in enumerate(lumiere.patients[4:5]):
         print(f"Processing {patient_ind}/{len(lumiere.patients)}...")
 
         for exam in patient["exams"]:
