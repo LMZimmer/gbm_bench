@@ -8,8 +8,8 @@ from gbm_bench.preprocessing.preprocess import preprocess_dicom, process_longitu
 
 if __name__ == "__main__":
     # Example:
-    # python scripts/preprocess_ivygap.py -cuda_device 0
-    # nohup python -u scripts/preprocess_ivygap.py -cuda_device 6 > tmp_ivygap_preproc.out 2>&1 &
+    # python scripts/preprocess_ivygap.py -cuda_device 3
+    # nohup python -u scripts/preprocess_ivygap.py -cuda_device 3 > tmp_ivygap_preproc.out 2>&1 &
     parser = argparse.ArgumentParser()
     parser.add_argument("-cuda_device", type=str, default="0", help="GPU id to run on.")
     args = parser.parse_args()
@@ -32,6 +32,7 @@ if __name__ == "__main__":
 
             is_preop = (exam["timepoint"] == "preop")
 
+            """
             preprocess_dicom(
                     t1_dir=exam["t1"],
                     t1c_dir=exam["t1c"],
@@ -62,5 +63,5 @@ if __name__ == "__main__":
                     followup_exam_dir=followup_exam_dir,
                     outdir=followup_exam_dir
                     )
-    
+    """
     print(f"Finished processing.")

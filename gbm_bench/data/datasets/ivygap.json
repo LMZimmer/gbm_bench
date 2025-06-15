@@ -420,30 +420,6 @@
       ]
     },
     {
-      "patient_id": "W34",
-      "patient_dir": "/Volumes/LaCie/IvyGap/IvyGAP/W34",
-      "exams": [
-        {
-          "date": "1998-07-13",
-          "needs_manual": false,
-          "t1": "/Volumes/LaCie/IvyGap/IvyGAP/W34/07-13-1998-NA-MR BRAIN WITHOUT AND WITH CONTRAST D-1-56749/3.000000-SAG T1 FLAIR-26488",
-          "t2": "/Volumes/LaCie/IvyGap/IvyGAP/W34/07-13-1998-NA-MR BRAIN WITHOUT AND WITH CONTRAST D-1-56749/11.000000-COR T2 FSE-XL FS POST-04723",
-          "perfusion": "/Volumes/LaCie/IvyGap/IvyGAP/W34/07-13-1998-NA-MR BRAIN WITHOUT AND WITH CONTRAST D-1-56749/12.000000-AX EPI PERFUSION 2-62753",
-          "t1c": "/Volumes/LaCie/IvyGap/IvyGAP/W34/07-13-1998-NA-MR BRAIN WITHOUT AND WITH CONTRAST D-1-56749/13.000000-AX T1 FLAIR POST-78511",
-          "dti": "/Volumes/LaCie/IvyGap/IvyGAP/W34/07-13-1998-NA-MR BRAIN WITHOUT AND WITH CONTRAST D-1-56749/4.000000-AX EPI DWI-06073",
-          "flair": "/Volumes/LaCie/IvyGap/IvyGAP/W34/07-13-1998-NA-MR BRAIN WITHOUT AND WITH CONTRAST D-1-56749/7.000000-AX T2 FLAIR 3MM STEALTH-53158",
-          "timepoint": "preop"
-        },
-        {
-          "date": "1999-01-23",
-          "needs_manual": false,
-          "t1": "/Volumes/LaCie/IvyGap/IvyGAP/W34/01-23-1999-NA-MR BRAIN W CONTRAST D193-79550/3.000000-SAG T1 FLAIR-12332",
-          "t1c": "/Volumes/LaCie/IvyGap/IvyGAP/W34/01-23-1999-NA-MR BRAIN W CONTRAST D193-79550/4.000000-AX T1 FSPGR 3D POST CK-95359",
-          "timepoint": "followup"
-        }
-      ]
-    },
-    {
       "patient_id": "W35",
       "patient_dir": "/Volumes/LaCie/IvyGap/IvyGAP/W35",
       "exams": [
