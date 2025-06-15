@@ -9,7 +9,7 @@ from gbm_bench.prediction.predict import predict_tumor_growth
 if __name__ == "__main__":
     # Example:
     # python scripts/predict_gliodil.py -cuda_device 0
-    # nohup python -u scripts/predict_gliodil.py -cuda_device 1 > tmp_gliodil_pred.out 2>&1 &
+    # nohup python -u scripts/predict_gliodil.py -cuda_device 3 > tmp_gliodil_pred.out 2>&1 &
     parser = argparse.ArgumentParser()
     parser.add_argument("-cuda_device", type=str, default="0", help="GPU id to run on.")
     args = parser.parse_args()
@@ -22,7 +22,7 @@ if __name__ == "__main__":
     gliodil.load(GLIODIL_DIR)
 
     # Predict on preop exams
-    for patient_ind, patient in enumerate(gliodil.patients[5:]):  # hung at 5
+    for patient_ind, patient in enumerate(gliodil.patients):
         print(f"Predicting {patient_ind}/{len(gliodil.patients)}...")
         
         for exam in patient["exams"]:
@@ -34,7 +34,7 @@ if __name__ == "__main__":
 
             predict_tumor_growth(
                     preop_dir=preop_dir,
-                    model_id="gliodil", # lmi, sbtc, gliodil
+                    model_id="sbtc", # lmi, sbtc, gliodil
                     cuda_device=args.cuda_device
                     )
     print("Done.")

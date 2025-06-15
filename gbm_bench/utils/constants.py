@@ -74,6 +74,10 @@ RHUH_NIFTI_DIR = DATASET_DIR / "rhuh_nifti.json"
 UPENN_GBM_DIR = DATASET_DIR / "upenn_gbm.json"
 LUMIERE_DIR = DATASET_DIR / "lumiere.json"
 GLIODIL_DIR = DATASET_DIR / "gliodil.json"
+IVYGAP_DIR = DATASET_DIR / "ivygap.json"
+CPTAC_DIR = DATASET_DIR / "cptac.json"
+TCGA_GBM_DIR = DATASET_DIR / "tcga_gbm.json"
+TCGA_LGG_DIR = DATASET_DIR / "tcga_lgg.json"
 
 
 # MODELS
