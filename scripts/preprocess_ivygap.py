@@ -32,7 +32,6 @@ if __name__ == "__main__":
 
             is_preop = (exam["timepoint"] == "preop")
 
-            """
             preprocess_dicom(
                     t1_dir=exam["t1"],
                     t1c_dir=exam["t1c"],
@@ -63,5 +62,5 @@ if __name__ == "__main__":
                     followup_exam_dir=followup_exam_dir,
                     outdir=followup_exam_dir
                     )
-    """
+
     print(f"Finished processing.")
