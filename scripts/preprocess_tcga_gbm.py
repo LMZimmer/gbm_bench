@@ -23,7 +23,7 @@ if __name__ == "__main__":
     tcga_gbm.load(TCGA_GBM_DIR)
 
     # Individual exams
-    for patient_ind, patient in enumerate(tcga_gbm.patients):
+    for patient_ind, patient in enumerate(tcga_gbm.patients[7:]):  #TODO hung at 7
         print(f"Processing {patient_ind}/{len(tcga_gbm.patients)}...")
 
         for exam in patient["exams"]:

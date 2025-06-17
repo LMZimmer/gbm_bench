@@ -181,14 +181,13 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
     core_segmentation[core_segmentation==3] = 1
 
     recurrence_dir = RECURRENCE_SCHEMA.format(base_dir=str(followup_dir))
-    #recurrence_dir = TUMORSEG_SCHEMA.format(base_dir=str(followup_dir))  # tests without longitudinal registration
     recurrence_segmentation = np.rint(load_mri_data(str(recurrence_dir))).astype(np.int32)
-    recurrence_segmentation[recurrence_segmentation == 1] = 1  # TODO: include necrosis as recurrence?
+    recurrence_segmentation[recurrence_segmentation == 1] = 0  # ignore necrosis
     recurrence_segmentation[recurrence_segmentation == 2] = 0  # ignore edema
     recurrence_segmentation[recurrence_segmentation == 3] = 1
     recurrence_segmentation[recurrence_segmentation == 4] = 0  # ignore resection cavity 
     recurrence_segmentation_all = np.rint(load_mri_data(recurrence_dir)).astype(np.int32)
-    recurrence_segmentation_all[recurrence_segmentation_all == 1] = 1  # TODO
+    recurrence_segmentation_all[recurrence_segmentation_all == 1] = 1
     recurrence_segmentation_all[recurrence_segmentation_all == 2] = 1
     recurrence_segmentation_all[recurrence_segmentation_all == 3] = 1
     recurrence_segmentation_all[recurrence_segmentation_all == 4] = 0

@@ -7,21 +7,21 @@
       "patient_dir": "TCGA-06-0125",
       "exams": [
         {
-          "t2": "TCGA-06-0125/08-18-1999-NA-NA-12458/3.000000-AXIAL FSE-67122",
-          "t1": "TCGA-06-0125/08-18-1999-NA-NA-12458/6.000000-AXIAL T1-87631",
-          "flair": "TCGA-06-0125/08-18-1999-NA-NA-12458/4.000000-AXIAL FLAIR-37643",
-          "perfusion": "TCGA-06-0125/08-18-1999-NA-NA-12458/7.000000-AXIAL PERFUSION-94064",
-          "dti": "TCGA-06-0125/08-18-1999-NA-NA-12458/5.000000-AXIAL DIFFUSION-64847",
-          "t1c": "TCGA-06-0125/08-18-1999-NA-NA-12458/8.000000-AXIAL T1 GD-36807",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0125/08-18-1999-NA-NA-12458/3.000000-AXIAL FSE-67122",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0125/08-18-1999-NA-NA-12458/6.000000-AXIAL T1-87631",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0125/08-18-1999-NA-NA-12458/4.000000-AXIAL FLAIR-37643",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0125/08-18-1999-NA-NA-12458/7.000000-AXIAL PERFUSION-94064",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0125/08-18-1999-NA-NA-12458/5.000000-AXIAL DIFFUSION-64847",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0125/08-18-1999-NA-NA-12458/8.000000-AXIAL T1 GD-36807",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-06-0125/11-05-2001-NA-NA-59707/4.000000-AX PD FSE-IR RF2 130-69865",
-          "t1": "TCGA-06-0125/11-05-2001-NA-NA-59707/11.000000-AX T1 pre gd-44023",
-          "flair": "TCGA-06-0125/11-05-2001-NA-NA-59707/7.000000-AXIAL FLAIR RF2  150-84061",
-          "perfusion": "TCGA-06-0125/11-05-2001-NA-NA-59707/12.000000-AXIAL PERFUSION-17031",
-          "dti": "TCGA-06-0125/11-05-2001-NA-NA-59707/3.000000-AXIAL DIFFUSION-10519",
-          "t1c": "TCGA-06-0125/11-05-2001-NA-NA-59707/13.000000-AX T1 POST GD FLAIR-34845",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0125/11-05-2001-NA-NA-59707/4.000000-AX PD FSE-IR RF2 130-69865",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0125/11-05-2001-NA-NA-59707/11.000000-AX T1 pre gd-44023",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0125/11-05-2001-NA-NA-59707/7.000000-AXIAL FLAIR RF2  150-84061",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0125/11-05-2001-NA-NA-59707/12.000000-AXIAL PERFUSION-17031",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0125/11-05-2001-NA-NA-59707/3.000000-AXIAL DIFFUSION-10519",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0125/11-05-2001-NA-NA-59707/13.000000-AX T1 POST GD FLAIR-34845",
           "timepoint": "followup"
         }
       ]
@@ -31,21 +31,21 @@
       "patient_dir": "TCGA-06-0130",
       "exams": [
         {
-          "t2": "TCGA-06-0130/09-11-2001-NA-NA-93062/4.000000-AX PD FSE-IR RF2 130-37988",
-          "t1": "TCGA-06-0130/09-11-2001-NA-NA-93062/8.000000-AX T1 pre gd-26039",
-          "flair": "TCGA-06-0130/09-11-2001-NA-NA-93062/7.000000-AXIAL FLAIR RF2  150-17679",
-          "perfusion": "TCGA-06-0130/09-11-2001-NA-NA-93062/10.000000-AXIAL PERFUSION-27338",
-          "dti": "TCGA-06-0130/09-11-2001-NA-NA-93062/3.000000-AXIAL DIFFUSION-03054",
-          "t1c": "TCGA-06-0130/09-11-2001-NA-NA-93062/11.000000-AX T1 POST GD FLAIR-18829",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0130/09-11-2001-NA-NA-93062/4.000000-AX PD FSE-IR RF2 130-37988",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0130/09-11-2001-NA-NA-93062/8.000000-AX T1 pre gd-26039",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0130/09-11-2001-NA-NA-93062/7.000000-AXIAL FLAIR RF2  150-17679",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0130/09-11-2001-NA-NA-93062/10.000000-AXIAL PERFUSION-27338",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0130/09-11-2001-NA-NA-93062/3.000000-AXIAL DIFFUSION-03054",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0130/09-11-2001-NA-NA-93062/11.000000-AX T1 POST GD FLAIR-18829",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-06-0130/06-18-2002-NA-NA-52263/6.000000-AX T2 FR-FSE RF2 150-79016",
-          "t1": "TCGA-06-0130/06-18-2002-NA-NA-52263/9.000000-AX T1 pre gd-78853",
-          "flair": "TCGA-06-0130/06-18-2002-NA-NA-52263/7.000000-AXIAL FLAIR-66324",
-          "perfusion": "TCGA-06-0130/06-18-2002-NA-NA-52263/10.000000-AXIAL PERFUSION-17331",
-          "dti": "TCGA-06-0130/06-18-2002-NA-NA-52263/5.000000-AXIAL DIFFUSION-38718",
-          "t1c": "TCGA-06-0130/06-18-2002-NA-NA-52263/11.000000-AX T1 POST GD FLAIR-18981",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0130/06-18-2002-NA-NA-52263/6.000000-AX T2 FR-FSE RF2 150-79016",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0130/06-18-2002-NA-NA-52263/9.000000-AX T1 pre gd-78853",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0130/06-18-2002-NA-NA-52263/7.000000-AXIAL FLAIR-66324",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0130/06-18-2002-NA-NA-52263/10.000000-AXIAL PERFUSION-17331",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0130/06-18-2002-NA-NA-52263/5.000000-AXIAL DIFFUSION-38718",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0130/06-18-2002-NA-NA-52263/11.000000-AX T1 POST GD FLAIR-18981",
           "timepoint": "followup"
         }
       ]
@@ -55,20 +55,20 @@
       "patient_dir": "TCGA-06-0132",
       "exams": [
         {
-          "t2": "TCGA-06-0132/05-17-2005-NA-NA-85588/4.000000-AXIAL FSE-54880",
-          "t1": "TCGA-06-0132/05-17-2005-NA-NA-85588/7.000000-AXIAL T1-81569",
-          "flair": "TCGA-06-0132/05-17-2005-NA-NA-85588/5.000000-AXIAL FLAIR-24045",
-          "perfusion": "TCGA-06-0132/05-17-2005-NA-NA-85588/8.000000-AXIAL PERFUSION-23500",
-          "dti": "TCGA-06-0132/05-17-2005-NA-NA-85588/6.000000-AXIAL DIFFUSION-19959",
-          "t1c": "TCGA-06-0132/05-17-2005-NA-NA-85588/11.000000-AXIAL T1 GD-39971",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0132/05-17-2005-NA-NA-85588/4.000000-AXIAL FSE-54880",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0132/05-17-2005-NA-NA-85588/7.000000-AXIAL T1-81569",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0132/05-17-2005-NA-NA-85588/5.000000-AXIAL FLAIR-24045",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0132/05-17-2005-NA-NA-85588/8.000000-AXIAL PERFUSION-23500",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0132/05-17-2005-NA-NA-85588/6.000000-AXIAL DIFFUSION-19959",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0132/05-17-2005-NA-NA-85588/11.000000-AXIAL T1 GD-39971",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-06-0132/10-12-2006-NA-NA-71955/4.000000-AXIAL FSE-50587",
-          "t1": "TCGA-06-0132/10-12-2006-NA-NA-71955/11.000000-3D SPGR PRE GD-89079",
-          "flair": "TCGA-06-0132/10-12-2006-NA-NA-71955/6.000000-AX T2 FLAIR-08661",
-          "dti": "TCGA-06-0132/10-12-2006-NA-NA-71955/10.000000-AXIAL DTI-94410",
-          "t1c": "TCGA-06-0132/10-12-2006-NA-NA-71955/15.000000-3D SPGR POST GD-90292",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0132/10-12-2006-NA-NA-71955/4.000000-AXIAL FSE-50587",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0132/10-12-2006-NA-NA-71955/11.000000-3D SPGR PRE GD-89079",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0132/10-12-2006-NA-NA-71955/6.000000-AX T2 FLAIR-08661",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0132/10-12-2006-NA-NA-71955/10.000000-AXIAL DTI-94410",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0132/10-12-2006-NA-NA-71955/15.000000-3D SPGR POST GD-90292",
           "timepoint": "followup"
         }
       ]
@@ -78,20 +78,20 @@
       "patient_dir": "TCGA-06-0133",
       "exams": [
         {
-          "t2": "TCGA-06-0133/05-10-2005-NA-NA-27867/6.000000-AX T2 FR-FSE RF2 150-06104",
-          "t1": "TCGA-06-0133/05-10-2005-NA-NA-27867/8.000000-AX T1 pre gd-69119",
-          "flair": "TCGA-06-0133/05-10-2005-NA-NA-27867/5.000000-AXIAL FLAIR-20028",
-          "dti": "TCGA-06-0133/05-10-2005-NA-NA-27867/4.000000-AXIAL DIFFUSION-91970",
-          "t1c": "TCGA-06-0133/05-10-2005-NA-NA-27867/10.000000-AX T1 POST GD FLAIR-21535",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0133/05-10-2005-NA-NA-27867/6.000000-AX T2 FR-FSE RF2 150-06104",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0133/05-10-2005-NA-NA-27867/8.000000-AX T1 pre gd-69119",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0133/05-10-2005-NA-NA-27867/5.000000-AXIAL FLAIR-20028",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0133/05-10-2005-NA-NA-27867/4.000000-AXIAL DIFFUSION-91970",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0133/05-10-2005-NA-NA-27867/10.000000-AX T1 POST GD FLAIR-21535",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-06-0133/10-05-2005-NA-NA-89983/5.000000-AX T2 FR-FSE RF2 150-97691",
-          "t1": "TCGA-06-0133/10-05-2005-NA-NA-89983/8.000000-AX T1 pre gd-79321",
-          "flair": "TCGA-06-0133/10-05-2005-NA-NA-89983/6.000000-AXIAL FLAIR-26051",
-          "perfusion": "TCGA-06-0133/10-05-2005-NA-NA-89983/9.000000-AXIAL PERFUSION-68349",
-          "dti": "TCGA-06-0133/10-05-2005-NA-NA-89983/4.000000-AXIAL DIFFUSION-65275",
-          "t1c": "TCGA-06-0133/10-05-2005-NA-NA-89983/12.000000-AX T1 POST GD FLAIR-64063",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0133/10-05-2005-NA-NA-89983/5.000000-AX T2 FR-FSE RF2 150-97691",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0133/10-05-2005-NA-NA-89983/8.000000-AX T1 pre gd-79321",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0133/10-05-2005-NA-NA-89983/6.000000-AXIAL FLAIR-26051",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0133/10-05-2005-NA-NA-89983/9.000000-AXIAL PERFUSION-68349",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0133/10-05-2005-NA-NA-89983/4.000000-AXIAL DIFFUSION-65275",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0133/10-05-2005-NA-NA-89983/12.000000-AX T1 POST GD FLAIR-64063",
           "timepoint": "followup"
         }
       ]
@@ -101,21 +101,21 @@
       "patient_dir": "TCGA-06-0137",
       "exams": [
         {
-          "t2": "TCGA-06-0137/12-24-2001-NA-NA-96078/3.000000-AXIAL FSE-59088",
-          "t1": "TCGA-06-0137/12-24-2001-NA-NA-96078/6.000000-AXIAL T1-89764",
-          "flair": "TCGA-06-0137/12-24-2001-NA-NA-96078/4.000000-AXIAL FLAIR-83606",
-          "perfusion": "TCGA-06-0137/12-24-2001-NA-NA-96078/7.000000-AXIAL PERFUSION-79796",
-          "dti": "TCGA-06-0137/12-24-2001-NA-NA-96078/5.000000-AXIAL DIFFUSION-39137",
-          "t1c": "TCGA-06-0137/12-24-2001-NA-NA-96078/9.000000-AXIAL T1 GD-71887",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0137/12-24-2001-NA-NA-96078/3.000000-AXIAL FSE-59088",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0137/12-24-2001-NA-NA-96078/6.000000-AXIAL T1-89764",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0137/12-24-2001-NA-NA-96078/4.000000-AXIAL FLAIR-83606",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0137/12-24-2001-NA-NA-96078/7.000000-AXIAL PERFUSION-79796",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0137/12-24-2001-NA-NA-96078/5.000000-AXIAL DIFFUSION-39137",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0137/12-24-2001-NA-NA-96078/9.000000-AXIAL T1 GD-71887",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-06-0137/09-23-2003-NA-NA-16004/4.000000-AX T2 FR-FSE RF2 150-57221",
-          "t1": "TCGA-06-0137/09-23-2003-NA-NA-16004/8.000000-AX T1 pre gd-01545",
-          "flair": "TCGA-06-0137/09-23-2003-NA-NA-16004/5.000000-AXIAL T2 FLAIR-77638",
-          "perfusion": "TCGA-06-0137/09-23-2003-NA-NA-16004/9.000000-AXIAL PERFUSION-40977",
-          "dti": "TCGA-06-0137/09-23-2003-NA-NA-16004/700.000000-DTI ASSET-12513",
-          "t1c": "TCGA-06-0137/09-23-2003-NA-NA-16004/10.000000-AX T1 POST GD FLAIR-12562",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0137/09-23-2003-NA-NA-16004/4.000000-AX T2 FR-FSE RF2 150-57221",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0137/09-23-2003-NA-NA-16004/8.000000-AX T1 pre gd-01545",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0137/09-23-2003-NA-NA-16004/5.000000-AXIAL T2 FLAIR-77638",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0137/09-23-2003-NA-NA-16004/9.000000-AXIAL PERFUSION-40977",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0137/09-23-2003-NA-NA-16004/700.000000-DTI ASSET-12513",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0137/09-23-2003-NA-NA-16004/10.000000-AX T1 POST GD FLAIR-12562",
           "timepoint": "followup"
         }
       ]
@@ -125,21 +125,21 @@
       "patient_dir": "TCGA-06-0138",
       "exams": [
         {
-          "t2": "TCGA-06-0138/11-25-2002-NA-NA-91840/5.000000-AX T2 FR-FSE RF2 150-82166",
-          "t1": "TCGA-06-0138/11-25-2002-NA-NA-91840/8.000000-AX T1 pre gd-30080",
-          "flair": "TCGA-06-0138/11-25-2002-NA-NA-91840/6.000000-AXIAL T2 FLAIR-32576",
-          "perfusion": "TCGA-06-0138/11-25-2002-NA-NA-91840/9.000000-AXIAL PERFUSION-32128",
-          "dti": "TCGA-06-0138/11-25-2002-NA-NA-91840/4.000000-AXIAL DIFFUSION-14804",
-          "t1c": "TCGA-06-0138/11-25-2002-NA-NA-91840/10.000000-AX T1 POST GD FLAIR-87338",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0138/11-25-2002-NA-NA-91840/5.000000-AX T2 FR-FSE RF2 150-82166",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0138/11-25-2002-NA-NA-91840/8.000000-AX T1 pre gd-30080",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0138/11-25-2002-NA-NA-91840/6.000000-AXIAL T2 FLAIR-32576",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0138/11-25-2002-NA-NA-91840/9.000000-AXIAL PERFUSION-32128",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0138/11-25-2002-NA-NA-91840/4.000000-AXIAL DIFFUSION-14804",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0138/11-25-2002-NA-NA-91840/10.000000-AX T1 POST GD FLAIR-87338",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-06-0138/01-06-2004-NA-NA-88141/7.000000-AX T2 FR-FSE RF2 150-55537",
-          "t1": "TCGA-06-0138/01-06-2004-NA-NA-88141/10.000000-AX T1 pre gd-43208",
-          "flair": "TCGA-06-0138/01-06-2004-NA-NA-88141/8.000000-AXIAL FLAIR-19894",
-          "perfusion": "TCGA-06-0138/01-06-2004-NA-NA-88141/11.000000-AXIAL PERFUSION-84536",
-          "dti": "TCGA-06-0138/01-06-2004-NA-NA-88141/4.000000-AXIAL DIFFUSION-30362",
-          "t1c": "TCGA-06-0138/01-06-2004-NA-NA-88141/12.000000-AX T1 POST GD FLAIR-37089",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0138/01-06-2004-NA-NA-88141/7.000000-AX T2 FR-FSE RF2 150-55537",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0138/01-06-2004-NA-NA-88141/10.000000-AX T1 pre gd-43208",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0138/01-06-2004-NA-NA-88141/8.000000-AXIAL FLAIR-19894",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0138/01-06-2004-NA-NA-88141/11.000000-AXIAL PERFUSION-84536",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0138/01-06-2004-NA-NA-88141/4.000000-AXIAL DIFFUSION-30362",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0138/01-06-2004-NA-NA-88141/12.000000-AX T1 POST GD FLAIR-37089",
           "timepoint": "followup"
         }
       ]
@@ -149,44 +149,20 @@
       "patient_dir": "TCGA-06-0139",
       "exams": [
         {
-          "t2": "TCGA-06-0139/06-10-2004-NA-NA-06150/6.000000-AX T2 FR-FSE RF2 150-27517",
-          "t1": "TCGA-06-0139/06-10-2004-NA-NA-06150/8.000000-AX T1 pre gd-64705",
-          "flair": "TCGA-06-0139/06-10-2004-NA-NA-06150/5.000000-AXIAL FLAIR-91592",
-          "perfusion": "TCGA-06-0139/06-10-2004-NA-NA-06150/9.000000-AXIAL PERFUSION-63260",
-          "dti": "TCGA-06-0139/06-10-2004-NA-NA-06150/4.000000-AXIAL DIFFUSION-43685",
-          "t1c": "TCGA-06-0139/06-10-2004-NA-NA-06150/10.000000-AX T1 POST GD FLAIR-23916",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0139/06-10-2004-NA-NA-06150/6.000000-AX T2 FR-FSE RF2 150-27517",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0139/06-10-2004-NA-NA-06150/8.000000-AX T1 pre gd-64705",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0139/06-10-2004-NA-NA-06150/5.000000-AXIAL FLAIR-91592",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0139/06-10-2004-NA-NA-06150/9.000000-AXIAL PERFUSION-63260",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0139/06-10-2004-NA-NA-06150/4.000000-AXIAL DIFFUSION-43685",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0139/06-10-2004-NA-NA-06150/10.000000-AX T1 POST GD FLAIR-23916",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-06-0139/03-24-2005-NA-NA-19928/5.000000-AX T2 FR-FSE RF2 150-15143",
-          "t1": "TCGA-06-0139/03-24-2005-NA-NA-19928/8.000000-AX T1 pre gd-76768",
-          "flair": "TCGA-06-0139/03-24-2005-NA-NA-19928/6.000000-AXIAL FLAIR-10391",
-          "dti": "TCGA-06-0139/03-24-2005-NA-NA-19928/4.000000-AXIAL DIFFUSION-70206",
-          "t1c": "TCGA-06-0139/03-24-2005-NA-NA-19928/9.000000-AX T1 POST GD FLAIR-87105",
-          "timepoint": "followup"
-        }
-      ]
-    },
-    {
-      "patient_id": "TCGA-06-0143",
-      "patient_dir": "TCGA-06-0143",
-      "exams": [
-        {
-          "t2": "TCGA-06-0143/02-11-2005-NA-NA-83875/4.000000-AX T2 FR-FSE RF2 150-95140",
-          "t1": "TCGA-06-0143/02-11-2005-NA-NA-83875/8.000000-AX T1 pre gd-27400",
-          "flair": "TCGA-06-0143/02-11-2005-NA-NA-83875/6.000000-AXIAL FLAIR-72192",
-          "perfusion": "TCGA-06-0143/02-11-2005-NA-NA-83875/9.000000-AXIAL PERFUSION-11902",
-          "dti": "TCGA-06-0143/02-11-2005-NA-NA-83875/5.000000-AXIAL DIFFUSION-31199",
-          "t1c": "TCGA-06-0143/02-11-2005-NA-NA-83875/10.000000-AX T1 POST GD FLAIR-12546",
-          "timepoint": "preop"
-        },
-        {
-          "t2": "TCGA-06-0143/11-03-2005-NA-NA-49045/5.000000-AX T2 FR-FSE RF2 150-17740",
-          "t1": "TCGA-06-0143/11-03-2005-NA-NA-49045/8.000000-AX T1 pre gd-46593",
-          "flair": "TCGA-06-0143/11-03-2005-NA-NA-49045/6.000000-AXIAL FLAIR-65699",
-          "perfusion": "TCGA-06-0143/11-03-2005-NA-NA-49045/10.000000-AXIAL PERFUSION-02045",
-          "dti": "TCGA-06-0143/11-03-2005-NA-NA-49045/4.000000-AXIAL DIFFUSION-91846",
-          "t1c": "TCGA-06-0143/11-03-2005-NA-NA-49045/12.000000-AX T1 POST GD FLAIR-54984",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0139/03-24-2005-NA-NA-19928/5.000000-AX T2 FR-FSE RF2 150-15143",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0139/03-24-2005-NA-NA-19928/8.000000-AX T1 pre gd-76768",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0139/03-24-2005-NA-NA-19928/6.000000-AXIAL FLAIR-10391",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0139/03-24-2005-NA-NA-19928/4.000000-AXIAL DIFFUSION-70206",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0139/03-24-2005-NA-NA-19928/9.000000-AX T1 POST GD FLAIR-87105",
           "timepoint": "followup"
         }
       ]
@@ -196,21 +172,21 @@
       "patient_dir": "TCGA-06-0156",
       "exams": [
         {
-          "t2": "TCGA-06-0156/07-27-1996-NA-NA-67361/2.000000-AXIAL FSE-93287",
-          "t1": "TCGA-06-0156/07-27-1996-NA-NA-67361/5.000000-AXIAL T1 PRE-31378",
-          "flair": "TCGA-06-0156/07-27-1996-NA-NA-67361/3.000000-AXIAL FLAIR-14908",
-          "perfusion": "TCGA-06-0156/07-27-1996-NA-NA-67361/6.000000-AXIAL PERFUSION-50663",
-          "dti": "TCGA-06-0156/07-27-1996-NA-NA-67361/4.000000-AXIAL DIFF-05646",
-          "t1c": "TCGA-06-0156/07-27-1996-NA-NA-67361/7.000000-AXIAL T1 POST-44021",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0156/07-27-1996-NA-NA-67361/2.000000-AXIAL FSE-93287",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0156/07-27-1996-NA-NA-67361/5.000000-AXIAL T1 PRE-31378",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0156/07-27-1996-NA-NA-67361/3.000000-AXIAL FLAIR-14908",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0156/07-27-1996-NA-NA-67361/6.000000-AXIAL PERFUSION-50663",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0156/07-27-1996-NA-NA-67361/4.000000-AXIAL DIFF-05646",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0156/07-27-1996-NA-NA-67361/7.000000-AXIAL T1 POST-44021",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-06-0156/11-20-1996-NA-TUMOR VOL.-14990/2.000000-AXIAL FSE-65576",
-          "t1": "TCGA-06-0156/11-20-1996-NA-TUMOR VOL.-14990/7.000000-AXIAL T1 PRE GD-15149",
-          "flair": "TCGA-06-0156/11-20-1996-NA-TUMOR VOL.-14990/3.000000-AXIAL FLAIR-81040",
-          "perfusion": "TCGA-06-0156/11-20-1996-NA-TUMOR VOL.-14990/8.000000-AXIAL PERFUSION-59500",
-          "dti": "TCGA-06-0156/11-20-1996-NA-TUMOR VOL.-14990/4.000000-AXIAL DIFFUSION-60025",
-          "t1c": "TCGA-06-0156/11-20-1996-NA-TUMOR VOL.-14990/9.000000-AXIAL T1 POST GD-46970",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0156/11-20-1996-NA-TUMOR VOL.-14990/2.000000-AXIAL FSE-65576",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0156/11-20-1996-NA-TUMOR VOL.-14990/7.000000-AXIAL T1 PRE GD-15149",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0156/11-20-1996-NA-TUMOR VOL.-14990/3.000000-AXIAL FLAIR-81040",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0156/11-20-1996-NA-TUMOR VOL.-14990/8.000000-AXIAL PERFUSION-59500",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0156/11-20-1996-NA-TUMOR VOL.-14990/4.000000-AXIAL DIFFUSION-60025",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0156/11-20-1996-NA-TUMOR VOL.-14990/9.000000-AXIAL T1 POST GD-46970",
           "timepoint": "followup"
         }
       ]
@@ -220,21 +196,21 @@
       "patient_dir": "TCGA-06-0158",
       "exams": [
         {
-          "t2": "TCGA-06-0158/09-05-1996-NA-NA-30968/2.000000-AXIAL FSE-81430",
-          "t1": "TCGA-06-0158/09-05-1996-NA-NA-30968/2.000000-AXIAL T1 PRE GD-29122",
-          "flair": "TCGA-06-0158/09-05-1996-NA-NA-30968/3.000000-AXIAL FLAIR-97052",
-          "perfusion": "TCGA-06-0158/09-05-1996-NA-NA-30968/4.000000-AXIAL PERFUSION-33955",
-          "dti": "TCGA-06-0158/09-05-1996-NA-NA-30968/4.000000-AXIAL DIFFUSION-74326",
-          "t1c": "TCGA-06-0158/09-05-1996-NA-NA-30968/5.000000-AXIAL T1 POST GD-95785",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0158/09-05-1996-NA-NA-30968/2.000000-AXIAL FSE-81430",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0158/09-05-1996-NA-NA-30968/2.000000-AXIAL T1 PRE GD-29122",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0158/09-05-1996-NA-NA-30968/3.000000-AXIAL FLAIR-97052",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0158/09-05-1996-NA-NA-30968/4.000000-AXIAL PERFUSION-33955",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0158/09-05-1996-NA-NA-30968/4.000000-AXIAL DIFFUSION-74326",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0158/09-05-1996-NA-NA-30968/5.000000-AXIAL T1 POST GD-95785",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-06-0158/12-04-1996-NA-BRAINGD-55455/2.000000-AXIAL FSE-60588",
-          "t1": "TCGA-06-0158/12-04-1996-NA-BRAINGD-55455/5.000000-AXIAL T1-35761",
-          "flair": "TCGA-06-0158/12-04-1996-NA-BRAINGD-55455/3.000000-AXIAL FLAIR-74645",
-          "perfusion": "TCGA-06-0158/12-04-1996-NA-BRAINGD-55455/6.000000-AXIAL PERFUSION-12188",
-          "dti": "TCGA-06-0158/12-04-1996-NA-BRAINGD-55455/4.000000-AXIAL DIFFUSION-73469",
-          "t1c": "TCGA-06-0158/12-04-1996-NA-BRAINGD-55455/7.000000-AXIAL T1 GD-30084",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0158/12-04-1996-NA-BRAINGD-55455/2.000000-AXIAL FSE-60588",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0158/12-04-1996-NA-BRAINGD-55455/5.000000-AXIAL T1-35761",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0158/12-04-1996-NA-BRAINGD-55455/3.000000-AXIAL FLAIR-74645",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0158/12-04-1996-NA-BRAINGD-55455/6.000000-AXIAL PERFUSION-12188",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0158/12-04-1996-NA-BRAINGD-55455/4.000000-AXIAL DIFFUSION-73469",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0158/12-04-1996-NA-BRAINGD-55455/7.000000-AXIAL T1 GD-30084",
           "timepoint": "followup"
         }
       ]
@@ -244,20 +220,20 @@
       "patient_dir": "TCGA-06-0164",
       "exams": [
         {
-          "t2": "TCGA-06-0164/02-17-1999-NA-NA-70122/2.000000-AXIAL  FSE-03506",
-          "t1": "TCGA-06-0164/02-17-1999-NA-NA-70122/5.000000-AXIAL T1 PRE-24266",
-          "flair": "TCGA-06-0164/02-17-1999-NA-NA-70122/6.000000-CORONAL flair-24182",
-          "dti": "TCGA-06-0164/02-17-1999-NA-NA-70122/4.000000-AXIAL DIFFUSION-52700",
-          "t1c": "TCGA-06-0164/02-17-1999-NA-NA-70122/11.000000-AXIAL T1 POST GD-54779",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0164/02-17-1999-NA-NA-70122/2.000000-AXIAL  FSE-03506",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0164/02-17-1999-NA-NA-70122/5.000000-AXIAL T1 PRE-24266",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0164/02-17-1999-NA-NA-70122/6.000000-CORONAL flair-24182",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0164/02-17-1999-NA-NA-70122/4.000000-AXIAL DIFFUSION-52700",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0164/02-17-1999-NA-NA-70122/11.000000-AXIAL T1 POST GD-54779",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-06-0164/02-18-2003-NA-NA-93162/5.000000-AX T2 FR-FSE RF2 150-87281",
-          "t1": "TCGA-06-0164/02-18-2003-NA-NA-93162/8.000000-AX T1 pre gd-07170",
-          "flair": "TCGA-06-0164/02-18-2003-NA-NA-93162/6.000000-AXIAL T2 FLAIR-71064",
-          "perfusion": "TCGA-06-0164/02-18-2003-NA-NA-93162/10.000000-AXIAL PERFUSION-35328",
-          "dti": "TCGA-06-0164/02-18-2003-NA-NA-93162/4.000000-AXIAL DIFFUSION-98665",
-          "t1c": "TCGA-06-0164/02-18-2003-NA-NA-93162/11.000000-AX T1 POST GD FLAIR-71916",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0164/02-18-2003-NA-NA-93162/5.000000-AX T2 FR-FSE RF2 150-87281",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0164/02-18-2003-NA-NA-93162/8.000000-AX T1 pre gd-07170",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0164/02-18-2003-NA-NA-93162/6.000000-AXIAL T2 FLAIR-71064",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0164/02-18-2003-NA-NA-93162/10.000000-AXIAL PERFUSION-35328",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0164/02-18-2003-NA-NA-93162/4.000000-AXIAL DIFFUSION-98665",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0164/02-18-2003-NA-NA-93162/11.000000-AX T1 POST GD FLAIR-71916",
           "timepoint": "followup"
         }
       ]
@@ -267,20 +243,20 @@
       "patient_dir": "TCGA-06-0166",
       "exams": [
         {
-          "t2": "TCGA-06-0166/06-01-1999-NA-NA-45485/2.000000-AXIAL  FSE-92408",
-          "t1": "TCGA-06-0166/06-01-1999-NA-NA-45485/5.000000-AXIAL T1 PRE GD-71586",
-          "flair": "TCGA-06-0166/06-01-1999-NA-NA-45485/3.000000-AXIAL FLAIR-96643",
-          "dti": "TCGA-06-0166/06-01-1999-NA-NA-45485/4.000000-AXIAL DIFFUSION-87235",
-          "t1c": "TCGA-06-0166/06-01-1999-NA-NA-45485/7.000000-AXIAL T1 POST GD-25391",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0166/06-01-1999-NA-NA-45485/2.000000-AXIAL  FSE-92408",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0166/06-01-1999-NA-NA-45485/5.000000-AXIAL T1 PRE GD-71586",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0166/06-01-1999-NA-NA-45485/3.000000-AXIAL FLAIR-96643",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0166/06-01-1999-NA-NA-45485/4.000000-AXIAL DIFFUSION-87235",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0166/06-01-1999-NA-NA-45485/7.000000-AXIAL T1 POST GD-25391",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-06-0166/11-09-1999-NA-TUMOR VOLUME-91709/2.000000-AXIAL PDT2 FSE-16182",
-          "t1": "TCGA-06-0166/11-09-1999-NA-TUMOR VOLUME-91709/5.000000-AXIAL T1 PRE GD-29930",
-          "flair": "TCGA-06-0166/11-09-1999-NA-TUMOR VOLUME-91709/3.000000-AXIAL FLAIR-80465",
-          "perfusion": "TCGA-06-0166/11-09-1999-NA-TUMOR VOLUME-91709/6.000000-AXIAL PERFUSION POST GD-71558",
-          "dti": "TCGA-06-0166/11-09-1999-NA-TUMOR VOLUME-91709/4.000000-AXIAL DIFFUSION-97987",
-          "t1c": "TCGA-06-0166/11-09-1999-NA-TUMOR VOLUME-91709/7.000000-AXIAL T1 POST GD-15429",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0166/11-09-1999-NA-TUMOR VOLUME-91709/2.000000-AXIAL PDT2 FSE-16182",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0166/11-09-1999-NA-TUMOR VOLUME-91709/5.000000-AXIAL T1 PRE GD-29930",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0166/11-09-1999-NA-TUMOR VOLUME-91709/3.000000-AXIAL FLAIR-80465",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0166/11-09-1999-NA-TUMOR VOLUME-91709/6.000000-AXIAL PERFUSION POST GD-71558",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0166/11-09-1999-NA-TUMOR VOLUME-91709/4.000000-AXIAL DIFFUSION-97987",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0166/11-09-1999-NA-TUMOR VOLUME-91709/7.000000-AXIAL T1 POST GD-15429",
           "timepoint": "followup"
         }
       ]
@@ -290,21 +266,21 @@
       "patient_dir": "TCGA-06-0184",
       "exams": [
         {
-          "t2": "TCGA-06-0184/07-13-2003-NA-NA-52545/5.000000-AXIAL FSE-68061",
-          "t1": "TCGA-06-0184/07-13-2003-NA-NA-52545/10.000000-Ax T1 2.5mm for surgery-82923",
-          "flair": "TCGA-06-0184/07-13-2003-NA-NA-52545/6.000000-Ax FLAIR 2.5mm for surgery-52228",
-          "perfusion": "TCGA-06-0184/07-13-2003-NA-NA-52545/9.000000-AXIAL PERFUSION-69296",
-          "dti": "TCGA-06-0184/07-13-2003-NA-NA-52545/701.000000-AXIAL DTI-49602",
-          "t1c": "TCGA-06-0184/07-13-2003-NA-NA-52545/11.000000-COR T1 POST GD-12624",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0184/07-13-2003-NA-NA-52545/5.000000-AXIAL FSE-68061",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0184/07-13-2003-NA-NA-52545/10.000000-Ax T1 2.5mm for surgery-82923",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0184/07-13-2003-NA-NA-52545/6.000000-Ax FLAIR 2.5mm for surgery-52228",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0184/07-13-2003-NA-NA-52545/9.000000-AXIAL PERFUSION-69296",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0184/07-13-2003-NA-NA-52545/701.000000-AXIAL DTI-49602",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0184/07-13-2003-NA-NA-52545/11.000000-COR T1 POST GD-12624",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-06-0184/01-16-2007-NA-NA-18267/7.000000-AX T2 FR-FSE RF2 150-86072",
-          "t1": "TCGA-06-0184/01-16-2007-NA-NA-18267/8.000000-AX T1 pre gd-41550",
-          "flair": "TCGA-06-0184/01-16-2007-NA-NA-18267/5.000000-AXIAL FLAIR-44807",
-          "perfusion": "TCGA-06-0184/01-16-2007-NA-NA-18267/9.000000-AXIAL PERFUSION-39412",
-          "dti": "TCGA-06-0184/01-16-2007-NA-NA-18267/600.000000-DTI 2.6mm WH  COVERED CUT AIR-10405",
-          "t1c": "TCGA-06-0184/01-16-2007-NA-NA-18267/10.000000-AX T1 POST GD FLAIR-39351",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0184/01-16-2007-NA-NA-18267/7.000000-AX T2 FR-FSE RF2 150-86072",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0184/01-16-2007-NA-NA-18267/8.000000-AX T1 pre gd-41550",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0184/01-16-2007-NA-NA-18267/5.000000-AXIAL FLAIR-44807",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0184/01-16-2007-NA-NA-18267/9.000000-AXIAL PERFUSION-39412",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0184/01-16-2007-NA-NA-18267/600.000000-DTI 2.6mm WH  COVERED CUT AIR-10405",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0184/01-16-2007-NA-NA-18267/10.000000-AX T1 POST GD FLAIR-39351",
           "timepoint": "followup"
         }
       ]
@@ -314,21 +290,21 @@
       "patient_dir": "TCGA-06-0185",
       "exams": [
         {
-          "t2": "TCGA-06-0185/11-07-2003-NA-NA-26945/3.000000-AXIAL FSE-17543",
-          "t1": "TCGA-06-0185/11-07-2003-NA-NA-26945/7.000000-AXIAL T1-48379",
-          "flair": "TCGA-06-0185/11-07-2003-NA-NA-26945/4.000000-AxFLAIR-thin for surgery-17004",
-          "perfusion": "TCGA-06-0185/11-07-2003-NA-NA-26945/10.000000-AXIAL PERFUSION-81080",
-          "dti": "TCGA-06-0185/11-07-2003-NA-NA-26945/5.000000-AXIAL DIFFUSION-14946",
-          "t1c": "TCGA-06-0185/11-07-2003-NA-NA-26945/13.000000-GD COR T1-25076",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0185/11-07-2003-NA-NA-26945/3.000000-AXIAL FSE-17543",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0185/11-07-2003-NA-NA-26945/7.000000-AXIAL T1-48379",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0185/11-07-2003-NA-NA-26945/4.000000-AxFLAIR-thin for surgery-17004",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0185/11-07-2003-NA-NA-26945/10.000000-AXIAL PERFUSION-81080",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0185/11-07-2003-NA-NA-26945/5.000000-AXIAL DIFFUSION-14946",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0185/11-07-2003-NA-NA-26945/13.000000-GD COR T1-25076",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-06-0185/11-16-2007-NA-NA-32206/7.000000-AX T2 FR-FSE RF2 150-71835",
-          "t1": "TCGA-06-0185/11-16-2007-NA-NA-32206/8.000000-AX T1 pre gd-72424",
-          "flair": "TCGA-06-0185/11-16-2007-NA-NA-32206/6.000000-AXIAL FLAIR-98092",
-          "perfusion": "TCGA-06-0185/11-16-2007-NA-NA-32206/10.000000-3D DCE DYNAMIC PERF-64948",
-          "dti": "TCGA-06-0185/11-16-2007-NA-NA-32206/402.000000-DTI 2.6mm WH-98730",
-          "t1c": "TCGA-06-0185/11-16-2007-NA-NA-32206/11.000000-AX T1 POST GD FLAIR-47879",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0185/11-16-2007-NA-NA-32206/7.000000-AX T2 FR-FSE RF2 150-71835",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0185/11-16-2007-NA-NA-32206/8.000000-AX T1 pre gd-72424",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0185/11-16-2007-NA-NA-32206/6.000000-AXIAL FLAIR-98092",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0185/11-16-2007-NA-NA-32206/10.000000-3D DCE DYNAMIC PERF-64948",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0185/11-16-2007-NA-NA-32206/402.000000-DTI 2.6mm WH-98730",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0185/11-16-2007-NA-NA-32206/11.000000-AX T1 POST GD FLAIR-47879",
           "timepoint": "followup"
         }
       ]
@@ -338,19 +314,19 @@
       "patient_dir": "TCGA-06-0188",
       "exams": [
         {
-          "t2": "TCGA-06-0188/07-17-2004-NA-NA-63675/4.000000-AXIAL FSE-01862",
-          "t1": "TCGA-06-0188/07-17-2004-NA-NA-63675/7.000000-AXIAL T1-39535",
-          "flair": "TCGA-06-0188/07-17-2004-NA-NA-63675/5.000000-AxFLAIR-thin for surgery-71373",
-          "perfusion": "TCGA-06-0188/07-17-2004-NA-NA-63675/8.000000-AXIAL PERFUSION-42382",
-          "dti": "TCGA-06-0188/07-17-2004-NA-NA-63675/6.000000-AXIAL DIFFUSION-94998",
-          "t1c": "TCGA-06-0188/07-17-2004-NA-NA-63675/9.000000-AxT1-thin for surgery-18388",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0188/07-17-2004-NA-NA-63675/4.000000-AXIAL FSE-01862",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0188/07-17-2004-NA-NA-63675/7.000000-AXIAL T1-39535",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0188/07-17-2004-NA-NA-63675/5.000000-AxFLAIR-thin for surgery-71373",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0188/07-17-2004-NA-NA-63675/8.000000-AXIAL PERFUSION-42382",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0188/07-17-2004-NA-NA-63675/6.000000-AXIAL DIFFUSION-94998",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0188/07-17-2004-NA-NA-63675/9.000000-AxT1-thin for surgery-18388",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-06-0188/08-17-2007-NA-NA-95206/401.000000-AX T2 TSE SENSE-06595",
-          "t1": "TCGA-06-0188/08-17-2007-NA-NA-95206/701.000000-PRE AX T1 CLEAR-39047",
-          "flair": "TCGA-06-0188/08-17-2007-NA-NA-95206/601.000000-AX FLAIR  CLEAR-76926",
-          "t1c": "TCGA-06-0188/08-17-2007-NA-NA-95206/901.000000-POST COR T1 CLEAR-13870",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0188/08-17-2007-NA-NA-95206/401.000000-AX T2 TSE SENSE-06595",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0188/08-17-2007-NA-NA-95206/701.000000-PRE AX T1 CLEAR-39047",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0188/08-17-2007-NA-NA-95206/601.000000-AX FLAIR  CLEAR-76926",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0188/08-17-2007-NA-NA-95206/901.000000-POST COR T1 CLEAR-13870",
           "timepoint": "followup"
         }
       ]
@@ -360,21 +336,21 @@
       "patient_dir": "TCGA-06-0878",
       "exams": [
         {
-          "t2": "TCGA-06-0878/10-14-2006-NA-NA-25755/5.000000-AX T2 FR-FSE RF2 150-95289",
-          "t1": "TCGA-06-0878/10-14-2006-NA-NA-25755/8.000000-AX T1 pre gd-63869",
-          "flair": "TCGA-06-0878/10-14-2006-NA-NA-25755/6.000000-AXIAL FLAIR-68292",
-          "perfusion": "TCGA-06-0878/10-14-2006-NA-NA-25755/10.000000-AXIAL PERFUSION-83241",
-          "dti": "TCGA-06-0878/10-14-2006-NA-NA-25755/4.000000-AXIAL DIFFUSION-41485",
-          "t1c": "TCGA-06-0878/10-14-2006-NA-NA-25755/11.000000-AX T1 POST GD FLAIR-04557",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0878/10-14-2006-NA-NA-25755/5.000000-AX T2 FR-FSE RF2 150-95289",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0878/10-14-2006-NA-NA-25755/8.000000-AX T1 pre gd-63869",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0878/10-14-2006-NA-NA-25755/6.000000-AXIAL FLAIR-68292",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0878/10-14-2006-NA-NA-25755/10.000000-AXIAL PERFUSION-83241",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0878/10-14-2006-NA-NA-25755/4.000000-AXIAL DIFFUSION-41485",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0878/10-14-2006-NA-NA-25755/11.000000-AX T1 POST GD FLAIR-04557",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-06-0878/07-19-2007-NA-NA-51845/5.000000-AX T2 FR-FSE RF2 150-25892",
-          "t1": "TCGA-06-0878/07-19-2007-NA-NA-51845/8.000000-AX T1 pre gd-15286",
-          "flair": "TCGA-06-0878/07-19-2007-NA-NA-51845/6.000000-AXIAL FLAIR-69525",
-          "perfusion": "TCGA-06-0878/07-19-2007-NA-NA-51845/10.000000-3D DCE DYNAMIC PERF-69969",
-          "dti": "TCGA-06-0878/07-19-2007-NA-NA-51845/7.000000-DTI 2.6mm WH-87943",
-          "t1c": "TCGA-06-0878/07-19-2007-NA-NA-51845/13.000000-AX T1 POST GD FLAIR-36884",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0878/07-19-2007-NA-NA-51845/5.000000-AX T2 FR-FSE RF2 150-25892",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0878/07-19-2007-NA-NA-51845/8.000000-AX T1 pre gd-15286",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0878/07-19-2007-NA-NA-51845/6.000000-AXIAL FLAIR-69525",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0878/07-19-2007-NA-NA-51845/10.000000-3D DCE DYNAMIC PERF-69969",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0878/07-19-2007-NA-NA-51845/7.000000-DTI 2.6mm WH-87943",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0878/07-19-2007-NA-NA-51845/13.000000-AX T1 POST GD FLAIR-36884",
           "timepoint": "followup"
         }
       ]
@@ -384,20 +360,20 @@
       "patient_dir": "TCGA-06-0881",
       "exams": [
         {
-          "t2": "TCGA-06-0881/02-08-2007-NA-NA-54554/5.000000-AX T2 FR-FSE RF2 150-51242",
-          "t1": "TCGA-06-0881/02-08-2007-NA-NA-54554/8.000000-AX T1 pre gd-15278",
-          "flair": "TCGA-06-0881/02-08-2007-NA-NA-54554/7.000000-AXIAL FLAIR-12321",
-          "perfusion": "TCGA-06-0881/02-08-2007-NA-NA-54554/9.000000-AXIAL PERFUSION-82867",
-          "dti": "TCGA-06-0881/02-08-2007-NA-NA-54554/601.000000-DTI 2.6mm WH-88681",
-          "t1c": "TCGA-06-0881/02-08-2007-NA-NA-54554/10.000000-AX T1 POST GD FLAIR-80095",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0881/02-08-2007-NA-NA-54554/5.000000-AX T2 FR-FSE RF2 150-51242",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0881/02-08-2007-NA-NA-54554/8.000000-AX T1 pre gd-15278",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0881/02-08-2007-NA-NA-54554/7.000000-AXIAL FLAIR-12321",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0881/02-08-2007-NA-NA-54554/9.000000-AXIAL PERFUSION-82867",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0881/02-08-2007-NA-NA-54554/601.000000-DTI 2.6mm WH-88681",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0881/02-08-2007-NA-NA-54554/10.000000-AX T1 POST GD FLAIR-80095",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-06-0881/09-27-2007-NA-NA-91126/5.000000-AX T2 FR-FSE RF2 150-10367",
-          "t1": "TCGA-06-0881/09-27-2007-NA-NA-91126/8.000000-AX T1 pre gd-81292",
-          "flair": "TCGA-06-0881/09-27-2007-NA-NA-91126/6.000000-AXIAL FLAIR-42292",
-          "dti": "TCGA-06-0881/09-27-2007-NA-NA-91126/701.000000-DTI 2.6mm WH-97973",
-          "t1c": "TCGA-06-0881/09-27-2007-NA-NA-91126/12.000000-AX T1 POST GD FLAIR-57186",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0881/09-27-2007-NA-NA-91126/5.000000-AX T2 FR-FSE RF2 150-10367",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0881/09-27-2007-NA-NA-91126/8.000000-AX T1 pre gd-81292",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0881/09-27-2007-NA-NA-91126/6.000000-AXIAL FLAIR-42292",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0881/09-27-2007-NA-NA-91126/701.000000-DTI 2.6mm WH-97973",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-0881/09-27-2007-NA-NA-91126/12.000000-AX T1 POST GD FLAIR-57186",
           "timepoint": "followup"
         }
       ]
@@ -407,20 +383,20 @@
       "patient_dir": "TCGA-06-1084",
       "exams": [
         {
-          "t2": "TCGA-06-1084/01-15-2007-NA-NA-24760/3.000000-AXIAL FSE-19440",
-          "t1": "TCGA-06-1084/01-15-2007-NA-NA-24760/6.000000-AXIAL T1-76708",
-          "flair": "TCGA-06-1084/01-15-2007-NA-NA-24760/4.000000-AXIAL FLAIR-76370",
-          "perfusion": "TCGA-06-1084/01-15-2007-NA-NA-24760/7.000000-AXIAL PERFUSION-45271",
-          "dti": "TCGA-06-1084/01-15-2007-NA-NA-24760/5.000000-AXIAL DTI-15016",
-          "t1c": "TCGA-06-1084/01-15-2007-NA-NA-24760/8.000000-AXIAL T1 GD-33834",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1084/01-15-2007-NA-NA-24760/3.000000-AXIAL FSE-19440",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1084/01-15-2007-NA-NA-24760/6.000000-AXIAL T1-76708",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1084/01-15-2007-NA-NA-24760/4.000000-AXIAL FLAIR-76370",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1084/01-15-2007-NA-NA-24760/7.000000-AXIAL PERFUSION-45271",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1084/01-15-2007-NA-NA-24760/5.000000-AXIAL DTI-15016",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1084/01-15-2007-NA-NA-24760/8.000000-AXIAL T1 GD-33834",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-06-1084/04-21-2008-NA-NA-84621/5.000000-Ax T2 FSE-43609",
-          "t1": "TCGA-06-1084/04-21-2008-NA-NA-84621/6.000000-PRE AX T1-80027",
-          "flair": "TCGA-06-1084/04-21-2008-NA-NA-84621/4.000000-AX T2 FLAIR-83965",
-          "dti": "TCGA-06-1084/04-21-2008-NA-NA-84621/3.000000-DTI 1000 24 FOV 6 DIRECTIONS-77864",
-          "t1c": "TCGA-06-1084/04-21-2008-NA-NA-84621/7.000000-GAD AX T1-44053",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1084/04-21-2008-NA-NA-84621/5.000000-Ax T2 FSE-43609",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1084/04-21-2008-NA-NA-84621/6.000000-PRE AX T1-80027",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1084/04-21-2008-NA-NA-84621/4.000000-AX T2 FLAIR-83965",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1084/04-21-2008-NA-NA-84621/3.000000-DTI 1000 24 FOV 6 DIRECTIONS-77864",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1084/04-21-2008-NA-NA-84621/7.000000-GAD AX T1-44053",
           "timepoint": "followup"
         }
       ]
@@ -430,20 +406,20 @@
       "patient_dir": "TCGA-06-1801",
       "exams": [
         {
-          "t2": "TCGA-06-1801/03-23-2007-NA-NA-38796/6.000000-AX T2 FR-FSE RF2 150-84776",
-          "t1": "TCGA-06-1801/03-23-2007-NA-NA-38796/8.000000-AX T1 pre gd-15169",
-          "flair": "TCGA-06-1801/03-23-2007-NA-NA-38796/7.000000-AXIAL FLAIR-58766",
-          "perfusion": "TCGA-06-1801/03-23-2007-NA-NA-38796/10.000000-3D DCE DYNAMIC PERF-35610",
-          "dti": "TCGA-06-1801/03-23-2007-NA-NA-38796/401.000000-DTI 2.6mm WH-18975",
-          "t1c": "TCGA-06-1801/03-23-2007-NA-NA-38796/11.000000-AX T1 POST GD FLAIR-48854",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1801/03-23-2007-NA-NA-38796/6.000000-AX T2 FR-FSE RF2 150-84776",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1801/03-23-2007-NA-NA-38796/8.000000-AX T1 pre gd-15169",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1801/03-23-2007-NA-NA-38796/7.000000-AXIAL FLAIR-58766",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1801/03-23-2007-NA-NA-38796/10.000000-3D DCE DYNAMIC PERF-35610",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1801/03-23-2007-NA-NA-38796/401.000000-DTI 2.6mm WH-18975",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1801/03-23-2007-NA-NA-38796/11.000000-AX T1 POST GD FLAIR-48854",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-06-1801/10-22-2007-NA-NA-23597/5.000000-Ax T2 PROPELLER-99484",
-          "t1": "TCGA-06-1801/10-22-2007-NA-NA-23597/7.000000-AX T1 FLAIR PRE-16032",
-          "flair": "TCGA-06-1801/10-22-2007-NA-NA-23597/6.000000-AX T2 FLAIR PROPELLER-26458",
-          "dti": "TCGA-06-1801/10-22-2007-NA-NA-23597/4.000000-Ax DWI-98057",
-          "t1c": "TCGA-06-1801/10-22-2007-NA-NA-23597/8.000000-AX T1 FLAIR C-45978",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1801/10-22-2007-NA-NA-23597/5.000000-Ax T2 PROPELLER-99484",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1801/10-22-2007-NA-NA-23597/7.000000-AX T1 FLAIR PRE-16032",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1801/10-22-2007-NA-NA-23597/6.000000-AX T2 FLAIR PROPELLER-26458",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1801/10-22-2007-NA-NA-23597/4.000000-Ax DWI-98057",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1801/10-22-2007-NA-NA-23597/8.000000-AX T1 FLAIR C-45978",
           "timepoint": "followup"
         }
       ]
@@ -453,20 +429,20 @@
       "patient_dir": "TCGA-06-1802",
       "exams": [
         {
-          "t2": "TCGA-06-1802/04-03-2007-NA-NA-28642/5.000000-AX T2 FR-FSE-09898",
-          "t1": "TCGA-06-1802/04-03-2007-NA-NA-28642/7.000000-AX T1 pre GD FLAIR-18562",
-          "flair": "TCGA-06-1802/04-03-2007-NA-NA-28642/6.000000-Ax T2 FLAIR-59163",
-          "dti": "TCGA-06-1802/04-03-2007-NA-NA-28642/402.000000-Ax DTI B 1000-94330",
-          "t1c": "TCGA-06-1802/04-03-2007-NA-NA-28642/9.000000-COR T1 POST GD FLAIR-04001",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1802/04-03-2007-NA-NA-28642/5.000000-AX T2 FR-FSE-09898",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1802/04-03-2007-NA-NA-28642/7.000000-AX T1 pre GD FLAIR-18562",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1802/04-03-2007-NA-NA-28642/6.000000-Ax T2 FLAIR-59163",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1802/04-03-2007-NA-NA-28642/402.000000-Ax DTI B 1000-94330",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1802/04-03-2007-NA-NA-28642/9.000000-COR T1 POST GD FLAIR-04001",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-06-1802/01-31-2008-NA-NA-24216/5.000000-AX T2 FR-FSE RF2 150-57798",
-          "t1": "TCGA-06-1802/01-31-2008-NA-NA-24216/9.000000-AX T1 pre gd-91009",
-          "flair": "TCGA-06-1802/01-31-2008-NA-NA-24216/8.000000-AXIAL FLAIR-86474",
-          "perfusion": "TCGA-06-1802/01-31-2008-NA-NA-24216/11.000000-3D DCE DYNAMIC PERF-87502",
-          "dti": "TCGA-06-1802/01-31-2008-NA-NA-24216/601.000000-DTI 2.6mm WH-10870",
-          "t1c": "TCGA-06-1802/01-31-2008-NA-NA-24216/12.000000-AX T1 POST GD FLAIR-61610",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1802/01-31-2008-NA-NA-24216/5.000000-AX T2 FR-FSE RF2 150-57798",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1802/01-31-2008-NA-NA-24216/9.000000-AX T1 pre gd-91009",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1802/01-31-2008-NA-NA-24216/8.000000-AXIAL FLAIR-86474",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1802/01-31-2008-NA-NA-24216/11.000000-3D DCE DYNAMIC PERF-87502",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1802/01-31-2008-NA-NA-24216/601.000000-DTI 2.6mm WH-10870",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-06-1802/01-31-2008-NA-NA-24216/12.000000-AX T1 POST GD FLAIR-61610",
           "timepoint": "followup"
         }
       ]
@@ -476,18 +452,18 @@
       "patient_dir": "TCGA-14-0789",
       "exams": [
         {
-          "t2": "TCGA-14-0789/11-19-1997-NA-MRI BRAIN WWO-81594/401.000000-BRAIN      T2 GRASE-25757",
-          "t1": "TCGA-14-0789/11-19-1997-NA-MRI BRAIN WWO-81594/701.000000-BRAIN      T1 AX PRE-65003",
-          "flair": "TCGA-14-0789/11-19-1997-NA-MRI BRAIN WWO-81594/301.000000-BRAIN      FLAIR-45386",
-          "dti": "TCGA-14-0789/11-19-1997-NA-MRI BRAIN WWO-81594/501.000000-BRAIN      SS DWI-83548",
-          "t1c": "TCGA-14-0789/11-19-1997-NA-MRI BRAIN WWO-81594/901.000000-BRAIN      T1 COR POST-85624",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-0789/11-19-1997-NA-MRI BRAIN WWO-81594/401.000000-BRAIN      T2 GRASE-25757",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-0789/11-19-1997-NA-MRI BRAIN WWO-81594/701.000000-BRAIN      T1 AX PRE-65003",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-0789/11-19-1997-NA-MRI BRAIN WWO-81594/301.000000-BRAIN      FLAIR-45386",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-0789/11-19-1997-NA-MRI BRAIN WWO-81594/501.000000-BRAIN      SS DWI-83548",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-0789/11-19-1997-NA-MRI BRAIN WWO-81594/901.000000-BRAIN      T1 COR POST-85624",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-14-0789/06-19-1998-NA-MRI BRAIN WWO CONT-94951/501.000000-brain with T2 AX GRASE-62636",
-          "t1": "TCGA-14-0789/06-19-1998-NA-MRI BRAIN WWO CONT-94951/801.000000-brain with Ax T1 Pre-88865",
-          "flair": "TCGA-14-0789/06-19-1998-NA-MRI BRAIN WWO CONT-94951/401.000000-brain with FLAIR-82323",
-          "t1c": "TCGA-14-0789/06-19-1998-NA-MRI BRAIN WWO CONT-94951/1001.000000-brain with Cor T1 Post-98381",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-0789/06-19-1998-NA-MRI BRAIN WWO CONT-94951/501.000000-brain with T2 AX GRASE-62636",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-0789/06-19-1998-NA-MRI BRAIN WWO CONT-94951/801.000000-brain with Ax T1 Pre-88865",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-0789/06-19-1998-NA-MRI BRAIN WWO CONT-94951/401.000000-brain with FLAIR-82323",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-0789/06-19-1998-NA-MRI BRAIN WWO CONT-94951/1001.000000-brain with Cor T1 Post-98381",
           "timepoint": "followup"
         }
       ]
@@ -497,18 +473,18 @@
       "patient_dir": "TCGA-14-0865",
       "exams": [
         {
-          "t2": "TCGA-14-0865/03-20-1995-NA-MRI BRAIN W WOUT CONTRAST-54713/401.000000-BRAIN WOW T2 GRASE AX-51305",
-          "t1": "TCGA-14-0865/03-20-1995-NA-MRI BRAIN W WOUT CONTRAST-54713/501.000000-BRAIN WOW AX T1 PRE-39095",
-          "flair": "TCGA-14-0865/03-20-1995-NA-MRI BRAIN W WOUT CONTRAST-54713/301.000000-BRAIN WOW FLAIR AX-70793",
-          "t1c": "TCGA-14-0865/03-20-1995-NA-MRI BRAIN W WOUT CONTRAST-54713/601.000000-BRAIN WOW AX T1 POST-60276",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-0865/03-20-1995-NA-MRI BRAIN W WOUT CONTRAST-54713/401.000000-BRAIN WOW T2 GRASE AX-51305",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-0865/03-20-1995-NA-MRI BRAIN W WOUT CONTRAST-54713/501.000000-BRAIN WOW AX T1 PRE-39095",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-0865/03-20-1995-NA-MRI BRAIN W WOUT CONTRAST-54713/301.000000-BRAIN WOW FLAIR AX-70793",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-0865/03-20-1995-NA-MRI BRAIN W WOUT CONTRAST-54713/601.000000-BRAIN WOW AX T1 POST-60276",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-14-0865/02-01-1996-NA-MRI BRAIN W WOUT CONTRAST-11648/601.000000-brain with T2 AX GRASE-42404",
-          "t1": "TCGA-14-0865/02-01-1996-NA-MRI BRAIN W WOUT CONTRAST-11648/201.000000-brain with T1 SAG 23SL-96587",
-          "flair": "TCGA-14-0865/02-01-1996-NA-MRI BRAIN W WOUT CONTRAST-11648/501.000000-brain with FLAIR-52476",
-          "dti": "TCGA-14-0865/02-01-1996-NA-MRI BRAIN W WOUT CONTRAST-11648/302.000000-brain with SS DWI-89989",
-          "t1c": "TCGA-14-0865/02-01-1996-NA-MRI BRAIN W WOUT CONTRAST-11648/801.000000-brain with Cor T1 Post-96728",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-0865/02-01-1996-NA-MRI BRAIN W WOUT CONTRAST-11648/601.000000-brain with T2 AX GRASE-42404",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-0865/02-01-1996-NA-MRI BRAIN W WOUT CONTRAST-11648/201.000000-brain with T1 SAG 23SL-96587",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-0865/02-01-1996-NA-MRI BRAIN W WOUT CONTRAST-11648/501.000000-brain with FLAIR-52476",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-0865/02-01-1996-NA-MRI BRAIN W WOUT CONTRAST-11648/302.000000-brain with SS DWI-89989",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-0865/02-01-1996-NA-MRI BRAIN W WOUT CONTRAST-11648/801.000000-brain with Cor T1 Post-96728",
           "timepoint": "followup"
         }
       ]
@@ -518,18 +494,18 @@
       "patient_dir": "TCGA-14-1037",
       "exams": [
         {
-          "t2": "TCGA-14-1037/01-09-1995-NA-BRAIN-23150/401.000000-BRAIN WOW T2 GRASE AX-82731",
-          "t1": "TCGA-14-1037/01-09-1995-NA-BRAIN-23150/501.000000-BRAIN WOW AX T1 PRE-77719",
-          "flair": "TCGA-14-1037/01-09-1995-NA-BRAIN-23150/301.000000-BRAIN WOW FLAIR AX-65160",
-          "t1c": "TCGA-14-1037/01-09-1995-NA-BRAIN-23150/701.000000-BRAIN WOW AX T1 POST-41621",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1037/01-09-1995-NA-BRAIN-23150/401.000000-BRAIN WOW T2 GRASE AX-82731",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1037/01-09-1995-NA-BRAIN-23150/501.000000-BRAIN WOW AX T1 PRE-77719",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1037/01-09-1995-NA-BRAIN-23150/301.000000-BRAIN WOW FLAIR AX-65160",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1037/01-09-1995-NA-BRAIN-23150/701.000000-BRAIN WOW AX T1 POST-41621",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-14-1037/09-22-1995-NA-MRI BRAIN W WOUT CONTRAST-28737/501.000000-brain with T2 AX GRASE-59250",
-          "t1": "TCGA-14-1037/09-22-1995-NA-MRI BRAIN W WOUT CONTRAST-28737/301.000000-brain with Ax T1 Pre-19546",
-          "flair": "TCGA-14-1037/09-22-1995-NA-MRI BRAIN W WOUT CONTRAST-28737/401.000000-brain with FLAIR-92381",
-          "dti": "TCGA-14-1037/09-22-1995-NA-MRI BRAIN W WOUT CONTRAST-28737/602.000000-brain with SS DWI-09624",
-          "t1c": "TCGA-14-1037/09-22-1995-NA-MRI BRAIN W WOUT CONTRAST-28737/801.000000-brain with Cor T1 Post-24248",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1037/09-22-1995-NA-MRI BRAIN W WOUT CONTRAST-28737/501.000000-brain with T2 AX GRASE-59250",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1037/09-22-1995-NA-MRI BRAIN W WOUT CONTRAST-28737/301.000000-brain with Ax T1 Pre-19546",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1037/09-22-1995-NA-MRI BRAIN W WOUT CONTRAST-28737/401.000000-brain with FLAIR-92381",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1037/09-22-1995-NA-MRI BRAIN W WOUT CONTRAST-28737/602.000000-brain with SS DWI-09624",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1037/09-22-1995-NA-MRI BRAIN W WOUT CONTRAST-28737/801.000000-brain with Cor T1 Post-24248",
           "timepoint": "followup"
         }
       ]
@@ -539,18 +515,18 @@
       "patient_dir": "TCGA-14-1402",
       "exams": [
         {
-          "t2": "TCGA-14-1402/05-23-1997-NA-MRI BRAIN W WOUT CONTRAST-61558/401.000000-brain with T2 AX GRASE-00588",
-          "t1": "TCGA-14-1402/05-23-1997-NA-MRI BRAIN W WOUT CONTRAST-61558/701.000000-brain with Ax T1 Pre-15715",
-          "flair": "TCGA-14-1402/05-23-1997-NA-MRI BRAIN W WOUT CONTRAST-61558/301.000000-brain with FLAIR-79519",
-          "t1c": "TCGA-14-1402/05-23-1997-NA-MRI BRAIN W WOUT CONTRAST-61558/801.000000-brain with AX T1 POST-48448",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1402/05-23-1997-NA-MRI BRAIN W WOUT CONTRAST-61558/401.000000-brain with T2 AX GRASE-00588",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1402/05-23-1997-NA-MRI BRAIN W WOUT CONTRAST-61558/701.000000-brain with Ax T1 Pre-15715",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1402/05-23-1997-NA-MRI BRAIN W WOUT CONTRAST-61558/301.000000-brain with FLAIR-79519",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1402/05-23-1997-NA-MRI BRAIN W WOUT CONTRAST-61558/801.000000-brain with AX T1 POST-48448",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-14-1402/10-08-1999-NA-MRI BRAIN WWO CONT-13017/701.000000-T2 GRASE-06052",
-          "t1": "TCGA-14-1402/10-08-1999-NA-MRI BRAIN WWO CONT-13017/601.000000-T1 AX PRE-80682",
-          "flair": "TCGA-14-1402/10-08-1999-NA-MRI BRAIN WWO CONT-13017/301.000000-FLAIR-76479",
-          "dti": "TCGA-14-1402/10-08-1999-NA-MRI BRAIN WWO CONT-13017/502.000000-SS DWI-36707",
-          "t1c": "TCGA-14-1402/10-08-1999-NA-MRI BRAIN WWO CONT-13017/901.000000-T1 COR POST-69540",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1402/10-08-1999-NA-MRI BRAIN WWO CONT-13017/701.000000-T2 GRASE-06052",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1402/10-08-1999-NA-MRI BRAIN WWO CONT-13017/601.000000-T1 AX PRE-80682",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1402/10-08-1999-NA-MRI BRAIN WWO CONT-13017/301.000000-FLAIR-76479",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1402/10-08-1999-NA-MRI BRAIN WWO CONT-13017/502.000000-SS DWI-36707",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1402/10-08-1999-NA-MRI BRAIN WWO CONT-13017/901.000000-T1 COR POST-69540",
           "timepoint": "followup"
         }
       ]
@@ -560,19 +536,19 @@
       "patient_dir": "TCGA-14-1454",
       "exams": [
         {
-          "t2": "TCGA-14-1454/04-24-1998-NA-MRI BRAIN WCONT-29904/701.000000-T2 HEMOSID-12215",
-          "t1": "TCGA-14-1454/04-24-1998-NA-MRI BRAIN WCONT-29904/801.000000-T1 AX PRE C-81628",
-          "flair": "TCGA-14-1454/04-24-1998-NA-MRI BRAIN WCONT-29904/501.000000-FLAIR SENSE-83972",
-          "dti": "TCGA-14-1454/04-24-1998-NA-MRI BRAIN WCONT-29904/401.000000-SS DWI SEN-12537",
-          "t1c": "TCGA-14-1454/04-24-1998-NA-MRI BRAIN WCONT-29904/901.000000-T1 AX POST-19738",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1454/04-24-1998-NA-MRI BRAIN WCONT-29904/701.000000-T2 HEMOSID-12215",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1454/04-24-1998-NA-MRI BRAIN WCONT-29904/801.000000-T1 AX PRE C-81628",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1454/04-24-1998-NA-MRI BRAIN WCONT-29904/501.000000-FLAIR SENSE-83972",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1454/04-24-1998-NA-MRI BRAIN WCONT-29904/401.000000-SS DWI SEN-12537",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1454/04-24-1998-NA-MRI BRAIN WCONT-29904/901.000000-T1 AX POST-19738",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-14-1454/09-28-1998-NA-MRI BRAIN WWO CONT-98823/701.000000-T2 GRASE-13184",
-          "t1": "TCGA-14-1454/09-28-1998-NA-MRI BRAIN WWO CONT-98823/601.000000-T1 AX PRE-28851",
-          "flair": "TCGA-14-1454/09-28-1998-NA-MRI BRAIN WWO CONT-98823/301.000000-FLAIR-82650",
-          "dti": "TCGA-14-1454/09-28-1998-NA-MRI BRAIN WWO CONT-98823/501.000000-SS DWI-77615",
-          "t1c": "TCGA-14-1454/09-28-1998-NA-MRI BRAIN WWO CONT-98823/901.000000-T1 COR POST-63514",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1454/09-28-1998-NA-MRI BRAIN WWO CONT-98823/701.000000-T2 GRASE-13184",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1454/09-28-1998-NA-MRI BRAIN WWO CONT-98823/601.000000-T1 AX PRE-28851",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1454/09-28-1998-NA-MRI BRAIN WWO CONT-98823/301.000000-FLAIR-82650",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1454/09-28-1998-NA-MRI BRAIN WWO CONT-98823/501.000000-SS DWI-77615",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1454/09-28-1998-NA-MRI BRAIN WWO CONT-98823/901.000000-T1 COR POST-63514",
           "timepoint": "followup"
         }
       ]
@@ -582,19 +558,19 @@
       "patient_dir": "TCGA-14-1456",
       "exams": [
         {
-          "t2": "TCGA-14-1456/04-22-1999-NA-FMRI BRAIN WRECON IMAGES-71076/301.000000-SEIZURE    T2 GRASE-28824",
-          "t1": "TCGA-14-1456/04-22-1999-NA-FMRI BRAIN WRECON IMAGES-71076/1501.000000-SEIZURE    T1 SAG-85368",
-          "flair": "TCGA-14-1456/04-22-1999-NA-FMRI BRAIN WRECON IMAGES-71076/401.000000-STROKE     FLAIR-44840",
-          "dti": "TCGA-14-1456/04-22-1999-NA-FMRI BRAIN WRECON IMAGES-71076/1602.000000-SEIZURE    SS DWI-64151",
-          "t1c": "TCGA-14-1456/04-22-1999-NA-FMRI BRAIN WRECON IMAGES-71076/2001.000000-BRAIN      T1 COR POST-80177",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1456/04-22-1999-NA-FMRI BRAIN WRECON IMAGES-71076/301.000000-SEIZURE    T2 GRASE-28824",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1456/04-22-1999-NA-FMRI BRAIN WRECON IMAGES-71076/1501.000000-SEIZURE    T1 SAG-85368",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1456/04-22-1999-NA-FMRI BRAIN WRECON IMAGES-71076/401.000000-STROKE     FLAIR-44840",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1456/04-22-1999-NA-FMRI BRAIN WRECON IMAGES-71076/1602.000000-SEIZURE    SS DWI-64151",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1456/04-22-1999-NA-FMRI BRAIN WRECON IMAGES-71076/2001.000000-BRAIN      T1 COR POST-80177",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-14-1456/08-05-1999-NA-MRI BRAIN WWO CONTRAST-83082/8.000000-Ax FRFSE T2 512 x 512-47712",
-          "t1": "TCGA-14-1456/08-05-1999-NA-MRI BRAIN WWO CONTRAST-83082/3.000000-Sag T1 SE-35748",
-          "flair": "TCGA-14-1456/08-05-1999-NA-MRI BRAIN WWO CONTRAST-83082/4.000000-AX T2FLAIR Prop-48542",
-          "dti": "TCGA-14-1456/08-05-1999-NA-MRI BRAIN WWO CONTRAST-83082/6.000000-AX DWI 1000b-41301",
-          "t1c": "TCGA-14-1456/08-05-1999-NA-MRI BRAIN WWO CONTRAST-83082/9.000000-Sag T1 POST-82677",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1456/08-05-1999-NA-MRI BRAIN WWO CONTRAST-83082/8.000000-Ax FRFSE T2 512 x 512-47712",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1456/08-05-1999-NA-MRI BRAIN WWO CONTRAST-83082/3.000000-Sag T1 SE-35748",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1456/08-05-1999-NA-MRI BRAIN WWO CONTRAST-83082/4.000000-AX T2FLAIR Prop-48542",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1456/08-05-1999-NA-MRI BRAIN WWO CONTRAST-83082/6.000000-AX DWI 1000b-41301",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1456/08-05-1999-NA-MRI BRAIN WWO CONTRAST-83082/9.000000-Sag T1 POST-82677",
           "timepoint": "followup"
         }
       ]
@@ -604,19 +580,19 @@
       "patient_dir": "TCGA-14-1458",
       "exams": [
         {
-          "t2": "TCGA-14-1458/06-26-2000-NA-MRI BRAIN WWO CONT-79052/701.000000-T2 GRASE-87884",
-          "t1": "TCGA-14-1458/06-26-2000-NA-MRI BRAIN WWO CONT-79052/601.000000-T1 AX PRE-17537",
-          "flair": "TCGA-14-1458/06-26-2000-NA-MRI BRAIN WWO CONT-79052/301.000000-FLAIR-12554",
-          "dti": "TCGA-14-1458/06-26-2000-NA-MRI BRAIN WWO CONT-79052/502.000000-SS DWI-47725",
-          "t1c": "TCGA-14-1458/06-26-2000-NA-MRI BRAIN WWO CONT-79052/801.000000-T1 AX POST-36715",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1458/06-26-2000-NA-MRI BRAIN WWO CONT-79052/701.000000-T2 GRASE-87884",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1458/06-26-2000-NA-MRI BRAIN WWO CONT-79052/601.000000-T1 AX PRE-17537",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1458/06-26-2000-NA-MRI BRAIN WWO CONT-79052/301.000000-FLAIR-12554",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1458/06-26-2000-NA-MRI BRAIN WWO CONT-79052/502.000000-SS DWI-47725",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1458/06-26-2000-NA-MRI BRAIN WWO CONT-79052/801.000000-T1 AX POST-36715",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-14-1458/11-17-2000-NA-HeadRoutine-42480/4.000000-T2AXTSEFS-43858",
-          "t1": "TCGA-14-1458/11-17-2000-NA-HeadRoutine-42480/10.000000-t1tra postFIL-61291",
-          "flair": "TCGA-14-1458/11-17-2000-NA-HeadRoutine-42480/3.000000-t2flair ax-66112",
-          "dti": "TCGA-14-1458/11-17-2000-NA-HeadRoutine-42480/6.000000-ep2ddiff3scan-96746",
-          "t1c": "TCGA-14-1458/11-17-2000-NA-HeadRoutine-42480/10.000000-t1tra postFIL-61291",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1458/11-17-2000-NA-HeadRoutine-42480/4.000000-T2AXTSEFS-43858",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1458/11-17-2000-NA-HeadRoutine-42480/10.000000-t1tra postFIL-61291",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1458/11-17-2000-NA-HeadRoutine-42480/3.000000-t2flair ax-66112",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1458/11-17-2000-NA-HeadRoutine-42480/6.000000-ep2ddiff3scan-96746",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1458/11-17-2000-NA-HeadRoutine-42480/10.000000-t1tra postFIL-61291",
           "timepoint": "followup"
         }
       ]
@@ -626,19 +602,19 @@
       "patient_dir": "TCGA-14-1459",
       "exams": [
         {
-          "t2": "TCGA-14-1459/10-01-1999-NA-MRI BRAIN WWO CONT-40517/701.000000-T2 GRASE-87800",
-          "t1": "TCGA-14-1459/10-01-1999-NA-MRI BRAIN WWO CONT-40517/601.000000-T1 AX PRE-55928",
-          "flair": "TCGA-14-1459/10-01-1999-NA-MRI BRAIN WWO CONT-40517/301.000000-FLAIR-87903",
-          "dti": "TCGA-14-1459/10-01-1999-NA-MRI BRAIN WWO CONT-40517/502.000000-SS DWI-18925",
-          "t1c": "TCGA-14-1459/10-01-1999-NA-MRI BRAIN WWO CONT-40517/901.000000-T1 COR POST-09640",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1459/10-01-1999-NA-MRI BRAIN WWO CONT-40517/701.000000-T2 GRASE-87800",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1459/10-01-1999-NA-MRI BRAIN WWO CONT-40517/601.000000-T1 AX PRE-55928",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1459/10-01-1999-NA-MRI BRAIN WWO CONT-40517/301.000000-FLAIR-87903",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1459/10-01-1999-NA-MRI BRAIN WWO CONT-40517/502.000000-SS DWI-18925",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1459/10-01-1999-NA-MRI BRAIN WWO CONT-40517/901.000000-T1 COR POST-09640",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-14-1459/07-01-2000-NA-HeadRoutine-01277/8.000000-T2AXFS post-17643",
-          "t1": "TCGA-14-1459/07-01-2000-NA-HeadRoutine-01277/11.000000-t1cor postFIL-87611",
-          "flair": "TCGA-14-1459/07-01-2000-NA-HeadRoutine-01277/3.000000-t2flair ax-02417",
-          "dti": "TCGA-14-1459/07-01-2000-NA-HeadRoutine-01277/5.000000-ep2ddiff3scan-79809",
-          "t1c": "TCGA-14-1459/07-01-2000-NA-HeadRoutine-01277/10.000000-t1tra postFIL-58013",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1459/07-01-2000-NA-HeadRoutine-01277/8.000000-T2AXFS post-17643",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1459/07-01-2000-NA-HeadRoutine-01277/11.000000-t1cor postFIL-87611",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1459/07-01-2000-NA-HeadRoutine-01277/3.000000-t2flair ax-02417",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1459/07-01-2000-NA-HeadRoutine-01277/5.000000-ep2ddiff3scan-79809",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1459/07-01-2000-NA-HeadRoutine-01277/10.000000-t1tra postFIL-58013",
           "timepoint": "followup"
         }
       ]
@@ -648,19 +624,19 @@
       "patient_dir": "TCGA-14-1821",
       "exams": [
         {
-          "t2": "TCGA-14-1821/05-07-1998-NA-MRI BRAIN WWO CONT-22735/601.000000-T2 GRASE SE-89558",
-          "t1": "TCGA-14-1821/05-07-1998-NA-MRI BRAIN WWO CONT-22735/801.000000-T1 AX PRE C-60572",
-          "flair": "TCGA-14-1821/05-07-1998-NA-MRI BRAIN WWO CONT-22735/501.000000-FLAIR SENSE-63279",
-          "dti": "TCGA-14-1821/05-07-1998-NA-MRI BRAIN WWO CONT-22735/402.000000-SS DWI SEN-43756",
-          "t1c": "TCGA-14-1821/05-07-1998-NA-MRI BRAIN WWO CONT-22735/901.000000-T1 AX POST-23680",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1821/05-07-1998-NA-MRI BRAIN WWO CONT-22735/601.000000-T2 GRASE SE-89558",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1821/05-07-1998-NA-MRI BRAIN WWO CONT-22735/801.000000-T1 AX PRE C-60572",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1821/05-07-1998-NA-MRI BRAIN WWO CONT-22735/501.000000-FLAIR SENSE-63279",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1821/05-07-1998-NA-MRI BRAIN WWO CONT-22735/402.000000-SS DWI SEN-43756",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1821/05-07-1998-NA-MRI BRAIN WWO CONT-22735/901.000000-T1 AX POST-23680",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-14-1821/08-31-1998-NA-MRI BRAIN WWO CONT-44010/801.000000-T2 GRASE SE-13072",
-          "t1": "TCGA-14-1821/08-31-1998-NA-MRI BRAIN WWO CONT-44010/701.000000-T1 AX PRE C-17789",
-          "flair": "TCGA-14-1821/08-31-1998-NA-MRI BRAIN WWO CONT-44010/401.000000-FLAIR SENSE-14109",
-          "dti": "TCGA-14-1821/08-31-1998-NA-MRI BRAIN WWO CONT-44010/601.000000-SS DWI SEN-98114",
-          "t1c": "TCGA-14-1821/08-31-1998-NA-MRI BRAIN WWO CONT-44010/1001.000000-T1 AX POST-79169",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1821/08-31-1998-NA-MRI BRAIN WWO CONT-44010/801.000000-T2 GRASE SE-13072",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1821/08-31-1998-NA-MRI BRAIN WWO CONT-44010/701.000000-T1 AX PRE C-17789",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1821/08-31-1998-NA-MRI BRAIN WWO CONT-44010/401.000000-FLAIR SENSE-14109",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1821/08-31-1998-NA-MRI BRAIN WWO CONT-44010/601.000000-SS DWI SEN-98114",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1821/08-31-1998-NA-MRI BRAIN WWO CONT-44010/1001.000000-T1 AX POST-79169",
           "timepoint": "followup"
         }
       ]
@@ -670,19 +646,19 @@
       "patient_dir": "TCGA-14-1823",
       "exams": [
         {
-          "t2": "TCGA-14-1823/09-10-1999-NA-HeadRoutine-47585/9.000000-T2AXFS post-46490",
-          "t1": "TCGA-14-1823/09-10-1999-NA-HeadRoutine-47585/7.000000-t1tra pre-56249",
-          "flair": "TCGA-14-1823/09-10-1999-NA-HeadRoutine-47585/3.000000-t2flair ax-32344",
-          "dti": "TCGA-14-1823/09-10-1999-NA-HeadRoutine-47585/5.000000-ep2ddiff3scan-14232",
-          "t1c": "TCGA-14-1823/09-10-1999-NA-HeadRoutine-47585/10.000000-T1 sag post-26114",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1823/09-10-1999-NA-HeadRoutine-47585/9.000000-T2AXFS post-46490",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1823/09-10-1999-NA-HeadRoutine-47585/7.000000-t1tra pre-56249",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1823/09-10-1999-NA-HeadRoutine-47585/3.000000-t2flair ax-32344",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1823/09-10-1999-NA-HeadRoutine-47585/5.000000-ep2ddiff3scan-14232",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1823/09-10-1999-NA-HeadRoutine-47585/10.000000-T1 sag post-26114",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-14-1823/05-27-2000-NA-MRI BRAIN WWO CONTRAST-65740/8.000000-Ax FRFSE T2 512 x 512-13193",
-          "t1": "TCGA-14-1823/05-27-2000-NA-MRI BRAIN WWO CONTRAST-65740/7.000000-Ax T1 SE PRE-85674",
-          "flair": "TCGA-14-1823/05-27-2000-NA-MRI BRAIN WWO CONTRAST-65740/4.000000-AX T2FLAIR Prop-37922",
-          "dti": "TCGA-14-1823/05-27-2000-NA-MRI BRAIN WWO CONTRAST-65740/6.000000-AX DWI 1000b-42971",
-          "t1c": "TCGA-14-1823/05-27-2000-NA-MRI BRAIN WWO CONTRAST-65740/11.000000-Cor T1 SE POST-27079",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1823/05-27-2000-NA-MRI BRAIN WWO CONTRAST-65740/8.000000-Ax FRFSE T2 512 x 512-13193",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1823/05-27-2000-NA-MRI BRAIN WWO CONTRAST-65740/7.000000-Ax T1 SE PRE-85674",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1823/05-27-2000-NA-MRI BRAIN WWO CONTRAST-65740/4.000000-AX T2FLAIR Prop-37922",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1823/05-27-2000-NA-MRI BRAIN WWO CONTRAST-65740/6.000000-AX DWI 1000b-42971",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-1823/05-27-2000-NA-MRI BRAIN WWO CONTRAST-65740/11.000000-Cor T1 SE POST-27079",
           "timepoint": "followup"
         }
       ]
@@ -692,20 +668,20 @@
       "patient_dir": "TCGA-14-3477",
       "exams": [
         {
-          "t2": "TCGA-14-3477/05-01-2002-NA-HeadRoutine-00618/10.000000-t2fs ax-27538",
-          "t1": "TCGA-14-3477/05-01-2002-NA-HeadRoutine-00618/2.000000-mri brain t1sag mp rage-01174",
-          "flair": "TCGA-14-3477/05-01-2002-NA-HeadRoutine-00618/7.000000-t2flair ax-54601",
-          "perfusion": "TCGA-14-3477/05-01-2002-NA-HeadRoutine-00618/11.000000-ep2dperf-35607",
-          "dti": "TCGA-14-3477/05-01-2002-NA-HeadRoutine-00618/5.000000-dwi ax-19152",
-          "t1c": "TCGA-14-3477/05-01-2002-NA-HeadRoutine-00618/14.000000-t1cor post-38247",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-3477/05-01-2002-NA-HeadRoutine-00618/10.000000-t2fs ax-27538",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-3477/05-01-2002-NA-HeadRoutine-00618/2.000000-mri brain t1sag mp rage-01174",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-3477/05-01-2002-NA-HeadRoutine-00618/7.000000-t2flair ax-54601",
+          "perfusion": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-3477/05-01-2002-NA-HeadRoutine-00618/11.000000-ep2dperf-35607",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-3477/05-01-2002-NA-HeadRoutine-00618/5.000000-dwi ax-19152",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-3477/05-01-2002-NA-HeadRoutine-00618/14.000000-t1cor post-38247",
           "timepoint": "preop"
         },
         {
-          "t2": "TCGA-14-3477/02-19-2003-NA-HeadRoutine-35322/8.000000-AX T2-79899",
-          "t1": "TCGA-14-3477/02-19-2003-NA-HeadRoutine-35322/6.000000-AX T1 Pre-02445",
-          "flair": "TCGA-14-3477/02-19-2003-NA-HeadRoutine-35322/4.000000-AX FLAIR-93577",
-          "dti": "TCGA-14-3477/02-19-2003-NA-HeadRoutine-35322/2.000000-AX DWI-04565",
-          "t1c": "TCGA-14-3477/02-19-2003-NA-HeadRoutine-35322/9.000000-AX T1 MPRAGE POST-21720",
+          "t2": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-3477/02-19-2003-NA-HeadRoutine-35322/8.000000-AX T2-79899",
+          "t1": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-3477/02-19-2003-NA-HeadRoutine-35322/6.000000-AX T1 Pre-02445",
+          "flair": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-3477/02-19-2003-NA-HeadRoutine-35322/4.000000-AX FLAIR-93577",
+          "dti": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-3477/02-19-2003-NA-HeadRoutine-35322/2.000000-AX DWI-04565",
+          "t1c": "/mnt/Drive2/lucas/datasets/TCGA-GBM/TCGA-14-3477/02-19-2003-NA-HeadRoutine-35322/9.000000-AX T1 MPRAGE POST-21720",
           "timepoint": "followup"
         }
       ]

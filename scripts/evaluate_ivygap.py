@@ -13,14 +13,18 @@ from gbm_bench.utils.constants import PREDICTION_OUTPUT_SCHEMA
 
 if __name__ == "__main__":
     # Example:
-    # python scripts/evaluate_ivygap.py
-    # nohup python -u scripts/evaluate_ivygap.py > tmp_ivygap_eval.out 2>&1 &
+    # python scripts/evaluate_ivygap.py -algorithm sbtc
+    # nohup python -u scripts/evaluate_ivygap.py -algorithm sbtc > ivygap_sbtc.txt 2>&1 &
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-algorithm", type=str, help="Algorithm ID to evaluate.")
+    args = parser.parse_args()
     
     # Read dataset
     ivygap_root = "/mnt/Drive2/lucas/datasets/IVYGAP"
     ivygap = LongitudinalDataset(dataset_id="IVYGAP", root_dir=ivygap_root)
     ivygap.load(IVYGAP_DIR)
 
+    print(f"Evaluating {args.algorithm}")
     all_results = []
 
     for patient_ind, patient in enumerate(ivygap.patients):
@@ -33,7 +37,7 @@ if __name__ == "__main__":
         if len(preop_exams) > 1:
             print(f"Warning: found {len(preop_exams)} preop exams for patient {patiend_ind, patiend}. Using first exam for evaluation.")
 
-        algo_id = "sbtc" # sbtc, gliodil
+        algo_id = args.algorithm
         preop_exam_dir = preop_exams[0]["t1"].parent
         prediction_dir = PREDICTION_OUTPUT_SCHEMA.format(base_dir=preop_exam_dir, algo_id=algo_id)
         
@@ -50,8 +54,8 @@ if __name__ == "__main__":
                 all_results.append(results)
                 print(f"{patient_identifier}: {results}")
             except Exception as e:
-                raise e
-                #print(f"Exception: {e}")
+                #raise e
+                print(f"Exception: {e}")
 
     recurrence_coverage_standard = [r["recurrence_coverage_standard"] for r in all_results]
     recurrence_coverage_standard_all = [r["recurrence_coverage_standard_all"] for r in all_results]

@@ -13,14 +13,18 @@ from gbm_bench.utils.constants import PREDICTION_OUTPUT_SCHEMA
 
 if __name__ == "__main__":
     # Example:
-    # python scripts/evaluate_tcga_lgg.py
-    # nohup python -u scripts/evaluate_tcga_lgg.py > tmp_tcga_lgg_eval.out 2>&1 &
+    # python scripts/evaluate_tcga_lgg.py -algorithm sbtc
+    # nohup python -u scripts/evaluate_tcga_lgg.py -algorithm sbtc > tcga_lgg_sbtc.txt 2>&1 &
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-algorithm", type=str, help="Algorithm ID to evaluate.")
+    args = parser.parse_args()
     
     # Read dataset
     tcga_lgg_root = "/mnt/Drive2/lucas/datasets/TCGA-LGG"
     tcga_lgg = LongitudinalDataset(dataset_id="TCGA_LGG", root_dir=tcga_lgg_root)
     tcga_lgg.load(TCGA_LGG_DIR)
 
+    print(f"Evaluating {args.algorithm}")
     all_results = []
 
     for patient_ind, patient in enumerate(tcga_lgg.patients):
@@ -33,7 +37,7 @@ if __name__ == "__main__":
         if len(preop_exams) > 1:
             print(f"Warning: found {len(preop_exams)} preop exams for patient {patiend_ind, patiend}. Using first exam for evaluation.")
 
-        algo_id = "sbtc" # sbtc, gliodil
+        algo_id = args.algorithm
         preop_exam_dir = preop_exams[0]["t1"].parent
         prediction_dir = PREDICTION_OUTPUT_SCHEMA.format(base_dir=preop_exam_dir, algo_id=algo_id)
         
