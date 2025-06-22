@@ -54,8 +54,8 @@ if __name__ == "__main__":
                 all_results.append(results)
                 print(f"{patient_identifier}: {results}")
             except Exception as e:
-                raise e
-                #print(f"Exception: {e}")
+                #raise e
+                print(f"Exception: {e}")
 
     recurrence_coverage_standard = [r["recurrence_coverage_standard"] for r in all_results]
     recurrence_coverage_standard_all = [r["recurrence_coverage_standard_all"] for r in all_results]

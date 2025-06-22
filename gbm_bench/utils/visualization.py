@@ -1,18 +1,24 @@
 import os
+import json
+import math
 import pickle
 import argparse
 import numpy as np
+import nibabel as nib
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import matplotlib.patches as mpatches
+from loguru import logger
 from pathlib import Path
 from matplotlib import colormaps
 from typing import Dict, List, Union, Tuple
 from mpl_toolkits.axes_grid1 import make_axes_locatable
+from gbm_bench.utils.parsing import LongitudinalDataset
 from gbm_bench.utils.utils import compute_center_of_mass, load_mri_data, load_and_resample_mri_data, merge_pdfs
 from gbm_bench.utils.constants import (
         BRAIN_MASK_SCHEMA,
         LONGITUDINAL_WARP_SCHEMA,
+        METRICS_SCHEMA,
         MODALITY_CONVERTED_SCHEMA,
         MODALITY_STRIPPED_SCHEMA,
         MODEL_PLAN_SCHEMA,
@@ -699,62 +705,184 @@ def plot_difference(img1_file, img2_file, identifier, outfile) -> None:
             )
 
 
-def plot_tumor_volumes(recurrence_exam_paths: List[Path], outfile: Path, bins="auto") -> None:
-    """
-    Plot a histogram of tumor volumes.
-    """
-    if not recurrence_exam_paths:
-        raise ValueError("The 'volumes' sequence is empty.")
+def plot_tumor_sizes(dataset_ids, dataset_dirs, dataset_rootdirs, outfile, recurrence=False):
+    xvals = []
+    tumor_sizes = []
 
-    volumes = []
-    print(f"Got {len(recurrence_exam_paths)} exam paths. Extracting volumes...")
-    for ind, exam_path in enumerate(recurrence_exam_paths):
-        print(f"{ind} / {len(recurrence_exam_paths)}")
-        recurrence_seg_file = TUMORSEG_SCHEMA.format(base_dir=exam_path)
-        if recurrence_seg_file.is_file():
-            recurrence_seg = load_mri_data(TUMORSEG_SCHEMA.format(base_dir=exam_path))
-            recurrence_seg[recurrence_seg==2] = 0  # ingores edema
-            recurrence_seg[recurrence_seg==3] = 1
-            recurrence_seg[recurrence_seg==4] = 0  # ignores cavity
-            volumes.append(np.sum(recurrence_seg))
-        else:
-            print(f"{recurrence_seg_file} does not exist.")
+    ind = 1
+    for d_id, d_d, d_rd in zip(dataset_ids, dataset_dirs, dataset_rootdirs):
+        dataset = LongitudinalDataset(dataset_id=d_id, root_dir=d_rd)
+        dataset.load(d_d)
 
-    fig, ax = plt.subplots()
-    ax.hist(volumes, bins=bins, edgecolor="black")
-    ax.set_title("Distribution of Tumor Volumes")
-    ax.set_xlabel("Volume (mm³)")
-    ax.set_ylabel("Frequency")
-    ax.grid(True, linestyle="--", alpha=0.5)
+        logger.info(f"Processing {d_id}...")
 
-    plt.tight_layout()
-    Path(outfile).parent.mkdir(parents=True, exist_ok=True)
-    plt.savefig(outfile, format="pdf")
-    print(f"Plot saved as {outfile}")
-    plt.close(fig)
+        for patient in dataset.patients:
+            patient_id = patient["patient_id"]
+            preop_exam = dataset.get_patient_exams(patient_id=patient_id, timepoint="preop")[0]  # Find first preop exam
+            followup_exam = dataset.get_patient_exams(patient_id=patient_id, timepoint="followup")[0]
+
+            if "UPENN" in d_id:
+                preop_exam_dir = preop_exam["t1"].parent
+                followup_exam_dir = followup_exam["t1"].parent
+            elif "GLIODIL" in d_id:
+                preop_exam_dir = preop_exam["t1c"].parent / "preop"
+                followup_exam_dir = followup_exam["t1c"].parent / "followup"
+            else:
+                preop_exam_dir = followup_exam["t1c"].parent
+                followup_exam_dir = followup_exam["t1c"].parent
+
+            try:
+                if recurrence:
+                    tumorseg_dir = RECURRENCE_SCHEMA.format(base_dir=followup_exam_dir)
+                else:
+                    tumorseg_dir = TUMORSEG_SCHEMA.format(base_dir=preop_exam_dir)
+                tumorseg = np.rint(nib.load(tumorseg_dir).get_fdata()).astype(np.int32)
+                tumorcore = (tumorseg==3).astype(np.int32)
+                tumor_size = np.sum(tumorcore) / 1000
+
+                xvals.append(ind)
+                tumor_sizes.append(tumor_size)
+            except:
+                print(f"File not found: {tumorseg_dir}")
+                continue
+        ind += 1
+
+    logger.info(f"Generating plot...")
+
+    boxplot_input = [[] for ind in dataset_ids]
+    for d_ind, tsize in zip(xvals, tumor_sizes):
+        boxplot_input[d_ind-1].append(tsize)
+
+    fig, ax = plt.subplots(figsize=(8, 4))
+    ax.boxplot(
+            boxplot_input,
+            positions=list(range(1, len(dataset_ids)+1)),
+            widths=0.6,
+            )
+    ax.scatter(xvals, tumor_sizes, alpha=0.5)
+    ax.set_xticks(range(len(dataset_ids)+1))
+    ax.set_xticklabels([""]+dataset_ids, rotation=45, ha="right")
+    ax.set_xlabel("Dataset")
+    ax.set_ylabel(f"Tumor size [cm^3] ({'recurrence' if recurrence else 'preop'})")
+    fig.tight_layout()
+
+    fig.savefig(outfile)
 
 
-def scatter_plot(xvals: List[float], yvals: List[float], outfile: Path) -> None:
-    """
-    Create a scatter plot of paired numeric values.
-    """
-    if len(xvals) != len(yvals):
-        raise ValueError("xvals and yvals must be the same length.")
-    if len(xvals) == 0:
-        raise ValueError("Input sequences are empty.")
+def plot_com_distances(dataset_ids, dataset_dirs, dataset_rootdirs, outfile):
+    xvals = []
+    com_distances = []
 
-    fig, ax = plt.subplots()
-    ax.scatter(xvals, yvals)
-    ax.set_title("")
-    ax.set_xlabel("X")
-    ax.set_ylabel("Y")
-    ax.grid(True, linestyle="--", alpha=0.5)
+    ind = 1
+    for d_id, d_d, d_rd in zip(dataset_ids, dataset_dirs, dataset_rootdirs):
+        dataset = LongitudinalDataset(dataset_id=d_id, root_dir=d_rd)
+        dataset.load(d_d)
 
-    plt.tight_layout()
-    Path(outfile).parent.mkdir(parents=True, exist_ok=True)
-    plt.savefig(outfile, format="pdf")
-    print(f"Plot saved as {outfile}")
-    plt.close(fig)
+        logger.info(f"Processing {d_id}...")
+
+        for patient in dataset.patients:
+            patient_id = patient["patient_id"]
+            preop_exam = dataset.get_patient_exams(patient_id=patient_id, timepoint="preop")[0]  # Find first preop exam
+            followup_exam = dataset.get_patient_exams(patient_id=patient_id, timepoint="followup")[0]
+
+            if "UPENN" in d_id:
+                preop_exam_dir = preop_exam["t1"].parent
+                followup_exam_dir = followup_exam["t1"].parent
+            elif "GLIODIL" in d_id:
+                preop_exam_dir = preop_exam["t1c"].parent / "preop"
+                followup_exam_dir = followup_exam["t1c"].parent / "followup"
+            else:
+                preop_exam_dir = followup_exam["t1c"].parent
+                followup_exam_dir = followup_exam["t1c"].parent
+
+            try:
+                tumorseg_dir = TUMORSEG_SCHEMA.format(base_dir=preop_exam_dir)
+                recurrence_dir = RECURRENCE_SCHEMA.format(base_dir=followup_exam_dir)
+                
+                tumorseg = np.rint(nib.load(tumorseg_dir).get_fdata()).astype(np.int32)
+                recurrence = np.rint(nib.load(recurrence_dir).get_fdata()).astype(np.int32)
+
+                com_tumor = compute_center_of_mass(tumorseg, tumorseg, classes=[1,2,3])
+                com_recurrence = compute_center_of_mass(recurrence, recurrence, classes=[1,2,3])
+                distance = math.dist(com_tumor, com_recurrence) / 10
+
+                xvals.append(ind)
+                com_distances.append(distance)
+            except Exception as e:
+                raise e
+                #continue
+        ind += 1
+
+    logger.info(f"Generating plot...")
+
+    boxplot_input = [[] for ind in dataset_ids]
+    for d_ind, dist in zip(xvals, com_distances):
+        boxplot_input[d_ind-1].append(dist)
+
+    fig, ax = plt.subplots(figsize=(8, 4))
+    ax.boxplot(
+            boxplot_input,
+            positions=list(range(1, len(dataset_ids)+1)),
+            widths=0.6,
+            )
+    ax.scatter(xvals, com_distances, alpha=0.5)
+    ax.set_xticks(range(len(dataset_ids)+1))
+    ax.set_xticklabels([""]+dataset_ids, rotation=45, ha="right")
+    ax.set_xlabel("Dataset")
+    ax.set_ylabel(f"Distance tum.-rec. [cm]")
+    fig.tight_layout()
+
+    fig.savefig(outfile)
+
+
+def plot_performances(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, outfile):
+    performances_by_dataset = {d_id: [] for d_id in dataset_ids}
+
+    for d_id, d_d, d_rd in zip(dataset_ids, dataset_dirs, dataset_rootdirs):
+        dataset = LongitudinalDataset(dataset_id=d_id, root_dir=d_rd)
+        dataset.load(d_d)
+
+        logger.info(f"Processing {d_id}...")
+
+        for patient in dataset.patients:
+            patient_id = patient["patient_id"]
+            preop_exam = dataset.get_patient_exams(patient_id=patient_id, timepoint="preop")[0]  # Find first preop exam
+            followup_exam = dataset.get_patient_exams(patient_id=patient_id, timepoint="followup")[0]
+
+            if "UPENN" in d_id:
+                preop_exam_dir = preop_exam["t1"].parent
+                followup_exam_dir = followup_exam["t1"].parent
+            elif "GLIODIL" in d_id:
+                preop_exam_dir = preop_exam["t1c"].parent / "preop"
+                followup_exam_dir = followup_exam["t1c"].parent / "followup"
+            else:
+                preop_exam_dir = followup_exam["t1c"].parent
+                followup_exam_dir = followup_exam["t1c"].parent
+
+            try:
+                performance_dir = METRICS_SCHEMA.format(base_dir=followup_exam_dir, algo_id=model_id.lower())
+                performance_dict = json.load(open(performance_dir, "r"))
+                performances_by_dataset[d_id].append((performance_dict["recurrence_coverage_standard"], performance_dict["recurrence_coverage_model"]))
+
+            except Exception as e:
+                raise e
+                #continue
+
+    logger.info(f"Generating plot...")
+
+    fig, axes = plt.subplots(nrows=2, ncols=4, figsize=(16, 8), sharex=True, sharey=True)
+
+    for ax, d_id in zip(axes.flat, dataset_ids):
+        xs, ys = zip(*performances_by_dataset[d_id])
+        ax.scatter(xs, ys, alpha=0.5)
+        ax.plot([0,1], [0,1], linewidth=1)
+        ax.set_title(d_id)
+
+        ax.set_ylabel("Coverage (standard)")
+        ax.set_xlabel(f"Coverage ({model_id})")
+
+    fig.tight_layout()
+    fig.savefig(outfile)
 
 
 if __name__ == "__main__":
@@ -805,9 +933,10 @@ if __name__ == "__main__":
             exam_dir_followup=Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0024/01-29-2014-NA-RM CEREBRO-96283"),
             outfile="tmp_visualization/qualitycontrol.pdf"
             )
-    """
+    
     plot_difference(
             img1_file="/home/home/lucas/jonasplans/standardPlan.nii.gz",
             img2_file="/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0012/0/processed/tumor_segmentation/standard_plan.nii.gz",
             identifier="tgm016",
             outfile="tmp/standard_difference.pdf")
+    """
