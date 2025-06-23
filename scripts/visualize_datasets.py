@@ -46,6 +46,7 @@ if __name__ == "__main__":
             outfile=outfile_rsize,
             recurrence=True
             )
+    """
     
     plot_performances(
             dataset_ids=DATASET_IDS,
@@ -62,3 +63,4 @@ if __name__ == "__main__":
             dataset_rootdirs=ROOT_DIRS,
             outfile=outfile_dist
             )
+    """

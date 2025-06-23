@@ -862,7 +862,7 @@ def plot_performances(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, out
             try:
                 performance_dir = METRICS_SCHEMA.format(base_dir=followup_exam_dir, algo_id=model_id.lower())
                 performance_dict = json.load(open(performance_dir, "r"))
-                performances_by_dataset[d_id].append((performance_dict["recurrence_coverage_standard"], performance_dict["recurrence_coverage_model"]))
+                performances_by_dataset[d_id].append((performance_dict["recurrence_coverage_standard"]*100, performance_dict["recurrence_coverage_model"]*100))
 
             except Exception as e:
                 raise e
@@ -872,14 +872,16 @@ def plot_performances(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, out
 
     fig, axes = plt.subplots(nrows=2, ncols=4, figsize=(16, 8), sharex=True, sharey=True)
 
-    for ax, d_id in zip(axes.flat, dataset_ids):
+    for ind, (ax, d_id) in enumerate(zip(axes.flat, dataset_ids)):
         xs, ys = zip(*performances_by_dataset[d_id])
         ax.scatter(xs, ys, alpha=0.5)
-        ax.plot([0,1], [0,1], linewidth=1)
+        ax.plot([0,100], [0,100], linewidth=1, linestyle="--", color="black")
         ax.set_title(d_id)
 
-        ax.set_ylabel("Coverage (standard)")
-        ax.set_xlabel(f"Coverage ({model_id})")
+        if ind > 3:
+            ax.set_xlabel(f"Recurrence coverage ({model_id}) [%]")
+        if ind==0 or ind==4:
+            ax.set_ylabel("Recurrence coverage (standard) [%]")
 
     fig.tight_layout()
     fig.savefig(outfile)
