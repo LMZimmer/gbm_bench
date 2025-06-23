@@ -142,6 +142,25 @@ def recurrence_coverage(recurrence_segmentation: np.ndarray, target_volume: np.n
     return coverage
 
 
+def generate_distance_fade_mask(binary_model_prediction: np.ndarray) -> np.ndarray:
+    if not np.array_equal(np.unique(binary_model_prediction), [0, 1]):
+        raise ValueError("Input image is not a binary mask (must contain only 0 and 1).")
+
+    data = np.rint(binary_model_prediction).astype(np.int32)
+
+    # Compute distance transform on background
+    distance = distance_transform_edt(data == 0)
+
+    # Normalize distances to [0, 1] and invert: closer to mask = higher value
+    max_dist = np.max(distance)
+    fade = 1 - (distance / max_dist)
+    fade[data == 1] = 1  # Ensure mask stays at 1
+
+    #out_img = nib.Nifti1Image(fade.astype(np.float32), affine=np.eye(4))
+    #nib.save(out_img, "/home/home/lucas/projects/gbm_bench/tmp/fade_mask.nii.gz")
+    return fade.astype(np.float32)
+
+
 def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, model_id: str, ctv_margin: int = 15, csf_mask: bool = False) -> Dict[str, Any]:
     """
     Evaluate a tumor model by computing recurrence coverage for standard and 
@@ -193,6 +212,9 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
     recurrence_segmentation_all[recurrence_segmentation_all == 4] = 0
 
     model_prediction = load_and_resample_mri_data(str(pred_file), resample_params=core_segmentation.shape, interp_type=0)
+    if is_binary_array(model_prediction):
+        logger.info(f"Prediction {str(pred_file)} is binary. Generating distance fade for radiation planning.")
+        model_prediction = generate_distance_fade_mask(model_prediction)
 
     # Create standard plan
     standard_plan = create_standard_plan(core_segmentation, ctv_margin)
@@ -211,6 +233,9 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
     # Save plans
     outfile_standard = STANDARD_PLAN_SCHEMA.format(base_dir=str(preop_dir))
     outfile_model = MODEL_PLAN_SCHEMA.format(base_dir=str(preop_dir), algo_id=model_id)
+
+    outfile_standard.parent.mkdir(parents=True, exist_ok=True)
+    outfile_model.parent.mkdir(parents=True, exist_ok=True)
     
     standard_plan_nifti = nib.Nifti1Image(standard_plan, affine=np.eye(4))
     nib.save(standard_plan_nifti, outfile_standard)
