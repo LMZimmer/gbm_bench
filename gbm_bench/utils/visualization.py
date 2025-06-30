@@ -728,7 +728,7 @@ def plot_tumor_sizes(dataset_ids, dataset_dirs, dataset_rootdirs, outfile, recur
                 preop_exam_dir = preop_exam["t1c"].parent / "preop"
                 followup_exam_dir = followup_exam["t1c"].parent / "followup"
             else:
-                preop_exam_dir = followup_exam["t1c"].parent
+                preop_exam_dir = preop_exam["t1c"].parent
                 followup_exam_dir = followup_exam["t1c"].parent
 
             try:
@@ -792,7 +792,7 @@ def plot_com_distances(dataset_ids, dataset_dirs, dataset_rootdirs, outfile):
                 preop_exam_dir = preop_exam["t1c"].parent / "preop"
                 followup_exam_dir = followup_exam["t1c"].parent / "followup"
             else:
-                preop_exam_dir = followup_exam["t1c"].parent
+                preop_exam_dir = preop_exam["t1c"].parent
                 followup_exam_dir = followup_exam["t1c"].parent
 
             try:
@@ -810,7 +810,6 @@ def plot_com_distances(dataset_ids, dataset_dirs, dataset_rootdirs, outfile):
                 com_distances.append(distance)
             except Exception as e:
                 raise e
-                #continue
         ind += 1
 
     logger.info(f"Generating plot...")
@@ -826,6 +825,7 @@ def plot_com_distances(dataset_ids, dataset_dirs, dataset_rootdirs, outfile):
             widths=0.6,
             )
     ax.scatter(xvals, com_distances, alpha=0.5)
+    ax.axhline(y=1.5, color="0.4", linestyle="--", linewidth=1)
     ax.set_xticks(range(len(dataset_ids)+1))
     ax.set_xticklabels([""]+dataset_ids, rotation=45, ha="right")
     ax.set_xlabel("Dataset")
@@ -856,7 +856,7 @@ def plot_performances(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, out
                 preop_exam_dir = preop_exam["t1c"].parent / "preop"
                 followup_exam_dir = followup_exam["t1c"].parent / "followup"
             else:
-                preop_exam_dir = followup_exam["t1c"].parent
+                preop_exam_dir = preop_exam["t1c"].parent
                 followup_exam_dir = followup_exam["t1c"].parent
 
             try:
@@ -865,8 +865,8 @@ def plot_performances(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, out
                 performances_by_dataset[d_id].append((performance_dict["recurrence_coverage_standard"]*100, performance_dict["recurrence_coverage_model"]*100))
 
             except Exception as e:
-                raise e
-                #continue
+                #raise e
+                print(f"Excpetion for {followup_exam_dir}: {e}")
 
     logger.info(f"Generating plot...")
 

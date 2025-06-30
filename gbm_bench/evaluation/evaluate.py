@@ -143,8 +143,8 @@ def recurrence_coverage(recurrence_segmentation: np.ndarray, target_volume: np.n
 
 
 def generate_distance_fade_mask(binary_model_prediction: np.ndarray) -> np.ndarray:
-    if not np.array_equal(np.unique(binary_model_prediction), [0, 1]):
-        raise ValueError("Input image is not a binary mask (must contain only 0 and 1).")
+    if not is_binary_array(binary_model_prediction):
+        raise ValueError("Model prediction is not binary: {np.unique(binary_model_prediction)}")
 
     data = np.rint(binary_model_prediction).astype(np.int32)
 
@@ -201,7 +201,7 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
 
     recurrence_dir = RECURRENCE_SCHEMA.format(base_dir=str(followup_dir))
     recurrence_segmentation = np.rint(load_mri_data(str(recurrence_dir))).astype(np.int32)
-    recurrence_segmentation[recurrence_segmentation == 1] = 1  # ignore necrosis
+    recurrence_segmentation[recurrence_segmentation == 1] = 0  # ignore necrosis
     recurrence_segmentation[recurrence_segmentation == 2] = 0  # ignore edema
     recurrence_segmentation[recurrence_segmentation == 3] = 1
     recurrence_segmentation[recurrence_segmentation == 4] = 0  # ignore resection cavity 

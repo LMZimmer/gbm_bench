@@ -13,7 +13,14 @@ from gbm_bench.evaluation.evaluate import evaluate_tumor_model
 if __name__ == "__main__":
     # Example:
     # python scripts/evaluate_nnUnet.py -dataset rhuh
-    # nohup python -u scripts/evaluate_nnUnet.py -dataset all > rhuh_nnUnet.txt 2>&1 &
+    # nohup python -u scripts/evaluate_nnUnet.py -dataset rhuh > rhuh_nnUnet.txt 2>&1 &
+    # nohup python -u scripts/evaluate_nnUnet.py -dataset upenn > upenn_nnUnet.txt 2>&1 &
+    # nohup python -u scripts/evaluate_nnUnet.py -dataset lumiere > lumiere_nnUnet.txt 2>&1 &
+    # nohup python -u scripts/evaluate_nnUnet.py -dataset gliodil > gliodil_nnUnet.txt 2>&1 &
+    # nohup python -u scripts/evaluate_nnUnet.py -dataset ivygap > ivygap_nnUnet.txt 2>&1 &
+    # nohup python -u scripts/evaluate_nnUnet.py -dataset cptac > cptac_nnUnet.txt 2>&1 &
+    # nohup python -u scripts/evaluate_nnUnet.py -dataset tcga-gbm > tcga_gbm_nnUnet.txt 2>&1 &
+    # nohup python -u scripts/evaluate_nnUnet.py -dataset tcga-lgg > tcga_lgg_nnUnet.txt 2>&1 &
     parser = argparse.ArgumentParser()
     parser.add_argument("-dataset", type=str, help="Dataset to evaluate. 'all' for all available datasets.")
     args = parser.parse_args()
@@ -58,7 +65,7 @@ if __name__ == "__main__":
         dataset = LongitudinalDataset(dataset_id=d_id, root_dir=d_rootdir)
         dataset.load(d_dir)
 
-        for patient_ind, patient in enumerate(dataset.patients[:1]):
+        for patient_ind, patient in enumerate(dataset.patients):
             patient_id = patient["patient_id"]
             p_id_nnunet = dataset.dataset_id + f"_{patient_ind}"
             preop_exam = dataset.get_patient_exams(patient_id=patient_id, timepoint="preop")[0]  # Find first preop exam
@@ -71,7 +78,7 @@ if __name__ == "__main__":
                 preop_exam_dir = preop_exam["t1c"].parent / "preop"
                 followup_exam_dir = followup_exam["t1c"].parent / "followup"
             else:
-                preop_exam_dir = followup_exam["t1c"].parent
+                preop_exam_dir = preop_exam["t1c"].parent
                 followup_exam_dir = followup_exam["t1c"].parent
 
             pred_file = pred_files_dict[p_id_nnunet]
