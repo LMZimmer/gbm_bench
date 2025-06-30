@@ -11,14 +11,10 @@ from gbm_bench.preprocessing.preprocess import preprocess_nifti, process_longitu
 
 def collect_segm_maps(root_dir):
     root_path = Path(root_dir).expanduser().resolve()
-
-    # Pattern: one level down, file must be called exactly “segm.nii.gz”.
     segm_paths = sorted(
         p for p in root_path.glob("data_*/*")
         if p.name == "segm.nii.gz" and p.is_file()
     )
-
-    # Convert to strings so the result is JSON-serialisable / CLI-friendly.
     return [str(p) for p in segm_paths]
 
 
@@ -37,8 +33,8 @@ if __name__ == "__main__":
     gliodil = LongitudinalDataset(dataset_id="GLIODIL", root_dir=gliodil_root)
     gliodil.load(GLIODIL_DIR)
 
+    # Voxel counts dicom data
     voxel_counts = {}
-    # Individual exams
     for patient_ind, patient in enumerate(gliodil.patients):
         print(f"Processing {patient_ind}/{len(gliodil.patients)}...")
 
@@ -53,10 +49,12 @@ if __name__ == "__main__":
     essential_tumorsegs = collect_segm_maps(essential_root_dir)
     voxel_counts_ess = {}
 
+    # Voxel counts ess data
     for ind, e_tseg in enumerate(essential_tumorsegs):
         print(f"Processing {ind}")
         voxel_counts_ess[e_tseg] = voxel_count(e_tseg)
 
+    # Matching
     matches = {}
     no_matches = []
     for segdir_ess, vcount_ess in voxel_counts_ess.items():
@@ -68,10 +66,32 @@ if __name__ == "__main__":
         if len(candidates)>1:
             print(f"More than one match for {segdir_ess}.")
         elif len(candidates)==1:
-            matches[segdir_ess] = segdir
+            matches[segdir_ess] = candidates[0]
         else:
             no_matches.append(segdir_ess)
             print(f"No candidates found for {segdir_ess}.")
 
     pprint.pprint(matches, width=80, indent=2)
     print(no_matches)
+
+    # Generate cureated version
+    gliodil_new = LongitudinalDataset(dataset_id="GLIODIL", root_dir=gliodil_root)
+    gliodil_new.load(GLIODIL_DIR)
+    n_keep = 0
+    for patient_ind, patient in enumerate(gliodil.patients):
+        patient_id = patient["patient_id"]
+        for exam in patient["exams"]:
+            if exam["timepoint"] != "preop":  # skip postop
+                continue
+            tumorseg_file = str(exam["tumorseg"])
+            if tumorseg_file not in matches.values():
+                print(f"No match for {tumorseg_file}, removing patient {patient_id}")
+            else:
+                print(f"Match found, keeping {patient_id}")
+                n_keep += 1
+                gliodil_new.remove_patient(patient_id)
+
+    # Save
+    outfile = "/home/home/lucas/projects/gbm_bench/gbm_bench/data/datasets/gliodil_subset.json"
+    gliodil_new.save(outfile)
+    print(n_keep)

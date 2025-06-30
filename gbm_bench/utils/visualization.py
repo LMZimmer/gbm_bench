@@ -879,9 +879,9 @@ def plot_performances(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, out
         ax.set_title(d_id)
 
         if ind > 3:
-            ax.set_xlabel(f"Recurrence coverage ({model_id}) [%]")
+            ax.set_xlabel("Recurrence coverage (standard) [%]")
         if ind==0 or ind==4:
-            ax.set_ylabel("Recurrence coverage (standard) [%]")
+            ax.set_ylabel(f"Recurrence coverage ({model_id}) [%]")
 
     fig.tight_layout()
     fig.savefig(outfile)

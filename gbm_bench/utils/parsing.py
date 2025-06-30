@@ -253,6 +253,19 @@ class LongitudinalDataset():
                 return filtered_exams
         return []
 
+    def remove_patient(self, patient_id: str) -> bool:
+        """
+        Remove a patient from the dataset.
+        """
+        for i, patient in enumerate(self.patients):
+            if patient["patient_id"] == patient_id:
+                del self.patients[i]
+                logger.info(f"Removed patient {patient_id} from dataset.")
+                return True
+
+        logger.warning(f"Patient {patient_id} not found in dataset.")
+        return False
+
 
 if __name__=="__main__":
     # Example

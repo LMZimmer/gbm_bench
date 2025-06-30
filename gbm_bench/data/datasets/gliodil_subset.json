@@ -1,0 +1,1462 @@
+{
+  "dataset_id": "GLIODIL",
+  "root_dir": "/mnt/Drive2/lucas/datasets/GLIODIL",
+  "patients": [
+    {
+      "patient_id": "respond_tum_003",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_003",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_003/d0/sub-respond_tum_003_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_003/d0/sub-respond_tum_003_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_003/d0/sub-respond_tum_003_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_003/d0/sub-respond_tum_003_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_003/d285/sub-respond_tum_003_ses-d285_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_003/d285/sub-respond_tum_003_ses-d285_space-sri_t1c.nii.gz",
+          "t2": ".",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_003/d285/sub-respond_tum_003_ses-d285_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_012",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_012",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_012/d0/sub-respond_tum_012_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_012/d0/sub-respond_tum_012_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_012/d0/sub-respond_tum_012_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_012/d0/sub-respond_tum_012_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_012/d320/sub-respond_tum_012_ses-d320_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_012/d320/sub-respond_tum_012_ses-d320_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_012/d320/sub-respond_tum_012_ses-d320_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_012/d320/sub-respond_tum_012_ses-d320_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_013",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_013",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_013/d0/sub-respond_tum_013_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_013/d0/sub-respond_tum_013_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_013/d0/sub-respond_tum_013_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_013/d0/sub-respond_tum_013_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_013/d111/sub-respond_tum_013_ses-d111_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_013/d111/sub-respond_tum_013_ses-d111_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_013/d111/sub-respond_tum_013_ses-d111_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_013/d111/sub-respond_tum_013_ses-d111_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_022",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_022",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_022/d0/sub-respond_tum_022_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_022/d0/sub-respond_tum_022_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_022/d0/sub-respond_tum_022_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_022/d0/sub-respond_tum_022_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_022/d329/sub-respond_tum_022_ses-d329_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_022/d329/sub-respond_tum_022_ses-d329_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_022/d329/sub-respond_tum_022_ses-d329_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_022/d329/sub-respond_tum_022_ses-d329_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_023",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_023",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_023/d0/sub-respond_tum_023_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_023/d0/sub-respond_tum_023_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_023/d0/sub-respond_tum_023_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_023/d0/sub-respond_tum_023_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_023/d98/sub-respond_tum_023_ses-d98_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_023/d98/sub-respond_tum_023_ses-d98_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_023/d98/sub-respond_tum_023_ses-d98_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_023/d98/sub-respond_tum_023_ses-d98_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_025",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_025",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_025/d0/sub-respond_tum_025_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_025/d0/sub-respond_tum_025_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_025/d0/sub-respond_tum_025_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_025/d0/sub-respond_tum_025_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_025/d65/sub-respond_tum_025_ses-d65_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_025/d65/sub-respond_tum_025_ses-d65_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_025/d65/sub-respond_tum_025_ses-d65_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_025/d65/sub-respond_tum_025_ses-d65_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_027",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_027",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_027/d0/sub-respond_tum_027_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_027/d0/sub-respond_tum_027_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_027/d0/sub-respond_tum_027_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_027/d0/sub-respond_tum_027_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_027/d897/sub-respond_tum_027_ses-d897_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_027/d897/sub-respond_tum_027_ses-d897_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_027/d897/sub-respond_tum_027_ses-d897_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_027/d897/sub-respond_tum_027_ses-d897_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_028",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_028",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_028/d0/sub-respond_tum_028_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_028/d0/sub-respond_tum_028_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_028/d0/sub-respond_tum_028_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_028/d0/sub-respond_tum_028_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_028/d140/sub-respond_tum_028_ses-d140_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_028/d140/sub-respond_tum_028_ses-d140_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_028/d140/sub-respond_tum_028_ses-d140_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_028/d140/sub-respond_tum_028_ses-d140_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_029",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_029",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_029/d0/sub-respond_tum_029_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_029/d0/sub-respond_tum_029_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_029/d0/sub-respond_tum_029_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_029/d0/sub-respond_tum_029_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_029/d352/sub-respond_tum_029_ses-d352_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_029/d352/sub-respond_tum_029_ses-d352_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_029/d352/sub-respond_tum_029_ses-d352_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_029/d352/sub-respond_tum_029_ses-d352_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_037",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_037",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_037/d0/sub-respond_tum_037_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_037/d0/sub-respond_tum_037_ses-d0_space-sri_t1c.nii.gz",
+          "t2": ".",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_037/d0/sub-respond_tum_037_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_037/d435/sub-respond_tum_037_ses-d435_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_037/d435/sub-respond_tum_037_ses-d435_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_037/d435/sub-respond_tum_037_ses-d435_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_037/d435/sub-respond_tum_037_ses-d435_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_038",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_038",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_038/d0/sub-respond_tum_038_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_038/d0/sub-respond_tum_038_ses-d0_space-sri_t1c.nii.gz",
+          "t2": ".",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_038/d0/sub-respond_tum_038_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_038/d41/sub-respond_tum_038_ses-d41_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_038/d41/sub-respond_tum_038_ses-d41_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_038/d41/sub-respond_tum_038_ses-d41_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_038/d41/sub-respond_tum_038_ses-d41_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_040",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_040",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_040/d0/sub-respond_tum_040_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_040/d0/sub-respond_tum_040_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_040/d0/sub-respond_tum_040_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_040/d0/sub-respond_tum_040_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_040/d109/sub-respond_tum_040_ses-d109_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_040/d109/sub-respond_tum_040_ses-d109_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_040/d109/sub-respond_tum_040_ses-d109_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_040/d109/sub-respond_tum_040_ses-d109_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_044",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_044",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_044/d0/sub-respond_tum_044_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_044/d0/sub-respond_tum_044_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_044/d0/sub-respond_tum_044_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_044/d0/sub-respond_tum_044_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_044/d58/sub-respond_tum_044_ses-d58_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_044/d58/sub-respond_tum_044_ses-d58_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_044/d58/sub-respond_tum_044_ses-d58_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_044/d58/sub-respond_tum_044_ses-d58_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_048",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_048",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_048/d0/sub-respond_tum_048_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_048/d0/sub-respond_tum_048_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_048/d0/sub-respond_tum_048_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_048/d0/sub-respond_tum_048_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_048/d224/sub-respond_tum_048_ses-d224_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_048/d224/sub-respond_tum_048_ses-d224_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_048/d224/sub-respond_tum_048_ses-d224_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_048/d224/sub-respond_tum_048_ses-d224_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_049",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_049",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_049/d0/sub-respond_tum_049_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_049/d0/sub-respond_tum_049_ses-d0_space-sri_t1c.nii.gz",
+          "t2": ".",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_049/d0/sub-respond_tum_049_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_049/d108/sub-respond_tum_049_ses-d108_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_049/d108/sub-respond_tum_049_ses-d108_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_049/d108/sub-respond_tum_049_ses-d108_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_049/d108/sub-respond_tum_049_ses-d108_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_052",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_052",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_052/d0/sub-respond_tum_052_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_052/d0/sub-respond_tum_052_ses-d0_space-sri_t1c.nii.gz",
+          "t2": ".",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_052/d0/sub-respond_tum_052_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_052/d64/sub-respond_tum_052_ses-d64_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_052/d64/sub-respond_tum_052_ses-d64_space-sri_t1c.nii.gz",
+          "t2": ".",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_052/d64/sub-respond_tum_052_ses-d64_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_059",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_059",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_059/d0/sub-respond_tum_059_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_059/d0/sub-respond_tum_059_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_059/d0/sub-respond_tum_059_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_059/d0/sub-respond_tum_059_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_059/d196/sub-respond_tum_059_ses-d196_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_059/d196/sub-respond_tum_059_ses-d196_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_059/d196/sub-respond_tum_059_ses-d196_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_059/d196/sub-respond_tum_059_ses-d196_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_060",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_060",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_060/d0/sub-respond_tum_060_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_060/d0/sub-respond_tum_060_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_060/d0/sub-respond_tum_060_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_060/d0/sub-respond_tum_060_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_060/d559/sub-respond_tum_060_ses-d559_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_060/d559/sub-respond_tum_060_ses-d559_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_060/d559/sub-respond_tum_060_ses-d559_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_060/d559/sub-respond_tum_060_ses-d559_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_063",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_063",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_063/d0/sub-respond_tum_063_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_063/d0/sub-respond_tum_063_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_063/d0/sub-respond_tum_063_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_063/d0/sub-respond_tum_063_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_063/d206/sub-respond_tum_063_ses-d206_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_063/d206/sub-respond_tum_063_ses-d206_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_063/d206/sub-respond_tum_063_ses-d206_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_063/d206/sub-respond_tum_063_ses-d206_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_064",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_064",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_064/d0/sub-respond_tum_064_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_064/d0/sub-respond_tum_064_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_064/d0/sub-respond_tum_064_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_064/d0/sub-respond_tum_064_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_064/d271/sub-respond_tum_064_ses-d271_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_064/d271/sub-respond_tum_064_ses-d271_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_064/d271/sub-respond_tum_064_ses-d271_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_064/d271/sub-respond_tum_064_ses-d271_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_067",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_067",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_067/d0/sub-respond_tum_067_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_067/d0/sub-respond_tum_067_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_067/d0/sub-respond_tum_067_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_067/d0/sub-respond_tum_067_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_067/d239/sub-respond_tum_067_ses-d239_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_067/d239/sub-respond_tum_067_ses-d239_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_067/d239/sub-respond_tum_067_ses-d239_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_067/d239/sub-respond_tum_067_ses-d239_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_069",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_069",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_069/d0/sub-respond_tum_069_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_069/d0/sub-respond_tum_069_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_069/d0/sub-respond_tum_069_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_069/d0/sub-respond_tum_069_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_069/d109/sub-respond_tum_069_ses-d109_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_069/d109/sub-respond_tum_069_ses-d109_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_069/d109/sub-respond_tum_069_ses-d109_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_069/d109/sub-respond_tum_069_ses-d109_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_071",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_071",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_071/d0/sub-respond_tum_071_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_071/d0/sub-respond_tum_071_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_071/d0/sub-respond_tum_071_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_071/d0/sub-respond_tum_071_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_071/d94/sub-respond_tum_071_ses-d94_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_071/d94/sub-respond_tum_071_ses-d94_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_071/d94/sub-respond_tum_071_ses-d94_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_071/d94/sub-respond_tum_071_ses-d94_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_075",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_075",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_075/d0/sub-respond_tum_075_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_075/d0/sub-respond_tum_075_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_075/d0/sub-respond_tum_075_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_075/d0/sub-respond_tum_075_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_075/d457/sub-respond_tum_075_ses-d457_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_075/d457/sub-respond_tum_075_ses-d457_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_075/d457/sub-respond_tum_075_ses-d457_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_075/d457/sub-respond_tum_075_ses-d457_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_080",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_080",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_080/d0/sub-respond_tum_080_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_080/d0/sub-respond_tum_080_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_080/d0/sub-respond_tum_080_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_080/d0/sub-respond_tum_080_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_080/d229/sub-respond_tum_080_ses-d229_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_080/d229/sub-respond_tum_080_ses-d229_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_080/d229/sub-respond_tum_080_ses-d229_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_080/d229/sub-respond_tum_080_ses-d229_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_084",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_084",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_084/d0/sub-respond_tum_084_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_084/d0/sub-respond_tum_084_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_084/d0/sub-respond_tum_084_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_084/d0/sub-respond_tum_084_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_084/d191/sub-respond_tum_084_ses-d191_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_084/d191/sub-respond_tum_084_ses-d191_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_084/d191/sub-respond_tum_084_ses-d191_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_084/d191/sub-respond_tum_084_ses-d191_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_090",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_090",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_090/d0/sub-respond_tum_090_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_090/d0/sub-respond_tum_090_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_090/d0/sub-respond_tum_090_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_090/d0/sub-respond_tum_090_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_090/d378/sub-respond_tum_090_ses-d378_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_090/d378/sub-respond_tum_090_ses-d378_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_090/d378/sub-respond_tum_090_ses-d378_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_090/d378/sub-respond_tum_090_ses-d378_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_092",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_092",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_092/d0/sub-respond_tum_092_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_092/d0/sub-respond_tum_092_ses-d0_space-sri_t1c.nii.gz",
+          "t2": ".",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_092/d0/sub-respond_tum_092_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_092/d101/sub-respond_tum_092_ses-d101_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_092/d101/sub-respond_tum_092_ses-d101_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_092/d101/sub-respond_tum_092_ses-d101_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_092/d101/sub-respond_tum_092_ses-d101_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_103",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_103",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_103/d0/sub-respond_tum_103_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_103/d0/sub-respond_tum_103_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_103/d0/sub-respond_tum_103_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_103/d0/sub-respond_tum_103_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_103/d67/sub-respond_tum_103_ses-d67_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_103/d67/sub-respond_tum_103_ses-d67_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_103/d67/sub-respond_tum_103_ses-d67_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_103/d67/sub-respond_tum_103_ses-d67_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_104",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_104",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_104/d0/sub-respond_tum_104_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_104/d0/sub-respond_tum_104_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_104/d0/sub-respond_tum_104_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_104/d0/sub-respond_tum_104_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_104/d208/sub-respond_tum_104_ses-d208_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_104/d208/sub-respond_tum_104_ses-d208_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_104/d208/sub-respond_tum_104_ses-d208_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_104/d208/sub-respond_tum_104_ses-d208_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_113",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_113",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_113/d0/sub-respond_tum_113_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_113/d0/sub-respond_tum_113_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_113/d0/sub-respond_tum_113_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_113/d0/sub-respond_tum_113_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_113/d66/sub-respond_tum_113_ses-d66_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_113/d66/sub-respond_tum_113_ses-d66_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_113/d66/sub-respond_tum_113_ses-d66_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_113/d66/sub-respond_tum_113_ses-d66_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_115",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_115",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_115/d0/sub-respond_tum_115_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_115/d0/sub-respond_tum_115_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_115/d0/sub-respond_tum_115_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_115/d0/sub-respond_tum_115_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_115/d300/sub-respond_tum_115_ses-d300_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_115/d300/sub-respond_tum_115_ses-d300_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_115/d300/sub-respond_tum_115_ses-d300_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_115/d300/sub-respond_tum_115_ses-d300_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_124",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_124",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_124/d0/sub-respond_tum_124_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_124/d0/sub-respond_tum_124_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_124/d0/sub-respond_tum_124_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_124/d0/sub-respond_tum_124_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_124/d159/sub-respond_tum_124_ses-d159_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_124/d159/sub-respond_tum_124_ses-d159_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_124/d159/sub-respond_tum_124_ses-d159_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_124/d159/sub-respond_tum_124_ses-d159_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_129",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_129",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_129/d0/sub-respond_tum_129_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_129/d0/sub-respond_tum_129_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_129/d0/sub-respond_tum_129_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_129/d0/sub-respond_tum_129_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_129/d58/sub-respond_tum_129_ses-d58_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_129/d58/sub-respond_tum_129_ses-d58_space-sri_t1c.nii.gz",
+          "t2": ".",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_129/d58/sub-respond_tum_129_ses-d58_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_132",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_132",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_132/d0/sub-respond_tum_132_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_132/d0/sub-respond_tum_132_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_132/d0/sub-respond_tum_132_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_132/d0/sub-respond_tum_132_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_132/d324/sub-respond_tum_132_ses-d324_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_132/d324/sub-respond_tum_132_ses-d324_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_132/d324/sub-respond_tum_132_ses-d324_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_132/d324/sub-respond_tum_132_ses-d324_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_134",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_134",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_134/d0/sub-respond_tum_134_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_134/d0/sub-respond_tum_134_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_134/d0/sub-respond_tum_134_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_134/d0/sub-respond_tum_134_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_134/d107/sub-respond_tum_134_ses-d107_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_134/d107/sub-respond_tum_134_ses-d107_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_134/d107/sub-respond_tum_134_ses-d107_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_134/d107/sub-respond_tum_134_ses-d107_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_135",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_135",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_135/d0/sub-respond_tum_135_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_135/d0/sub-respond_tum_135_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_135/d0/sub-respond_tum_135_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_135/d0/sub-respond_tum_135_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_135/d53/sub-respond_tum_135_ses-d53_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_135/d53/sub-respond_tum_135_ses-d53_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_135/d53/sub-respond_tum_135_ses-d53_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_135/d53/sub-respond_tum_135_ses-d53_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_137",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_137",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_137/d0/sub-respond_tum_137_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_137/d0/sub-respond_tum_137_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_137/d0/sub-respond_tum_137_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_137/d0/sub-respond_tum_137_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_137/d261/sub-respond_tum_137_ses-d261_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_137/d261/sub-respond_tum_137_ses-d261_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_137/d261/sub-respond_tum_137_ses-d261_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_137/d261/sub-respond_tum_137_ses-d261_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_142",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_142",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_142/d0/sub-respond_tum_142_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_142/d0/sub-respond_tum_142_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_142/d0/sub-respond_tum_142_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_142/d0/sub-respond_tum_142_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_142/d162/sub-respond_tum_142_ses-d162_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_142/d162/sub-respond_tum_142_ses-d162_space-sri_t1c.nii.gz",
+          "t2": ".",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_142/d162/sub-respond_tum_142_ses-d162_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_143",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_143",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_143/d0/sub-respond_tum_143_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_143/d0/sub-respond_tum_143_ses-d0_space-sri_t1c.nii.gz",
+          "t2": ".",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_143/d0/sub-respond_tum_143_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_143/d165/sub-respond_tum_143_ses-d165_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_143/d165/sub-respond_tum_143_ses-d165_space-sri_t1c.nii.gz",
+          "t2": ".",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_143/d165/sub-respond_tum_143_ses-d165_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_144",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_144",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_144/d0/sub-respond_tum_144_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_144/d0/sub-respond_tum_144_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_144/d0/sub-respond_tum_144_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_144/d0/sub-respond_tum_144_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_144/d101/sub-respond_tum_144_ses-d101_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_144/d101/sub-respond_tum_144_ses-d101_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_144/d101/sub-respond_tum_144_ses-d101_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_144/d101/sub-respond_tum_144_ses-d101_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_147",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_147",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_147/d0/sub-respond_tum_147_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_147/d0/sub-respond_tum_147_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_147/d0/sub-respond_tum_147_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_147/d0/sub-respond_tum_147_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_147/d130/sub-respond_tum_147_ses-d130_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_147/d130/sub-respond_tum_147_ses-d130_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_147/d130/sub-respond_tum_147_ses-d130_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_147/d130/sub-respond_tum_147_ses-d130_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_148",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_148",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_148/d0/sub-respond_tum_148_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_148/d0/sub-respond_tum_148_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_148/d0/sub-respond_tum_148_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_148/d0/sub-respond_tum_148_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_148/d223/sub-respond_tum_148_ses-d223_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_148/d223/sub-respond_tum_148_ses-d223_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_148/d223/sub-respond_tum_148_ses-d223_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_148/d223/sub-respond_tum_148_ses-d223_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_149",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_149",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_149/d0/sub-respond_tum_149_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_149/d0/sub-respond_tum_149_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_149/d0/sub-respond_tum_149_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_149/d0/sub-respond_tum_149_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_149/d34/sub-respond_tum_149_ses-d34_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_149/d34/sub-respond_tum_149_ses-d34_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_149/d34/sub-respond_tum_149_ses-d34_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_149/d34/sub-respond_tum_149_ses-d34_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_151",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_151",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_151/d0/sub-respond_tum_151_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_151/d0/sub-respond_tum_151_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_151/d0/sub-respond_tum_151_ses-d0_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_151/d0/sub-respond_tum_151_ses-d0_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_151/d100/sub-respond_tum_151_ses-d100_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_151/d100/sub-respond_tum_151_ses-d100_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_151/d100/sub-respond_tum_151_ses-d100_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_151/d100/sub-respond_tum_151_ses-d100_space-sri_flair.nii.gz",
+          "pet": null,
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm002",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm002",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm002/preop/sub-tgm002_ses-preop_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm002/preop/sub-tgm002_ses-preop_space-sri_t1c.nii.gz",
+          "t2": ".",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm002/preop/sub-tgm002_ses-preop_space-sri_flair.nii.gz",
+          "pet": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm002/preop/sub-tgm002_ses-preop_space-sri_fet.nii.gz",
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": ".",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm002/preop/sub-tgm002_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t2": ".",
+          "flair": ".",
+          "pet": ".",
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm008",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm008",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm008/preop/sub-tgm008_ses-preop_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm008/preop/sub-tgm008_ses-preop_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm008/preop/sub-tgm008_ses-preop_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm008/preop/sub-tgm008_ses-preop_space-sri_flair.nii.gz",
+          "pet": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm008/preop/sub-tgm008_ses-preop_space-sri_fet.nii.gz",
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": ".",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm008/preop/sub-tgm008_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t2": ".",
+          "flair": ".",
+          "pet": ".",
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm015",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm015",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm015/preop/sub-tgm015_ses-preop_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm015/preop/sub-tgm015_ses-preop_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm015/preop/sub-tgm015_ses-preop_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm015/preop/sub-tgm015_ses-preop_space-sri_flair.nii.gz",
+          "pet": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm015/preop/sub-tgm015_ses-preop_space-sri_fet.nii.gz",
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": ".",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm015/preop/sub-tgm015_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t2": ".",
+          "flair": ".",
+          "pet": ".",
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm017",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm017",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm017/preop/sub-tgm017_ses-preop_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm017/preop/sub-tgm017_ses-preop_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm017/preop/sub-tgm017_ses-preop_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm017/preop/sub-tgm017_ses-preop_space-sri_flair.nii.gz",
+          "pet": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm017/preop/sub-tgm017_ses-preop_space-sri_fet.nii.gz",
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": ".",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm017/preop/sub-tgm017_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t2": ".",
+          "flair": ".",
+          "pet": ".",
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm019",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm019",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm019/preop/sub-tgm019_ses-preop_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm019/preop/sub-tgm019_ses-preop_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm019/preop/sub-tgm019_ses-preop_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm019/preop/sub-tgm019_ses-preop_space-sri_flair.nii.gz",
+          "pet": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm019/preop/sub-tgm019_ses-preop_space-sri_fet.nii.gz",
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": ".",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm019/preop/sub-tgm019_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t2": ".",
+          "flair": ".",
+          "pet": ".",
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm021",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm021",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm021/preop/sub-tgm021_ses-preop_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm021/preop/sub-tgm021_ses-preop_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm021/preop/sub-tgm021_ses-preop_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm021/preop/sub-tgm021_ses-preop_space-sri_flair.nii.gz",
+          "pet": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm021/preop/sub-tgm021_ses-preop_space-sri_fet.nii.gz",
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": ".",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm021/preop/sub-tgm021_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t2": ".",
+          "flair": ".",
+          "pet": ".",
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm022",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm022",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm022/preop/sub-tgm022_ses-preop_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm022/preop/sub-tgm022_ses-preop_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm022/preop/sub-tgm022_ses-preop_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm022/preop/sub-tgm022_ses-preop_space-sri_flair.nii.gz",
+          "pet": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm022/preop/sub-tgm022_ses-preop_space-sri_fet.nii.gz",
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": ".",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm022/preop/sub-tgm022_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t2": ".",
+          "flair": ".",
+          "pet": ".",
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm046",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm046",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm046/preop/sub-tgm046_ses-preop_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm046/preop/sub-tgm046_ses-preop_space-sri_t1c.nii.gz",
+          "t2": ".",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm046/preop/sub-tgm046_ses-preop_space-sri_flair.nii.gz",
+          "pet": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm046/preop/sub-tgm046_ses-preop_space-sri_fet.nii.gz",
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": ".",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm046/preop/sub-tgm046_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t2": ".",
+          "flair": ".",
+          "pet": ".",
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm051",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm051",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm051/preop/sub-tgm051_ses-preop_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm051/preop/sub-tgm051_ses-preop_space-sri_t1c.nii.gz",
+          "t2": ".",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm051/preop/sub-tgm051_ses-preop_space-sri_flair.nii.gz",
+          "pet": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm051/preop/sub-tgm051_ses-preop_space-sri_fet.nii.gz",
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": ".",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm051/preop/sub-tgm051_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t2": ".",
+          "flair": ".",
+          "pet": ".",
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm058",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm058",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm058/preop/sub-tgm058_ses-preop_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm058/preop/sub-tgm058_ses-preop_space-sri_t1c.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm058/preop/sub-tgm058_ses-preop_space-sri_t2.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm058/preop/sub-tgm058_ses-preop_space-sri_flair.nii.gz",
+          "pet": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm058/preop/sub-tgm058_ses-preop_space-sri_fet.nii.gz",
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": ".",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm058/preop/sub-tgm058_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t2": ".",
+          "flair": ".",
+          "pet": ".",
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "tgm067",
+      "patient_dir": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm067",
+      "exams": [
+        {
+          "t1": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm067/preop/sub-tgm067_ses-preop_space-sri_t1.nii.gz",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm067/preop/sub-tgm067_ses-preop_space-sri_t1c.nii.gz",
+          "t2": ".",
+          "flair": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm067/preop/sub-tgm067_ses-preop_space-sri_flair.nii.gz",
+          "pet": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm067/preop/sub-tgm067_ses-preop_space-sri_fet.nii.gz",
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "preop"
+        },
+        {
+          "t1": ".",
+          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/tgm067/preop/sub-tgm067_ses-preop_space-sri_t1c-rec.nii.gz",
+          "t2": ".",
+          "flair": ".",
+          "pet": ".",
+          "diffusion": null,
+          "perfusion": null,
+          "timepoint": "followup"
+        }
+      ]
+    }
+  ]
+}

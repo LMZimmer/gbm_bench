@@ -13,12 +13,10 @@ from gbm_bench.utils.visualization import plot_tumor_sizes, plot_performances, p
 
 if __name__ == "__main__":
     # Example:
-    # python scripts/evaluate_datasets.py -algorithm sbtc > full_sbtc.txt
-    # python scripts/evaluate_datasets.py -algorithm gliodil > full_gliodil.txt
-    # python scripts/evaluate_datasets.py -algorithm lmi > full_lmi.txt
-    # python scripts/evaluate_datasets.py -algorithm nnUnet > full_nnunet.txt
+    # python scripts/identify_outliers.py -algorithm sbtc -dataset rhuh
     parser = argparse.ArgumentParser()
     parser.add_argument("-algorithm", type=str, help="Algorithm ID to evaluate.")
+    parser.add_argument("-dataset", type=str)
     args = parser.parse_args()
 
     DATASET_IDS = ["RHUH", "UPENN", "LUMIERE", "GLIODIL", "IVYGAP", "CPTAC", "TCGA-GBM", "TCGA-LGG"]
@@ -35,10 +33,13 @@ if __name__ == "__main__":
             ]
 
     print(f"Evaluating {args.algorithm}")
-    all_results = []
+    differences = []
 
     for d_id, d_dir, d_rootdir in zip(DATASET_IDS, DATASET_DIRS, ROOT_DIRS):
         print(f"Evaluating {d_id}...")
+
+        if d_id != args.dataset.upper():
+            continue
 
         dataset = LongitudinalDataset(dataset_id=d_id, root_dir=d_rootdir)
         dataset.load(d_dir)
@@ -61,18 +62,19 @@ if __name__ == "__main__":
             try:
                 performance_dir = METRICS_SCHEMA.format(base_dir=followup_exam_dir, algo_id=args.algorithm)
                 performance_dict = json.load(open(performance_dir, "r"))
-                all_results.append(performance_dict)
+                
+                cov_standard = performance_dict["recurrence_coverage_standard"]
+                cov_model = performance_dict["recurrence_coverage_model"]
+                difference = cov_standard - cov_model
+                
+                differences.append((
+                    patient_id,
+                    cov_standard,
+                    cov_model,
+                    difference
+                    ))
             except Exception as e:
                 print(f"Exception for {patient_id}: {e}")
 
-    recurrence_coverage_standard = [r["recurrence_coverage_standard"] for r in all_results]
-    recurrence_coverage_standard_all = [r["recurrence_coverage_standard_all"] for r in all_results]
-    recurrence_coverage_model = [r["recurrence_coverage_model"] for r in all_results]
-    recurrence_coverage_model_all = [r["recurrence_coverage_model_all"] for r in all_results]
-
-    print(f"Finished evaluation.")
-    print(f"Standard plan coverge: {100*np.mean(recurrence_coverage_standard):.2f} \u00B1 {100*stats.sem(recurrence_coverage_standard):.2f}")
-    print(f"Standard plan coverge (all): {100*np.mean(recurrence_coverage_standard_all):.2f} \u00B1 {100*stats.sem(recurrence_coverage_standard_all):.2f}")
-    print(f"Model plan coverge: {100*np.mean(recurrence_coverage_model):.2f} \u00B1 {100*stats.sem(recurrence_coverage_model):.2f}")
-    print(f"Model plan coverge (all): {100*np.mean(recurrence_coverage_model_all):.2f} \u00B1 {100*stats.sem(recurrence_coverage_model_all):.2f}")
-
+    differences.sort(key=lambda x: x[3], reverse=True)
+    print(differences)
