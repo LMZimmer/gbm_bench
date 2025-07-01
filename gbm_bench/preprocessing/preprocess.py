@@ -78,7 +78,8 @@ def preprocess_dicom(t1_dir: Path, t1c_dir: Path, t2_dir: Path, flair_dir: Path,
 
 
 def preprocess_nifti(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file: Path, pre_treatment: bool, outdir: Path,
-                     is_coregistered: bool, is_skull_stripped: bool, tumorseg_file: Optional[Path] = None, cuda_device: str = "0") -> None:
+                     is_coregistered: bool, is_skull_stripped: bool, tumorseg_file: Optional[Path] = None,
+                     cuda_device: str = "0", registration_mask_file: str = None) -> None:
     """
     Performs a multitude of precessing steps to prepare nifti inputs for tumor growth models. Allows passing
     available intermediate results like tumor segmentation or already skull stripped images. Starts by
@@ -131,13 +132,14 @@ def preprocess_nifti(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file: P
             perform_coregistration=not is_coregistered,
             perform_skull_stripping=not is_skull_stripped,
             perform_tumorseg=False if tumorseg_file is not None else True,
-            perform_tissueseg=pre_treatment
+            perform_tissueseg=pre_treatment,
+            registration_mask_file=registration_mask_file
             )
 
 
-def preprocess_exam(outdir: Path, pre_treatment: bool, mask_tissueseg: bool = False, perform_coregistration: bool = True, 
+def preprocess_exam(outdir: Path, pre_treatment: bool, perform_coregistration: bool = True, 
                     perform_skull_stripping: bool = True, perform_tumorseg: bool = True, perform_tissueseg: bool = True,
-                    cuda_device: str = "0") -> None:
+                    cuda_device: str = "0", registration_mask_file: str = None) -> None:
     """
     This function is called by preprocess_nifti and preprocess_dicom and is not meant for end users. It assumes a fixed
     directory structure that is built by the aforementioned functions. It then performs normalization, co-registration,
@@ -186,14 +188,14 @@ def preprocess_exam(outdir: Path, pre_treatment: bool, mask_tissueseg: bool = Fa
                 )
 
     # Step 3: Segment tissue
-    registration_mask_file = REGISTRATION_MASK_SCHEMA.format(base_dir=outdir)
+    healthy_brain_mask_file = REGISTRATION_MASK_SCHEMA.format(base_dir=outdir)
     generate_registration_mask(
             tumor_seg_file=TUMORSEG_SCHEMA.format(base_dir=outdir),
-            outfile=registration_mask_file
+            outfile=healthy_brain_mask_file
             )
 
     tissueseg_kwargs = {}
-    if mask_tissueseg:
+    if registration_mask_file is not None:
         tissueseg_kwargs["registration_mask_file"] = registration_mask_file
 
     if perform_tissueseg:

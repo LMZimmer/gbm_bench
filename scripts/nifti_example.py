@@ -22,6 +22,7 @@ if __name__ == "__main__":
     t2_file = test_data_basedir / "t2.nii.gz"
     flair_file = test_data_basedir / "flair.nii.gz"
     tumorseg_file = test_data_basedir / "tumoresg.nii.gz"
+    registration_mask_file = test_data_basedir / "registration_mask.nii.gz"
     outdir = Path("./tmp_testdata")  # This is where all output is stored, I usually set it to the exam directory
 
     model_id = "sbtc"  # spatial brain tumor estimation
@@ -37,7 +38,8 @@ if __name__ == "__main__":
             is_coregistered=True,
             is_skull_stripped=True,
             tumorseg_file=Path("test_data/nifti/tumorseg.nii.gz"),
-            cuda_device=args.cuda_device
+            cuda_device=args.cuda_device,
+            registration_mask_file=registration_mask_file
             )
 
     # Growth Model Inference
