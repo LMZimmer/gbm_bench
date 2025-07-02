@@ -21,8 +21,8 @@ if __name__ == "__main__":
     parser.add_argument("-algorithm", type=str, help="Algorithm ID to evaluate.")
     args = parser.parse_args()
 
-    DATASET_IDS = ["RHUH", "UPENN", "LUMIERE", "GLIODIL", "IVYGAP", "CPTAC", "TCGA-GBM", "TCGA-LGG"]
-    DATASET_DIRS = [RHUH_GBM_DIR, UPENN_GBM_DIR, LUMIERE_DIR, GLIODIL_DIR, IVYGAP_DIR, CPTAC_DIR, TCGA_GBM_DIR, TCGA_LGG_DIR]
+    DATASET_IDS = ["RHUH", "UPENN", "LUMIERE", "GLIODIL", "IVYGAP", "CPTAC", "TCGA-GBM"] #"TCGA-LGG"]
+    DATASET_DIRS = [RHUH_GBM_DIR, UPENN_GBM_DIR, LUMIERE_DIR, GLIODIL_DIR, IVYGAP_DIR, CPTAC_DIR, TCGA_GBM_DIR] #TCGA_LGG_DIR]
     ROOT_DIRS = [
             "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM",
             "/home/home/lucas/data/UPENN-GBM/UPENN-GBM",
@@ -31,7 +31,7 @@ if __name__ == "__main__":
             "/mnt/Drive2/lucas/datasets/IVYGAP",
             "/mnt/Drive2/lucas/datasets/CPTAC-GBM",
             "/mnt/Drive2/lucas/datasets/TCGA-GBM",
-            "/mnt/Drive2/lucas/datasets/TCGA-LGG"
+            #"/mnt/Drive2/lucas/datasets/TCGA-LGG"
             ]
 
     print(f"Evaluating {args.algorithm}")
@@ -43,6 +43,7 @@ if __name__ == "__main__":
         dataset = LongitudinalDataset(dataset_id=d_id, root_dir=d_rootdir)
         dataset.load(d_dir)
 
+        dataset_results = []
         for patient_ind, patient in enumerate(dataset.patients):
             patient_id = patient["patient_id"]
             preop_exam = dataset.get_patient_exams(patient_id=patient_id, timepoint="preop")[0]  # Find first preop exam
@@ -62,8 +63,14 @@ if __name__ == "__main__":
                 performance_dir = METRICS_SCHEMA.format(base_dir=followup_exam_dir, algo_id=args.algorithm)
                 performance_dict = json.load(open(performance_dir, "r"))
                 all_results.append(performance_dict)
+                dataset_results.append(performance_dict)
             except Exception as e:
                 print(f"Exception for {patient_id}: {e}")
+        cov_std = [r["recurrence_coverage_standard"] for r in dataset_results]
+        cov_std_all = [r["recurrence_coverage_standard_all"] for r in dataset_results]
+        cov_mod = [r["recurrence_coverage_model"] for r in dataset_results]
+        cov_mod_all = [r["recurrence_coverage_model_all"] for r in dataset_results]
+        print(f"{d_id}: {stats.wilcoxon(cov_std, cov_mod, alternative='less')} / {stats.wilcoxon(cov_std_all, cov_mod_all, alternative='less')}")
 
     recurrence_coverage_standard = [r["recurrence_coverage_standard"] for r in all_results]
     recurrence_coverage_standard_all = [r["recurrence_coverage_standard_all"] for r in all_results]
@@ -75,4 +82,4 @@ if __name__ == "__main__":
     print(f"Standard plan coverge (all): {100*np.mean(recurrence_coverage_standard_all):.2f} \u00B1 {100*stats.sem(recurrence_coverage_standard_all):.2f}")
     print(f"Model plan coverge: {100*np.mean(recurrence_coverage_model):.2f} \u00B1 {100*stats.sem(recurrence_coverage_model):.2f}")
     print(f"Model plan coverge (all): {100*np.mean(recurrence_coverage_model_all):.2f} \u00B1 {100*stats.sem(recurrence_coverage_model_all):.2f}")
-
+    print(f"Combined: {stats.wilcoxon(recurrence_coverage_standard, recurrence_coverage_model, alternative='less')} / {stats.wilcoxon(recurrence_coverage_standard_all, recurrence_coverage_model_all, alternative='less')}")

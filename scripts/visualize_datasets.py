@@ -25,7 +25,7 @@ if __name__ == "__main__":
             "/mnt/Drive2/lucas/datasets/TCGA-LGG"
             ]
 
-    model_id = "lmi"
+    model_id = "gliodil"
     outfile_tsize = "/home/home/lucas/projects/gbm_bench/tmp/tumor_sizes.pdf"
     outfile_rsize = "/home/home/lucas/projects/gbm_bench/tmp/recurrence_sizes.pdf"
     outfile_perf = f"/home/home/lucas/projects/gbm_bench/tmp/performances_{model_id}.pdf"
@@ -46,17 +46,7 @@ if __name__ == "__main__":
             outfile=outfile_rsize,
             recurrence=True
             )
-    """
     
-    plot_performances(
-            dataset_ids=DATASET_IDS,
-            dataset_dirs=DATASET_DIRS,
-            dataset_rootdirs=ROOT_DIRS,
-            model_id=model_id,
-            outfile=outfile_perf
-            )
-
-    """
     plot_com_distances(
             dataset_ids=DATASET_IDS,
             dataset_dirs=DATASET_DIRS,
@@ -64,3 +54,11 @@ if __name__ == "__main__":
             outfile=outfile_dist
             )
     """
+
+    plot_performances(
+            dataset_ids=DATASET_IDS,
+            dataset_dirs=DATASET_DIRS,
+            dataset_rootdirs=ROOT_DIRS,
+            model_id=model_id,
+            outfile=outfile_perf
+            )

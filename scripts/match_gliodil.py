@@ -86,10 +86,10 @@ if __name__ == "__main__":
             tumorseg_file = str(exam["tumorseg"])
             if tumorseg_file not in matches.values():
                 print(f"No match for {tumorseg_file}, removing patient {patient_id}")
+                gliodil_new.remove_patient(patient_id)
             else:
                 print(f"Match found, keeping {patient_id}")
                 n_keep += 1
-                gliodil_new.remove_patient(patient_id)
 
     # Save
     outfile = "/home/home/lucas/projects/gbm_bench/gbm_bench/data/datasets/gliodil_subset.json"
