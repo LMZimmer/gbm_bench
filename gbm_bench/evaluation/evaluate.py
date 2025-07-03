@@ -142,6 +142,18 @@ def recurrence_coverage(recurrence_segmentation: np.ndarray, target_volume: np.n
     return coverage
 
 
+def missed_voxels(recurrence_segmentation: np.ndarray, target_volume: np.ndarray) -> int:
+    if not is_binary_array(recurrence_segmentation):
+        raise ValueError(f"recurrence_segmentation values have to be in (True, False, 0, 1, 0.0, 1.0).")
+    if not is_binary_array(target_volume):
+        raise ValueError(f"target_volume values have to be in (True, False, 0, 1, 0.0, 1.0).")
+    if recurrence_segmentation.shape != target_volume.shape:
+        raise ValueError(f"Dimension mismatch between recurrence_segmentation and target_volume.")
+
+    missed = np.logical_and(target_volume, np.logical_not(recurrence_segmentation))
+    return int(np.sum(missed))
+
+
 def generate_distance_fade_mask(binary_model_prediction: np.ndarray) -> np.ndarray:
     if not is_binary_array(binary_model_prediction):
         raise ValueError("Model prediction is not binary: {np.unique(binary_model_prediction)}")
@@ -249,6 +261,11 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
     results["recurrence_coverage_model"] = model_recurrence_coverage
     results["recurrence_coverage_model_all"] = model_recurrence_coverage_all
     
+    results["missed_voxels_standard"] = missed_voxels(recurrence_segmentation, standard_plan)
+    results["missed_voxels_standard_all"] = missed_voxels(recurrence_segmentation_all, standard_plan)
+    results["missed_voxels_model"] = missed_voxels(recurrence_segmentation, model_plan)
+    results["missed_voxels_model_all"] = missed_voxels(recurrence_segmentation_all, model_plan)
+
     # Save results
     save_file = METRICS_SCHEMA.format(base_dir=followup_dir, algo_id=model_id)
     with open(save_file, 'w', encoding="utf-8") as f:
