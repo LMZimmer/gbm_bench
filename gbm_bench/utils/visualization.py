@@ -2,6 +2,7 @@ import os
 import json
 import math
 import pickle
+import random
 import argparse
 import numpy as np
 import nibabel as nib
@@ -12,6 +13,7 @@ from loguru import logger
 from pathlib import Path
 from matplotlib import colormaps
 from typing import Dict, List, Union, Tuple
+from matplotlib.gridspec import GridSpec
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 from gbm_bench.utils.parsing import LongitudinalDataset
 from gbm_bench.utils.utils import compute_center_of_mass, load_mri_data, load_and_resample_mri_data, merge_pdfs
@@ -708,6 +710,7 @@ def plot_difference(img1_file, img2_file, identifier, outfile) -> None:
 def plot_tumor_sizes(dataset_ids, dataset_dirs, dataset_rootdirs, outfile, recurrence=False):
     xvals = []
     tumor_sizes = []
+    jitter = 0.2
 
     ind = 1
     for d_id, d_d, d_rd in zip(dataset_ids, dataset_dirs, dataset_rootdirs):
@@ -737,7 +740,7 @@ def plot_tumor_sizes(dataset_ids, dataset_dirs, dataset_rootdirs, outfile, recur
                 else:
                     tumorseg_dir = TUMORSEG_SCHEMA.format(base_dir=preop_exam_dir)
                 tumorseg = np.rint(nib.load(tumorseg_dir).get_fdata()).astype(np.int32)
-                tumorcore = (tumorseg==3).astype(np.int32)
+                tumorcore = ((tumorseg==1) | (tumorseg==3)).astype(np.int32)
                 tumor_size = np.sum(tumorcore) / 1000
 
                 xvals.append(ind)
@@ -749,6 +752,13 @@ def plot_tumor_sizes(dataset_ids, dataset_dirs, dataset_rootdirs, outfile, recur
 
     logger.info(f"Generating plot...")
 
+    dataset_ids.append("COMBINED")
+    tumor_sizes_new = tumor_sizes.copy()
+    for ts in tumor_sizes:
+        tumor_sizes_new.append(ts)
+        xvals.append(len(dataset_ids))
+    tumor_sizes = tumor_sizes_new
+
     boxplot_input = [[] for ind in dataset_ids]
     for d_ind, tsize in zip(xvals, tumor_sizes):
         boxplot_input[d_ind-1].append(tsize)
@@ -758,12 +768,16 @@ def plot_tumor_sizes(dataset_ids, dataset_dirs, dataset_rootdirs, outfile, recur
             boxplot_input,
             positions=list(range(1, len(dataset_ids)+1)),
             widths=0.6,
+            showfliers=False,
+            showmeans=False,
+            sym="",
+            medianprops={"color": (1, 127/255, 0, 1)}
             )
-    ax.scatter(xvals, tumor_sizes, alpha=0.5)
+    xvals_scatter = [xv+random.uniform(-1*jitter, jitter) for xv in xvals]
+    ax.scatter(xvals_scatter, tumor_sizes, alpha=0.5, s=50, edgecolors="none", linewidths=0)
     ax.set_xticks(range(len(dataset_ids)+1))
-    ax.set_xticklabels([""]+dataset_ids, rotation=45, ha="right")
-    ax.set_xlabel("Dataset")
-    ax.set_ylabel(f"Tumor size [cm^3] ({'recurrence' if recurrence else 'preop'})")
+    ax.set_xticklabels([""]+dataset_ids, rotation=25, ha="right")
+    ax.set_ylabel(f"Tumor size [cm$^{{3}}$] ({'recurrence' if recurrence else 'preop'})")
     fig.tight_layout()
 
     fig.savefig(outfile)
@@ -772,6 +786,7 @@ def plot_tumor_sizes(dataset_ids, dataset_dirs, dataset_rootdirs, outfile, recur
 def plot_com_distances(dataset_ids, dataset_dirs, dataset_rootdirs, outfile):
     xvals = []
     com_distances = []
+    jitter = 0.2
 
     ind = 1
     for d_id, d_d, d_rd in zip(dataset_ids, dataset_dirs, dataset_rootdirs):
@@ -814,6 +829,13 @@ def plot_com_distances(dataset_ids, dataset_dirs, dataset_rootdirs, outfile):
 
     logger.info(f"Generating plot...")
 
+    dataset_ids.append("COMBINED")
+    com_distances_new = com_distances.copy()
+    for cdis in com_distances:
+        com_distances_new.append(cdis)
+        xvals.append(len(dataset_ids))
+    com_distances = com_distances_new
+
     boxplot_input = [[] for ind in dataset_ids]
     for d_ind, dist in zip(xvals, com_distances):
         boxplot_input[d_ind-1].append(dist)
@@ -823,12 +845,16 @@ def plot_com_distances(dataset_ids, dataset_dirs, dataset_rootdirs, outfile):
             boxplot_input,
             positions=list(range(1, len(dataset_ids)+1)),
             widths=0.6,
+            showfliers=False,
+            showmeans=False,
+            sym="",
+            medianprops={"color": (1, 127/255, 0, 1)}
             )
-    ax.scatter(xvals, com_distances, alpha=0.5)
+    xvals_scatter = [xv+random.uniform(-1*jitter, jitter) for xv in xvals]
+    ax.scatter(xvals_scatter, com_distances, alpha=0.5, s=50, edgecolors="none", linewidths=0)
     ax.axhline(y=1.5, color="0.4", linestyle="--", linewidth=1)
     ax.set_xticks(range(len(dataset_ids)+1))
-    ax.set_xticklabels([""]+dataset_ids, rotation=45, ha="right")
-    ax.set_xlabel("Dataset")
+    ax.set_xticklabels([""]+dataset_ids, rotation=25, ha="right")
     ax.set_ylabel(f"Distance tum.-rec. [cm]")
     fig.tight_layout()
 
@@ -837,6 +863,7 @@ def plot_com_distances(dataset_ids, dataset_dirs, dataset_rootdirs, outfile):
 
 def plot_performances(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, outfile):
     performances_by_dataset = {d_id: [] for d_id in dataset_ids}
+    performances_by_dataset["COMBINED"] = []
 
     for d_id, d_d, d_rd in zip(dataset_ids, dataset_dirs, dataset_rootdirs):
         dataset = LongitudinalDataset(dataset_id=d_id, root_dir=d_rd)
@@ -862,7 +889,18 @@ def plot_performances(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, out
             try:
                 performance_dir = METRICS_SCHEMA.format(base_dir=followup_exam_dir, algo_id=model_id.lower())
                 performance_dict = json.load(open(performance_dir, "r"))
-                performances_by_dataset[d_id].append((performance_dict["recurrence_coverage_standard"]*100, performance_dict["recurrence_coverage_model"]*100))
+                performances_by_dataset[d_id].append((
+                    performance_dict["recurrence_coverage_standard"]*100,
+                    performance_dict["recurrence_coverage_model"]*100,
+                    performance_dict["recurrence_coverage_standard_all"]*100,
+                    performance_dict["recurrence_coverage_model_all"]*100
+                    ))
+                performances_by_dataset["COMBINED"].append((
+                    performance_dict["recurrence_coverage_standard"]*100,
+                    performance_dict["recurrence_coverage_model"]*100,
+                    performance_dict["recurrence_coverage_standard_all"]*100,
+                    performance_dict["recurrence_coverage_model_all"]*100
+                    ))
 
             except Exception as e:
                 #raise e
@@ -870,20 +908,94 @@ def plot_performances(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, out
 
     logger.info(f"Generating plot...")
 
-    fig, axes = plt.subplots(nrows=2, ncols=4, figsize=(16, 8), sharex=True, sharey=True)
+    fig, axes = plt.subplots(nrows=3, ncols=3, figsize=(12, 12), sharex=True, sharey=True)
 
+    dataset_ids.append("COMBINED")
     for ind, (ax, d_id) in enumerate(zip(axes.flat, dataset_ids)):
-        xs, ys = zip(*performances_by_dataset[d_id])
-        ax.scatter(xs, ys, alpha=0.5)
+        xs, ys, xs_all, ys_all = zip(*performances_by_dataset[d_id])
+        ax.scatter(xs, ys, alpha=0.6, color=(238/255.0, 165/255.0, 62/255.0), label="Enhancing",  s=50, edgecolors="none", linewidths=0)
+        #ax.scatter(xs_all, ys_all, alpha=0.5, color=(57/255.0, 118/255.0, 129/255.0), label="Any", s=50, edgecolors="none", linewidths=0)
+        ax.scatter(xs_all, ys_all, alpha=0.6, label="Any", s=50, edgecolors="none", linewidths=0)
         ax.plot([0,100], [0,100], linewidth=1, linestyle="--", color="black")
-        ax.set_title(d_id)
+        ax.set_title(d_id, fontweight="bold")
 
-        if ind > 3:
-            ax.set_xlabel("Recurrence coverage (standard) [%]")
-        if ind==0 or ind==4:
+        if ind % 3 == 0:
             ax.set_ylabel(f"Recurrence coverage ({model_id}) [%]")
+        if ind>5:
+            ax.set_xlabel("Recurrence coverage (standard) [%]")
 
+    ax.legend()
+    fig.delaxes(axes[2][2])
     fig.tight_layout()
+
+    # uncomment to center bottom images
+    #fig.set_constrained_layout(False)
+    #x0, y0, w, h = axes[2,0].get_position().bounds
+    #dx = 0.15
+    #axes[2,0].set_position([x0 + dx, y0, w, h])
+
+    #x0, y0, w, h = axes[2,1].get_position().bounds
+    #dx = 0.15
+    #axes[2,1].set_position([x0 + dx, y0, w, h])
+
+    fig.savefig(outfile)
+
+
+def plot_diff_vs_distance(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, outfile):
+    differences = []
+    distances = []
+
+    for d_id, d_d, d_rd in zip(dataset_ids, dataset_dirs, dataset_rootdirs):
+        dataset = LongitudinalDataset(dataset_id=d_id, root_dir=d_rd)
+        dataset.load(d_d)
+
+        logger.info(f"Processing {d_id}...")
+
+        for patient in dataset.patients:
+            patient_id = patient["patient_id"]
+            preop_exam = dataset.get_patient_exams(patient_id=patient_id, timepoint="preop")[0]  # Find first preop exam
+            followup_exam = dataset.get_patient_exams(patient_id=patient_id, timepoint="followup")[0]
+
+            if "UPENN" in d_id:
+                preop_exam_dir = preop_exam["t1"].parent
+                followup_exam_dir = followup_exam["t1"].parent
+            elif "GLIODIL" in d_id:
+                preop_exam_dir = preop_exam["t1c"].parent / "preop"
+                followup_exam_dir = followup_exam["t1c"].parent / "followup"
+            else:
+                preop_exam_dir = preop_exam["t1c"].parent
+                followup_exam_dir = followup_exam["t1c"].parent
+
+            try:
+                tumorseg_dir = TUMORSEG_SCHEMA.format(base_dir=preop_exam_dir)
+                recurrence_dir = RECURRENCE_SCHEMA.format(base_dir=followup_exam_dir)
+                tumorseg = np.rint(nib.load(tumorseg_dir).get_fdata()).astype(np.int32)
+                recurrence = np.rint(nib.load(recurrence_dir).get_fdata()).astype(np.int32)
+
+                com_tumor = compute_center_of_mass(tumorseg, tumorseg, classes=[1,2,3])
+                com_recurrence = compute_center_of_mass(recurrence, recurrence, classes=[1,2,3])
+                distance = math.dist(com_tumor, com_recurrence) / 10
+
+                performance_dir = METRICS_SCHEMA.format(base_dir=followup_exam_dir, algo_id=model_id.lower())
+                performance_dict = json.load(open(performance_dir, "r"))
+                difference = (performance_dict["recurrence_coverage_model"] - performance_dict["recurrence_coverage_standard"]) * 100
+                
+                differences.append(difference)
+                distances.append(distance)
+
+            except Exception as e:
+                #raise e
+                print(f"Excpetion for {followup_exam_dir}: {e}")
+
+    logger.info(f"Generating plot...")
+    
+    fig, ax = plt.subplots(figsize=(4, 4))
+    ax.scatter(distances, differences, alpha=0.5, s=50, edgecolors="none", linewidths=0)
+    #ax.axhline(y=1.5, color="0.4", linestyle="--", linewidth=1)
+    ax.set_ylabel(r"Coverage$_{std}$ - Coverage$_{model}$")
+    ax.set_xlabel(r"Distance tum.-rec. [cm]")
+    fig.tight_layout()
+
     fig.savefig(outfile)
 
 
