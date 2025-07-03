@@ -930,6 +930,87 @@ def plot_performances(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, out
 
     # uncomment to center bottom images
     #fig.set_constrained_layout(False)
+    #x0, [cm$^{{3}}$]y0, w, h = axes[2,0].get_position().bounds
+    #dx = 0.15
+    #axes[2,0].set_position([x0 + dx, y0, w, h])
+
+    #x0, y0, w, h = axes[2,1].get_position().bounds
+    #dx = 0.15
+    #axes[2,1].set_position([x0 + dx, y0, w, h])
+
+    fig.savefig(outfile)
+
+
+def plot_missed(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, outfile):
+    performances_by_dataset = {d_id: [] for d_id in dataset_ids}
+    performances_by_dataset["COMBINED"] = []
+
+    for d_id, d_d, d_rd in zip(dataset_ids, dataset_dirs, dataset_rootdirs):
+        dataset = LongitudinalDataset(dataset_id=d_id, root_dir=d_rd)
+        dataset.load(d_d)
+
+        logger.info(f"Processing {d_id}...")
+
+        for patient in dataset.patients:
+            patient_id = patient["patient_id"]
+            preop_exam = dataset.get_patient_exams(patient_id=patient_id, timepoint="preop")[0]  # Find first preop exam
+            followup_exam = dataset.get_patient_exams(patient_id=patient_id, timepoint="followup")[0]
+
+            if "UPENN" in d_id:
+                preop_exam_dir = preop_exam["t1"].parent
+                followup_exam_dir = followup_exam["t1"].parent
+            elif "GLIODIL" in d_id:
+                preop_exam_dir = preop_exam["t1c"].parent / "preop"
+                followup_exam_dir = followup_exam["t1c"].parent / "followup"
+            else:
+                preop_exam_dir = preop_exam["t1c"].parent
+                followup_exam_dir = followup_exam["t1c"].parent
+
+            try:
+                performance_dir = METRICS_SCHEMA.format(base_dir=followup_exam_dir, algo_id=model_id.lower())
+                performance_dict = json.load(open(performance_dir, "r"))
+                performances_by_dataset[d_id].append((
+                    performance_dict["missed_voxels_standard"]/1000,
+                    performance_dict["missed_voxels_model"]/1000,
+                    performance_dict["missed_voxels_standard_all"]/1000,
+                    performance_dict["missed_voxels_model_all"]/1000
+                    ))
+                performances_by_dataset["COMBINED"].append((
+                    performance_dict["missed_voxels_standard"]/1000,
+                    performance_dict["missed_voxels_model"]/1000,
+                    performance_dict["missed_voxels_standard_all"]/1000,
+                    performance_dict["missed_voxels_model_all"]/1000
+                    ))
+
+            except Exception as e:
+                #raise e
+                print(f"Excpetion for {followup_exam_dir}: {e}")
+
+    logger.info(f"Generating plot...")
+
+    fig, axes = plt.subplots(nrows=3, ncols=3, figsize=(12, 12), sharex=True, sharey=True)
+
+    dataset_ids.append("COMBINED")
+    for ind, (ax, d_id) in enumerate(zip(axes.flat, dataset_ids)):
+        xs, ys, xs_all, ys_all = zip(*performances_by_dataset[d_id])
+        ax.scatter(xs, ys, alpha=0.6, color=(238/255.0, 165/255.0, 62/255.0), label="Enhancing",  s=50, edgecolors="none", linewidths=0)
+        #ax.scatter(xs_all, ys_all, alpha=0.6, label="Any", s=50, edgecolors="none", linewidths=0)
+        ax.plot([0, 400], [0,400], linewidth=1, linestyle="--", color="black")
+        ax.set_title(d_id, fontweight="bold")
+        #ax.set_xscale("log")
+        #ax.set_yscale("log")
+
+        if ind % 3 == 0:
+            ax.set_ylabel(f"Missed volume ({model_id}) [cm$^{{3}}$]")
+        if ind>5:
+            ax.set_xlabel("Missed volume (standard) [cm$^{{3}}$]")
+
+    ax.legend()
+    fig.delaxes(axes[2][2])
+    fig.tight_layout()
+
+    # uncomment to center bottom images
+    #fig.set_constrained_layout(False)
     #x0, y0, w, h = axes[2,0].get_position().bounds
     #dx = 0.15
     #axes[2,0].set_position([x0 + dx, y0, w, h])

@@ -5,7 +5,7 @@ from pathlib import Path
 from gbm_bench.utils.utils import merge_pdfs
 from gbm_bench.utils.constants import *
 from gbm_bench.utils.parsing import LongitudinalDataset
-from gbm_bench.utils.visualization import plot_tumor_sizes, plot_performances, plot_com_distances, plot_diff_vs_distance
+from gbm_bench.utils.visualization import plot_tumor_sizes, plot_performances, plot_com_distances, plot_diff_vs_distance, plot_missed
 
 
 if __name__ == "__main__":
@@ -25,12 +25,13 @@ if __name__ == "__main__":
             #"/mnt/Drive2/lucas/datasets/TCGA-LGG"
             ]
 
-    model_id = "gliodil"
+    model_id = "sbtc"
     outfile_tsize = "/home/home/lucas/projects/gbm_bench/tmp/tumor_sizes.pdf"
     outfile_rsize = "/home/home/lucas/projects/gbm_bench/tmp/recurrence_sizes.pdf"
     outfile_perf = f"/home/home/lucas/projects/gbm_bench/tmp/performances_{model_id}.pdf"
     outfile_dist = "/home/home/lucas/projects/gbm_bench/tmp/com_distances.pdf"
     outfile_diff_dist = "/home/home/lucas/projects/gbm_bench/tmp/distance_vs_difference.pdf"
+    outfile_missed_volume = f"/home/home/lucas/projects/gbm_bench/tmp/missed_volume_{model_id}.pdf"
 
     """
     plot_tumor_sizes(
@@ -62,11 +63,19 @@ if __name__ == "__main__":
             model_id=model_id,
             outfile=outfile_perf
             )
-    """
+    
     plot_diff_vs_distance(
             dataset_ids=DATASET_IDS,
             dataset_dirs=DATASET_DIRS,
             dataset_rootdirs=ROOT_DIRS,
             model_id=model_id,
             outfile=outfile_diff_dist
+            )
+    """
+    plot_missed(
+            dataset_ids=DATASET_IDS,
+            dataset_dirs=DATASET_DIRS,
+            dataset_rootdirs=ROOT_DIRS,
+            model_id=model_id,
+            outfile=outfile_missed_volume
             )

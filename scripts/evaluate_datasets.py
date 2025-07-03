@@ -76,6 +76,11 @@ if __name__ == "__main__":
     recurrence_coverage_standard_all = [r["recurrence_coverage_standard_all"] for r in all_results]
     recurrence_coverage_model = [r["recurrence_coverage_model"] for r in all_results]
     recurrence_coverage_model_all = [r["recurrence_coverage_model_all"] for r in all_results]
+    missed_standard = [r["missed_voxels_standard"] / 1000 for r in all_results]
+    missed_standard_all = [r["missed_voxels_standard_all"] / 1000 for r in all_results]
+    missed_model = [r["missed_voxels_model"] / 1000 for r in all_results]
+    missed_model_all = [r["missed_voxels_model_all"] / 1000 for r in all_results]
+    missed_diff = [ms - mm for ms, mm in zip(missed_standard, missed_model)]
 
     print(f"Finished evaluation.")
     print(f"Standard plan coverge: {100*np.mean(recurrence_coverage_standard):.2f} \u00B1 {100*stats.sem(recurrence_coverage_standard):.2f}")
@@ -83,3 +88,11 @@ if __name__ == "__main__":
     print(f"Model plan coverge: {100*np.mean(recurrence_coverage_model):.2f} \u00B1 {100*stats.sem(recurrence_coverage_model):.2f}")
     print(f"Model plan coverge (all): {100*np.mean(recurrence_coverage_model_all):.2f} \u00B1 {100*stats.sem(recurrence_coverage_model_all):.2f}")
     print(f"Combined: {stats.wilcoxon(recurrence_coverage_standard, recurrence_coverage_model, alternative='less')} / {stats.wilcoxon(recurrence_coverage_standard_all, recurrence_coverage_model_all, alternative='less')}")
+    
+    print(f"\n")
+    print(f"Standard plan missed: {np.mean(missed_standard):.2f} \u00B1 {stats.sem(missed_standard):.2f}")
+    print(f"Standard plan missed (all): {np.mean(missed_standard_all):.2f} \u00B1 {stats.sem(missed_standard_all):.2f}")
+    print(f"Model plan missed: {np.mean(missed_model):.2f} \u00B1 {stats.sem(missed_model):.2f}")
+    print(f"Model plan missed (all): {np.mean(missed_model_all):.2f} \u00B1 {stats.sem(missed_model_all):.2f}")
+    print(f"Difference: {np.mean(missed_diff):.2f} \u00B1 {stats.sem(missed_diff):.2f}")
+    print(f"Missed: {stats.wilcoxon(missed_model, missed_standard, alternative='less')} / {stats.wilcoxon(missed_model_all, missed_standard_all, alternative='less')}")
