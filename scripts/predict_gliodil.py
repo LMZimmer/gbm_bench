@@ -24,7 +24,7 @@ if __name__ == "__main__":
     # Predict on preop exams
     for patient_ind, patient in enumerate(gliodil.patients):
         print(f"Predicting {patient_ind}/{len(gliodil.patients)}...")
-        
+
         for exam in patient["exams"]:
             if exam["timepoint"] != "preop":
                 continue

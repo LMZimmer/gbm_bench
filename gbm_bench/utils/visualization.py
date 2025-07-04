@@ -4,11 +4,13 @@ import math
 import pickle
 import random
 import argparse
+import statistics as stats
 import numpy as np
 import nibabel as nib
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import matplotlib.patches as mpatches
+from scipy.stats import median_abs_deviation
 from loguru import logger
 from pathlib import Path
 from matplotlib import colormaps
@@ -752,6 +754,9 @@ def plot_tumor_sizes(dataset_ids, dataset_dirs, dataset_rootdirs, outfile, recur
 
     logger.info(f"Generating plot...")
 
+    print(f"Tumor size (mean): {np.mean(tumor_sizes)} \u00B1 {stats.stdev(tumor_sizes)}")
+    print(f"Tumor size (median): {stats.median(tumor_sizes)}")
+
     dataset_ids.append("COMBINED")
     tumor_sizes_new = tumor_sizes.copy()
     for ts in tumor_sizes:
@@ -828,6 +833,9 @@ def plot_com_distances(dataset_ids, dataset_dirs, dataset_rootdirs, outfile):
         ind += 1
 
     logger.info(f"Generating plot...")
+    
+    print(f"Distance (mean): {np.mean(com_distances)} \u00B1 {stats.stdev(com_distances)}")
+    print(f"Distance (median): {stats.median(com_distances)}")
 
     dataset_ids.append("COMBINED")
     com_distances_new = com_distances.copy()

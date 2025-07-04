@@ -5,7 +5,6 @@ import argparse
 import numpy as np
 from scipy import stats
 from pathlib import Path
-from gbm_bench.utils.constants import GLIODIL_DIR
 from gbm_bench.utils.parsing import LongitudinalDataset
 from gbm_bench.evaluation.evaluate import evaluate_tumor_model
 from gbm_bench.utils.constants import PREDICTION_OUTPUT_SCHEMA
@@ -13,15 +12,16 @@ from gbm_bench.utils.constants import PREDICTION_OUTPUT_SCHEMA
 
 if __name__ == "__main__":
     # Example:
-    # python scripts/evaluate_gliodil.py -algorithm sbtc
-    # nohup python -u scripts/evaluate_gliodil.py -algorithm sbtc > gliodil_sbtc.txt 2>&1 &
+    # python scripts/evaluate_gliodil10.py -algorithm sbtc
+    # nohup python -u scripts/evaluate_gliodil10.py -algorithm sbtc > gliodil_sbtc.txt 2>&1 &
     parser = argparse.ArgumentParser()
     parser.add_argument("-algorithm", type=str, help="Algorithm ID to evaluate.")
     args = parser.parse_args()
     
     # Read dataset
     gliodil_root = "/mnt/Drive2/lucas/datasets/GLIODIL"
-    gliodil = LongitudinalDataset(dataset_id="GLIODIL", root_dir=gliodil_root)
+    gliodil = LongitudinalDataset(dataset_id="GLIODIL10", root_dir=gliodil_root)
+    GLIODIL_DIR = Path("/home/home/lucas/projects/gbm_bench/gbm_bench/data/datasets/gliodil10.json") 
     gliodil.load(GLIODIL_DIR)
 
     print(f"Evaluating {args.algorithm}")
@@ -38,31 +38,11 @@ if __name__ == "__main__":
             print(f"Warning: found {len(preop_exams)} preop exams for patient {patiend_ind, patiend}. Using first exam for evaluation.")
 
         algo_id = args.algorithm
-        no_t1c = [
-                "data_001",
-                "data_013",
-                "data_020",
-                "data_030",
-                "data_034",
-                "data_991",
-                "data_992",
-                "data_994",
-                "data_995",
-                "data_998"
-                ]
-        
-        if patient_identifier in no_t1c:
-            preop_exam_dir = preop_exams[0]["tumorseg"].parent / "preop"
-        else:
-            preop_exam_dir = preop_exams[0]["t1c"].parent / "preop"
-        
+        preop_exam_dir = preop_exams[0]["tumorseg"].parent / "preop"
         prediction_dir = PREDICTION_OUTPUT_SCHEMA.format(base_dir=preop_exam_dir, algo_id=algo_id)
         
         for followup_exam in followup_exams:
-            if patient_identifier in no_t1c:
-                followup_exam_dir = followup_exam["tumorseg"].parent / "followup"
-            else:
-                followup_exam_dir = followup_exam["t1c"].parent / "followup"
+            followup_exam_dir = followup_exam["tumorseg"].parent / "followup"
 
             try:
                 results = evaluate_tumor_model(
@@ -74,6 +54,7 @@ if __name__ == "__main__":
                 all_results.append(results)
                 print(f"{patient_identifier}: {results}")
             except Exception as e:
+                raise e
                 print(f"Exception for {followup_exam_dir}: {e}")
 
     recurrence_coverage_standard = [r["recurrence_coverage_standard"] for r in all_results]

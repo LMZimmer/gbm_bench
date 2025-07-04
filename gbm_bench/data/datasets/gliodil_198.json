@@ -4694,6 +4694,138 @@
           "timepoint": "followup"
         }
       ]
+    },
+    {
+      "patient_id": "respond_tum_073",
+      "patient_dir": "/Users/cherubim/Desktop/GLIODIL/respond_tum_073",
+      "exams": [
+        {
+          "flair": "/Users/cherubim/Desktop/GLIODIL/respond_tum_073/d0/sub-respond_tum_073_ses-d0_space-sri_flair.nii.gz",
+          "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_073/d0/sub-respond_tum_073_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_073/d0/sub-respond_tum_073_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/Users/cherubim/Desktop/GLIODIL/respond_tum_073/d0/sub-respond_tum_073_ses-d0_space-sri_t2.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/GLIODIL/respond_tum_073/d0/sub-respond_tum_073_ses-d0_space-sri_seg.nii.gz",
+          "timepoint": "preop"
+        },
+        {
+          "flair": "/Users/cherubim/Desktop/GLIODIL/respond_tum_073/d111/sub-respond_tum_073_ses-d111_space-sri_flair.nii.gz",
+          "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_073/d111/sub-respond_tum_073_ses-d111_space-sri_t1.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_073/d111/sub-respond_tum_073_ses-d111_space-sri_t1c.nii.gz",
+          "t2": "/Users/cherubim/Desktop/GLIODIL/respond_tum_073/d111/sub-respond_tum_073_ses-d111_space-sri_t2.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/GLIODIL/respond_tum_073/d111/sub-respond_tum_073_ses-d111_space-sri_seg.nii.gz",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_074",
+      "patient_dir": "/Users/cherubim/Desktop/GLIODIL/respond_tum_074",
+      "exams": [
+        {
+          "flair": "/Users/cherubim/Desktop/GLIODIL/respond_tum_074/d0/sub-respond_tum_074_ses-d0_space-sri_flair.nii.gz",
+          "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_074/d0/sub-respond_tum_074_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_074/d0/sub-respond_tum_074_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/Users/cherubim/Desktop/GLIODIL/respond_tum_074/d0/sub-respond_tum_074_ses-d0_space-sri_t2.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/GLIODIL/respond_tum_074/d0/sub-respond_tum_074_ses-d0_space-sri_seg.nii.gz",
+          "timepoint": "preop"
+        },
+        {
+          "flair": "/Users/cherubim/Desktop/GLIODIL/respond_tum_074/d355/sub-respond_tum_074_ses-d355_space-sri_flair.nii.gz",
+          "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_074/d355/sub-respond_tum_074_ses-d355_space-sri_t1.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_074/d355/sub-respond_tum_074_ses-d355_space-sri_t1c.nii.gz",
+          "t2": "/Users/cherubim/Desktop/GLIODIL/respond_tum_074/d355/sub-respond_tum_074_ses-d355_space-sri_t2.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/GLIODIL/respond_tum_074/d355/sub-respond_tum_074_ses-d355_space-sri_seg.nii.gz",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_101",
+      "patient_dir": "/Users/cherubim/Desktop/GLIODIL/respond_tum_101",
+      "exams": [
+        {
+          "flair": "/Users/cherubim/Desktop/GLIODIL/respond_tum_101/d0/sub-respond_tum_101_ses-d0_space-sri_flair.nii.gz",
+          "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_101/d0/sub-respond_tum_101_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_101/d0/sub-respond_tum_101_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/Users/cherubim/Desktop/GLIODIL/respond_tum_101/d0/sub-respond_tum_101_ses-d0_space-sri_t2.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/GLIODIL/respond_tum_101/d0/sub-respond_tum_101_ses-d0_space-sri_seg.nii.gz",
+          "timepoint": "preop"
+        },
+        {
+          "flair": "/Users/cherubim/Desktop/GLIODIL/respond_tum_101/d129/sub-respond_tum_101_ses-d129_space-sri_flair.nii.gz",
+          "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_101/d129/sub-respond_tum_101_ses-d129_space-sri_t1.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_101/d129/sub-respond_tum_101_ses-d129_space-sri_t1c.nii.gz",
+          "t2": "/Users/cherubim/Desktop/GLIODIL/respond_tum_101/d129/sub-respond_tum_101_ses-d129_space-sri_t2.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/GLIODIL/respond_tum_101/d129/sub-respond_tum_101_ses-d129_space-sri_seg.nii.gz",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_126",
+      "patient_dir": "/Users/cherubim/Desktop/GLIODIL/respond_tum_126",
+      "exams": [
+        {
+          "flair": "/Users/cherubim/Desktop/GLIODIL/respond_tum_126/d0/sub-respond_tum_126_ses-d0_space-sri_flair.nii.gz",
+          "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_126/d0/sub-respond_tum_126_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_126/d0/sub-respond_tum_126_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/Users/cherubim/Desktop/GLIODIL/respond_tum_126/d0/sub-respond_tum_126_ses-d0_space-sri_t2.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/GLIODIL/respond_tum_126/d0/sub-respond_tum_126_ses-d0_space-sri_seg.nii.gz",
+          "timepoint": "preop"
+        },
+        {
+          "flair": "/Users/cherubim/Desktop/GLIODIL/respond_tum_126/d284/sub-respond_tum_126_ses-d284_space-sri_flair.nii.gz",
+          "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_126/d284/sub-respond_tum_126_ses-d284_space-sri_t1.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_126/d284/sub-respond_tum_126_ses-d284_space-sri_t1c.nii.gz",
+          "t2": "/Users/cherubim/Desktop/GLIODIL/respond_tum_126/d284/sub-respond_tum_126_ses-d284_space-sri_t2.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/GLIODIL/respond_tum_126/d284/sub-respond_tum_126_ses-d284_space-sri_seg.nii.gz",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_131",
+      "patient_dir": "/Users/cherubim/Desktop/GLIODIL/respond_tum_131",
+      "exams": [
+        {
+          "flair": "/Users/cherubim/Desktop/GLIODIL/respond_tum_131/d0/sub-respond_tum_131_ses-d0_space-sri_flair.nii.gz",
+          "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_131/d0/sub-respond_tum_131_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_131/d0/sub-respond_tum_131_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/Users/cherubim/Desktop/GLIODIL/respond_tum_131/d0/sub-respond_tum_131_ses-d0_space-sri_t2.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/GLIODIL/respond_tum_131/d0/sub-respond_tum_131_ses-d0_space-sri_seg.nii.gz",
+          "timepoint": "preop"
+        },
+        {
+          "flair": "/Users/cherubim/Desktop/GLIODIL/respond_tum_131/d90/sub-respond_tum_131_ses-d90_space-sri_flair.nii.gz",
+          "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_131/d90/sub-respond_tum_131_ses-d90_space-sri_t1.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_131/d90/sub-respond_tum_131_ses-d90_space-sri_t1c.nii.gz",
+          "t2": "/Users/cherubim/Desktop/GLIODIL/respond_tum_131/d90/sub-respond_tum_131_ses-d90_space-sri_t2.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/GLIODIL/respond_tum_131/d90/sub-respond_tum_131_ses-d90_space-sri_seg.nii.gz",
+          "timepoint": "followup"
+        }
+      ]
+    },
+    {
+      "patient_id": "respond_tum_150",
+      "patient_dir": "/Users/cherubim/Desktop/GLIODIL/respond_tum_150",
+      "exams": [
+        {
+          "flair": "/Users/cherubim/Desktop/GLIODIL/respond_tum_150/d0/sub-respond_tum_150_ses-d0_space-sri_flair.nii.gz",
+          "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_150/d0/sub-respond_tum_150_ses-d0_space-sri_t1.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_150/d0/sub-respond_tum_150_ses-d0_space-sri_t1c.nii.gz",
+          "t2": "/Users/cherubim/Desktop/GLIODIL/respond_tum_150/d0/sub-respond_tum_150_ses-d0_space-sri_t2.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/GLIODIL/respond_tum_150/d0/sub-respond_tum_150_ses-d0_space-sri_seg.nii.gz",
+          "timepoint": "preop"
+        },
+        {
+          "flair": "/Users/cherubim/Desktop/GLIODIL/respond_tum_150/d108/sub-respond_tum_150_ses-d108_space-sri_flair.nii.gz",
+          "t1": "/Users/cherubim/Desktop/GLIODIL/respond_tum_150/d108/sub-respond_tum_150_ses-d108_space-sri_t1.nii.gz",
+          "t1c": "/Users/cherubim/Desktop/GLIODIL/respond_tum_150/d108/sub-respond_tum_150_ses-d108_space-sri_t1c.nii.gz",
+          "t2": "/Users/cherubim/Desktop/GLIODIL/respond_tum_150/d108/sub-respond_tum_150_ses-d108_space-sri_t2.nii.gz",
+          "tumorseg": "/Users/cherubim/Desktop/GLIODIL/respond_tum_150/d108/sub-respond_tum_150_ses-d108_space-sri_seg.nii.gz",
+          "timepoint": "followup"
+        }
+      ]
     }
   ]
 }

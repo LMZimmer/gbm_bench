@@ -1,6 +1,7 @@
 import os   
 import argparse
 import nibabel as nib
+import numpy as np
 from pathlib import Path
 from gbm_bench.utils.constants import GLIODIL_DIR
 from gbm_bench.utils.parsing import LongitudinalDataset
@@ -9,7 +10,7 @@ from gbm_bench.preprocessing.preprocess import preprocess_nifti, process_longitu
 
 def convert_tumorseg_labels(inpath, outpath):
     img = nib.load(str(inpath))
-    data = img.get_fdata()
+    data = np.rint(img.get_fdata()).astype(np.int32)
 
     data[data == 4] = 3
 
@@ -32,9 +33,16 @@ if __name__ == "__main__":
     gliodil = LongitudinalDataset(dataset_id="GLIODIL", root_dir=gliodil_root)
     gliodil.load(GLIODIL_DIR)
 
+    remaining = ['respond_tum_073', 'respond_tum_074', 'respond_tum_101', 'respond_tum_126', 'respond_tum_131', 'respond_tum_150']
+
     # Individual exams
     for patient_ind, patient in enumerate(gliodil.patients):
         print(f"Processing {patient_ind}/{len(gliodil.patients)}...")
+
+        patient_id = patient["patient_id"]
+        if patient_id not in remaining:
+            print(f"Skipping {patient_id}")
+            continue
 
         for exam in patient["exams"]:
             if exam["timepoint"] == "postop":  # skip postop

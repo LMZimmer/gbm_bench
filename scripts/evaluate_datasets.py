@@ -53,8 +53,24 @@ if __name__ == "__main__":
                 preop_exam_dir = preop_exam["t1"].parent
                 followup_exam_dir = followup_exam["t1"].parent
             elif "GLIODIL" in d_id:
-                preop_exam_dir = preop_exam["t1c"].parent / "preop"
-                followup_exam_dir = followup_exam["t1c"].parent / "followup"
+                no_t1c = [
+                "data_001",
+                "data_013",
+                "data_020",
+                "data_030",
+                "data_034",
+                "data_991",
+                "data_992",
+                "data_994",
+                "data_995",
+                "data_998"
+                ]
+                if patient_id in no_t1c:
+                    preop_exam_dir = preop_exam["tumorseg"].parent / "preop"
+                    followup_exam_dir = followup_exam["tumorseg"].parent / "followup"
+                else:
+                    preop_exam_dir = preop_exam["t1c"].parent / "preop"
+                    followup_exam_dir = followup_exam["t1c"].parent / "followup"
             else:
                 preop_exam_dir = followup_exam["t1c"].parent
                 followup_exam_dir = followup_exam["t1c"].parent

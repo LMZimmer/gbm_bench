@@ -33,7 +33,6 @@ if __name__ == "__main__":
     outfile_diff_dist = "/home/home/lucas/projects/gbm_bench/tmp/distance_vs_difference.pdf"
     outfile_missed_volume = f"/home/home/lucas/projects/gbm_bench/tmp/missed_volume_{model_id}.pdf"
 
-    """
     plot_tumor_sizes(
             dataset_ids=DATASET_IDS,
             dataset_dirs=DATASET_DIRS,
@@ -71,7 +70,7 @@ if __name__ == "__main__":
             model_id=model_id,
             outfile=outfile_diff_dist
             )
-    """
+    
     plot_missed(
             dataset_ids=DATASET_IDS,
             dataset_dirs=DATASET_DIRS,

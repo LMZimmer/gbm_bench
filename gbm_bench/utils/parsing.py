@@ -147,6 +147,7 @@ class LongitudinalDataset():
                                 "pet": self._convert_path(e["pet"]),
                                 "diffusion": self._convert_path(e["diffusion"]),
                                 "perfusion": self._convert_path(e["perfusion"]),
+                                "tumorseg": self._convert_path(e["tumorseg"]),
                                 "timepoint": e["timepoint"]
                                 }
                             for e in p["exams"]
