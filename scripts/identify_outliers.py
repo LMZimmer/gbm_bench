@@ -1,6 +1,7 @@
 import os
 import json
 import shutil
+import pprint
 import argparse
 import numpy as np
 from scipy import stats
@@ -13,7 +14,7 @@ from gbm_bench.utils.visualization import plot_tumor_sizes, plot_performances, p
 
 if __name__ == "__main__":
     # Example:
-    # python scripts/identify_outliers.py -algorithm sbtc -dataset rhuh
+    # python scripts/identify_outliers.py -algorithm gliodil -dataset gliodil
     parser = argparse.ArgumentParser()
     parser.add_argument("-algorithm", type=str, help="Algorithm ID to evaluate.")
     parser.add_argument("-dataset", type=str)
@@ -77,4 +78,5 @@ if __name__ == "__main__":
                 print(f"Exception for {patient_id}: {e}")
 
     differences.sort(key=lambda x: x[3], reverse=True)
+    print("Patient id, standard cov, model cov, difference:\n")
     print(differences)
