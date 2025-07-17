@@ -3984,7 +3984,7 @@
       "exams": [
         {
           "t1": "",
-          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/data_001/segm_123.nii.gz",
+          "t1c": "",
           "t2": "",
           "flair": "",
           "tumorseg": "/mnt/Drive2/lucas/datasets/GLIODIL/data_001/segm_123.nii.gz",
@@ -3992,7 +3992,7 @@
         },
         {
           "t1": "",
-          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/data_001/segm_rec_123.nii.gz",
+          "t1c": "",
           "t2": "",
           "flair": "",
           "tumorseg": "/mnt/Drive2/lucas/datasets/GLIODIL/data_001/segm_rec_123.nii.gz",
@@ -4006,7 +4006,7 @@
       "exams": [
         {
           "t1": "",
-          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/data_013/segm_123.nii.gz",
+          "t1c": "",
           "t2": "",
           "flair": "",
           "tumorseg": "/mnt/Drive2/lucas/datasets/GLIODIL/data_013/segm_123.nii.gz",
@@ -4014,7 +4014,7 @@
         },
         {
           "t1": "",
-          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/data_013/segm_rec_123.nii.gz",
+          "t1c": "",
           "t2": "",
           "flair": "",
           "tumorseg": "/mnt/Drive2/lucas/datasets/GLIODIL/data_013/segm_rec_123.nii.gz",
@@ -4028,7 +4028,7 @@
       "exams": [
         {
           "t1": "",
-          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/data_020/segm_123.nii.gz",
+          "t1c": "",
           "t2": "",
           "flair": "",
           "tumorseg": "/mnt/Drive2/lucas/datasets/GLIODIL/data_020/segm_123.nii.gz",
@@ -4036,7 +4036,7 @@
         },
         {
           "t1": "",
-          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/data_020/segm_rec_123.nii.gz",
+          "t1c": "",
           "t2": "",
           "flair": "",
           "tumorseg": "/mnt/Drive2/lucas/datasets/GLIODIL/data_020/segm_rec_123.nii.gz",
@@ -4050,7 +4050,7 @@
       "exams": [
         {
           "t1": "",
-          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/data_030/segm_123.nii.gz",
+          "t1c": "",
           "t2": "",
           "flair": "",
           "tumorseg": "/mnt/Drive2/lucas/datasets/GLIODIL/data_030/segm_123.nii.gz",
@@ -4058,7 +4058,7 @@
         },
         {
           "t1": "",
-          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/data_030/segm_rec_123.nii.gz",
+          "t1c": "",
           "t2": "",
           "flair": "",
           "tumorseg": "/mnt/Drive2/lucas/datasets/GLIODIL/data_030/segm_rec_123.nii.gz",
@@ -4072,7 +4072,7 @@
       "exams": [
         {
           "t1": "",
-          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/data_034/segm_123.nii.gz",
+          "t1c": "",
           "t2": "",
           "flair": "",
           "tumorseg": "/mnt/Drive2/lucas/datasets/GLIODIL/data_034/segm_123.nii.gz",
@@ -4080,7 +4080,7 @@
         },
         {
           "t1": "",
-          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/data_034/segm_rec_123.nii.gz",
+          "t1c": "",
           "t2": "",
           "flair": "",
           "tumorseg": "/mnt/Drive2/lucas/datasets/GLIODIL/data_034/segm_rec_123.nii.gz",
@@ -4094,7 +4094,7 @@
       "exams": [
         {
           "t1": "",
-          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/data_991/segm_123.nii.gz",
+          "t1c": "",
           "t2": "",
           "flair": "",
           "tumorseg": "/mnt/Drive2/lucas/datasets/GLIODIL/data_991/segm_123.nii.gz",
@@ -4102,7 +4102,7 @@
         },
         {
           "t1": "",
-          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/data_991/segm_rec_123.nii.gz",
+          "t1c": "",
           "t2": "",
           "flair": "",
           "tumorseg": "/mnt/Drive2/lucas/datasets/GLIODIL/data_991/segm_rec_123.nii.gz",
@@ -4116,7 +4116,7 @@
       "exams": [
         {
           "t1": "",
-          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/data_992/segm_123.nii.gz",
+          "t1c": "",
           "t2": "",
           "flair": "",
           "tumorseg": "/mnt/Drive2/lucas/datasets/GLIODIL/data_992/segm_123.nii.gz",
@@ -4124,7 +4124,7 @@
         },
         {
           "t1": "",
-          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/data_992/segm_rec_123.nii.gz",
+          "t1c": "",
           "t2": "",
           "flair": "",
           "tumorseg": "/mnt/Drive2/lucas/datasets/GLIODIL/data_992/segm_rec_123.nii.gz",
@@ -4138,7 +4138,7 @@
       "exams": [
         {
           "t1": "",
-          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/data_994/segm_123.nii.gz",
+          "t1c": "",
           "t2": "",
           "flair": "",
           "tumorseg": "/mnt/Drive2/lucas/datasets/GLIODIL/data_994/segm_123.nii.gz",
@@ -4146,7 +4146,7 @@
         },
         {
           "t1": "",
-          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/data_994/segm_rec_123.nii.gz",
+          "t1c": "",
           "t2": "",
           "flair": "",
           "tumorseg": "/mnt/Drive2/lucas/datasets/GLIODIL/data_994/segm_rec_123.nii.gz",
@@ -4160,7 +4160,7 @@
       "exams": [
         {
           "t1": "",
-          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/data_995/segm_123.nii.gz",
+          "t1c": "",
           "t2": "",
           "flair": "",
           "tumorseg": "/mnt/Drive2/lucas/datasets/GLIODIL/data_995/segm_123.nii.gz",
@@ -4168,7 +4168,7 @@
         },
         {
           "t1": "",
-          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/data_995/segm_rec_123.nii.gz",
+          "t1c": "",
           "t2": "",
           "flair": "",
           "tumorseg": "/mnt/Drive2/lucas/datasets/GLIODIL/data_995/segm_rec_123.nii.gz",
@@ -4182,7 +4182,7 @@
       "exams": [
         {
           "t1": "",
-          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/data_998/segm_123.nii.gz",
+          "t1c": "",
           "t2": "",
           "flair": "",
           "tumorseg": "/mnt/Drive2/lucas/datasets/GLIODIL/data_998/segm_123.nii.gz",
@@ -4190,7 +4190,7 @@
         },
         {
           "t1": "",
-          "t1c": "/mnt/Drive2/lucas/datasets/GLIODIL/data_998/segm_rec_123.nii.gz",
+          "t1c": "",
           "t2": "",
           "flair": "",
           "tumorseg": "/mnt/Drive2/lucas/datasets/GLIODIL/data_998/segm_rec_123.nii.gz",

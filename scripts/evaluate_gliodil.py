@@ -50,7 +50,7 @@ if __name__ == "__main__":
                 "data_995",
                 "data_998"
                 ]
-        
+
         if patient_identifier in no_t1c:
             preop_exam_dir = preop_exams[0]["tumorseg"].parent / "preop"
         else:

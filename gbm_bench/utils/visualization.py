@@ -36,6 +36,20 @@ from gbm_bench.utils.constants import (
         )
 
 
+NO_T1C = [
+        "data_001",
+        "data_013",
+        "data_020",
+        "data_030",
+        "data_034",
+        "data_991",
+        "data_992",
+        "data_994",
+        "data_995",
+        "data_998"
+        ]
+
+
 def get_slices(center: Tuple[int, int, int], num_slices: int, step_size: int, patient_dim: Tuple[int, int, int]):
     axial_slices = [center[2] + ind * step_size - 2 * step_size for ind in range(0, num_slices)]
     axial_slices = [min(max(0, ax_slice), patient_dim[2]-1) for ax_slice in axial_slices]
@@ -48,6 +62,17 @@ def get_cmap_norm_patches_tumorseg(classes_of_interest: List[int]):
     # Tumor segmentation legend (1: non enhancing, 2: edema, 3: enhancing)
     colors = [(0,0,0,0), (1, 127/255, 0, 1), (30/255, 144/255, 1, 1), (138/255, 43/255, 226/255, 1)]
     color_labels = ["Non-enhancing Tumor", "Peritumoral Edema", "Enhancing Tumor"]
+    cmap = mcolors.ListedColormap(colors)
+    bounds = [0, 0.5, 1.5, 2.5, 3.5]
+    norm = mcolors.BoundaryNorm(bounds, cmap.N)
+    patches = [mpatches.Patch(color=c, label=l) for (c, l) in zip(colors[1:], color_labels)]
+    return cmap, norm, patches
+
+
+def get_cmap_norm_patches_tumorseg_5(classes_of_interest: List[int]):
+    # Tumor segmentation legend (1: non enhancing, 2: edema, 3: enhancing)
+    colors = [(0,0,0,0), (1, 127/255, 0, 1), (30/255, 144/255, 1, 1), (138/255, 43/255, 226/255, 1), (34/255., 139/255., 34/255., 1), (210/255., 43/255., 43/255., 1)]
+    color_labels = ["Non-enhancing Tumor", "Peritumoral Edema", "Enhancing Tumor", "Standard Plan", "Model Plan"]
     cmap = mcolors.ListedColormap(colors)
     bounds = [0, 0.5, 1.5, 2.5, 3.5]
     norm = mcolors.BoundaryNorm(bounds, cmap.N)
@@ -86,8 +111,8 @@ def grid_plot(image_tensor: np.ndarray, imshow_args: List[Dict], header: str, co
     if len(row_titles) != image_tensor.shape[1]:
         raise ValueError(f"Dimension mismatch. row_titles should be the same length as image_tensor.shape[1] = {image_tensor.shape[1]}.")
 
-    if len(col_titles) != image_tensor.shape[2]:
-        raise ValueError(f"Dimension mismatch. col_titles should be the same length as image_tensor.shape[2] = {image_tensor.shape[2]}.")
+    #if len(col_titles) != image_tensor.shape[2]:
+    #    raise ValueError(f"Dimension mismatch. col_titles should be the same length as image_tensor.shape[2] = {image_tensor.shape[2]}.")
 
     n_row = image_tensor.shape[1]
     n_col = image_tensor.shape[2]
@@ -100,17 +125,25 @@ def grid_plot(image_tensor: np.ndarray, imshow_args: List[Dict], header: str, co
             for col in range(n_col):
                 if image_layer[row, col] is not None:
                     img = axs[row, col].imshow(np.rot90(image_layer[row, col]), **imshow_args)
+                    if "alpha" in imshow_args.keys() and imshow_args["alpha"] < 0.4:  #TODO terrible implementation for time
+                        from skimage.measure import find_contours
+                        contours = find_contours(np.rot90(image_layer[row, col]), 0.5)
+                        for c in contours:
+                            axs[row, col].plot(c[:,1], c[:,0], linewidth=1, color=imshow_args["cmap"].colors[1])
                     axs[row, col].axis("off")
 
-                    # Add colorbar if non gray colormap is used
-                    if "cmap" in imshow_args.keys() and imshow_args["cmap"] in non_gray_cmaps:
-                        divider = make_axes_locatable(axs[row, col])
-                        cax = divider.append_axes("right", size="5%", pad=0.05)
-                        plt.colorbar(img, cax=cax)
+                    # Uncomment to add colorbar, increases vertical spacing
+                    #if "cmap" in imshow_args.keys() and imshow_args["cmap"] in non_gray_cmaps:
+                    #    divider = make_axes_locatable(axs[row, col])
+                    #    cax = divider.append_axes("right", size="5%", pad=0.05)
+                    #    plt.colorbar(img, cax=cax)
 
-    # Column titles
-    for ind, col_title in enumerate(col_titles):
-        axs[0, ind].set_title(col_title, fontsize=16, fontweight="bold", pad=20)
+    if len(axs.flatten()) == len(col_titles):
+        for ct, ax in zip(col_titles, axs.flatten()):
+            ax.set_title(ct, fontsize=16, pad=20)
+    else:
+        for ind, col_title in enumerate(col_titles):
+            axs[0, ind].set_title(col_title, fontsize=16, fontweight="bold", pad=20)
 
     # Row titles
     for ind, row_title in enumerate(row_titles):
@@ -119,7 +152,8 @@ def grid_plot(image_tensor: np.ndarray, imshow_args: List[Dict], header: str, co
         axs[ind, 0].set_ylabel(row_title, fontweight="bold", labelpad=20, fontsize=16)
 
     # Header
-    fig.subplots_adjust(top=0.85, wspace=0, hspace=0)
+    fig.subplots_adjust(wspace=0.0, hspace=0.25, top=0.95, bottom=0.05, left=0.1, right=0.9)
+    #fig.subplots_adjust(top=0.85)
     fig.suptitle(
             header,
             horizontalalignment="left",
@@ -133,9 +167,11 @@ def grid_plot(image_tensor: np.ndarray, imshow_args: List[Dict], header: str, co
 
     # Color legends
     if legend_handles is not None:
-        fig.legend(handles=legend_handles, loc="upper right", bbox_to_anchor=(0.96, 0.890), ncol=3)
+        #fig.legend(handles=legend_handles, loc="upper right", bbox_to_anchor=(0.96, 0.890), ncol=3)
+        fig.legend(handles=legend_handles, loc="lower right", bbox_to_anchor=(0.8, 0.01), ncol=len(legend_handles))
 
-    plt.tight_layout(rect=[0, 0, 1, 0.9])
+    #plt.tight_layout(rect=[0, 0.05, 1.0, 0.9])
+    #plt.tight_layout(rect=[0, 0.0, 1.0, 0.9])
     Path(outfile).parent.mkdir(parents=True, exist_ok=True)
     plt.savefig(outfile, format="pdf")
     print(f"Plot saved as {outfile}")
@@ -320,126 +356,105 @@ def plot_recurrence_multislice(patient_identifier: str, exam_identifier_pre: str
             )
 
 
-def plot_pipeline(patient_identifier: str, exam_identifier_pre: str, exam_identifier_followup: str,
-                  exam_dir_preop: Path, exam_dir_followup: Path, outfile: str,
+def plot_pipeline(patient_identifiers: List[str], exam_dirs_preop: List[Path], exam_dirs_followup: List[Path], outfile: str,
                   classes_of_interest: List[int] = [1, 2, 3]) -> None:
 
-    n_layers = 3    # one layer for each imshow config
+    n_layers = 5    # one layer for each imshow config
     modalities = ["t1c", "t1", "t2", "flair"]
     tissues = ["gm", "wm", "csf"]
 
     # Paths
-    preop_converted_files = {modality: MODALITY_CONVERTED_SCHEMA.format(base_dir=exam_dir_preop, modality=modality) for modality in modalities}
-    followup_converted_files = {modality: MODALITY_CONVERTED_SCHEMA.format(base_dir=exam_dir_followup, modality=modality) for modality in modalities}
+    for ind, (patient_identifier, exam_dir_preop, exam_dir_followup) in enumerate(zip(patient_identifiers, exam_dirs_preop, exam_dirs_followup)):
+        preop_converted_files = {modality: MODALITY_CONVERTED_SCHEMA.format(base_dir=exam_dir_preop, modality=modality) for modality in modalities}
+        followup_converted_files = {modality: MODALITY_CONVERTED_SCHEMA.format(base_dir=exam_dir_followup, modality=modality) for modality in modalities}
 
-    preop_stripped_files = {modality: MODALITY_STRIPPED_SCHEMA.format(base_dir=exam_dir_preop, modality=modality) for modality in modalities}
-    followup_stripped_files = {modality: MODALITY_STRIPPED_SCHEMA.format(base_dir=exam_dir_followup, modality=modality) for modality in modalities}
+        preop_stripped_files = {modality: MODALITY_STRIPPED_SCHEMA.format(base_dir=exam_dir_preop, modality=modality) for modality in modalities}
+        followup_stripped_files = {modality: MODALITY_STRIPPED_SCHEMA.format(base_dir=exam_dir_followup, modality=modality) for modality in modalities}
 
-    tumor_seg_file = TUMORSEG_SCHEMA.format(base_dir=exam_dir_preop)
-    recurrence_seg_file = TUMORSEG_SCHEMA.format(base_dir=exam_dir_followup)
+        tumor_seg_file = TUMORSEG_SCHEMA.format(base_dir=exam_dir_preop)
+        recurrence_seg_file = TUMORSEG_SCHEMA.format(base_dir=exam_dir_followup)
 
-    tissue_seg_file = TISSUE_SEG_SCHEMA.format(base_dir=exam_dir_preop)
-    tissue_pbmaps_files = {tissue: TISSUE_PBMAP_SCHEMA.format(base_dir=exam_dir_preop, tissue=tissue) for tissue in tissues}
+        tissue_seg_file = TISSUE_SEG_SCHEMA.format(base_dir=exam_dir_preop)
+        tissue_pbmaps_files = {tissue: TISSUE_PBMAP_SCHEMA.format(base_dir=exam_dir_preop, tissue=tissue) for tissue in tissues}
 
-    brain_mask_file = BRAIN_MASK_SCHEMA.format(base_dir=exam_dir_preop)
-    tumor_mask_file = TUMORSEG_CORE_SCHEMA.format(base_dir=exam_dir_preop)
+        brain_mask_file = BRAIN_MASK_SCHEMA.format(base_dir=exam_dir_preop)
+        tumor_mask_file = TUMORSEG_CORE_SCHEMA.format(base_dir=exam_dir_preop)
 
-    longitudinal_t1c_file = LONGITUDINAL_WARP_SCHEMA.format(base_dir=exam_dir_followup)
-    longitudinal_rec_file = RECURRENCE_SCHEMA.format(base_dir=exam_dir_followup)
+        longitudinal_t1c_file = LONGITUDINAL_WARP_SCHEMA.format(base_dir=exam_dir_followup)
+        longitudinal_rec_file = RECURRENCE_SCHEMA.format(base_dir=exam_dir_followup)
 
-    model_output_file = PREDICTION_OUTPUT_SCHEMA.format(base_dir=exam_dir_preop, algo_id="sbtc")
+        model_output_file = PREDICTION_OUTPUT_SCHEMA.format(base_dir=exam_dir_preop, algo_id="sbtc")
 
-    standard_plan_file = STANDARD_PLAN_SCHEMA.format(base_dir=exam_dir_preop)
-    model_plan_file = MODEL_PLAN_SCHEMA.format(base_dir=exam_dir_preop, algo_id="sbtc")
+        standard_plan_file = STANDARD_PLAN_SCHEMA.format(base_dir=exam_dir_preop)
+        model_plan_file = MODEL_PLAN_SCHEMA.format(base_dir=exam_dir_preop, algo_id="sbtc")
 
-    # Load images
-    t1c_data_pre = load_mri_data(preop_stripped_files["t1c"])
-    seg_data_pre = load_mri_data(tumor_seg_file)
-    seg_data_post = load_mri_data(recurrence_seg_file)
-    longitudinal_rec = load_mri_data(longitudinal_rec_file)
-    model_data = load_and_resample_mri_data(model_output_file, resample_params=t1c_data_pre.shape, interp_type=1)
+        # Load images
+        t1c_data_pre = load_mri_data(preop_stripped_files["t1c"])
+        seg_data_pre = load_mri_data(tumor_seg_file)
+        seg_data_post = load_mri_data(recurrence_seg_file)
+        longitudinal_rec = load_mri_data(longitudinal_rec_file)
+        model_data = load_and_resample_mri_data(model_output_file, resample_params=t1c_data_pre.shape, interp_type=1)
 
-    # Compute tumor center of mass
-    center = compute_center_of_mass(seg_data_pre, t1c_data_pre, classes_of_interest)
-    ax_slice = center[2]
+        # Compute tumor center of mass
+        center = compute_center_of_mass(seg_data_pre, t1c_data_pre, classes_of_interest)
+        ax_slice = center[2]
+        t1c_converted_followup = load_and_resample_mri_data(followup_converted_files["t1c"], resample_params=t1c_data_pre.shape, interp_type=1)[:, :, ax_slice]
 
-    # Tumor segmentation legend (1: non enhancing, 2: edema, 3: enhancing)
-    cmap, norm, patches = get_cmap_norm_patches_tumorseg(classes_of_interest)
+        if ind == 0:
+            # Tumor segmentation legend (1: non enhancing, 2: edema, 3: enhancing)
+            cmap, norm, patches = get_cmap_norm_patches_tumorseg(classes_of_interest)
 
-    # Titles
-    col_titles = ["T1c", "T1", "T2", "Flair"]
-    row_titles = ["Converted (preop)", "Converted (follow)", "Stripped (preop)", "Stripped (follow)", "Tumorseg", "Tissueseg", "Masks"]
-    header = (
-            f"Patient: {patient_identifier}\n"
-            f"Exam (preop): {exam_identifier_pre}\n"
-            f"Exam (postop): {exam_identifier_followup}\n"
-            f"CoM slice (axial/coronal): {center[2]}/{center[1]}\n"
-            )
+            # Titles
+            row_titles = ["", "", ""]
+            col_titles = ["T1c + Tumor", "Flair + Tumor", "T1c + Recurrence", "Concentration Prediction", "Model Plan", "Standard Plan"] + patient_identifiers[1:4]
+            header = (
+                    ""
+                    )
 
-    # Build image tensor
-    image_tensor = np.empty((n_layers, 7, 4), dtype=object)
+            # Build image tensor
+            image_tensor = np.empty((n_layers, 3, 3), dtype=object)
 
-    # Layer 1: T1c, T1c, T1c, Tissueseg
-    layer_1_args = {"cmap": "gray", "interpolation": "none"}
+            # Layer 1: T1c, Flair
+            layer_1_args = {"cmap": "gray", "interpolation": "none"}
+            image_tensor[0, 0, 0] = load_mri_data(preop_stripped_files["t1c"])[:, :, ax_slice]
+            image_tensor[0, 0, 1] = load_mri_data(preop_stripped_files["flair"])[:, :, ax_slice]
+            image_tensor[0, 0, 2] = load_mri_data(longitudinal_t1c_file)[:, :, ax_slice]
 
-    #tmp = load_and_resample_mri_data(followup_converted_files["t1c"], resample_params=t1c_data_pre.shape, interp_type=1)[:, :, ax_slice]  #TODO pad and resample for nicer visualization before registration
-    #tmp = tmp[::2, :]
-    #t1c_converted_followup = np.zeros_like(t1c_data_pre[:,:,0])
-    #t1c_converted_followup[60:180, :] = tmp
-    t1c_converted_followup = load_and_resample_mri_data(followup_converted_files["t1c"], resample_params=t1c_data_pre.shape, interp_type=1)[:, :, ax_slice]
-    
-    image_tensor[0, 0, 0] = load_and_resample_mri_data(preop_converted_files["t1c"], resample_params=t1c_data_pre.shape, interp_type=1)[:, :, ax_slice]
-    image_tensor[0, 0, 1] = load_and_resample_mri_data(preop_converted_files["t1"], resample_params=t1c_data_pre.shape, interp_type=1)[::-1, :, ax_slice]
-    image_tensor[0, 0, 2] = load_and_resample_mri_data(preop_converted_files["t2"], resample_params=t1c_data_pre.shape, interp_type=1)[::-1, :, ax_slice]
-    image_tensor[0, 0, 3] = load_and_resample_mri_data(preop_converted_files["flair"], resample_params=t1c_data_pre.shape, interp_type=1)[::-1, :, ax_slice]
+            image_tensor[0, 1, 0] = load_mri_data(preop_stripped_files["t1c"])[:, :, ax_slice]
+            image_tensor[0, 1, 1] = load_mri_data(longitudinal_t1c_file)[:, :, ax_slice]
+            image_tensor[0, 1, 2] = load_mri_data(longitudinal_t1c_file)[:, :, ax_slice]
 
-    image_tensor[0, 1, 0] = t1c_converted_followup
-    image_tensor[0, 1, 1] = load_and_resample_mri_data(followup_converted_files["t1"], resample_params=t1c_data_pre.shape, interp_type=1)[::-1, :, ax_slice]
-    image_tensor[0, 1, 2] = load_and_resample_mri_data(followup_converted_files["t2"], resample_params=t1c_data_pre.shape, interp_type=1)[::-1, :, ax_slice]
-    image_tensor[0, 1, 3] = load_and_resample_mri_data(followup_converted_files["flair"], resample_params=t1c_data_pre.shape, interp_type=1)[::-1, :, ax_slice]
-    
-    image_tensor[0, 2, 0] = load_mri_data(preop_stripped_files["t1c"])[:, :, ax_slice]
-    image_tensor[0, 2, 1] = load_mri_data(preop_stripped_files["t1"])[:, :, ax_slice]
-    image_tensor[0, 2, 2] = load_mri_data(preop_stripped_files["t2"])[:, :, ax_slice]
-    image_tensor[0, 2, 3] = load_mri_data(preop_stripped_files["flair"])[:, :, ax_slice]
+            # Layer 2: Tumor segmentations
+            layer_2_args = {"cmap": cmap, "norm": norm, "alpha": 0.7, "interpolation": "none"}
+            image_tensor[1, 0, 0] = load_mri_data(tumor_seg_file)[:, :, ax_slice]
+            image_tensor[1, 0, 1] = load_mri_data(tumor_seg_file)[:, :, ax_slice]
+            image_tensor[1, 0, 2] = load_mri_data(longitudinal_rec_file)[:, :, ax_slice]
 
-    image_tensor[0, 3, 0] = load_mri_data(followup_stripped_files["t1c"])[:, :, ax_slice]
-    image_tensor[0, 3, 1] = load_mri_data(followup_stripped_files["t1"])[:, :, ax_slice]
-    image_tensor[0, 3, 2] = load_mri_data(followup_stripped_files["t2"])[:, :, ax_slice]
-    image_tensor[0, 3, 3] = load_mri_data(followup_stripped_files["flair"])[:, :, ax_slice]
+            image_tensor[1, 1, 1] = load_mri_data(longitudinal_rec_file)[:, :, ax_slice]
+            image_tensor[1, 1, 2] = load_mri_data(longitudinal_rec_file)[:, :, ax_slice]
 
-    image_tensor[0, 4, 0] = load_mri_data(preop_stripped_files["t1c"])[:, :, ax_slice]
-    image_tensor[0, 4, 1] = load_mri_data(followup_stripped_files["t1c"])[:, :, ax_slice]
-    image_tensor[0, 4, 2] = load_mri_data(longitudinal_t1c_file)[:, :, ax_slice]
-    image_tensor[0, 4, 3] = load_mri_data(tumor_mask_file)[:, :, ax_slice]
+            # Layer 3: Model pred
+            layer_3_args = {"cmap": "inferno", "alpha": 0.80, "vmin": 0.0, "vmax": 1.0, "interpolation": "none"}
+            image_tensor[2, 1, 0] = model_data[:, :, ax_slice]
 
-    image_tensor[0, 5, 0] = load_mri_data(tissue_seg_file)[:, :, ax_slice]
-    image_tensor[0, 5, 1] = load_mri_data(tissue_pbmaps_files["gm"])[:, :, ax_slice]
-    image_tensor[0, 5, 2] = load_mri_data(tissue_pbmaps_files["wm"])[:, :, ax_slice]
-    image_tensor[0, 5, 3] = load_mri_data(tissue_pbmaps_files["csf"])[:, :, ax_slice]
+            # Layer 4: Standard Plans
+            layer_4_args = {"cmap": mcolors.ListedColormap([(0, 0, 0, 0), (34/255., 139/255., 34/255., 1)]), "alpha": 0.3, "vmin": 0.0, "vmax": 1.0}
+            image_tensor[3, 1, 1] = load_mri_data(standard_plan_file)[:, :, ax_slice]
 
-    image_tensor[0, 6, 0] = load_mri_data(preop_stripped_files["t1c"])[:, :, ax_slice]
-    image_tensor[0, 6, 1] = load_mri_data(preop_stripped_files["t1c"])[:, :, ax_slice]
-    image_tensor[0, 6, 2] = load_mri_data(preop_stripped_files["t1c"])[:, :, ax_slice]
-    image_tensor[0, 6, 3] = load_mri_data(preop_stripped_files["t1c"])[:, :, ax_slice]
+            # Layer 5: Model Plans
+            layer_5_args = {"cmap": mcolors.ListedColormap([(0, 0, 0, 0), (210/255., 43/255., 43/255., 1)]), "alpha": 0.3, "vmin": 0.0, "vmax": 1.0}
+            image_tensor[4, 1, 2] = load_mri_data(model_plan_file)[:, :, ax_slice]
 
-    # Layer 2: None, Tumorseg, None, None
-    layer_2_args = {"cmap": cmap, "norm": norm, "alpha": 0.9, "interpolation": "none"}
-        
-    image_tensor[1, 4, 0] = load_mri_data(tumor_seg_file)[:, :, ax_slice]
-    image_tensor[1, 4, 1] = load_mri_data(recurrence_seg_file)[:, :, ax_slice]
-    image_tensor[1, 4, 2] = load_mri_data(longitudinal_rec_file)[:, :, ax_slice]
-
-    image_tensor[1, 6, 2] = load_mri_data(standard_plan_file)[:, :, ax_slice]
-    image_tensor[1, 6, 3] = load_mri_data(model_plan_file)[:, :, ax_slice]
-
-    # Layer 3: None, None, Model, None
-    layer_3_args = {"cmap": "inferno", "alpha": 0.90, "vmin": 0.0, "vmax": 1.0, "interpolation": "none"}
-        
-    image_tensor[2, 6, 1] = model_data[:, :, ax_slice]
+        else:
+            x_pos = ind - 1
+            image_tensor[0, 2, x_pos] = load_mri_data(longitudinal_t1c_file)[:, :, ax_slice]
+            image_tensor[1, 2, x_pos] = load_mri_data(longitudinal_rec_file)[:, :, ax_slice]
+            image_tensor[3, 2, x_pos] = load_mri_data(standard_plan_file)[:, :, ax_slice]
+            image_tensor[4, 2, x_pos] = load_mri_data(model_plan_file)[:, :, ax_slice]
 
     # Imshow arguments
-    imshow_args = [layer_1_args, layer_2_args, layer_3_args]
+    imshow_args = [layer_1_args, layer_2_args, layer_3_args, layer_4_args, layer_5_args]
+    cmap, norm, patches = get_cmap_norm_patches_tumorseg_5(classes_of_interest)
 
     grid_plot(
             image_tensor=image_tensor,
@@ -486,7 +501,7 @@ def plot_plans(patient_identifier: str, exam_identifier_pre: str, exam_identifie
     cmap, norm, patches = get_cmap_norm_patches_tumorseg(classes_of_interest)
 
     # Titles
-    col_titles = ["T1c", "Standard", "Model-based", "Model"]
+    col_titles = ["T1c", "T1", "T2", "Flair"]
     row_titles = axial_slices + coronal_slices
     header = (
             f"Patient: {patient_identifier}\n"
@@ -721,6 +736,7 @@ def plot_tumor_sizes(dataset_ids, dataset_dirs, dataset_rootdirs, outfile, recur
 
         logger.info(f"Processing {d_id}...")
 
+        no_recurrence_counter = 0
         for patient in dataset.patients:
             patient_id = patient["patient_id"]
             preop_exam = dataset.get_patient_exams(patient_id=patient_id, timepoint="preop")[0]  # Find first preop exam
@@ -730,8 +746,12 @@ def plot_tumor_sizes(dataset_ids, dataset_dirs, dataset_rootdirs, outfile, recur
                 preop_exam_dir = preop_exam["t1"].parent
                 followup_exam_dir = followup_exam["t1"].parent
             elif "GLIODIL" in d_id:
-                preop_exam_dir = preop_exam["t1c"].parent / "preop"
-                followup_exam_dir = followup_exam["t1c"].parent / "followup"
+                if patient_id in NO_T1C:
+                    preop_exam_dir = preop_exam["tumorseg"].parent / "preop"
+                    followup_exam_dir = followup_exam["tumorseg"].parent / "followup"
+                else:
+                    preop_exam_dir = preop_exam["t1c"].parent / "preop"
+                    followup_exam_dir = followup_exam["t1c"].parent / "followup"
             else:
                 preop_exam_dir = preop_exam["t1c"].parent
                 followup_exam_dir = followup_exam["t1c"].parent
@@ -745,12 +765,16 @@ def plot_tumor_sizes(dataset_ids, dataset_dirs, dataset_rootdirs, outfile, recur
                 tumorcore = ((tumorseg==1) | (tumorseg==3)).astype(np.int32)
                 tumor_size = np.sum(tumorcore) / 1000
 
+                if tumor_size == 0:
+                    no_recurrence_counter += 1
+
                 xvals.append(ind)
                 tumor_sizes.append(tumor_size)
             except:
                 print(f"File not found: {tumorseg_dir}")
                 continue
         ind += 1
+        print(f"{no_recurrence_counter} empty recurrence segmentations for {d_id}.")
 
     logger.info(f"Generating plot...")
 
@@ -781,7 +805,8 @@ def plot_tumor_sizes(dataset_ids, dataset_dirs, dataset_rootdirs, outfile, recur
     xvals_scatter = [xv+random.uniform(-1*jitter, jitter) for xv in xvals]
     ax.scatter(xvals_scatter, tumor_sizes, alpha=0.5, s=50, edgecolors="none", linewidths=0)
     ax.set_xticks(range(len(dataset_ids)+1))
-    ax.set_xticklabels([""]+dataset_ids, rotation=25, ha="right")
+    dataset_ids = [""] + [d_id.replace("GLIODIL", "TUM-GBM") for d_id in dataset_ids]
+    ax.set_xticklabels(dataset_ids, rotation=25, ha="right")
     ax.set_ylabel(f"Tumor size [cm$^{{3}}$] ({'recurrence' if recurrence else 'preop'})")
     fig.tight_layout()
 
@@ -809,8 +834,12 @@ def plot_com_distances(dataset_ids, dataset_dirs, dataset_rootdirs, outfile):
                 preop_exam_dir = preop_exam["t1"].parent
                 followup_exam_dir = followup_exam["t1"].parent
             elif "GLIODIL" in d_id:
-                preop_exam_dir = preop_exam["t1c"].parent / "preop"
-                followup_exam_dir = followup_exam["t1c"].parent / "followup"
+                if patient_id in NO_T1C:
+                    preop_exam_dir = preop_exam["tumorseg"].parent / "preop"
+                    followup_exam_dir = followup_exam["tumorseg"].parent / "followup"
+                else:
+                    preop_exam_dir = preop_exam["t1c"].parent / "preop"
+                    followup_exam_dir = followup_exam["t1c"].parent / "followup"
             else:
                 preop_exam_dir = preop_exam["t1c"].parent
                 followup_exam_dir = followup_exam["t1c"].parent
@@ -862,7 +891,8 @@ def plot_com_distances(dataset_ids, dataset_dirs, dataset_rootdirs, outfile):
     ax.scatter(xvals_scatter, com_distances, alpha=0.5, s=50, edgecolors="none", linewidths=0)
     ax.axhline(y=1.5, color="0.4", linestyle="--", linewidth=1)
     ax.set_xticks(range(len(dataset_ids)+1))
-    ax.set_xticklabels([""]+dataset_ids, rotation=25, ha="right")
+    dataset_ids = [""] + [d_id.replace("GLIODIL", "TUM-GBM") for d_id in dataset_ids]
+    ax.set_xticklabels(dataset_ids, rotation=25, ha="right")
     ax.set_ylabel(f"Distance tum.-rec. [cm]")
     fig.tight_layout()
 
@@ -888,8 +918,12 @@ def plot_performances(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, out
                 preop_exam_dir = preop_exam["t1"].parent
                 followup_exam_dir = followup_exam["t1"].parent
             elif "GLIODIL" in d_id:
-                preop_exam_dir = preop_exam["t1c"].parent / "preop"
-                followup_exam_dir = followup_exam["t1c"].parent / "followup"
+                if patient_id in NO_T1C:
+                    preop_exam_dir = preop_exam["tumorseg"].parent / "preop"
+                    followup_exam_dir = followup_exam["tumorseg"].parent / "followup"
+                else:
+                    preop_exam_dir = preop_exam["t1c"].parent / "preop"
+                    followup_exam_dir = followup_exam["t1c"].parent / "followup"
             else:
                 preop_exam_dir = preop_exam["t1c"].parent
                 followup_exam_dir = followup_exam["t1c"].parent
@@ -925,6 +959,7 @@ def plot_performances(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, out
         #ax.scatter(xs_all, ys_all, alpha=0.5, color=(57/255.0, 118/255.0, 129/255.0), label="Any", s=50, edgecolors="none", linewidths=0)
         ax.scatter(xs_all, ys_all, alpha=0.6, label="Any", s=50, edgecolors="none", linewidths=0)
         ax.plot([0,100], [0,100], linewidth=1, linestyle="--", color="black")
+        d_id = d_id.replace("GLIODIL", "TUM-GBM")
         ax.set_title(d_id, fontweight="bold")
 
         if ind % 3 == 0:
@@ -932,7 +967,7 @@ def plot_performances(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, out
         if ind>5:
             ax.set_xlabel("Recurrence coverage (standard) [%]")
 
-    ax.legend()
+    ax.legend(loc="lower right")
     fig.delaxes(axes[2][2])
     fig.tight_layout()
 
@@ -968,8 +1003,12 @@ def plot_missed(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, outfile):
                 preop_exam_dir = preop_exam["t1"].parent
                 followup_exam_dir = followup_exam["t1"].parent
             elif "GLIODIL" in d_id:
-                preop_exam_dir = preop_exam["t1c"].parent / "preop"
-                followup_exam_dir = followup_exam["t1c"].parent / "followup"
+                if patient_id in NO_T1C:
+                    preop_exam_dir = preop_exam["tumorseg"].parent / "preop"
+                    followup_exam_dir = followup_exam["tumorseg"].parent / "followup"
+                else:
+                    preop_exam_dir = preop_exam["t1c"].parent / "preop"
+                    followup_exam_dir = followup_exam["t1c"].parent / "followup"
             else:
                 preop_exam_dir = preop_exam["t1c"].parent
                 followup_exam_dir = followup_exam["t1c"].parent
@@ -1049,8 +1088,12 @@ def plot_diff_vs_distance(dataset_ids, dataset_dirs, dataset_rootdirs, model_id,
                 preop_exam_dir = preop_exam["t1"].parent
                 followup_exam_dir = followup_exam["t1"].parent
             elif "GLIODIL" in d_id:
-                preop_exam_dir = preop_exam["t1c"].parent / "preop"
-                followup_exam_dir = followup_exam["t1c"].parent / "followup"
+                if patient_id in NO_T1C:
+                    preop_exam_dir = preop_exam["tumorseg"].parent / "preop"
+                    followup_exam_dir = followup_exam["tumorseg"].parent / "followup"
+                else:
+                    preop_exam_dir = preop_exam["t1c"].parent / "preop"
+                    followup_exam_dir = followup_exam["t1c"].parent / "followup"
             else:
                 preop_exam_dir = preop_exam["t1c"].parent
                 followup_exam_dir = followup_exam["t1c"].parent
@@ -1092,6 +1135,20 @@ if __name__ == "__main__":
     # Example:
     # python gbm_bench/utils/visualization.py
 
+    patient_identifiers = ["RHUH-025", "LUMIERE-008", "RHUH-018", "UPENN-140"]
+    exam_dirs_preop = [
+            Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0025/10-14-2012-NA-RM DE CEREBRO SINCON CONTRASTE-82954"),
+            Path("/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-008/week-000"),
+            Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0018/06-25-2017-NA-RM CEREBRAL-66931/"),
+            Path("/mnt/Drive2/lucas/datasets/UPENN-GBM/UPENN-GBM/UPENN-GBM-00140/03-15-2009-NA-BrainTumor-11707")
+            ]
+    exam_dirs_followup = [
+            Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0025/03-24-2013-NA-CEREBRAL-48696"),
+            Path("/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-008/week-017"),
+            Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0018/11-15-2017-NA-CRANEO-18771"),
+            Path("/mnt/Drive2/lucas/datasets/UPENN-GBM/UPENN-GBM/UPENN-GBM-00140/05-09-2010-NA-BrainTumor-75173")
+            ]
+
     """
     plot_model_multislice(
             patient_identifier="RHUH-0001",
@@ -1109,16 +1166,16 @@ if __name__ == "__main__":
             exam_dir_followup=Path("test_data/exam3/"),
             outfile="tmp_visualization/test_longitudinal.pdf"
             )
+    """
 
     plot_pipeline(
-            patient_identifier="RHUH-0030",
-            exam_identifier_pre="Pre",
-            exam_identifier_followup="Post",
-            exam_dir_preop=Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0030/11-25-2013-NA-RM CEREBRALC-02749"),
-            exam_dir_followup=Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0030/08-11-2014-NA-RM DE CEREBRO SINCON CONTRASTE-96321"),
+            patient_identifiers=patient_identifiers,
+            exam_dirs_preop=exam_dirs_preop,
+            exam_dirs_followup=exam_dirs_followup,
             outfile="tmp_visualization/pipeline.pdf"
             )
     
+    """
     plot_plans(
             patient_identifier="RHUH-0011",
             exam_identifier_pre="Pre",
