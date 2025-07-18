@@ -72,7 +72,7 @@ def get_cmap_norm_patches_tumorseg(classes_of_interest: List[int]):
 def get_cmap_norm_patches_tumorseg_5(classes_of_interest: List[int]):
     # Tumor segmentation legend (1: non enhancing, 2: edema, 3: enhancing)
     colors = [(0,0,0,0), (1, 127/255, 0, 1), (30/255, 144/255, 1, 1), (138/255, 43/255, 226/255, 1), (34/255., 139/255., 34/255., 1), (210/255., 43/255., 43/255., 1)]
-    color_labels = ["Non-enhancing Tumor", "Peritumoral Edema", "Enhancing Tumor", "Standard Plan", "Model Plan"]
+    color_labels = ["Necrosis", "Peritumoral Edema", "Enhancing Tumor", "Standard Plan", "Model Plan"]
     cmap = mcolors.ListedColormap(colors)
     bounds = [0, 0.5, 1.5, 2.5, 3.5]
     norm = mcolors.BoundaryNorm(bounds, cmap.N)
@@ -383,10 +383,10 @@ def plot_pipeline(patient_identifiers: List[str], exam_dirs_preop: List[Path], e
         longitudinal_t1c_file = LONGITUDINAL_WARP_SCHEMA.format(base_dir=exam_dir_followup)
         longitudinal_rec_file = RECURRENCE_SCHEMA.format(base_dir=exam_dir_followup)
 
-        model_output_file = PREDICTION_OUTPUT_SCHEMA.format(base_dir=exam_dir_preop, algo_id="sbtc")
+        model_output_file = PREDICTION_OUTPUT_SCHEMA.format(base_dir=exam_dir_preop, algo_id="gliodil")
 
         standard_plan_file = STANDARD_PLAN_SCHEMA.format(base_dir=exam_dir_preop)
-        model_plan_file = MODEL_PLAN_SCHEMA.format(base_dir=exam_dir_preop, algo_id="sbtc")
+        model_plan_file = MODEL_PLAN_SCHEMA.format(base_dir=exam_dir_preop, algo_id="gliodil")
 
         # Load images
         t1c_data_pre = load_mri_data(preop_stripped_files["t1c"])
@@ -1197,6 +1197,6 @@ if __name__ == "__main__":
     plot_difference(
             img1_file="/home/home/lucas/jonasplans/standardPlan.nii.gz",
             img2_file="/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0012/0/processed/tumor_segmentation/standard_plan.nii.gz",
-            identifier="tgm016",
+            identifier="tgm016",,
             outfile="tmp/standard_difference.pdf")
     """

@@ -72,26 +72,36 @@ if __name__ == "__main__":
                     preop_exam_dir = preop_exam["t1c"].parent / "preop"
                     followup_exam_dir = followup_exam["t1c"].parent / "followup"
             else:
-                preop_exam_dir = followup_exam["t1c"].parent
+                preop_exam_dir = preop_exam["t1c"].parent
                 followup_exam_dir = followup_exam["t1c"].parent
 
             try:
+                
                 performance_dir = METRICS_SCHEMA.format(base_dir=followup_exam_dir, algo_id=args.algorithm)
                 performance_dict = json.load(open(performance_dir, "r"))
-                all_results.append(performance_dict)
-                dataset_results.append(performance_dict)
+                
+                if "roc_auc_model" in performance_dict.keys():
+                    all_results.append(performance_dict)
+                    dataset_results.append(performance_dict)
             except Exception as e:
                 print(f"Exception for {patient_id}: {e}")
+        
         cov_std = [r["recurrence_coverage_standard"] for r in dataset_results]
         cov_std_all = [r["recurrence_coverage_standard_all"] for r in dataset_results]
         cov_mod = [r["recurrence_coverage_model"] for r in dataset_results]
         cov_mod_all = [r["recurrence_coverage_model_all"] for r in dataset_results]
+        roc_auc_model_all = [r["roc_auc_model"] for r in dataset_results]
+        roc_auc_standard_fade = [r["roc_auc_standard_fade"] for r in dataset_results]
         print(f"{d_id}: {stats.wilcoxon(cov_std, cov_mod, alternative='less')} / {stats.wilcoxon(cov_std_all, cov_mod_all, alternative='less')}")
+        print(f"{d_id} (model): {np.mean(roc_auc_model_all):.2f} \u00B1 {stats.sem(roc_auc_model_all):.2f}")
+        print(f"{d_id} (fade): {np.mean(roc_auc_standard_fade):.2f} \u00B1 {stats.sem(roc_auc_standard_fade):.2f}")
 
     recurrence_coverage_standard = [r["recurrence_coverage_standard"] for r in all_results]
     recurrence_coverage_standard_all = [r["recurrence_coverage_standard_all"] for r in all_results]
     recurrence_coverage_model = [r["recurrence_coverage_model"] for r in all_results]
     recurrence_coverage_model_all = [r["recurrence_coverage_model_all"] for r in all_results]
+    roc_auc_model_all = [r["roc_auc_model"] for r in all_results]
+    roc_auc_standard_fade_all = [r["roc_auc_standard_fade"] for r in all_results]
     missed_standard = [r["missed_voxels_standard"] / 1000 for r in all_results]
     missed_standard_all = [r["missed_voxels_standard_all"] / 1000 for r in all_results]
     missed_model = [r["missed_voxels_model"] / 1000 for r in all_results]
@@ -105,6 +115,10 @@ if __name__ == "__main__":
     print(f"Model plan coverge (all): {100*np.mean(recurrence_coverage_model_all):.2f} \u00B1 {100*stats.sem(recurrence_coverage_model_all):.2f}")
     print(f"Combined: {stats.wilcoxon(recurrence_coverage_standard, recurrence_coverage_model, alternative='less')} / {stats.wilcoxon(recurrence_coverage_standard_all, recurrence_coverage_model_all, alternative='less')}")
     
+    print(f"\n")
+    print(f"ROC AUC Model: {np.mean(roc_auc_model_all):.2f} \u00B1 {stats.sem(roc_auc_model_all):.2f}")
+    print(f"ROC AUC Std plan: {np.mean(roc_auc_standard_fade):.2f} \u00B1 {stats.sem(roc_auc_standard_fade):.2f}")
+
     print(f"\n")
     print(f"Standard plan missed: {np.mean(missed_standard):.2f} \u00B1 {stats.sem(missed_standard):.2f}")
     print(f"Standard plan missed (all): {np.mean(missed_standard_all):.2f} \u00B1 {stats.sem(missed_standard_all):.2f}")

@@ -6,6 +6,7 @@ import nibabel as nib
 from pathlib import Path
 from loguru import logger
 from typing import Any, Dict
+from sklearn.metrics import roc_curve, auc
 from scipy.ndimage import center_of_mass, distance_transform_edt
 from gbm_bench.evaluation.metrics import coverage
 from gbm_bench.utils.utils import load_mri_data, load_and_resample_mri_data, is_binary_array
@@ -164,13 +165,60 @@ def generate_distance_fade_mask(binary_model_prediction: np.ndarray) -> np.ndarr
     distance = distance_transform_edt(data == 0)
 
     # Normalize distances to [0, 1] and invert: closer to mask = higher value
-    max_dist = np.max(distance)
+    max_dist = np.max(distance) if distance.max() > 0 else 1.0
     fade = 1 - (distance / max_dist)
-    fade[data == 1] = 1  # Ensure mask stays at 1
 
-    #out_img = nib.Nifti1Image(fade.astype(np.float32), affine=np.eye(4))
-    #nib.save(out_img, "/home/home/lucas/projects/gbm_bench/tmp/fade_mask.nii.gz")
+    fade[data == 1] = 1  # Ensure mask stays at 1
     return fade.astype(np.float32)
+
+
+def generate_distance_fade_mask_no_plateau(binary_model_prediction: np.ndarray) -> np.ndarray:
+    if not is_binary_array(binary_model_prediction):
+        raise ValueError("Model prediction is not binary: {np.unique(binary_model_prediction)}")
+
+    data = np.rint(binary_model_prediction).astype(np.int32)
+
+    distance_outer = distance_transform_edt(data == 0)
+    distance_inner = distance_transform_edt(data != 0)
+
+    max_outer = np.max(distance_outer)
+    max_inner = np.max(distance_inner)
+
+    distance_outer = distance_outer / max_outer
+    distance_inner = distance_inner / max_inner
+
+    fade = 1 - distance_outer
+    fade[data == 1] = 1 + distance_inner[data==1]
+    fade = fade / 2.
+
+    #return distance_inner.astype(np.float32)
+    return fade.astype(np.float32)    
+
+
+def roc_auc(pred, seg, mask=None, labels_of_interest=[1, 3], drop_intermediate=True):
+    
+    if mask is None:
+        mask = np.ones_like(seg, dtype=bool)
+    mask_bool = mask.astype(bool)
+
+    # Flatten only voxels under mask
+    scores = pred[mask_bool].ravel()
+    labels = seg[mask_bool].ravel()
+
+    # Get recurrence core according to labels of interest
+    y_true = np.isin(labels, labels_of_interest).astype(int)
+
+    # Guard against degenerate cases
+    pos = y_true.sum()
+    neg = y_true.size - pos
+    if pos == 0 or neg == 0:
+        raise ValueError("The masked region must contain both positive and negative voxels.")
+
+    # ROC and AUC
+    fpr, tpr, thresholds = roc_curve(y_true, scores, drop_intermediate=drop_intermediate)
+    auc_value = auc(fpr, tpr)
+
+    return auc_value, fpr, tpr, thresholds
 
 
 def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, model_id: str, ctv_margin: int = 15, csf_mask: bool = False) -> Dict[str, Any]:
@@ -217,6 +265,7 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
     recurrence_segmentation[recurrence_segmentation == 2] = 0  # ignore edema
     recurrence_segmentation[recurrence_segmentation == 3] = 1
     recurrence_segmentation[recurrence_segmentation == 4] = 0  # ignore resection cavity 
+    
     recurrence_segmentation_all = np.rint(load_mri_data(recurrence_dir)).astype(np.int32)
     recurrence_segmentation_all[recurrence_segmentation_all == 1] = 1
     recurrence_segmentation_all[recurrence_segmentation_all == 2] = 1
@@ -242,6 +291,15 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
     model_recurrence_coverage = recurrence_coverage(recurrence_segmentation, model_plan)
     model_recurrence_coverage_all = recurrence_coverage(recurrence_segmentation_all, model_plan)
 
+    # ROC AUC
+    #peritumoral_mask = create_standard_plan(core_segmentation, 1)
+    rec_seg = np.rint(load_mri_data(str(recurrence_dir))).astype(np.int32)
+    auc_model, fpr, tpr, thresholds = roc_auc(pred=model_prediction, seg=rec_seg, mask=brain_mask)
+
+    distance_fade_core = generate_distance_fade_mask_no_plateau(standard_plan)
+    auc_standard_fade, fpr, tpr, thresholds = roc_auc(pred=distance_fade_core, seg=rec_seg, mask=brain_mask)
+    auc_standard, fpr, tpr, thresholds = roc_auc(pred=standard_plan, seg=rec_seg, mask=brain_mask)
+
     # Save plans
     outfile_standard = STANDARD_PLAN_SCHEMA.format(base_dir=str(preop_dir))
     outfile_model = MODEL_PLAN_SCHEMA.format(base_dir=str(preop_dir), algo_id=model_id)
@@ -265,6 +323,10 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
     results["missed_voxels_standard_all"] = missed_voxels(recurrence_segmentation_all, standard_plan)
     results["missed_voxels_model"] = missed_voxels(recurrence_segmentation, model_plan)
     results["missed_voxels_model_all"] = missed_voxels(recurrence_segmentation_all, model_plan)
+
+    results["roc_auc_model"] = auc_model
+    results["roc_standard"] = auc_standard
+    results["roc_auc_standard_fade"] = auc_standard_fade
 
     # Save results
     save_file = METRICS_SCHEMA.format(base_dir=followup_dir, algo_id=model_id)
