@@ -172,7 +172,7 @@ def generate_distance_fade_mask(binary_model_prediction: np.ndarray) -> np.ndarr
     return fade.astype(np.float32)
 
 
-def generate_distance_fade_mask_no_plateau(binary_model_prediction: np.ndarray) -> np.ndarray:
+def generate_distance_fade_mask_no_plateau(binary_model_prediction: np.ndarray, visible_tumor_threshold: float = 0.6) -> np.ndarray:
     if not is_binary_array(binary_model_prediction):
         raise ValueError("Model prediction is not binary: {np.unique(binary_model_prediction)}")
 
@@ -187,15 +187,15 @@ def generate_distance_fade_mask_no_plateau(binary_model_prediction: np.ndarray) 
     distance_outer = distance_outer / max_outer
     distance_inner = distance_inner / max_inner
 
-    fade = 1 - distance_outer
-    fade[data == 1] = 1 + distance_inner[data==1]
-    fade = fade / 2.
-
-    #return distance_inner.astype(np.float32)
+    #fade = 1 - distance_outer
+    #fade[data == 1] = 1 + distance_inner[data==1]
+    #fade = fade / 2.
+    fade = (1 - distance_outer) * visible_tumor_threshold  # fade from threshold to 0 outside
+    fade[data == 1] = visible_tumor_threshold + distance_inner[data==1] * (1 - visible_tumor_threshold)  # fade from 1 to threshold inside
     return fade.astype(np.float32)    
 
 
-def roc_auc(pred, seg, mask=None, labels_of_interest=[1, 3], drop_intermediate=True):
+def roc_auc(pred, seg, mask=None, labels_of_interest=[1, 3], drop_intermediate=True, threshold_range=(0.20, 0.70)):
     
     if mask is None:
         mask = np.ones_like(seg, dtype=bool)
@@ -217,6 +217,32 @@ def roc_auc(pred, seg, mask=None, labels_of_interest=[1, 3], drop_intermediate=T
     # ROC and AUC
     fpr, tpr, thresholds = roc_curve(y_true, scores, drop_intermediate=drop_intermediate)
     auc_value = auc(fpr, tpr)
+
+    # restricted
+    """
+    thr_min, thr_max = threshold_range
+    sel = (thresholds >= thr_min) & (thresholds <= thr_max)
+    fpr_sel, tpr_sel, thr_sel = fpr[sel], tpr[sel], thresholds[sel]
+
+    thr_asc, fpr_asc, tpr_asc = thresholds[::-1], fpr[::-1], tpr[::-1]
+
+    if not np.isclose(thr_sel[0] if thr_sel.size else np.inf, thr_min):
+        fpr_low = np.interp(thr_min, thr_asc, fpr_asc)
+        tpr_low = np.interp(thr_min, thr_asc, tpr_asc)
+        fpr_sel = np.insert(fpr_sel, 0, fpr_low)
+        tpr_sel = np.insert(tpr_sel, 0, tpr_low)
+        thr_sel = np.insert(thr_sel, 0, thr_min)
+
+    if not np.isclose(thr_sel[-1] if thr_sel.size else -np.inf, thr_max):
+        fpr_high = np.interp(thr_max, thr_asc, fpr_asc)
+        tpr_high = np.interp(thr_max, thr_asc, tpr_asc)
+        fpr_sel = np.append(fpr_sel, fpr_high)
+        tpr_sel = np.append(tpr_sel, tpr_high)
+        thr_sel = np.append(thr_sel, thr_max)
+
+    auc_value = auc(fpr_sel, tpr_sel)
+    return auc_value, fpr_sel, tpr_sel, thr_sel
+    """
 
     return auc_value, fpr, tpr, thresholds
 
@@ -296,9 +322,12 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
     rec_seg = np.rint(load_mri_data(str(recurrence_dir))).astype(np.int32)
     auc_model, fpr, tpr, thresholds = roc_auc(pred=model_prediction, seg=rec_seg, mask=brain_mask)
 
-    distance_fade_core = generate_distance_fade_mask_no_plateau(standard_plan)
+    distance_fade_core = generate_distance_fade_mask_no_plateau(core_segmentation)
     auc_standard_fade, fpr, tpr, thresholds = roc_auc(pred=distance_fade_core, seg=rec_seg, mask=brain_mask)
     auc_standard, fpr, tpr, thresholds = roc_auc(pred=standard_plan, seg=rec_seg, mask=brain_mask)
+
+    #imgtest = nib.Nifti1Image(distance_fade_core, np.eye(4))
+    #nib.save(imgtest, "/home/home/lucas/tmp/test.nii.gz")
 
     # Save plans
     outfile_standard = STANDARD_PLAN_SCHEMA.format(base_dir=str(preop_dir))
