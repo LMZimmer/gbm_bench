@@ -31,6 +31,9 @@ if __name__ == "__main__":
 
             print(exam["t1"].parent)
 
+            if patient["patient_id"] != "Patient-067":  #TODO
+                continue
+
             predict_tumor_growth(
                     preop_dir=exam["t1"].parent,
                     model_id="sbtc", # lmi, sbtc, gliodil

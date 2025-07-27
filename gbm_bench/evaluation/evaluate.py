@@ -212,7 +212,8 @@ def roc_auc(pred, seg, mask=None, labels_of_interest=[1, 3], drop_intermediate=T
     pos = y_true.sum()
     neg = y_true.size - pos
     if pos == 0 or neg == 0:
-        raise ValueError("The masked region must contain both positive and negative voxels.")
+        return 0.0, None, None, None
+        #raise ValueError("The masked region must contain both positive and negative voxels.")
 
     # ROC and AUC
     fpr, tpr, thresholds = roc_curve(y_true, scores, drop_intermediate=drop_intermediate)
@@ -301,7 +302,7 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
     model_prediction = load_and_resample_mri_data(str(pred_file), resample_params=core_segmentation.shape, interp_type=0)
     if is_binary_array(model_prediction):
         logger.info(f"Prediction {str(pred_file)} is binary. Generating distance fade for radiation planning.")
-        model_prediction = generate_distance_fade_mask(model_prediction)
+        model_prediction = generate_distance_fade_mask_no_plateau(model_prediction)
 
     # Create standard plan
     standard_plan = create_standard_plan(core_segmentation, ctv_margin)
@@ -353,9 +354,12 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
     results["missed_voxels_model"] = missed_voxels(recurrence_segmentation, model_plan)
     results["missed_voxels_model_all"] = missed_voxels(recurrence_segmentation_all, model_plan)
 
-    results["roc_auc_model"] = auc_model
-    results["roc_standard"] = auc_standard
-    results["roc_auc_standard_fade"] = auc_standard_fade
+    if auc_model != 0.0:
+        results["roc_auc_model"] = auc_model
+    if auc_standard != 0.0:
+        results["roc_standard"] = auc_standard
+    if auc_standard_fade != 0.0:
+        results["roc_auc_standard_fade"] = auc_standard_fade
 
     # Save results
     save_file = METRICS_SCHEMA.format(base_dir=followup_dir, algo_id=model_id)

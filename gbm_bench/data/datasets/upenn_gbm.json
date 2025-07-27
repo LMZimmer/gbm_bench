@@ -337,32 +337,6 @@
       ]
     },
     {
-      "patient_id": "UPENN-GBM-00133",
-      "patient_dir": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00133",
-      "exams": [
-        {
-          "perfusion": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00133/05-17-2008-NA-MR HEAD W AND WO IV CONTRAST TUMOR NEW-96213/47.000000-ep2dperf BOLUS-28897",
-          "dti": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00133/05-17-2008-NA-MR HEAD W AND WO IV CONTRAST TUMOR NEW-96213/23.000000-ep2dDTI30dir-15088",
-          "flair": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00133/05-17-2008-NA-MR HEAD W AND WO IV CONTRAST TUMOR NEW-48048/46.000000-t2Flairaxial ProcessedCaPTk-86616",
-          "t2": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00133/05-17-2008-NA-MR HEAD W AND WO IV CONTRAST TUMOR NEW-42379/22.000000-Axial T2 tse ProcessedCaPTk-27116",
-          "t1c": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00133/05-17-2008-NA-MR HEAD W AND WO IV CONTRAST TUMOR NEW-33071/48.000000-t1 axial stealth-post  ProcessedCaPTk-03235",
-          "t1": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00133/05-17-2008-NA-MR HEAD W AND WO IV CONTRAST TUMOR NEW-59386/3.000000-t1 axial ProcessedCaPTk-61197",
-          "timepoint": "preop",
-          "needs_manual": false
-        },
-        {
-          "t1c": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00133/11-23-2008-NA-BrainTumor-61216/16.000000-t1 axial stealth-post  ProcessedCaPTk-43746",
-          "dti": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00133/11-23-2008-NA-BrainTumor-95615/6.000000-ep2dDTI30dir-17488",
-          "perfusion": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00133/11-23-2008-NA-BrainTumor-95615/15.000000-ep2dperf BOLUS-85794",
-          "flair": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00133/11-23-2008-NA-BrainTumor-21313/14.000000-t2Flairaxial ProcessedCaPTk-76597",
-          "t1": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00133/11-23-2008-NA-BrainTumor-47018/3.000000-t1 axial ProcessedCaPTk-57020",
-          "t2": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00133/11-23-2008-NA-BrainTumor-96960/4.000000-Axial T2 tse ProcessedCaPTk-03082",
-          "timepoint": "followup",
-          "needs_manual": false
-        }
-      ]
-    },
-    {
       "patient_id": "UPENN-GBM-00134",
       "patient_dir": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00134",
       "exams": [
@@ -487,31 +461,6 @@
           "perfusion": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00148/06-18-2009-NA-BrainTumor-11754/14.000000-ep2dperf BOLUS-02966",
           "flair": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00148/06-18-2009-NA-BrainTumor-07338/13.000000-t2Flairaxial ProcessedCaPTk-87667",
           "t1": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00148/06-18-2009-NA-BrainTumor-40089/3.000000-t1 axial ProcessedCaPTk-21719",
-          "timepoint": "followup",
-          "needs_manual": false
-        }
-      ]
-    },
-    {
-      "patient_id": "UPENN-GBM-00160",
-      "patient_dir": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00160",
-      "exams": [
-        {
-          "t2": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00160/11-20-2005-NA-BRAINROUTINE-10471/4.000000-Axial T2 tse ProcessedCaPTk-85932",
-          "flair": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00160/11-20-2005-NA-BRAINROUTINE-94849/13.000000-t2Flairaxial ProcessedCaPTk-87327",
-          "dti": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00160/11-20-2005-NA-BRAINROUTINE-26909/6.000000-ep2dDTI30dir-17946",
-          "t1": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00160/11-20-2005-NA-BRAINROUTINE-00863/3.000000-t1 axial ProcessedCaPTk-14396",
-          "t1c": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00160/11-20-2005-NA-BRAINROUTINE-56193/15.000000-t1 axial stealth-post  ProcessedCaPTk-43012",
-          "timepoint": "preop",
-          "needs_manual": false
-        },
-        {
-          "t1c": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00160/01-17-2008-NA-BrainTumor-91087/37.000000-AX T1 3D POST STEALTH  ProcessedCaPTk-69862",
-          "t2": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00160/01-17-2008-NA-BrainTumor-11113/25.000000-T2 AXIAL ProcessedCaPTk-64934",
-          "t1": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00160/01-17-2008-NA-BrainTumor-92773/2.000000-T1 MPRAGE AXIAL IPAT ProcessedCaPTk-49155",
-          "flair": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00160/01-17-2008-NA-BrainTumor-58628/35.000000-T2 AXIAL FLAIR ProcessedCaPTk-37652",
-          "dti": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00160/01-17-2008-NA-BrainTumor-21531/28.000000-MDDW DTI AXIAL 30 DIRECTION-66588",
-          "perfusion": "/Users/cherubim/Desktop/UPENN-GBM/UPENN-GBM/UPENN-GBM-00160/01-17-2008-NA-BrainTumor-21531/36.000000-PERFUSION BOLUS-55755",
           "timepoint": "followup",
           "needs_manual": false
         }

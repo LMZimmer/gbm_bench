@@ -49,6 +49,7 @@ if __name__ == "__main__":
         print(f"Performing longitudinal registration {patient_ind}/{len(lumiere.patients)}.")
 
         patient_id = patient["patient_id"]
+
         preop_exam = lumiere.get_patient_exams(patient_id=patient_id, timepoint="preop")[0]  # Find first preop exam
         preop_exam_dir = preop_exam["t1"].parent
 

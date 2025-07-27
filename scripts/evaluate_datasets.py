@@ -80,9 +80,11 @@ if __name__ == "__main__":
                 performance_dir = METRICS_SCHEMA.format(base_dir=followup_exam_dir, algo_id=args.algorithm)
                 performance_dict = json.load(open(performance_dir, "r"))
                 
-                if "roc_auc_model" in performance_dict.keys():
+                if "roc_auc_model" in performance_dict.keys() and "roc_auc_standard_fade" in performance_dict.keys():
                     all_results.append(performance_dict)
                     dataset_results.append(performance_dict)
+                else:
+                    print(performance_dict.keys())
             except Exception as e:
                 print(f"Exception for {patient_id}: {e}")
         
@@ -90,10 +92,10 @@ if __name__ == "__main__":
         cov_std_all = [r["recurrence_coverage_standard_all"] for r in dataset_results]
         cov_mod = [r["recurrence_coverage_model"] for r in dataset_results]
         cov_mod_all = [r["recurrence_coverage_model_all"] for r in dataset_results]
-        roc_auc_model_all = [r["roc_auc_model"] for r in dataset_results]
+        roc_auc_model = [r["roc_auc_model"] for r in dataset_results]
         roc_auc_standard_fade = [r["roc_auc_standard_fade"] for r in dataset_results]
         print(f"{d_id}: {stats.wilcoxon(cov_std, cov_mod, alternative='less')} / {stats.wilcoxon(cov_std_all, cov_mod_all, alternative='less')}")
-        print(f"{d_id} (model): {np.mean(roc_auc_model_all):.2f} \u00B1 {stats.sem(roc_auc_model_all):.2f}")
+        print(f"{d_id} (model): {np.mean(roc_auc_model):.2f} \u00B1 {stats.sem(roc_auc_model):.2f}")
         print(f"{d_id} (fade): {np.mean(roc_auc_standard_fade):.2f} \u00B1 {stats.sem(roc_auc_standard_fade):.2f}")
 
     recurrence_coverage_standard = [r["recurrence_coverage_standard"] for r in all_results]
@@ -117,7 +119,8 @@ if __name__ == "__main__":
     
     print(f"\n")
     print(f"ROC AUC Model: {np.mean(roc_auc_model_all):.2f} \u00B1 {stats.sem(roc_auc_model_all):.2f}")
-    print(f"ROC AUC Std plan: {np.mean(roc_auc_standard_fade):.2f} \u00B1 {stats.sem(roc_auc_standard_fade):.2f}")
+    print(f"ROC AUC Std plan: {np.mean(roc_auc_standard_fade_all):.2f} \u00B1 {stats.sem(roc_auc_standard_fade_all):.2f}")
+    print(f"ROC AUC Wilcoxon: {stats.wilcoxon(roc_auc_standard_fade_all, roc_auc_model_all, alternative='less')}")
 
     print(f"\n")
     print(f"Standard plan missed: {np.mean(missed_standard):.2f} \u00B1 {stats.sem(missed_standard):.2f}")

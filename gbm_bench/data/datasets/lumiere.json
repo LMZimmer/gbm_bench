@@ -1381,16 +1381,8 @@
       "patient_dir": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-067",
       "exams": [
         {
-          "dir_name": "week-000-1",
-          "timepoint": "preop",
-          "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-067/week-000-1/CT1.nii.gz",
-          "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-067/week-000-1/FLAIR.nii.gz",
-          "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-067/week-000-1/T1.nii.gz",
-          "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-067/week-000-1/T2.nii.gz"
-        },
-        {
           "dir_name": "week-000-2",
-          "timepoint": "postop",
+          "timepoint": "preop",
           "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-067/week-000-2/CT1.nii.gz",
           "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-067/week-000-2/FLAIR.nii.gz",
           "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-067/week-000-2/T1.nii.gz",
