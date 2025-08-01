@@ -398,7 +398,7 @@ def plot_pipeline(patient_identifiers: List[str], exam_dirs_preop: List[Path], e
         # Compute tumor center of mass
         center = compute_center_of_mass(seg_data_pre, t1c_data_pre, classes_of_interest)
         ax_slice = center[2]
-        t1c_converted_followup = load_and_resample_mri_data(followup_converted_files["t1c"], resample_params=t1c_data_pre.shape, interp_type=1)[:, :, ax_slice]
+        #t1c_converted_followup = load_and_resample_mri_data(followup_converted_files["t1c"], resample_params=t1c_data_pre.shape, interp_type=1)[:, :, ax_slice]
 
         if ind == 0:
             # Tumor segmentation legend (1: non enhancing, 2: edema, 3: enhancing)
@@ -1135,6 +1135,7 @@ if __name__ == "__main__":
     # Example:
     # python gbm_bench/utils/visualization.py
 
+    """
     patient_identifiers = ["RHUH-025", "LUMIERE-008", "RHUH-018", "UPENN-140"]
     exam_dirs_preop = [
             Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0025/10-14-2012-NA-RM DE CEREBRO SINCON CONTRASTE-82954"),
@@ -1148,7 +1149,21 @@ if __name__ == "__main__":
             Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0018/11-15-2017-NA-CRANEO-18771"),
             Path("/mnt/Drive2/lucas/datasets/UPENN-GBM/UPENN-GBM/UPENN-GBM-00140/05-09-2010-NA-BrainTumor-75173")
             ]
+    """
 
+    patient_identifiers = ["TUM-GBM-097", "RHUH-005", "RHUH-011", "LUMIERE-066"]
+    exam_dirs_preop = [
+            Path("/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_097/d0/preop"),
+            Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0005/05-25-2013-NA-RM CRANEONEURONAVEGADOR-29811/"),
+            Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0011/08-20-2017-NA-RM CRANEO-91051/"),
+            Path("/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-066/week-000")
+            ]
+    exam_dirs_followup = [
+            Path("/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_097/d205/followup"),
+            Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0005/09-14-2014-NA-CEREBRAL-38655"),
+            Path("/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0011/11-01-2017-NA-RM CEREBRAL-80880/"),
+            Path("/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-066/week-101")
+            ]
     """
     plot_model_multislice(
             patient_identifier="RHUH-0001",

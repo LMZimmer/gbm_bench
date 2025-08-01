@@ -115,7 +115,11 @@ if __name__ == "__main__":
     print(f"Standard plan coverge (all): {100*np.mean(recurrence_coverage_standard_all):.2f} \u00B1 {100*stats.sem(recurrence_coverage_standard_all):.2f}")
     print(f"Model plan coverge: {100*np.mean(recurrence_coverage_model):.2f} \u00B1 {100*stats.sem(recurrence_coverage_model):.2f}")
     print(f"Model plan coverge (all): {100*np.mean(recurrence_coverage_model_all):.2f} \u00B1 {100*stats.sem(recurrence_coverage_model_all):.2f}")
-    print(f"Combined: {stats.wilcoxon(recurrence_coverage_standard, recurrence_coverage_model, alternative='less')} / {stats.wilcoxon(recurrence_coverage_standard_all, recurrence_coverage_model_all, alternative='less')}")
+    #print(f"Combined: {stats.wilcoxon(recurrence_coverage_standard, recurrence_coverage_model, alternative='less')} / {stats.wilcoxon(recurrence_coverage_standard_all, recurrence_coverage_model_all, alternative='less')}")
+    print(f"Combined: {stats.wilcoxon(recurrence_coverage_model, recurrence_coverage_standard, alternative='greater')} / {stats.wilcoxon(recurrence_coverage_standard_all, recurrence_coverage_model_all, alternative='less')}")
+
+    print(recurrence_coverage_standard)
+    print(recurrence_coverage_model)
     
     print(f"\n")
     print(f"ROC AUC Model: {np.mean(roc_auc_model_all):.2f} \u00B1 {stats.sem(roc_auc_model_all):.2f}")
