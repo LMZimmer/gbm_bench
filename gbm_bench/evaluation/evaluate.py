@@ -144,6 +144,20 @@ def recurrence_coverage(recurrence_segmentation: np.ndarray, target_volume: np.n
 
 
 def missed_voxels(recurrence_segmentation: np.ndarray, target_volume: np.ndarray) -> int:
+    """Count recurrence voxels not covered by a treatment plan.
+
+    Parameters
+    ----------
+    recurrence_segmentation : np.ndarray
+        Boolean array marking the observed recurrence region.
+    target_volume : np.ndarray
+        Boolean array representing the treatment plan volume.
+
+    Returns
+    -------
+    int
+        Number of recurrence voxels outside of the treatment plan volume.
+    """
     if not is_binary_array(recurrence_segmentation):
         raise ValueError(f"recurrence_segmentation values have to be in (True, False, 0, 1, 0.0, 1.0).")
     if not is_binary_array(target_volume):
@@ -151,7 +165,7 @@ def missed_voxels(recurrence_segmentation: np.ndarray, target_volume: np.ndarray
     if recurrence_segmentation.shape != target_volume.shape:
         raise ValueError(f"Dimension mismatch between recurrence_segmentation and target_volume.")
 
-    missed = np.logical_and(target_volume, np.logical_not(recurrence_segmentation))
+    missed = np.logical_and(recurrence_segmentation, np.logical_not(target_volume))
     return int(np.sum(missed))
 
 

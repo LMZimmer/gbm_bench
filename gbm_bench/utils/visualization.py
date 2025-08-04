@@ -1017,16 +1017,16 @@ def plot_missed(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, outfile):
                 performance_dir = METRICS_SCHEMA.format(base_dir=followup_exam_dir, algo_id=model_id.lower())
                 performance_dict = json.load(open(performance_dir, "r"))
                 performances_by_dataset[d_id].append((
-                    performance_dict["missed_voxels_standard"]/1000,
-                    performance_dict["missed_voxels_model"]/1000,
-                    performance_dict["missed_voxels_standard_all"]/1000,
-                    performance_dict["missed_voxels_model_all"]/1000
+                    performance_dict["missed_voxels_standard"],
+                    performance_dict["missed_voxels_model"],
+                    performance_dict["missed_voxels_standard_all"],
+                    performance_dict["missed_voxels_model_all"]
                     ))
                 performances_by_dataset["COMBINED"].append((
-                    performance_dict["missed_voxels_standard"]/1000,
-                    performance_dict["missed_voxels_model"]/1000,
-                    performance_dict["missed_voxels_standard_all"]/1000,
-                    performance_dict["missed_voxels_model_all"]/1000
+                    performance_dict["missed_voxels_standard"],
+                    performance_dict["missed_voxels_model"],
+                    performance_dict["missed_voxels_standard_all"],
+                    performance_dict["missed_voxels_model_all"]
                     ))
 
             except Exception as e:
@@ -1042,15 +1042,15 @@ def plot_missed(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, outfile):
         xs, ys, xs_all, ys_all = zip(*performances_by_dataset[d_id])
         ax.scatter(xs, ys, alpha=0.6, color=(238/255.0, 165/255.0, 62/255.0), label="Enhancing",  s=50, edgecolors="none", linewidths=0)
         #ax.scatter(xs_all, ys_all, alpha=0.6, label="Any", s=50, edgecolors="none", linewidths=0)
-        ax.plot([0, 400], [0,400], linewidth=1, linestyle="--", color="black")
+        ax.plot([0, 10**5], [0, 10**5], linewidth=1, linestyle="--", color="black")
         ax.set_title(d_id, fontweight="bold")
-        #ax.set_xscale("log")
-        #ax.set_yscale("log")
+        ax.set_xscale("log")
+        ax.set_yscale("log")
 
         if ind % 3 == 0:
-            ax.set_ylabel(f"Missed volume ({model_id}) [cm$^{{3}}$]")
+            ax.set_ylabel(f"Missed volume ({model_id}) [mm$^{{3}}$]")
         if ind>5:
-            ax.set_xlabel("Missed volume (standard) [cm$^{{3}}$]")
+            ax.set_xlabel("Missed volume (standard) [mm$^{{3}}$]")
 
     ax.legend()
     fig.delaxes(axes[2][2])
