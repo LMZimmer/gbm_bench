@@ -950,7 +950,7 @@ def plot_performances(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, out
 
     logger.info(f"Generating plot...")
 
-    fig, axes = plt.subplots(nrows=3, ncols=3, figsize=(12, 12), sharex=True, sharey=True)
+    fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(8, 8), sharex=True, sharey=True)
 
     dataset_ids.append("PREDICT-GBM")
     for ind, (ax, d_id) in enumerate(zip(axes.flat, dataset_ids)):
@@ -968,7 +968,6 @@ def plot_performances(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, out
             ax.set_xlabel("Recurrence coverage (standard) [%]")
 
     ax.legend(loc="lower right")
-    fig.delaxes(axes[2][2])
     fig.tight_layout()
 
     # uncomment to center bottom images
