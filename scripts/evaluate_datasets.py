@@ -21,16 +21,32 @@ if __name__ == "__main__":
     parser.add_argument("-algorithm", type=str, help="Algorithm ID to evaluate.")
     args = parser.parse_args()
 
-    DATASET_IDS = ["RHUH", "UPENN", "LUMIERE", "GLIODIL", "IVYGAP", "CPTAC", "TCGA-GBM"] #"TCGA-LGG"]
-    DATASET_DIRS = [RHUH_GBM_DIR, UPENN_GBM_DIR, LUMIERE_DIR, GLIODIL_DIR, IVYGAP_DIR, CPTAC_DIR, TCGA_GBM_DIR] #TCGA_LGG_DIR]
+    DATASET_IDS = [
+            "RHUH",
+            #"UPENN",
+            "LUMIERE",
+            "GLIODIL",
+            #"IVYGAP",
+            #"CPTAC",
+            #"TCGA-GBM"
+            ] #"TCGA-LGG"]
+    DATASET_DIRS = [
+            RHUH_GBM_DIR,
+            #UPENN_GBM_DIR,
+            LUMIERE_DIR,
+            GLIODIL_DIR,
+            #IVYGAP_DIR,
+            #CPTAC_DIR,
+            #TCGA_GBM_DIR
+            ] #TCGA_LGG_DIR]
     ROOT_DIRS = [
             "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM",
-            "/home/home/lucas/data/UPENN-GBM/UPENN-GBM",
+            #"/home/home/lucas/data/UPENN-GBM/UPENN-GBM",
             "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging",
             "/mnt/Drive2/lucas/datasets/GLIODIL",
-            "/mnt/Drive2/lucas/datasets/IVYGAP",
-            "/mnt/Drive2/lucas/datasets/CPTAC-GBM",
-            "/mnt/Drive2/lucas/datasets/TCGA-GBM",
+            #"/mnt/Drive2/lucas/datasets/IVYGAP",
+            #"/mnt/Drive2/lucas/datasets/CPTAC-GBM",
+            #"/mnt/Drive2/lucas/datasets/TCGA-GBM",
             #"/mnt/Drive2/lucas/datasets/TCGA-LGG"
             ]
 

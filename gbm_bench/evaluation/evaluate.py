@@ -262,6 +262,53 @@ def roc_auc(pred, seg, mask=None, labels_of_interest=[1, 3], drop_intermediate=T
     return auc_value, fpr, tpr, thresholds
 
 
+def partial_roc_auc(pred, seg, mask=None, labels_of_interest=[1, 3], drop_intermediate=True, threshold_range=(0.0, 0.7), normalize=True):
+    if mask is None:
+        mask = np.ones_like(seg, dtype=bool)
+    mask_bool = mask.astype(bool)
+
+    # Flatten only voxels under mask
+    scores = pred[mask_bool].ravel()
+    labels = seg[mask_bool].ravel()
+
+    # Get binary labels for classes of interest
+    y_true = np.isin(labels, labels_of_interest).astype(int)
+
+    # Guard against degenerate cases
+    pos = y_true.sum()
+    neg = y_true.size - pos
+    if pos == 0 or neg == 0:
+        return 0.0, None, None, None
+
+    # ROC curve
+    fpr, tpr, thresholds = roc_curve(y_true, scores, drop_intermediate=drop_intermediate)
+
+    # Filter by threshold range (note: thresholds are sorted descending)
+    t_min, t_max = threshold_range
+    valid_mask = (thresholds <= t_max) & (thresholds >= t_min)
+
+    if valid_mask.sum() < 2:
+        return 0.0, None, None, None
+
+    # Sort FPR/TPR in increasing FPR order for correct integration
+    fpr_sel = fpr[valid_mask]
+    tpr_sel = tpr[valid_mask]
+    sorted_idx = np.argsort(fpr_sel)
+    fpr_partial = fpr_sel[sorted_idx]
+    tpr_partial = tpr_sel[sorted_idx]
+
+    partial_auc = np.trapz(tpr_partial, fpr_partial)
+
+    if normalize:
+        fpr_range = fpr_partial[-1] - fpr_partial[0]
+        if fpr_range > 0:
+            partial_auc /= fpr_range
+        else:
+            partial_auc = 0.0
+
+    return partial_auc, None, None, None
+
+
 def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, model_id: str, ctv_margin: int = 15, csf_mask: bool = False) -> Dict[str, Any]:
     """
     Evaluate a tumor model by computing recurrence coverage for standard and 
@@ -335,11 +382,15 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
     # ROC AUC
     #peritumoral_mask = create_standard_plan(core_segmentation, 1)
     rec_seg = np.rint(load_mri_data(str(recurrence_dir))).astype(np.int32)
-    auc_model, fpr, tpr, thresholds = roc_auc(pred=model_prediction, seg=rec_seg, mask=brain_mask)
+    #auc_model, fpr, tpr, thresholds = roc_auc(pred=model_prediction, seg=rec_seg, mask=brain_mask)
+    auc_model, fpr, tpr, thresholds = partial_roc_auc(pred=model_prediction, seg=rec_seg, mask=brain_mask)
 
     distance_fade_core = generate_distance_fade_mask_no_plateau(core_segmentation)
-    auc_standard_fade, fpr, tpr, thresholds = roc_auc(pred=distance_fade_core, seg=rec_seg, mask=brain_mask)
-    auc_standard, fpr, tpr, thresholds = roc_auc(pred=standard_plan, seg=rec_seg, mask=brain_mask)
+    #auc_standard_fade, fpr, tpr, thresholds = roc_auc(pred=distance_fade_core, seg=rec_seg, mask=brain_mask)
+    #auc_standard, fpr, tpr, thresholds = roc_auc(pred=standard_plan, seg=rec_seg, mask=brain_mask)
+    auc_standard_fade, fpr, tpr, thresholds = partial_roc_auc(pred=distance_fade_core, seg=rec_seg, mask=brain_mask)
+    auc_standard, fpr, tpr, thresholds = partial_roc_auc(pred=standard_plan, seg=rec_seg, mask=brain_mask)
+
 
     #imgtest = nib.Nifti1Image(distance_fade_core, np.eye(4))
     #nib.save(imgtest, "/home/home/lucas/tmp/test.nii.gz")

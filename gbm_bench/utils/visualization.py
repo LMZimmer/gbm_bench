@@ -781,7 +781,7 @@ def plot_tumor_sizes(dataset_ids, dataset_dirs, dataset_rootdirs, outfile, recur
     print(f"Tumor size (mean): {np.mean(tumor_sizes)} \u00B1 {stats.stdev(tumor_sizes)}")
     print(f"Tumor size (median): {stats.median(tumor_sizes)}")
 
-    dataset_ids.append("COMBINED")
+    dataset_ids.append("PREDICT-GBM")
     tumor_sizes_new = tumor_sizes.copy()
     for ts in tumor_sizes:
         tumor_sizes_new.append(ts)
@@ -866,7 +866,7 @@ def plot_com_distances(dataset_ids, dataset_dirs, dataset_rootdirs, outfile):
     print(f"Distance (mean): {np.mean(com_distances)} \u00B1 {stats.stdev(com_distances)}")
     print(f"Distance (median): {stats.median(com_distances)}")
 
-    dataset_ids.append("COMBINED")
+    dataset_ids.append("PREDICT-GBM")
     com_distances_new = com_distances.copy()
     for cdis in com_distances:
         com_distances_new.append(cdis)
@@ -901,7 +901,7 @@ def plot_com_distances(dataset_ids, dataset_dirs, dataset_rootdirs, outfile):
 
 def plot_performances(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, outfile):
     performances_by_dataset = {d_id: [] for d_id in dataset_ids}
-    performances_by_dataset["COMBINED"] = []
+    performances_by_dataset["PREDICT-GBM"] = []
 
     for d_id, d_d, d_rd in zip(dataset_ids, dataset_dirs, dataset_rootdirs):
         dataset = LongitudinalDataset(dataset_id=d_id, root_dir=d_rd)
@@ -937,7 +937,7 @@ def plot_performances(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, out
                     performance_dict["recurrence_coverage_standard_all"]*100,
                     performance_dict["recurrence_coverage_model_all"]*100
                     ))
-                performances_by_dataset["COMBINED"].append((
+                performances_by_dataset["PREDICT-GBM"].append((
                     performance_dict["recurrence_coverage_standard"]*100,
                     performance_dict["recurrence_coverage_model"]*100,
                     performance_dict["recurrence_coverage_standard_all"]*100,
@@ -952,7 +952,7 @@ def plot_performances(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, out
 
     fig, axes = plt.subplots(nrows=3, ncols=3, figsize=(12, 12), sharex=True, sharey=True)
 
-    dataset_ids.append("COMBINED")
+    dataset_ids.append("PREDICT-GBM")
     for ind, (ax, d_id) in enumerate(zip(axes.flat, dataset_ids)):
         xs, ys, xs_all, ys_all = zip(*performances_by_dataset[d_id])
         ax.scatter(xs, ys, alpha=0.6, color=(238/255.0, 165/255.0, 62/255.0), label="Enhancing",  s=50, edgecolors="none", linewidths=0)
@@ -986,7 +986,7 @@ def plot_performances(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, out
 
 def plot_missed(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, outfile):
     performances_by_dataset = {d_id: [] for d_id in dataset_ids}
-    performances_by_dataset["COMBINED"] = []
+    performances_by_dataset["PREDICT-GBM"] = []
 
     for d_id, d_d, d_rd in zip(dataset_ids, dataset_dirs, dataset_rootdirs):
         dataset = LongitudinalDataset(dataset_id=d_id, root_dir=d_rd)
@@ -1022,7 +1022,7 @@ def plot_missed(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, outfile):
                     performance_dict["missed_voxels_standard_all"],
                     performance_dict["missed_voxels_model_all"]
                     ))
-                performances_by_dataset["COMBINED"].append((
+                performances_by_dataset["PREDICT-GBM"].append((
                     performance_dict["missed_voxels_standard"],
                     performance_dict["missed_voxels_model"],
                     performance_dict["missed_voxels_standard_all"],
@@ -1037,7 +1037,7 @@ def plot_missed(dataset_ids, dataset_dirs, dataset_rootdirs, model_id, outfile):
 
     fig, axes = plt.subplots(nrows=3, ncols=3, figsize=(12, 12), sharex=True, sharey=True)
 
-    dataset_ids.append("COMBINED")
+    dataset_ids.append("PREDICT-GBM")
     for ind, (ax, d_id) in enumerate(zip(axes.flat, dataset_ids)):
         xs, ys, xs_all, ys_all = zip(*performances_by_dataset[d_id])
         ax.scatter(xs, ys, alpha=0.6, color=(238/255.0, 165/255.0, 62/255.0), label="Enhancing",  s=50, edgecolors="none", linewidths=0)

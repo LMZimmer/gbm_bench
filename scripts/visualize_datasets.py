@@ -12,20 +12,36 @@ if __name__ == "__main__":
     # Example:
     # python scripts/visualize_datasets.py
 
-    DATASET_IDS = ["RHUH", "UPENN", "LUMIERE", "GLIODIL", "IVYGAP", "CPTAC", "TCGA-GBM"]#, "TCGA-LGG"]
-    DATASET_DIRS = [RHUH_GBM_DIR, UPENN_GBM_DIR, LUMIERE_DIR, GLIODIL_DIR, IVYGAP_DIR, CPTAC_DIR, TCGA_GBM_DIR]#, TCGA_LGG_DIR]
+    DATASET_IDS = [
+            "RHUH",
+            #"UPENN",
+            "LUMIERE",
+            "GLIODIL",
+            #"IVYGAP",
+            #"CPTAC",
+            #"TCGA-GBM"
+            ]#, "TCGA-LGG"]
+    DATASET_DIRS = [
+            RHUH_GBM_DIR,
+            #UPENN_GBM_DIR,
+            LUMIERE_DIR,
+            GLIODIL_DIR,
+            #IVYGAP_DIR,
+            #CPTAC_DIR,
+            #TCGA_GBM_DIR
+            ]#, TCGA_LGG_DIR]
     ROOT_DIRS = [
             "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM",
-            "/home/home/lucas/data/UPENN-GBM/UPENN-GBM",
+            #"/home/home/lucas/data/UPENN-GBM/UPENN-GBM",
             "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging",
             "/mnt/Drive2/lucas/datasets/GLIODIL",
-            "/mnt/Drive2/lucas/datasets/IVYGAP",
-            "/mnt/Drive2/lucas/datasets/CPTAC-GBM",
-            "/mnt/Drive2/lucas/datasets/TCGA-GBM",
+            #"/mnt/Drive2/lucas/datasets/IVYGAP",
+            #"/mnt/Drive2/lucas/datasets/CPTAC-GBM",
+            #"/mnt/Drive2/lucas/datasets/TCGA-GBM",
             #"/mnt/Drive2/lucas/datasets/TCGA-LGG"
             ]
 
-    model_id = "lmi"
+    model_id = "gliodil"
     outfile_tsize = "/home/home/lucas/projects/gbm_bench/tmp/tumor_sizes.pdf"
     outfile_rsize = "/home/home/lucas/projects/gbm_bench/tmp/recurrence_sizes.pdf"
     outfile_perf = f"/home/home/lucas/projects/gbm_bench/tmp/performances_{model_id}.pdf"
@@ -49,6 +65,7 @@ if __name__ == "__main__":
             recurrence=True
             )
     
+    """
     plot_com_distances(
             dataset_ids=DATASET_IDS,
             dataset_dirs=DATASET_DIRS,
@@ -56,6 +73,7 @@ if __name__ == "__main__":
             outfile=outfile_dist
             )
 
+    """
     plot_performances(
             dataset_ids=DATASET_IDS,
             dataset_dirs=DATASET_DIRS,
@@ -71,7 +89,6 @@ if __name__ == "__main__":
             model_id=model_id,
             outfile=outfile_diff_dist
             )
-    """
 
     plot_missed(
             dataset_ids=DATASET_IDS,
@@ -80,3 +97,4 @@ if __name__ == "__main__":
             model_id=model_id,
             outfile=outfile_missed_volume
             )
+    """
