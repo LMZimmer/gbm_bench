@@ -36,7 +36,7 @@ def load_mri_data(filepath: Union[Path, str]) -> np.ndarray:
     data = img.get_fdata()
     return data
 
-
+"""
 def load_and_resample_mri_data(filepath: Union[str, Path], resample_params: Tuple[int, int, int], interp_type: Optional[int] = 0,) -> np.ndarray:
     
     img = ants.image_read(str(filepath))
@@ -47,6 +47,30 @@ def load_and_resample_mri_data(filepath: Union[str, Path], resample_params: Tupl
             interp_type=interp_type
             )
     return img.to_nibabel().get_fdata()
+"""
+
+def load_and_resample_mri_data(
+    filepath: Union[str, Path],
+    resample_params: Tuple[int, int, int],
+    interp_type: Optional[int] = 0,
+) -> np.ndarray:
+
+    img = ants.image_read(str(filepath))
+    img = ants.resample_image(
+        image=img,
+        resample_params=resample_params,
+        use_voxels=True,
+        interp_type=interp_type,
+    )
+    # There used to be an ants function for this
+    tmp_file = tempfile.NamedTemporaryFile(suffix=".nii.gz", delete=False)
+    tmp_file.close()
+    try:
+        ants.image_write(img, tmp_file.name)
+        data = nib.load(tmp_file.name).get_fdata()
+    finally:
+        os.remove(tmp_file.name)
+    return data
 
 
 def make_symlink(src: Path, dst: Path) -> None:

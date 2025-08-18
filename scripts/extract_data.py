@@ -3,9 +3,10 @@ import json
 import shutil
 import argparse
 import numpy as np
+import nibabel as nib
 from scipy import stats
 from pathlib import Path
-from gbm_bench.utils.utils import merge_pdfs
+from gbm_bench.utils.utils import merge_pdfs, load_mri_data
 from gbm_bench.utils.constants import *
 from gbm_bench.utils.parsing import LongitudinalDataset
 from gbm_bench.utils.visualization import plot_tumor_sizes, plot_performances, plot_com_distances
@@ -71,18 +72,28 @@ if __name__ == "__main__":
 
             try:
                 copy_files = [
+                        BRAIN_MASK_SCHEMA.format(base_dir=preop_exam_dir),
                         TISSUE_PBMAP_SCHEMA.format(base_dir=preop_exam_dir, tissue="gm"),
                         TISSUE_PBMAP_SCHEMA.format(base_dir=preop_exam_dir, tissue="wm"),
                         TISSUE_PBMAP_SCHEMA.format(base_dir=preop_exam_dir, tissue="csf"),
                         TUMORSEG_SCHEMA.format(base_dir=preop_exam_dir),
                         RECURRENCE_SCHEMA.format(base_dir=followup_exam_dir)
                         ]
+                backup = MODALITY_STRIPPED_SCHEMA.format(base_dir=preop_exam_dir, modality="t1c")
 
                 patient_outdir = Path(args.outdir) / d_id / patient_id
                 patient_outdir.mkdir(parents=True, exist_ok=True)
 
                 for cf in copy_files:
-                    shutil.copy(str(cf), str(patient_outdir / cf.name))
+                    if cf.is_file():
+                        shutil.copy(str(cf), str(patient_outdir / cf.name))
+                    else:
+                        if "mask" in str(cf):
+                            t1c = load_mri_data(str(backup))
+                            background = np.min(t1c)
+                            brain_mask = np.rint(t1c > background).astype(np.int32)
+                            brain_mask_nii = nib.Nifti1Image(brain_mask, np.eye(4))
+                            nib.save(brain_mask_nii, str(patient_outdir / cf.name))
 
             except Exception as e:
                 shutil.rmtree(patient_outdir)

@@ -27,7 +27,7 @@ if __name__ == "__main__":
     print(f"Evaluating {args.algorithm}")
     all_results = []
 
-    for patient_ind, patient in enumerate(rhuh_gbm.patients):
+    for patient_ind, patient in enumerate(rhuh_gbm.patients[0:1]):
         print(f"Processing {patient_ind}/{len(rhuh_gbm.patients)}...")
 
         patient_identifier = patient["patient_id"]

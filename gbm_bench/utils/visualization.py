@@ -405,14 +405,14 @@ def plot_pipeline(patient_identifiers: List[str], exam_dirs_preop: List[Path], e
             cmap, norm, patches = get_cmap_norm_patches_tumorseg(classes_of_interest)
 
             # Titles
-            row_titles = ["", "", ""]
-            col_titles = ["T1c + Tumor", "Flair + Tumor", "T1c + Recurrence", "Concentration Prediction", "Model Plan", "Standard Plan"] + patient_identifiers[1:4]
+            row_titles = ["", ""]
+            col_titles = ["T1c + Tumor", "Flair + Tumor", "T1c + Recurrence", "Concentration Prediction", "Model Plan", "Standard Plan"] #+ patient_identifiers[1:4]
             header = (
                     ""
                     )
 
             # Build image tensor
-            image_tensor = np.empty((n_layers, 3, 3), dtype=object)
+            image_tensor = np.empty((n_layers, 2, 3), dtype=object)
 
             # Layer 1: T1c, Flair
             layer_1_args = {"cmap": "gray", "interpolation": "none"}
@@ -447,10 +447,10 @@ def plot_pipeline(patient_identifiers: List[str], exam_dirs_preop: List[Path], e
 
         else:
             x_pos = ind - 1
-            image_tensor[0, 2, x_pos] = load_mri_data(longitudinal_t1c_file)[:, :, ax_slice]
-            image_tensor[1, 2, x_pos] = load_mri_data(longitudinal_rec_file)[:, :, ax_slice]
-            image_tensor[3, 2, x_pos] = load_mri_data(standard_plan_file)[:, :, ax_slice]
-            image_tensor[4, 2, x_pos] = load_mri_data(model_plan_file)[:, :, ax_slice]
+            #image_tensor[0, 2, x_pos] = load_mri_data(longitudinal_t1c_file)[:, :, ax_slice]
+            #image_tensor[1, 2, x_pos] = load_mri_data(longitudinal_rec_file)[:, :, ax_slice]
+            #image_tensor[3, 2, x_pos] = load_mri_data(standard_plan_file)[:, :, ax_slice]
+            #image_tensor[4, 2, x_pos] = load_mri_data(model_plan_file)[:, :, ax_slice]
 
     # Imshow arguments
     imshow_args = [layer_1_args, layer_2_args, layer_3_args, layer_4_args, layer_5_args]

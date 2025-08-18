@@ -22,7 +22,7 @@ if __name__ == "__main__":
     rhuh_gbm.load(RHUH_GBM_DIR)
 
     # Predict on preop exams
-    for patient_ind, patient in enumerate(rhuh_gbm.patients):
+    for patient_ind, patient in enumerate(rhuh_gbm.patients[0:1]):
         print(f"Predicting {patient_ind}/{len(rhuh_gbm.patients)}...")
         
         for exam in patient["exams"]:

@@ -18,10 +18,13 @@ Glioblastoma Model Benchmark (working title) is a work in progress with the goal
 
 ### Installation
 
+A pypi package will be available soon. Currently, the package can be installed with poetry:
+
 ```bash
-git clone https://github.com/LMZimmer/gbm_bench.git
-cd gbm_bench
-pip install .
+curl -sSL https://install.python-poetry.org | python3 -
+git clone https://github.com/BrainLesion/PredictGBM
+cd PredictGBM
+poetry install
 ```
 
 ### Docker and NVIDIA Container Toolkit Setup
