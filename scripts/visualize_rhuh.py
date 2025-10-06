@@ -32,7 +32,7 @@ if __name__ == "__main__":
         exam_identifier_preop = str(exam_dir_preopop.name)
         exam_identifier_followup = str(exam_dir_followup.name)
 
-        algorithm_identifier = "gliodil"                       # LMI, SBTC, GLIODIL
+        algorithm_identifier = "sbtc"                       # LMI, SBTC, GLIODIL
         
         # Model plot
         outfile_model = os.path.join(tmp_dir_model, f"{patient_identifier}_{algorithm_identifier}.pdf")

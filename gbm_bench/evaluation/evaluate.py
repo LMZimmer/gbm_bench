@@ -24,6 +24,49 @@ from gbm_bench.utils.constants import (
         )
 
 
+def sensitivity(tumor_seg: np.ndarray, radiation_plan: np.ndarray) -> float:
+    """
+    Compute sensitivity = TP / (TP + FN)
+    where:
+    - TP = number of voxels correctly predicted as tumor (1 in both)
+    - FN = number of voxels in tumor_seg that were missed (1 in tumor_seg, 0 in radiation_plan)
+    Returns float in [0,1]. If there are no positive voxels in tumor_seg, returns np.nan or 0 (your choice).
+    """
+    # ensure boolean
+    gt = (tumor_seg > 0)
+    pred = (radiation_plan > 0)
+
+    TP = np.logical_and(gt, pred).sum()
+    FN = np.logical_and(gt, np.logical_not(pred)).sum()
+
+    denom = TP + FN
+    if denom == 0:
+        # no positives in ground truth; sensitivity is undefined or we return 0 / nan
+        return float('nan')
+    return TP / denom
+
+
+def specificity(tumor_seg: np.ndarray, radiation_plan: np.ndarray) -> float:
+    """
+    Compute specificity = TN / (TN + FP)
+    where:
+    - TN = number of voxels correctly predicted as background (0 in both)
+    - FP = number of voxels incorrectly predicted as tumor (0 in tumor_seg, 1 in radiation_plan)
+    Returns float in [0,1]. If there are no negative voxels in tumor_seg, returns np.nan or 0 (your choice).
+    """
+    gt = (tumor_seg > 0)
+    pred = (radiation_plan > 0)
+
+    TN = np.logical_and(~gt, ~pred).sum()
+    FP = np.logical_and(~gt, pred).sum()
+
+    denom = TN + FP
+    if denom == 0:
+        # no negatives in ground truth; specificity undefined
+        return float('nan')
+    return TN / denom
+
+
 def create_standard_plan(core_segmentation: np.ndarray, ctv_margin: int) -> np.ndarray:
     """
     Creates a target volume mask by dilating the tumor core segmentation with ctv_margin
@@ -309,6 +352,69 @@ def partial_roc_auc(pred, seg, mask=None, labels_of_interest=[1, 3], drop_interm
     return partial_auc, None, None, None
 
 
+def roc(y_true, y_prob):
+    """
+    y_true: binary ground truth as a NumPy array (shape: (N,), values 0/1 or False/True)
+    y_prob: probabilistic predictions as a NumPy array (shape: (N,), values in [0, 1])
+    out_path: where to store the ROC arrays for later visualization
+    """
+    y_true = np.asarray(y_true).ravel()
+    y_prob = np.asarray(y_prob).ravel()
+
+    # Basic sanity checks
+    if y_true.shape != y_prob.shape:
+        raise ValueError(f"Shape mismatch: y_true {y_true.shape} vs y_prob {y_prob.shape}")
+    if np.isnan(y_true).any() or np.isnan(y_prob).any():
+        raise ValueError("Inputs contain NaNs.")
+    if not np.array_equal(np.unique(y_true), np.intersect1d(np.unique(y_true), [0, 1])):
+        # Convert booleans to {0,1} if needed, otherwise error
+        if y_true.dtype == bool:
+            y_true = y_true.astype(int)
+        else:
+            raise ValueError("y_true must be binary (0/1 or bool).")
+    if (y_prob < 0).any() or (y_prob > 1).any():
+        raise ValueError("y_prob must be probabilities in [0, 1].")
+
+    # Compute ROC
+    fpr, tpr, thresholds = roc_curve(y_true, y_prob)
+    roc_auc = auc(fpr, tpr)
+
+    return fpr.tolist(), tpr.tolist(), thresholds.tolist(), float(roc_auc)
+
+
+def sensitivity_specificity(y_true, y_pred):
+    """
+    Compute sensitivity and specificity from binary ground truth and binary predictions.
+
+    Parameters
+    ----------
+    y_true : np.ndarray
+        Ground truth binary array (0/1 or bool).
+    y_pred : np.ndarray
+        Predicted binary array (0/1 or bool), same shape as y_true.
+
+    Returns
+    -------
+    sensitivity : float
+    specificity : float
+    """
+    y_true = np.asarray(y_true).astype(int).ravel()
+    y_pred = np.asarray(y_pred).astype(int).ravel()
+    if y_true.shape != y_pred.shape:
+        raise ValueError("Shape mismatch between y_true and y_pred.")
+
+    # Confusion matrix components
+    TP = np.sum((y_true == 1) & (y_pred == 1))
+    TN = np.sum((y_true == 0) & (y_pred == 0))
+    FP = np.sum((y_true == 0) & (y_pred == 1))
+    FN = np.sum((y_true == 1) & (y_pred == 0))
+
+    sensitivity = TP / (TP + FN) if (TP + FN) > 0 else np.nan
+    specificity = TN / (TN + FP) if (TN + FP) > 0 else np.nan
+
+    return sensitivity, specificity
+
+
 def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, model_id: str, ctv_margin: int = 15, csf_mask: bool = False) -> Dict[str, Any]:
     """
     Evaluate a tumor model by computing recurrence coverage for standard and 
@@ -374,22 +480,27 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
 
     # Create model based plan
     tumor_threshold = find_threshold(model_prediction, standard_plan_volume, initial_threshold=0.2)
+    #tumor_threshold = 0.1
     model_plan = (model_prediction > tumor_threshold).astype(np.int32)
     #model_plan[brain_mask == 0] = 0
     model_recurrence_coverage = recurrence_coverage(recurrence_segmentation, model_plan)
     model_recurrence_coverage_all = recurrence_coverage(recurrence_segmentation_all, model_plan)
 
     # ROC AUC
-    #peritumoral_mask = create_standard_plan(core_segmentation, 1)
-    rec_seg = np.rint(load_mri_data(str(recurrence_dir))).astype(np.int32)
-    #auc_model, fpr, tpr, thresholds = roc_auc(pred=model_prediction, seg=rec_seg, mask=brain_mask)
-    auc_model, fpr, tpr, thresholds = partial_roc_auc(pred=model_prediction, seg=rec_seg, mask=brain_mask)
-
     distance_fade_core = generate_distance_fade_mask_no_plateau(core_segmentation)
+    fpr_model, tpr_model, thresholds, auc_model = roc(recurrence_segmentation, model_prediction)
+    fpr_standard, tpr_standard, thresholds, auc_standard = roc(recurrence_segmentation, standard_plan)
+    fpr_standard_fade, tpr_standard_fade, thresholds, auc_standard_fade = roc(recurrence_segmentation, distance_fade_core)
+
+    #peritumoral_mask = create_standard_plan(core_segmentation, 1)
+    #rec_seg = np.rint(load_mri_data(str(recurrence_dir))).astype(np.int32)
+    #auc_model, fpr, tpr, thresholds = roc_auc(pred=model_prediction, seg=rec_seg, mask=brain_mask)
+    #auc_model, fpr, tpr, thresholds = partial_roc_auc(pred=model_prediction, seg=rec_seg, mask=brain_mask)
+
     #auc_standard_fade, fpr, tpr, thresholds = roc_auc(pred=distance_fade_core, seg=rec_seg, mask=brain_mask)
     #auc_standard, fpr, tpr, thresholds = roc_auc(pred=standard_plan, seg=rec_seg, mask=brain_mask)
-    auc_standard_fade, fpr, tpr, thresholds = partial_roc_auc(pred=distance_fade_core, seg=rec_seg, mask=brain_mask)
-    auc_standard, fpr, tpr, thresholds = partial_roc_auc(pred=standard_plan, seg=rec_seg, mask=brain_mask)
+    #auc_standard_fade, fpr, tpr, thresholds = partial_roc_auc(pred=distance_fade_core, seg=rec_seg, mask=brain_mask)
+    #auc_standard, fpr, tpr, thresholds = partial_roc_auc(pred=standard_plan, seg=rec_seg, mask=brain_mask)
 
 
     #imgtest = nib.Nifti1Image(distance_fade_core, np.eye(4))
@@ -419,12 +530,28 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
     results["missed_voxels_model"] = missed_voxels(recurrence_segmentation, model_plan)
     results["missed_voxels_model_all"] = missed_voxels(recurrence_segmentation_all, model_plan)
 
+    results["specificity_model"] = specificity(recurrence_segmentation, model_plan)
+    results["sensitivity_model"] = sensitivity(recurrence_segmentation, model_plan)
+    results["specificity_standard"] = specificity(recurrence_segmentation, standard_plan)
+    results["sensitivity_standard"] = sensitivity(recurrence_segmentation, standard_plan)
+
+    print(f"Specificity (model): {results['specificity_model']}")
+    print(f"Sensitivity (model): {results['sensitivity_model']}")
+    print(f"Specificity (standard): {results['specificity_standard']}")
+    print(f"Sensitivity (standard): {results['sensitivity_standard']}")
+
     if auc_model != 0.0:
         results["roc_auc_model"] = auc_model
+        results["tpr_model"] = tpr_model
+        results["fpr_model"] = fpr_model
     if auc_standard != 0.0:
         results["roc_standard"] = auc_standard
+        results["tpr_standard"] = tpr_standard
+        results["fpr_standard"] = fpr_standard
     if auc_standard_fade != 0.0:
         results["roc_auc_standard_fade"] = auc_standard_fade
+        results["tpr_standard_fade"] = tpr_standard_fade
+        results["fpr_standard_fade"] = fpr_standard_fade
 
     # Save results
     save_file = METRICS_SCHEMA.format(base_dir=followup_dir, algo_id=model_id)

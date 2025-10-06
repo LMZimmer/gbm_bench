@@ -77,7 +77,9 @@ if __name__ == "__main__":
                         TISSUE_PBMAP_SCHEMA.format(base_dir=preop_exam_dir, tissue="wm"),
                         TISSUE_PBMAP_SCHEMA.format(base_dir=preop_exam_dir, tissue="csf"),
                         TUMORSEG_SCHEMA.format(base_dir=preop_exam_dir),
-                        RECURRENCE_SCHEMA.format(base_dir=followup_exam_dir)
+                        RECURRENCE_SCHEMA.format(base_dir=followup_exam_dir),
+                        MODALITY_STRIPPED_SCHEMA.format(base_dir=preop_exam_dir, modality="t1c"),
+                        MODALITY_STRIPPED_SCHEMA.format(base_dir=preop_exam_dir, modality="flair"),
                         ]
                 backup = MODALITY_STRIPPED_SCHEMA.format(base_dir=preop_exam_dir, modality="t1c")
 

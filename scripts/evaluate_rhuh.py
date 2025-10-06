@@ -52,7 +52,7 @@ if __name__ == "__main__":
                         model_id=algo_id
                         )
                 all_results.append(results)
-                print(f"{patient_identifier}: {results}")
+                #print(f"{patient_identifier}: {results}")
             except Exception as e:
                 #raise e
                 print(f"Exception: {e}")
