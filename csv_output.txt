@@ -1,0 +1,15 @@
+nohup: ignoring input
+Evaluating sbtc
+Evaluating RHUH...
+2025-11-13 12:08:40.334 | INFO     | gbm_bench.utils.parsing:load:215 - Successfully loaded 40 patients from /home/home/lucas/projects/gbm_bench/gbm_bench/data/datasets/rhuh.json.
+Exception for RHUH-0001: Error reading image Filepath or SimpleITK object
+Evaluating LUMIERE...
+2025-11-13 12:08:59.838 | INFO     | gbm_bench.utils.parsing:load:215 - Successfully loaded 63 patients from /home/home/lucas/projects/gbm_bench/gbm_bench/data/datasets/lumiere.json.
+Exception for Patient-001: Error reading image Filepath or SimpleITK object
+Evaluating GLIODIL...
+2025-11-13 12:09:03.962 | INFO     | gbm_bench.utils.parsing:load:215 - Successfully loaded 152 patients from /home/home/lucas/projects/gbm_bench/gbm_bench/data/datasets/gliodil.json.
+Exception for respond_tum_001: Error reading image Filepath or SimpleITK object
+Traceback (most recent call last):
+  File "/home/home/lucas/projects/gbm_bench/scripts/identify_subsets.py", line 400, in <module>
+    pyrad_feat_names = [k for k in pyrad_features[0].keys()]
+IndexError: list index out of range

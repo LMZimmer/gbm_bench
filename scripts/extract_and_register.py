@@ -1,4 +1,5 @@
 import os
+import ants
 import json
 import shutil
 import argparse
@@ -12,23 +13,44 @@ from gbm_bench.utils.parsing import LongitudinalDataset
 from gbm_bench.utils.visualization import plot_tumor_sizes, plot_performances, plot_com_distances
 
 
+def register_and_save(fixed_path, moving_path, coreg_path, outfile, coreg_outfile):
+    fixed = ants.image_read(str(fixed_path))
+    moving = ants.image_read(str(moving_path))
+
+    print(f"Registering {moving_path} to {fixed_path} and saving to {outfile}...")
+    reg = ants.registration(
+            fixed=fixed,
+            moving=moving,
+            type_of_transform="antsRegistrationSyN[s,2]",
+            )
+
+    ants.image_write(reg["warpedmovout"], str(outfile))
+
+    print(f"Co-registering {coreg_path} and saving to {coreg_outfile}")
+    coreg = ants.image_read(str(coreg_path))
+    coreg_warped = ants.apply_transforms(
+            fixed=fixed,
+            moving=coreg,
+            transformlist=reg["fwdtransforms"],
+            interpolator='linear'
+            )
+    ants.image_write(coreg_warped, str(coreg_outfile))
+
+
 if __name__ == "__main__":
     # Example:
-    # python scripts/extract_data.py -outdir /mnt/Drive2/lucas/mara_nnunet_data/
+    # python scripts/extract_and_register.py -outdir /mnt/Drive2/lucas/mara_nnunet_data/
+    # python -u scripts/extract_and_register.py -outdir /mnt/Drive2/lucas/mara_nnunet_data/ > extract_postop.txt 2>&1 &
     parser = argparse.ArgumentParser()
     parser.add_argument("-outdir", type=str, help="Algorithm ID to evaluate.")
     args = parser.parse_args()
 
-    DATASET_IDS = ["RHUH", "UPENN", "LUMIERE", "GLIODIL", "IVYGAP", "CPTAC", "TCGA-GBM"] #"TCGA-LGG"]
-    DATASET_DIRS = [RHUH_GBM_DIR, UPENN_GBM_DIR, LUMIERE_DIR, GLIODIL_DIR, IVYGAP_DIR, CPTAC_DIR, TCGA_GBM_DIR] #TCGA_LGG_DIR]
+    DATASET_IDS = ["RHUH", "LUMIERE", "GLIODIL"] #"TCGA-LGG"]
+    DATASET_DIRS = [RHUH_GBM_DIR, LUMIERE_DIR, GLIODIL_DIR] #TCGA_LGG_DIR]
     ROOT_DIRS = [
             "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM",
-            "/home/home/lucas/data/UPENN-GBM/UPENN-GBM",
             "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging",
             "/mnt/Drive2/lucas/datasets/GLIODIL",
-            "/mnt/Drive2/lucas/datasets/IVYGAP",
-            "/mnt/Drive2/lucas/datasets/CPTAC-GBM",
-            "/mnt/Drive2/lucas/datasets/TCGA-GBM",
             #"/mnt/Drive2/lucas/datasets/TCGA-LGG"
             ]
 
@@ -42,7 +64,11 @@ if __name__ == "__main__":
         for patient_ind, patient in enumerate(dataset.patients):
             patient_id = patient["patient_id"]
             preop_exam = dataset.get_patient_exams(patient_id=patient_id, timepoint="preop")[0]  # Find first preop exam
-            followup_exam = dataset.get_patient_exams(patient_id=patient_id, timepoint="followup")[0]
+            
+            postop_exams = dataset.get_patient_exams(patient_id=patient_id, timepoint="postop")
+            if len(postop_exams) < 1:
+                continue
+            postop_exam = postop_exams[0]
 
             if "UPENN" in d_id:
                 preop_exam_dir = preop_exam["t1"].parent
@@ -61,34 +87,25 @@ if __name__ == "__main__":
                 "data_998"
                 ]
                 if patient_id in no_t1c:
-                    preop_exam_dir = preop_exam["tumorseg"].parent / "preop"
-                    followup_exam_dir = followup_exam["tumorseg"].parent / "followup"
+                    preop_exam_dir = preop_exam["t1c"].parent / "preop"
+                    postop_exam_dir = postop_exam["t1c"].parent / "postop"
                 else:
                     preop_exam_dir = preop_exam["t1c"].parent / "preop"
-                    followup_exam_dir = followup_exam["t1c"].parent / "followup"
+                    postop_exam_dir = postop_exam["t1c"].parent / "postop"
             else:
                 preop_exam_dir = preop_exam["t1c"].parent
-                followup_exam_dir = followup_exam["t1c"].parent
+                postop_exam_dir = postop_exam["t1c"].parent
 
             try:
                 copy_files = [
-                        BRAIN_MASK_SCHEMA.format(base_dir=preop_exam_dir),
-                        TISSUE_PBMAP_SCHEMA.format(base_dir=preop_exam_dir, tissue="gm"),
-                        TISSUE_PBMAP_SCHEMA.format(base_dir=preop_exam_dir, tissue="wm"),
-                        TISSUE_PBMAP_SCHEMA.format(base_dir=preop_exam_dir, tissue="csf"),
-                        TUMORSEG_SCHEMA.format(base_dir=preop_exam_dir),
-                        RECURRENCE_SCHEMA.format(base_dir=followup_exam_dir),
-                        MODALITY_STRIPPED_SCHEMA.format(base_dir=preop_exam_dir, modality="t1c"),
-                        MODALITY_STRIPPED_SCHEMA.format(base_dir=preop_exam_dir, modality="flair"),
+                        RECURRENCE_SCHEMA.format(base_dir=postop_exam_dir),
                         ]
-                backup = MODALITY_STRIPPED_SCHEMA.format(base_dir=preop_exam_dir, modality="t1c")
 
                 patient_outdir = Path(args.outdir) / d_id / patient_id
-                patient_outdir.mkdir(parents=True, exist_ok=True)
 
                 for cf in copy_files:
                     if cf.is_file():
-                        shutil.copy(str(cf), str(patient_outdir / cf.name))
+                        shutil.copy(str(cf), str(patient_outdir / ("postop_" + cf.name)))
                     else:
                         if "mask" in str(cf):
                             t1c = load_mri_data(str(backup))
@@ -97,6 +114,14 @@ if __name__ == "__main__":
                             brain_mask_nii = nib.Nifti1Image(brain_mask, np.eye(4))
                             nib.save(brain_mask_nii, str(patient_outdir / cf.name))
 
+                fixed_path = MODALITY_STRIPPED_SCHEMA.format(base_dir=preop_exam_dir, modality="t1c")
+                moving_path = MODALITY_STRIPPED_SCHEMA.format(base_dir=postop_exam_dir, modality="t1c")
+                coreg_path = MODALITY_STRIPPED_SCHEMA.format(base_dir=postop_exam_dir, modality="flair")
+
+                outfile = str(patient_outdir / ("postop_" + moving_path.name))
+                coreg_outfile = str(patient_outdir / ("postop_" + coreg_path.name))
+
+                register_and_save(fixed_path, moving_path, coreg_path, outfile, coreg_outfile)
+
             except Exception as e:
-                #shutil.rmtree(patient_outdir)
                 print(f"Exception for {patient_id}: {e}")

@@ -14,22 +14,17 @@ from gbm_bench.utils.visualization import plot_tumor_sizes, plot_performances, p
 
 if __name__ == "__main__":
     # Example:
-    # python scripts/extract_data.py -outdir /mnt/Drive2/lucas/mara_nnunet_data/
+    # python scripts/extract_dirac.py -outdir /mnt/Drive2/lucas/models/DIRAC/Dataset/predict_gbm
     parser = argparse.ArgumentParser()
     parser.add_argument("-outdir", type=str, help="Algorithm ID to evaluate.")
     args = parser.parse_args()
 
-    DATASET_IDS = ["RHUH", "UPENN", "LUMIERE", "GLIODIL", "IVYGAP", "CPTAC", "TCGA-GBM"] #"TCGA-LGG"]
-    DATASET_DIRS = [RHUH_GBM_DIR, UPENN_GBM_DIR, LUMIERE_DIR, GLIODIL_DIR, IVYGAP_DIR, CPTAC_DIR, TCGA_GBM_DIR] #TCGA_LGG_DIR]
+    DATASET_IDS = ["RHUH", "LUMIERE", "GLIODIL"] #"TCGA-LGG"]
+    DATASET_DIRS = [RHUH_GBM_DIR, LUMIERE_DIR, GLIODIL_DIR] #TCGA_LGG_DIR]
     ROOT_DIRS = [
             "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM",
-            "/home/home/lucas/data/UPENN-GBM/UPENN-GBM",
             "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging",
             "/mnt/Drive2/lucas/datasets/GLIODIL",
-            "/mnt/Drive2/lucas/datasets/IVYGAP",
-            "/mnt/Drive2/lucas/datasets/CPTAC-GBM",
-            "/mnt/Drive2/lucas/datasets/TCGA-GBM",
-            #"/mnt/Drive2/lucas/datasets/TCGA-LGG"
             ]
 
     for d_id, d_dir, d_rootdir in zip(DATASET_IDS, DATASET_DIRS, ROOT_DIRS):
@@ -72,18 +67,15 @@ if __name__ == "__main__":
 
             try:
                 copy_files = [
-                        BRAIN_MASK_SCHEMA.format(base_dir=preop_exam_dir),
-                        TISSUE_PBMAP_SCHEMA.format(base_dir=preop_exam_dir, tissue="gm"),
-                        TISSUE_PBMAP_SCHEMA.format(base_dir=preop_exam_dir, tissue="wm"),
-                        TISSUE_PBMAP_SCHEMA.format(base_dir=preop_exam_dir, tissue="csf"),
-                        TUMORSEG_SCHEMA.format(base_dir=preop_exam_dir),
-                        RECURRENCE_SCHEMA.format(base_dir=followup_exam_dir),
+                        TUMORSEG_SCHEMA.format(base_dir=followup_exam_dir),
                         MODALITY_STRIPPED_SCHEMA.format(base_dir=preop_exam_dir, modality="t1c"),
-                        MODALITY_STRIPPED_SCHEMA.format(base_dir=preop_exam_dir, modality="flair"),
+                        #MODALITY_STRIPPED_SCHEMA.format(base_dir=followup_exam_dir, modality="t1c"),
+                        MODALITY_STRIPPED_SCHEMA.format(base_dir=followup_exam_dir, modality="flair"),
                         ]
                 backup = MODALITY_STRIPPED_SCHEMA.format(base_dir=preop_exam_dir, modality="t1c")
 
-                patient_outdir = Path(args.outdir) / d_id / patient_id
+                #patient_outdir = Path(args.outdir) / d_id / patient_id
+                patient_outdir = Path(args.outdir) / patient_id
                 patient_outdir.mkdir(parents=True, exist_ok=True)
 
                 for cf in copy_files:
@@ -98,5 +90,5 @@ if __name__ == "__main__":
                             nib.save(brain_mask_nii, str(patient_outdir / cf.name))
 
             except Exception as e:
-                #shutil.rmtree(patient_outdir)
+                shutil.rmtree(patient_outdir)
                 print(f"Exception for {patient_id}: {e}")

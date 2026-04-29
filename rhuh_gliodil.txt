@@ -1,0 +1,208 @@
+nohup: ignoring input
+2026-02-19 10:09:53.019 | INFO     | gbm_bench.utils.parsing:load:215 - Successfully loaded 40 patients from /home/home/lucas/projects/gbm_bench/gbm_bench/data/datasets/rhuh.json.
+Evaluating gliodil
+Processing 0/40...
+2026-02-19 10:10:35.725 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-25-2015-NA-RM CEREBRAL6NEURNAV-21029. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/11-05-2016-NA-RM CEREBRAL-42953/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-25-2015-NA-RM CEREBRAL6NEURNAV-21029/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/11-05-2016-NA-RM CEREBRAL-42953/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0001/01-25-2015-NA-RM CEREBRAL6NEURNAV-21029/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 1/40...
+2026-02-19 10:11:06.548 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/08-20-2016-NA-RM CEREBRO  C-49009. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/07-09-2017-NA-RM CRANEO-52907/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/08-20-2016-NA-RM CEREBRO  C-49009/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/07-09-2017-NA-RM CRANEO-52907/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0002/08-20-2016-NA-RM CEREBRO  C-49009/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 2/40...
+2026-02-19 10:11:17.903 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0003/12-15-2015-NA-RM CEREBRO-98075. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0003/05-04-2016-NA-RM CEREBRAL-67352/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0003/12-15-2015-NA-RM CEREBRO-98075/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0003/05-04-2016-NA-RM CEREBRAL-67352/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0003/12-15-2015-NA-RM CEREBRO-98075/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 3/40...
+2026-02-19 10:11:28.202 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0004/11-19-2014-NA-RM CEREBRAL-20636. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0004/10-29-2016-NA-RM CEREBRO PRE IQ-33288/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0004/11-19-2014-NA-RM CEREBRAL-20636/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0004/10-29-2016-NA-RM CEREBRO PRE IQ-33288/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0004/11-19-2014-NA-RM CEREBRAL-20636/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 4/40...
+2026-02-19 10:11:40.374 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0005/05-25-2013-NA-RM CRANEONEURONAVEGADOR-29811. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0005/09-14-2014-NA-CEREBRAL-38655/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0005/05-25-2013-NA-RM CRANEONEURONAVEGADOR-29811/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0005/09-14-2014-NA-CEREBRAL-38655/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0005/05-25-2013-NA-RM CRANEONEURONAVEGADOR-29811/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 5/40...
+2026-02-19 10:11:54.588 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/04-29-2017-NA-RM CEREBRAL-99588. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/11-19-2017-NA-RM CEREBRAL-03097/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/04-29-2017-NA-RM CEREBRAL-99588/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/11-19-2017-NA-RM CEREBRAL-03097/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0006/04-29-2017-NA-RM CEREBRAL-99588/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 6/40...
+2026-02-19 10:12:09.214 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0007/03-08-2016-NA-RM CEREBRAL-74997. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0007/07-09-2017-NA-RM CRANEO-49103/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0007/03-08-2016-NA-RM CEREBRAL-74997/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0007/07-09-2017-NA-RM CRANEO-49103/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0007/03-08-2016-NA-RM CEREBRAL-74997/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 7/40...
+2026-02-19 10:12:32.503 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/09-27-2015-NA-Craneo-26679. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/04-05-2016-NA-RM CEREBRO-94961/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/09-27-2015-NA-Craneo-26679/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/04-05-2016-NA-RM CEREBRO-94961/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0008/09-27-2015-NA-Craneo-26679/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 8/40...
+2026-02-19 10:12:45.198 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0009/12-26-2015-NA-RM CEREBRO-43886. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0009/10-11-2016-NA-CRANEO-74507/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0009/12-26-2015-NA-RM CEREBRO-43886/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0009/10-11-2016-NA-CRANEO-74507/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0009/12-26-2015-NA-RM CEREBRO-43886/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 9/40...
+2026-02-19 10:12:56.775 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0010/07-15-2013-NA-RM NEURONAVEGADOR-43001. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0010/07-12-2014-NA-RM CEREBRAL-69207/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0010/07-15-2013-NA-RM NEURONAVEGADOR-43001/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0010/07-12-2014-NA-RM CEREBRAL-69207/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0010/07-15-2013-NA-RM NEURONAVEGADOR-43001/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 10/40...
+2026-02-19 10:13:09.314 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0011/08-20-2017-NA-RM CRANEO-91051. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0011/11-01-2017-NA-RM CEREBRAL-80880/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0011/08-20-2017-NA-RM CRANEO-91051/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0011/11-01-2017-NA-RM CEREBRAL-80880/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0011/08-20-2017-NA-RM CRANEO-91051/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 11/40...
+2026-02-19 10:13:20.361 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0012/07-31-2016-NA-RM CEREBRAL-51172. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0012/09-11-2016-NA-Craneo-68013/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0012/07-31-2016-NA-RM CEREBRAL-51172/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0012/09-11-2016-NA-Craneo-68013/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0012/07-31-2016-NA-RM CEREBRAL-51172/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 12/40...
+2026-02-19 10:13:32.114 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0013/10-21-2013-NA-RM CEREBRAL-80056. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0013/02-11-2014-NA-e1 CEREBRAL-03687/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0013/10-21-2013-NA-RM CEREBRAL-80056/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0013/02-11-2014-NA-e1 CEREBRAL-03687/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0013/10-21-2013-NA-RM CEREBRAL-80056/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 13/40...
+2026-02-19 10:13:42.931 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0014/02-24-2013-NA-Craneo DTI-19406. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0014/07-27-2013-NA-Craneo-57576/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0014/02-24-2013-NA-Craneo DTI-19406/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0014/07-27-2013-NA-Craneo-57576/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0014/02-24-2013-NA-Craneo DTI-19406/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 14/40...
+2026-02-19 10:13:53.318 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0015/07-16-2013-NA-RM CRANEO NEURONAVEGADOR DTI-82275. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0015/09-14-2013-NA-Craneo-94623/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0015/07-16-2013-NA-RM CRANEO NEURONAVEGADOR DTI-82275/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0015/09-14-2013-NA-Craneo-94623/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0015/07-16-2013-NA-RM CRANEO NEURONAVEGADOR DTI-82275/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 15/40...
+2026-02-19 10:14:02.466 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0016/04-03-2013-NA-RM.CRANEO-87914. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0016/11-05-2013-NA-CEREBRAL-57913/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0016/04-03-2013-NA-RM.CRANEO-87914/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0016/11-05-2013-NA-CEREBRAL-57913/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0016/04-03-2013-NA-RM.CRANEO-87914/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 16/40...
+2026-02-19 10:14:11.011 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0017/01-21-2017-NA-RM CEREBRO-52920. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0017/07-17-2017-NA-RM CEREBRAL-60172/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0017/01-21-2017-NA-RM CEREBRO-52920/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0017/07-17-2017-NA-RM CEREBRAL-60172/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0017/01-21-2017-NA-RM CEREBRO-52920/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 17/40...
+2026-02-19 10:14:20.815 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0018/06-25-2017-NA-RM CEREBRAL-66931. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0018/11-15-2017-NA-CRANEO-18771/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0018/06-25-2017-NA-RM CEREBRAL-66931/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0018/11-15-2017-NA-CRANEO-18771/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0018/06-25-2017-NA-RM CEREBRAL-66931/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 18/40...
+2026-02-19 10:14:30.371 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0019/10-20-2014-NA-RM CEREBRAL-71839. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0019/07-15-2015-NA-RM DE CEREBRO SINCON CONTRASTE-35189/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0019/10-20-2014-NA-RM CEREBRAL-71839/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0019/07-15-2015-NA-RM DE CEREBRO SINCON CONTRASTE-35189/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0019/10-20-2014-NA-RM CEREBRAL-71839/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 19/40...
+2026-02-19 10:14:40.101 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0020/12-07-2016-NA-CEREBRO-55977. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0020/10-03-2017-NA-RM CEREBRAL-22793/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0020/12-07-2016-NA-CEREBRO-55977/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0020/10-03-2017-NA-RM CEREBRAL-22793/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0020/12-07-2016-NA-CEREBRO-55977/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 20/40...
+2026-02-19 10:14:48.957 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0021/10-20-2013-NA-CEREBRAL-34247. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0021/11-15-2014-NA-RM CEREBRO-87895/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0021/10-20-2013-NA-CEREBRAL-34247/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0021/11-15-2014-NA-RM CEREBRO-87895/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0021/10-20-2013-NA-CEREBRAL-34247/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 21/40...
+2026-02-19 10:14:57.788 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0022/05-20-2014-NA-CEREBRAL-78643. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0022/10-21-2014-NA-rm craneo-14962/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0022/05-20-2014-NA-CEREBRAL-78643/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0022/10-21-2014-NA-rm craneo-14962/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0022/05-20-2014-NA-CEREBRAL-78643/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 22/40...
+2026-02-19 10:15:07.764 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0023/10-14-2015-NA-Craneo-75929. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0023/02-07-2016-NA-RM CRANEO-01973/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0023/10-14-2015-NA-Craneo-75929/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0023/02-07-2016-NA-RM CRANEO-01973/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0023/10-14-2015-NA-Craneo-75929/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 23/40...
+2026-02-19 10:15:16.524 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0024/11-10-2013-NA-Craneo-58463. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0024/01-29-2014-NA-RM CEREBRO-96283/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0024/11-10-2013-NA-Craneo-58463/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0024/01-29-2014-NA-RM CEREBRO-96283/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0024/11-10-2013-NA-Craneo-58463/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 24/40...
+2026-02-19 10:15:25.104 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0025/10-14-2012-NA-RM DE CEREBRO SINCON CONTRASTE-82954. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0025/03-24-2013-NA-CEREBRAL-48696/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0025/10-14-2012-NA-RM DE CEREBRO SINCON CONTRASTE-82954/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0025/03-24-2013-NA-CEREBRAL-48696/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0025/10-14-2012-NA-RM DE CEREBRO SINCON CONTRASTE-82954/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 25/40...
+2026-02-19 10:15:33.547 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0026/09-16-2013-NA-RM DE CEREBRO SINCON CONTRASTE-39253. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0026/09-19-2015-NA-RM CEREBRAL-08112/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0026/09-16-2013-NA-RM DE CEREBRO SINCON CONTRASTE-39253/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0026/09-19-2015-NA-RM CEREBRAL-08112/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0026/09-16-2013-NA-RM DE CEREBRO SINCON CONTRASTE-39253/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 26/40...
+2026-02-19 10:15:42.726 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0027/05-04-2013-NA-RM DE CEREBRO SINCON CONTRASTE-80149. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0027/08-31-2014-NA-RM DE CEREBRO SINCON CONTRASTE-35981/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0027/05-04-2013-NA-RM DE CEREBRO SINCON CONTRASTE-80149/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0027/08-31-2014-NA-RM DE CEREBRO SINCON CONTRASTE-35981/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0027/05-04-2013-NA-RM DE CEREBRO SINCON CONTRASTE-80149/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 27/40...
+2026-02-19 10:15:52.383 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0028/08-06-2013-NA-RM DE CEREBRO SINCON CONTRASTE-79731. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0028/10-21-2013-NA-RM CEREBRO-46621/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0028/08-06-2013-NA-RM DE CEREBRO SINCON CONTRASTE-79731/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0028/10-21-2013-NA-RM CEREBRO-46621/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0028/08-06-2013-NA-RM DE CEREBRO SINCON CONTRASTE-79731/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 28/40...
+2026-02-19 10:16:02.503 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/09-25-2013-NA-RM DE CEREBRO SINCON CONTRASTE-24778. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/04-19-2014-NA-RM DE CEREBRO SINCON CONTRASTE-21913/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/09-25-2013-NA-RM DE CEREBRO SINCON CONTRASTE-24778/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/04-19-2014-NA-RM DE CEREBRO SINCON CONTRASTE-21913/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0029/09-25-2013-NA-RM DE CEREBRO SINCON CONTRASTE-24778/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 29/40...
+2026-02-19 10:16:11.567 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0030/11-25-2013-NA-RM CEREBRALC-02749. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0030/08-11-2014-NA-RM DE CEREBRO SINCON CONTRASTE-96321/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0030/11-25-2013-NA-RM CEREBRALC-02749/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0030/08-11-2014-NA-RM DE CEREBRO SINCON CONTRASTE-96321/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0030/11-25-2013-NA-RM CEREBRALC-02749/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 30/40...
+2026-02-19 10:16:20.404 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0031/11-24-2013-NA-CEREBRO Y ANGIO RM.-08949. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0031/03-18-2014-NA-RM DE CEREBRO SINCON CONTRASTE-80435/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0031/11-24-2013-NA-CEREBRO Y ANGIO RM.-08949/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0031/03-18-2014-NA-RM DE CEREBRO SINCON CONTRASTE-80435/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0031/11-24-2013-NA-CEREBRO Y ANGIO RM.-08949/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 31/40...
+2026-02-19 10:16:29.906 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0032/12-14-2013-NA-RM CEREBRAL-13376. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0032/01-08-2014-NA-Craneo-58200/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0032/12-14-2013-NA-RM CEREBRAL-13376/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0032/01-08-2014-NA-Craneo-58200/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0032/12-14-2013-NA-RM CEREBRAL-13376/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 32/40...
+2026-02-19 10:16:38.515 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0033/05-07-2014-NA-RM DE CEREBRO SINCON CONTRASTE-65733. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0033/04-08-2015-NA-Craneo-90520/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0033/05-07-2014-NA-RM DE CEREBRO SINCON CONTRASTE-65733/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0033/04-08-2015-NA-Craneo-90520/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0033/05-07-2014-NA-RM DE CEREBRO SINCON CONTRASTE-65733/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 33/40...
+2026-02-19 10:16:47.496 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0034/07-20-2014-NA-RM DE CRANEO SINCON CONTRASTE-27430. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0034/06-09-2015-NA-RM DE CEREBRO SIN CONTRASTE-54771/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0034/07-20-2014-NA-RM DE CRANEO SINCON CONTRASTE-27430/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0034/06-09-2015-NA-RM DE CEREBRO SIN CONTRASTE-54771/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0034/07-20-2014-NA-RM DE CRANEO SINCON CONTRASTE-27430/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 34/40...
+2026-02-19 10:16:56.211 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0035/03-02-2015-NA-Craneo-91865. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0035/01-02-2017-NA-RM DE CEREBRO SINCON CONTRASTE-63938/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0035/03-02-2015-NA-Craneo-91865/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0035/01-02-2017-NA-RM DE CEREBRO SINCON CONTRASTE-63938/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0035/03-02-2015-NA-Craneo-91865/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 35/40...
+2026-02-19 10:17:05.800 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0036/05-13-2015-NA-RM DE CEREBRO SINCON CONTRASTE-70164. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0036/01-08-2017-NA-RM CEREBRAL-59146/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0036/05-13-2015-NA-RM DE CEREBRO SINCON CONTRASTE-70164/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0036/01-08-2017-NA-RM CEREBRAL-59146/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0036/05-13-2015-NA-RM DE CEREBRO SINCON CONTRASTE-70164/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 36/40...
+2026-02-19 10:17:14.474 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0037/08-26-2015-NA-RM CEREBRAL-99779. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0037/09-13-2016-NA-RM CEREBRAL-94796/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0037/08-26-2015-NA-RM CEREBRAL-99779/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0037/09-13-2016-NA-RM CEREBRAL-94796/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0037/08-26-2015-NA-RM CEREBRAL-99779/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 37/40...
+2026-02-19 10:17:24.349 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0038/03-21-2016-NA-RM CRANEO-44688. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0038/09-10-2016-NA-RM CRANEO-46794/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0038/03-21-2016-NA-RM CRANEO-44688/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0038/09-10-2016-NA-RM CRANEO-46794/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0038/03-21-2016-NA-RM CRANEO-44688/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 38/40...
+2026-02-19 10:17:34.151 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0039/06-19-2017-NA-RM CEREBRAL-79526. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0039/12-16-2017-NA-RM DE CEREBRO SINCON CONTRASTE-72613/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0039/06-19-2017-NA-RM CEREBRAL-79526/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0039/12-16-2017-NA-RM DE CEREBRO SINCON CONTRASTE-72613/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0039/06-19-2017-NA-RM CEREBRAL-79526/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 39/40...
+2026-02-19 10:17:44.975 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:606 - Finished evaluation of /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0040/09-11-2017-NA-RM CEREBRAL-44201. Saved results to /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0040/10-07-2017-NA-RM DE CEREBRO SINCON CONTRASTE-12131/processed/longitudinal/gliodil_metrics.json.
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0040/09-11-2017-NA-RM CEREBRAL-44201/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0040/10-07-2017-NA-RM DE CEREBRO SINCON CONTRASTE-12131/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/RHUH-GBM/Images/DICOM/RHUH-GBM/RHUH-0040/09-11-2017-NA-RM CEREBRAL-44201/processed/tumor_segmentation/standard_plan.nii.gz
+Finished evaluation.
+Standard plan coverge: 82.92 ± 4.61
+Standard plan coverge (all): 61.89 ± 3.25
+Model plan coverge: 82.75 ± 4.51
+Model plan coverge (all): 68.22 ± 3.16

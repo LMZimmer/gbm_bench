@@ -1,4 +1,4 @@
-import os   
+import os
 import argparse
 from pathlib import Path
 from gbm_bench.utils.constants import LUMIERE_DIR
@@ -8,8 +8,8 @@ from gbm_bench.preprocessing.preprocess import preprocess_nifti, process_longitu
 
 if __name__ == "__main__":
     # Example:
-    # python scripts/preprocess_lumiere.py -cuda_device 0
-    # nohup python -u scripts/preprocess_lumiere.py -cuda_device 2 > tmp_lumiere_preproc.out 2>&1 &
+    # python scripts/preprocess_lumiere_postop.py -cuda_device 5
+    # nohup python -u scripts/preprocess_lumiere_postop.py -cuda_device 5 > tmp_lumiere_preproc_postop.out 2>&1 &
     parser = argparse.ArgumentParser()
     parser.add_argument("-cuda_device", type=str, default="0", help="GPU id to run on.")
     args = parser.parse_args()
@@ -21,19 +21,12 @@ if __name__ == "__main__":
     lumiere = LongitudinalDataset(dataset_id="LUMIERE", root_dir=lumiere_root)
     lumiere.load(LUMIERE_DIR)
 
-    remaining = ["Patient-008"]
-
     # Individual exams
-    """
-    for patient_ind, patient in enumerate(lumiere.patients):
+    for patient_ind, patient in enumerate(lumiere.patients[11:]):
         print(f"Processing {patient_ind}/{len(lumiere.patients)}...")
 
         for exam in patient["exams"]:
-            if exam["timepoint"] != "followup":  # skip preop, postop #TODO
-                continue
-
-            patient_id = patient["patient_id"]
-            if patient_id not in remaining:
+            if exam["timepoint"] != "postop":  # only postop
                 continue
 
             is_preop = (exam["timepoint"] == "preop")
@@ -53,29 +46,29 @@ if __name__ == "__main__":
                         )
             except Exception as e:
                 print(f"Exception {e} for Patient {patient_ind}.")
-    """
 
     # Longitudinal registration
     for patient_ind, patient in enumerate(lumiere.patients):
         print(f"Performing longitudinal registration {patient_ind}/{len(lumiere.patients)}.")
 
         patient_id = patient["patient_id"]
-        #if patient_id not in remaining:
-        #    continue
 
         preop_exam = lumiere.get_patient_exams(patient_id=patient_id, timepoint="preop")[0]  # Find first preop exam
         preop_exam_dir = preop_exam["t1"].parent
 
         # Loop through followup exams
-        followup_exams = lumiere.get_patient_exams(patient_id=patient_id, timepoint="followup")
+        followup_exams = lumiere.get_patient_exams(patient_id=patient_id, timepoint="postop")  # changed to postop
         
         for followup_exam in followup_exams:
             followup_exam_dir = followup_exam["t1"].parent
             
-            process_longitudinal(
-                    preop_exam_dir=preop_exam_dir,
-                    followup_exam_dir=followup_exam_dir,
-                    outdir=followup_exam_dir
-                    )
+            try:
+                process_longitudinal(
+                        preop_exam_dir=preop_exam_dir,
+                        followup_exam_dir=followup_exam_dir,
+                        outdir=followup_exam_dir
+                        )
+            except Exception as e:
+                print(f"Exception {e} for Patient {patient_id}.")
     
     print(f"Finished processing.")

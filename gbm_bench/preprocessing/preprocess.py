@@ -1,5 +1,6 @@
 import os
 import time
+import shutil
 import argparse
 from pathlib import Path
 from loguru import logger
@@ -8,7 +9,6 @@ from gbm_bench.preprocessing.dicom_to_nifti import convert_nifti
 from gbm_bench.preprocessing.tumor_segmentation import run_brats
 from gbm_bench.preprocessing.norm_ss_coregistration import normalize, norm_ss_coregister, register_recurrence
 from gbm_bench.preprocessing.tissue_segmentation import generate_registration_mask, run_tissue_seg_registration
-from gbm_bench.utils.utils import make_symlink
 from gbm_bench.utils.constants import (
         BRAIN_MASK_SCHEMA,
         DCM2NIIX_LOCATION,
@@ -118,11 +118,17 @@ def preprocess_nifti(t1_file: Path, t1c_file: Path, t2_file: Path, flair_file: P
             normalize(img_file=path, outfile=MODALITY_STRIPPED_SCHEMA.format(base_dir=outdir, modality=modality))
     else:
         for modality, path in modality_dict.items():
-            make_symlink(src=path, dst=MODALITY_CONVERTED_SCHEMA.format(base_dir=outdir, modality=modality))
+            dst = MODALITY_CONVERTED_SCHEMA.format(base_dir=outdir, modality=modality)
+            if dst.is_symlink():
+                dst.unlink()
+            shutil.copy2(path, dst)
 
     if tumorseg_file is not None:
         logger.warning(f"Running with provided tumor segmentation {tumorseg_file}. Expected labels: {TUMOR_LABELS}")
-        make_symlink(src=tumorseg_file, dst=TUMORSEG_SCHEMA.format(base_dir=outdir))
+        dst = TUMORSEG_SCHEMA.format(base_dir=outdir)
+        if dst.is_symlink():
+            dst.unlink()
+        shutil.copy2(tumorseg_file, dst)
 
     preprocess_exam(
             outdir=outdir,
@@ -223,8 +229,19 @@ def process_longitudinal(preop_exam_dir: Path, followup_exam_dir: Path, outdir: 
     moving_mask_file = REGISTRATION_MASK_SCHEMA.format(base_dir=followup_exam_dir)
 
     if is_coregistered:
-        make_symlink(src=t1c_post_file, dst=LONGITUDINAL_WARP_SCHEMA.format(base_dir=followup_exam_dir))
-        make_symlink(src=recurrence_seg_file, dst=RECURRENCE_SCHEMA.format(base_dir=followup_exam_dir))
+
+        dst_long = LONGITUDINAL_WARP_SCHEMA.format(base_dir=followup_exam_dir)
+        dst_rec = RECURRENCE_SCHEMA.format(base_dir=followup_exam_dir)
+
+        if dst_long.is_symlink():
+            dst_long.unlink()
+
+        if dst_rec.is_symlink():
+            dst_rec.unlink()
+
+        shutil.copy2(t1c_post_file, dst_long)
+        shutil.copy2(recurrence_seg_file, dst_rec)
+
     else:
         register_recurrence(
                 t1c_pre_file=t1c_pre_file,

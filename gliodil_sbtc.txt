@@ -1,0 +1,782 @@
+nohup: ignoring input
+2026-01-31 12:11:31.699 | INFO     | gbm_bench.utils.parsing:load:215 - Successfully loaded 152 patients from /home/home/lucas/projects/gbm_bench/gbm_bench/data/datasets/gliodil.json.
+Evaluating sbtc
+Processing 0/152...
+2026-01-31 12:12:07.476 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_001/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_001/d289/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_001/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_001/d289/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_001/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 1/152...
+2026-01-31 12:12:27.158 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_002/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_002/d318/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_002/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_002/d318/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_002/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 2/152...
+2026-01-31 12:12:38.299 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_004/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_004/d285/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_004/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_004/d285/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_004/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 3/152...
+2026-01-31 12:12:54.951 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_005/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_005/d203/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_005/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_005/d203/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_005/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 4/152...
+2026-01-31 12:13:03.523 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_006/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_006/d534/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_006/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_006/d534/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_006/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 5/152...
+2026-01-31 12:13:14.244 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_007/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_007/d200/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_007/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_007/d200/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_007/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 6/152...
+2026-01-31 12:13:23.230 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_008/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_008/d158/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_008/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_008/d158/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_008/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 7/152...
+2026-01-31 12:13:31.571 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_009/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_009/d145/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_009/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_009/d145/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_009/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 8/152...
+2026-01-31 12:13:40.618 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_010/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_010/d289/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_010/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_010/d289/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_010/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 9/152...
+2026-01-31 12:13:54.456 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_011/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_011/d761/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_011/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_011/d761/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_011/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 10/152...
+2026-01-31 12:14:03.320 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_014/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_014/d246/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_014/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_014/d246/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_014/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 11/152...
+2026-01-31 12:14:12.085 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_015/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_015/d684/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_015/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_015/d684/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_015/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 12/152...
+2026-01-31 12:14:21.449 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_016/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_016/d644/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_016/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_016/d644/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_016/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 13/152...
+2026-01-31 12:14:30.184 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_017/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_017/d200/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_017/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_017/d200/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_017/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 14/152...
+2026-01-31 12:14:38.657 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_018/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_018/d490/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_018/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_018/d490/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_018/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 15/152...
+2026-01-31 12:14:48.806 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_019/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_019/d346/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_019/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_019/d346/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_019/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 16/152...
+2026-01-31 12:14:57.034 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_020/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_020/d1439/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_020/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_020/d1439/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_020/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 17/152...
+2026-01-31 12:15:07.328 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_021/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_021/d143/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_021/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_021/d143/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_021/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 18/152...
+2026-01-31 12:15:15.901 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_024/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_024/d425/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_024/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_024/d425/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_024/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 19/152...
+2026-01-31 12:15:24.554 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_026/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_026/d529/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_026/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_026/d529/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_026/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 20/152...
+2026-01-31 12:15:33.144 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_030/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_030/d561/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_030/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_030/d561/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_030/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 21/152...
+2026-01-31 12:15:41.245 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_031/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_031/d219/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_031/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_031/d219/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_031/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 22/152...
+/home/home/lucas/projects/gbm_bench/gbm_bench/evaluation/evaluate.py:305: RuntimeWarning: invalid value encountered in divide
+  distance_inner = distance_inner / max_inner
+2026-01-31 12:15:48.936 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_033/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_033/d221/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_033/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_033/d221/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_033/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 23/152...
+2026-01-31 12:15:57.512 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_035/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_035/d730/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_035/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_035/d730/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_035/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 24/152...
+2026-01-31 12:16:06.064 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_036/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_036/d738/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_036/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_036/d738/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_036/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 25/152...
+2026-01-31 12:16:14.932 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_039/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_039/d150/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_039/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_039/d150/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_039/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 26/152...
+2026-01-31 12:16:23.481 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_041/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_041/d115/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_041/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_041/d115/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_041/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 27/152...
+2026-01-31 12:16:32.521 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_045/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_045/d187/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_045/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_045/d187/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_045/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 28/152...
+2026-01-31 12:16:41.196 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_046/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_046/d103/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_046/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_046/d103/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_046/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 29/152...
+2026-01-31 12:16:49.784 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_047/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_047/d93/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_047/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_047/d93/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_047/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 30/152...
+2026-01-31 12:16:58.330 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_051/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_051/d273/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_051/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_051/d273/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_051/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 31/152...
+2026-01-31 12:17:06.523 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_053/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_053/d132/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_053/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_053/d132/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_053/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 32/152...
+/home/home/lucas/projects/gbm_bench/gbm_bench/evaluation/evaluate.py:305: RuntimeWarning: invalid value encountered in divide
+  distance_inner = distance_inner / max_inner
+2026-01-31 12:17:14.130 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_054/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_054/d147/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_054/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_054/d147/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_054/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 33/152...
+2026-01-31 12:17:22.387 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_055/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_055/d294/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_055/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_055/d294/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_055/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 34/152...
+2026-01-31 12:17:31.261 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_056/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_056/d193/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_056/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_056/d193/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_056/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 35/152...
+2026-01-31 12:17:41.316 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_057/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_057/d295/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_057/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_057/d295/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_057/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 36/152...
+2026-01-31 12:17:50.380 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_058/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_058/d245/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_058/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_058/d245/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_058/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 37/152...
+2026-01-31 12:18:14.481 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_061/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_061/d295/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_061/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_061/d295/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_061/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 38/152...
+2026-01-31 12:18:23.159 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_062/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_062/d17/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_062/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_062/d17/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_062/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 39/152...
+2026-01-31 12:18:31.843 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_065/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_065/d198/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_065/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_065/d198/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_065/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 40/152...
+2026-01-31 12:18:40.262 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_066/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_066/d172/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_066/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_066/d172/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_066/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 41/152...
+2026-01-31 12:18:49.349 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_068/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_068/d135/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_068/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_068/d135/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_068/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 42/152...
+2026-01-31 12:18:57.604 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_070/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_070/d501/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_070/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_070/d501/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_070/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 43/152...
+2026-01-31 12:19:06.194 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_072/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_072/d255/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_072/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_072/d255/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_072/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 44/152...
+2026-01-31 12:19:14.948 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_077/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_077/d159/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_077/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_077/d159/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_077/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 45/152...
+2026-01-31 12:19:23.193 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_078/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_078/d496/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_078/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_078/d496/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_078/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 46/152...
+2026-01-31 12:19:31.660 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_079/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_079/d118/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_079/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_079/d118/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_079/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 47/152...
+2026-01-31 12:19:40.353 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_081/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_081/d262/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_081/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_081/d262/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_081/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 48/152...
+2026-01-31 12:19:49.024 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_082/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_082/d321/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_082/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_082/d321/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_082/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 49/152...
+2026-01-31 12:19:58.088 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_085/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_085/d163/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_085/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_085/d163/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_085/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 50/152...
+2026-01-31 12:20:06.534 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_086/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_086/d40/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_086/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_086/d40/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_086/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 51/152...
+2026-01-31 12:20:15.364 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_087/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_087/d19/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_087/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_087/d19/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_087/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 52/152...
+2026-01-31 12:20:23.925 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_088/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_088/d263/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_088/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_088/d263/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_088/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 53/152...
+2026-01-31 12:20:32.722 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_089/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_089/d719/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_089/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_089/d719/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_089/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 54/152...
+2026-01-31 12:20:42.384 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_091/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_091/d46/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_091/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_091/d46/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_091/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 55/152...
+2026-01-31 12:20:51.011 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_093/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_093/d79/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_093/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_093/d79/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_093/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 56/152...
+2026-01-31 12:20:59.602 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_095/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_095/d192/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_095/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_095/d192/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_095/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 57/152...
+2026-01-31 12:21:08.570 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_096/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_096/d91/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_096/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_096/d91/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_096/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 58/152...
+2026-01-31 12:21:17.413 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_097/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_097/d205/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_097/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_097/d205/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_097/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 59/152...
+2026-01-31 12:21:26.055 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_098/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_098/d129/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_098/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_098/d129/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_098/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 60/152...
+2026-01-31 12:21:34.960 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_099/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_099/d97/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_099/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_099/d97/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_099/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 61/152...
+2026-01-31 12:21:43.570 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_100/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_100/d29/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_100/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_100/d29/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_100/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 62/152...
+2026-01-31 12:21:52.311 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_105/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_105/d171/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_105/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_105/d171/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_105/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 63/152...
+2026-01-31 12:22:00.929 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_106/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_106/d331/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_106/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_106/d331/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_106/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 64/152...
+2026-01-31 12:22:09.458 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_107/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_107/d309/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_107/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_107/d309/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_107/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 65/152...
+2026-01-31 12:22:17.751 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_109/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_109/d480/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_109/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_109/d480/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_109/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 66/152...
+2026-01-31 12:22:26.698 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_111/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_111/d86/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_111/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_111/d86/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_111/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 67/152...
+2026-01-31 12:22:34.917 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_116/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_116/d765/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_116/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_116/d765/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_116/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 68/152...
+2026-01-31 12:22:43.228 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_117/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_117/d226/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_117/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_117/d226/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_117/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 69/152...
+2026-01-31 12:22:51.914 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_118/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_118/d162/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_118/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_118/d162/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_118/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 70/152...
+2026-01-31 12:23:01.037 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_119/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_119/d104/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_119/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_119/d104/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_119/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 71/152...
+2026-01-31 12:23:09.541 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_120/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_120/d343/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_120/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_120/d343/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_120/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 72/152...
+2026-01-31 12:23:18.371 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_121/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_121/d79/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_121/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_121/d79/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_121/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 73/152...
+2026-01-31 12:23:26.580 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_122/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_122/d431/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_122/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_122/d431/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_122/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 74/152...
+2026-01-31 12:23:34.663 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_123/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_123/d225/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_123/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_123/d225/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_123/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 75/152...
+2026-01-31 12:23:43.402 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_125/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_125/d63/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_125/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_125/d63/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_125/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 76/152...
+2026-01-31 12:23:51.739 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_127/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_127/d144/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_127/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_127/d144/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_127/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 77/152...
+2026-01-31 12:24:00.670 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_128/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_128/d457/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_128/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_128/d457/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_128/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 78/152...
+2026-01-31 12:24:08.950 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_130/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_130/d399/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_130/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_130/d399/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_130/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 79/152...
+2026-01-31 12:24:17.514 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_133/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_133/d164/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_133/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_133/d164/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_133/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 80/152...
+2026-01-31 12:24:26.068 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_136/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_136/d82/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_136/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_136/d82/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_136/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 81/152...
+2026-01-31 12:24:34.178 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_138/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_138/d251/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_138/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_138/d251/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_138/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 82/152...
+2026-01-31 12:24:42.574 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_139/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_139/d190/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_139/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_139/d190/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_139/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 83/152...
+2026-01-31 12:24:50.771 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_140/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_140/d100/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_140/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_140/d100/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_140/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 84/152...
+2026-01-31 12:24:59.400 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_145/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_145/d141/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_145/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_145/d141/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_145/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 85/152...
+2026-01-31 12:25:07.903 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_146/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_146/d147/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_146/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_146/d147/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_146/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 86/152...
+2026-01-31 12:25:16.721 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_156/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_156/d298/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_156/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_156/d298/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_156/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 87/152...
+2026-01-31 12:25:25.199 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_157/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_157/d199/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_157/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_157/d199/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_157/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 88/152...
+2026-01-31 12:25:33.915 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm001/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm001/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm001/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm001/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm001/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 89/152...
+/home/home/lucas/projects/gbm_bench/gbm_bench/evaluation/evaluate.py:305: RuntimeWarning: invalid value encountered in divide
+  distance_inner = distance_inner / max_inner
+2026-01-31 12:25:41.666 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm003/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm003/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm003/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm003/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm003/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 90/152...
+2026-01-31 12:25:49.878 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm004/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm004/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm004/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm004/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm004/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 91/152...
+2026-01-31 12:26:04.421 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm005/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm005/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm005/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm005/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm005/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 92/152...
+2026-01-31 12:26:12.767 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm006/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm006/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm006/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm006/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm006/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 93/152...
+2026-01-31 12:26:21.247 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm009/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm009/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm009/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm009/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm009/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 94/152...
+2026-01-31 12:26:29.494 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm010/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm010/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm010/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm010/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm010/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 95/152...
+2026-01-31 12:26:37.947 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm011/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm011/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm011/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm011/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm011/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 96/152...
+2026-01-31 12:26:46.065 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm013/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm013/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm013/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm013/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm013/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 97/152...
+2026-01-31 12:26:54.514 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm014/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm014/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm014/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm014/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm014/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 98/152...
+2026-01-31 12:27:03.081 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm016/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm016/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm016/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm016/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm016/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 99/152...
+2026-01-31 12:27:11.290 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm018/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm018/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm018/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm018/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm018/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 100/152...
+2026-01-31 12:27:20.076 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm023/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm023/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm023/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm023/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm023/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 101/152...
+2026-01-31 12:27:28.350 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm024/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm024/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm024/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm024/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm024/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 102/152...
+2026-01-31 12:27:36.861 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm025/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm025/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm025/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm025/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm025/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 103/152...
+2026-01-31 12:27:45.145 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm026/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm026/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm026/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm026/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm026/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 104/152...
+2026-01-31 12:27:53.739 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm027/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm027/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm027/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm027/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm027/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 105/152...
+2026-01-31 12:28:02.177 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm028/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm028/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm028/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm028/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm028/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 106/152...
+2026-01-31 12:28:10.791 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm029/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm029/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm029/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm029/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm029/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 107/152...
+2026-01-31 12:28:19.134 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm031/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm031/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm031/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm031/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm031/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 108/152...
+2026-01-31 12:28:27.382 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm033/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm033/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm033/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm033/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm033/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 109/152...
+2026-01-31 12:28:35.894 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm034/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm034/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm034/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm034/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm034/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 110/152...
+/home/home/lucas/projects/gbm_bench/gbm_bench/evaluation/evaluate.py:305: RuntimeWarning: invalid value encountered in divide
+  distance_inner = distance_inner / max_inner
+2026-01-31 12:28:43.694 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm035/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm035/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm035/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm035/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm035/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 111/152...
+2026-01-31 12:28:52.132 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm036/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm036/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm036/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm036/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm036/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 112/152...
+2026-01-31 12:29:00.698 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm037/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm037/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm037/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm037/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm037/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 113/152...
+2026-01-31 12:29:09.011 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm038/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm038/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm038/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm038/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm038/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 114/152...
+2026-01-31 12:29:17.619 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm039/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm039/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm039/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm039/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm039/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 115/152...
+2026-01-31 12:29:25.871 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm041/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm041/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm041/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm041/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm041/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 116/152...
+2026-01-31 12:29:34.470 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm042/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm042/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm042/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm042/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm042/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 117/152...
+2026-01-31 12:29:43.240 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm044/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm044/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm044/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm044/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm044/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 118/152...
+2026-01-31 12:29:51.684 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm045/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm045/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm045/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm045/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm045/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 119/152...
+2026-01-31 12:30:00.115 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm047/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm047/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm047/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm047/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm047/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 120/152...
+2026-01-31 12:30:08.153 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm048/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm048/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm048/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm048/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm048/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 121/152...
+2026-01-31 12:30:16.720 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm049/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm049/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm049/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm049/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm049/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 122/152...
+2026-01-31 12:30:25.186 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm052/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm052/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm052/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm052/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm052/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 123/152...
+2026-01-31 12:30:34.521 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm053/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm053/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm053/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm053/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm053/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 124/152...
+2026-01-31 12:30:43.323 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm054/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm054/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm054/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm054/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm054/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 125/152...
+2026-01-31 12:30:51.379 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm055/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm055/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm055/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm055/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm055/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 126/152...
+2026-01-31 12:30:59.511 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm056/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm056/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm056/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm056/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm056/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 127/152...
+2026-01-31 12:31:07.910 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm057/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm057/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm057/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm057/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm057/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 128/152...
+2026-01-31 12:31:16.283 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm060/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm060/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm060/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm060/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm060/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 129/152...
+2026-01-31 12:31:24.875 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm061/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm061/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm061/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm061/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm061/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 130/152...
+2026-01-31 12:31:33.330 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm063/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm063/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm063/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm063/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm063/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 131/152...
+2026-01-31 12:31:41.467 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm064/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm064/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm064/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm064/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm064/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 132/152...
+2026-01-31 12:31:49.721 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm065/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm065/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm065/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm065/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm065/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 133/152...
+2026-01-31 12:31:58.159 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm066/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm066/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm066/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm066/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm066/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 134/152...
+2026-01-31 12:32:06.829 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm068/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm068/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm068/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm068/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm068/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 135/152...
+2026-01-31 12:32:15.228 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/tgm071/preop/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/tgm071/preop/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm071/preop/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm071/preop/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/tgm071/preop/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 136/152...
+2026-01-31 12:32:23.809 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_073/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_073/d111/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_073/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_073/d111/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_073/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 137/152...
+/home/home/lucas/bin/miniconda3/envs/brainles/lib/python3.10/site-packages/sklearn/metrics/_ranking.py:1201: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  warnings.warn(
+/home/home/lucas/bin/miniconda3/envs/brainles/lib/python3.10/site-packages/sklearn/metrics/_ranking.py:1201: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  warnings.warn(
+/home/home/lucas/bin/miniconda3/envs/brainles/lib/python3.10/site-packages/sklearn/metrics/_ranking.py:1201: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  warnings.warn(
+2026-01-31 12:32:31.961 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_074/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_074/d355/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_074/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_074/d355/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_074/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 138/152...
+2026-01-31 12:32:40.107 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_101/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_101/d129/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_101/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_101/d129/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_101/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 139/152...
+2026-01-31 12:32:48.208 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_126/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_126/d284/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_126/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_126/d284/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_126/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 140/152...
+2026-01-31 12:32:56.823 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_131/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_131/d90/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_131/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_131/d90/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_131/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 141/152...
+2026-01-31 12:33:05.043 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_150/d0/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_150/d108/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_150/d0/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_150/d108/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/respond_tum_150/d0/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 142/152...
+2026-01-31 12:33:13.516 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/data_001/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/data_001/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/data_001/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/data_001/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/data_001/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 143/152...
+2026-01-31 12:33:24.415 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/data_013/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/data_013/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/data_013/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/data_013/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/data_013/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 144/152...
+2026-01-31 12:33:32.532 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/data_020/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/data_020/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/data_020/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/data_020/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/data_020/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 145/152...
+2026-01-31 12:33:40.471 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/data_030/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/data_030/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/data_030/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/data_030/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/data_030/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 146/152...
+2026-01-31 12:33:48.609 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/data_034/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/data_034/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/data_034/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/data_034/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/data_034/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 147/152...
+2026-01-31 12:33:59.422 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/data_991/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/data_991/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/data_991/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/data_991/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/data_991/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 148/152...
+2026-01-31 12:34:10.502 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/data_992/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/data_992/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/data_992/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/data_992/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/data_992/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 149/152...
+2026-01-31 12:34:21.605 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/data_994/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/data_994/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/data_994/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/data_994/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/data_994/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 150/152...
+2026-01-31 12:34:33.119 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/data_995/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/data_995/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/data_995/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/data_995/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/data_995/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 151/152...
+2026-01-31 12:34:44.422 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/GLIODIL/data_998/preop. Saved results to /mnt/Drive2/lucas/datasets/GLIODIL/data_998/followup/processed/longitudinal/sbtc_metrics.json.
+/mnt/Drive2/lucas/datasets/GLIODIL/data_998/preop/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/data_998/followup/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/GLIODIL/data_998/preop/processed/tumor_segmentation/standard_plan.nii.gz
+Finished evaluation.
+Standard plan coverge: 79.61 ± 2.70
+Standard plan coverge (all): 64.32 ± 2.20
+Model plan coverge: 81.65 ± 2.47
+Model plan coverge (all): 74.06 ± 1.92

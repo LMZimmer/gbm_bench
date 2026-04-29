@@ -3,6 +3,7 @@ import ants
 import time
 import shutil
 import argparse
+import nibabel as nib
 from pathlib import Path
 from loguru import logger
 from typing import List, Tuple
@@ -206,20 +207,28 @@ def register_recurrence(t1c_pre_file: Path, t1c_post_file: Path, recurrence_seg_
 
     # Masks
     reg_kwargs = {}
+    tmpimg = nib.load(str(t1c_pre_file))
+    affine = tmpimg.affine
     if fixed_mask_file is not None:
+        img = nib.load(fixed_mask_file)
+        newimg = nib.Nifti1Image(img.get_fdata(), affine)
+        nib.save(newimg, fixed_mask_file)
         reg_kwargs["mask"] = ants.image_read(str(fixed_mask_file))
         logger.info(f"Running with provided mask (fixed space) {str(fixed_mask_file)}.")
     if moving_mask_file is not None:
+        img = nib.load(moving_mask_file)
+        newimg = nib.Nifti1Image(img.get_fdata(), affine)
+        nib.save(newimg, moving_mask_file)
         reg_kwargs["moving_mask"] = ants.image_read(str(moving_mask_file))
         logger.info(f"Running with provided mask (moving space) {str(moving_mask_file)}.")
 
     # SyN Registration
-    reg = ants.registration(
-            fixed=t1c_pre_img,
-            moving=t1c_post_img,
-            type_of_transform="antsRegistrationSyN[s,2]",
-            #**reg_kwargs
-            )
+    #reg = ants.registration(
+    #        fixed=t1c_pre_img,
+    #        moving=t1c_post_img,
+    #        type_of_transform="antsRegistrationSyN[s,2]",
+    #        #**reg_kwargs #TODO
+    #        )
 
     # Custom SyN Registration
     #reg = ants.registration(
@@ -239,11 +248,22 @@ def register_recurrence(t1c_pre_file: Path, t1c_post_file: Path, recurrence_seg_
     #        type_of_transform="Rigid"
     #        )
 
+    # Affine Registration
+    reg = ants.registration(
+            fixed=t1c_pre_img,
+            moving=t1c_post_img,
+            type_of_transform="Affine"
+            )
+
 
     recurrence_outdir = RECURRENCE_SCHEMA.format(base_dir=outdir)
     recurrence_outdir.parent.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(src=reg["fwdtransforms"][0], dst=str(LONGITUDINAL_TRAFO_SCHEMA.format(base_dir=outdir)))
-    ants.image_write(reg["warpedmovout"], str(LONGITUDINAL_WARP_SCHEMA.format(base_dir=outdir)))
+
+    t1c_warped_outdir = LONGITUDINAL_WARP_SCHEMA.format(base_dir=outdir)
+    if t1c_warped_outdir.is_symlink():
+        t1c_warped_outdir.unlink()
+    ants.image_write(reg["warpedmovout"], str(t1c_warped_outdir))
 
     recurrence_seg = ants.image_read(str(recurrence_seg_file))
     recurrence_warped = ants.apply_transforms(
@@ -252,8 +272,12 @@ def register_recurrence(t1c_pre_file: Path, t1c_post_file: Path, recurrence_seg_
             transformlist=reg["fwdtransforms"],
             interpolator='nearestNeighbor'
             )
+
+    if recurrence_outdir.is_symlink():
+        recurrence_outdir.unlink()
     ants.image_write(recurrence_warped, str(recurrence_outdir))
     time_spent = time.time() - start_time
+
     logger.info(f"Finished longitudinal co-registration in {time_spent:.2f} seconds. Output saved to {str(recurrence_outdir)}.")
 
 

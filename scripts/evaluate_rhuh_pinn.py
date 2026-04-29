@@ -5,7 +5,7 @@ import argparse
 import numpy as np
 from scipy import stats
 from pathlib import Path
-from gbm_bench.utils.constants import LUMIERE_DIR
+from gbm_bench.utils.constants import RHUH_GBM_DIR
 from gbm_bench.utils.parsing import LongitudinalDataset
 from gbm_bench.evaluation.evaluate import evaluate_tumor_model
 from gbm_bench.utils.constants import PREDICTION_OUTPUT_SCHEMA
@@ -13,33 +13,30 @@ from gbm_bench.utils.constants import PREDICTION_OUTPUT_SCHEMA
 
 if __name__ == "__main__":
     # Example:
-    # python scripts/evaluate_lumiere.py -algorithm sbtc
-    # nohup python -u scripts/evaluate_lumiere.py -algorithm sbtc > lumiere_sbtc.txt 2>&1 &
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-algorithm", type=str, help="Algorithm ID to evaluate.")
-    args = parser.parse_args()
+    # nohup python -u scripts/evaluate_rhuh_pinn.py > evaluate_pinngbm_rhuh.txt 2>&1 &
     
     # Read dataset
-    lumiere_root = "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging"
-    lumiere = LongitudinalDataset(dataset_id="LUMIERE", root_dir=lumiere_root)
-    lumiere.load(LUMIERE_DIR)
+    rhuh_root = "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM"
+    rhuh_gbm = LongitudinalDataset(dataset_id="RHUH", root_dir=rhuh_root)
+    rhuh_gbm.load(RHUH_GBM_DIR)
 
-    print(f"Evaluating {args.algorithm}")
+    pinndir = Path("/mnt/Drive2/ray/predict_eval/")
+
     all_results = []
 
-    for patient_ind, patient in enumerate(lumiere.patients):
-        print(f"Processing {patient_ind}/{len(lumiere.patients)}...")
+    for patient_ind, patient in enumerate(rhuh_gbm.patients):
+        print(f"Processing {patient_ind}/{len(rhuh_gbm.patients)}...")
 
         patient_identifier = patient["patient_id"]
-        preop_exams = lumiere.get_patient_exams(patient_id=patient_identifier, timepoint="preop")
-        followup_exams = lumiere.get_patient_exams(patient_id=patient_identifier, timepoint="followup")
+        preop_exams = rhuh_gbm.get_patient_exams(patient_id=patient_identifier, timepoint="preop")
+        followup_exams = rhuh_gbm.get_patient_exams(patient_id=patient_identifier, timepoint="followup")
 
         if len(preop_exams) > 1:
-            print(f"Warning: found {len(preop_exams)} preop exams for patient {patiend_ind, patient_identifier}. Using first exam for evaluation.")
+            print(f"Warning: found {len(preop_exams)} preop exams for patient {patiend_ind, patiend}. Using first exam for evaluation.")
 
-        algo_id = args.algorithm
         preop_exam_dir = preop_exams[0]["t1"].parent
-        prediction_dir = PREDICTION_OUTPUT_SCHEMA.format(base_dir=preop_exam_dir, algo_id=algo_id)
+        #prediction_dir = PREDICTION_OUTPUT_SCHEMA.format(base_dir=preop_exam_dir, algo_id=algo_id)
+        prediction_dir = pinndir / patient_identifier / "pinngbm_pred.nii.gz"
         
         for followup_exam in followup_exams:
             followup_exam_dir = followup_exam["t1"].parent
@@ -49,11 +46,13 @@ if __name__ == "__main__":
                         preop_dir=preop_exam_dir,
                         followup_dir=followup_exam_dir,
                         pred_file=prediction_dir,
-                        model_id=algo_id
+                        model_id="pinngbm"
                         )
                 all_results.append(results)
+                #print(f"{patient_identifier}: {results}")
             except Exception as e:
-                print(e)
+                #raise e
+                print(f"Exception: {e}")
 
     recurrence_coverage_standard = [r["recurrence_coverage_standard"] for r in all_results]
     recurrence_coverage_standard_all = [r["recurrence_coverage_standard_all"] for r in all_results]

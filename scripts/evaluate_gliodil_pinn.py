@@ -13,18 +13,15 @@ from gbm_bench.utils.constants import PREDICTION_OUTPUT_SCHEMA
 
 if __name__ == "__main__":
     # Example:
-    # python scripts/evaluate_gliodil.py -algorithm sbtc
-    # nohup python -u scripts/evaluate_gliodil.py -algorithm sbtc > gliodil_sbtc.txt 2>&1 &
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-algorithm", type=str, help="Algorithm ID to evaluate.")
-    args = parser.parse_args()
+    # nohup python -u scripts/evaluate_gliodil_pinn.py > evaluate_pinngbm.txt 2>&1 &
     
     # Read dataset
     gliodil_root = "/mnt/Drive2/lucas/datasets/GLIODIL"
     gliodil = LongitudinalDataset(dataset_id="GLIODIL", root_dir=gliodil_root)
     gliodil.load(GLIODIL_DIR)
 
-    print(f"Evaluating {args.algorithm}")
+    pinndir = Path("/mnt/Drive2/ray/predict_eval/")
+
     all_results = []
 
     for patient_ind, patient in enumerate(gliodil.patients):
@@ -37,7 +34,6 @@ if __name__ == "__main__":
         if len(preop_exams) > 1:
             print(f"Warning: found {len(preop_exams)} preop exams for patient {patiend_ind, patiend}. Using first exam for evaluation.")
 
-        algo_id = args.algorithm
         no_t1c = [
                 "data_001",
                 "data_013",
@@ -56,7 +52,8 @@ if __name__ == "__main__":
         else:
             preop_exam_dir = preop_exams[0]["t1c"].parent / "preop"
         
-        prediction_dir = PREDICTION_OUTPUT_SCHEMA.format(base_dir=preop_exam_dir, algo_id=algo_id)
+        #prediction_dir = PREDICTION_OUTPUT_SCHEMA.format(base_dir=preop_exam_dir, algo_id=algo_id)
+        prediction_dir = pinndir / patient_identifier / "pinngbm_pred.nii.gz"
         
         for followup_exam in followup_exams:
             if patient_identifier in no_t1c:
@@ -69,7 +66,7 @@ if __name__ == "__main__":
                         preop_dir=preop_exam_dir,
                         followup_dir=followup_exam_dir,
                         pred_file=prediction_dir,
-                        model_id=algo_id
+                        model_id="pinngbm"
                         )
                 all_results.append(results)
                 #print(f"{patient_identifier}: {results}")

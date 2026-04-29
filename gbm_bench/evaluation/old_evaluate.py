@@ -7,7 +7,7 @@ from pathlib import Path
 from loguru import logger
 from typing import Any, Dict
 from sklearn.metrics import roc_curve, auc
-from scipy.ndimage import center_of_mass, distance_transform_edt, binary_fill_holes
+from scipy.ndimage import center_of_mass, distance_transform_edt
 from gbm_bench.evaluation.metrics import coverage
 from gbm_bench.utils.utils import load_mri_data, load_and_resample_mri_data, is_binary_array
 from gbm_bench.utils.constants import (
@@ -120,7 +120,7 @@ def create_standard_plan(core_segmentation: np.ndarray, ctv_margin: int) -> np.n
         raise ValueError("ctv_margin must be a positive int.")
     distance_transform = distance_transform_edt(~ (core_segmentation >0))
     dilated_core = distance_transform <= ctv_margin
-    return dilated_core.astype(np.uint8)
+    return dilated_core.astype(np.int32)
 
 
 def topk_plan(scores: np.ndarray, target_voxels: int, mask: np.ndarray | None = None) -> np.ndarray:
@@ -484,8 +484,6 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
         tissue_segmentation = np.rint(load_mri_data(str(tissue_segmentation_dir))).astype(np.int32)
         brain_mask[tissue_segmentation==TISSUE_LABELS["csf"]] = 0
 
-    brain_mask = binary_fill_holes(brain_mask.astype(bool)).astype(np.uint8)
-
     tumorseg_dir = TUMORSEG_SCHEMA.format(base_dir=str(preop_dir))
     core_segmentation = np.rint(load_mri_data(str(tumorseg_dir))).astype(np.int32)
     core_segmentation[core_segmentation==2] = 0  # ignore edma 
@@ -514,8 +512,6 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
         model_prediction = generate_distance_fade_mask(model_prediction)
     else:
         model_prediction = load_and_resample_mri_data(str(pred_file), resample_params=core_segmentation.shape, interp_type=0)
-
-    model_prediction = np.clip(model_prediction, 0, 1)
 
     # Create standard plan
     standard_plan = create_standard_plan(core_segmentation, ctv_margin)
@@ -560,13 +556,11 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
 
     outfile_standard.parent.mkdir(parents=True, exist_ok=True)
     outfile_model.parent.mkdir(parents=True, exist_ok=True)
-
-    ref_nii = nib.load(str(tumorseg_dir))
-
-    standard_plan_nifti = nib.Nifti1Image(standard_plan.astype(np.uint8), ref_nii.affine)
+    
+    standard_plan_nifti = nib.Nifti1Image(standard_plan, affine=np.eye(4))
     nib.save(standard_plan_nifti, outfile_standard)
 
-    model_img = nib.Nifti1Image(model_plan.astype(np.uint8), ref_nii.affine)
+    model_img = nib.Nifti1Image(model_plan, affine=np.eye(4))
     nib.save(model_img, outfile_model)
 
     # Compute metrics

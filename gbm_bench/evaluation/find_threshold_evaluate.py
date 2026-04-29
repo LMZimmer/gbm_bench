@@ -7,7 +7,7 @@ from pathlib import Path
 from loguru import logger
 from typing import Any, Dict
 from sklearn.metrics import roc_curve, auc
-from scipy.ndimage import center_of_mass, distance_transform_edt, binary_fill_holes
+from scipy.ndimage import center_of_mass, distance_transform_edt
 from gbm_bench.evaluation.metrics import coverage
 from gbm_bench.utils.utils import load_mri_data, load_and_resample_mri_data, is_binary_array
 from gbm_bench.utils.constants import (
@@ -120,87 +120,74 @@ def create_standard_plan(core_segmentation: np.ndarray, ctv_margin: int) -> np.n
         raise ValueError("ctv_margin must be a positive int.")
     distance_transform = distance_transform_edt(~ (core_segmentation >0))
     dilated_core = distance_transform <= ctv_margin
-    return dilated_core.astype(np.uint8)
+    return dilated_core.astype(np.int32)
 
 
-def topk_plan(scores: np.ndarray, target_voxels: int, mask: np.ndarray | None = None) -> np.ndarray:
+def find_threshold(volume: np.ndarray, target_volume: float, tolerance: float = 0.01, initial_threshold: float = 0.2, maxIter: int = 10000):
     """
-    Deterministic iso-volumetric top-K plan restricted to `mask`.
+    Compute the threshold that produces a specified volume after masking the input array using the threshold.
 
-    Guarantees:
-      - If mask is None: selects exactly K voxels in the full volume when K <= scores.size.
-      - If mask is provided: selects exactly K voxels *inside mask* when K <= mask.sum().
-      - Never selects outside mask (when mask provided).
-      - Deterministic tie-breaking via stable argsort.
+    Parameters:
+        volume (np.ndarray): A NumPy array representing the input volume to be thresholded (tumor cell concentration).
+        target_volume (float): The desired volume size.
+        tolerance (float, optional): The acceptable relative difference between the target volume and the thresholded volume. Default is 0.01 (1%).
+        initial_threshold (float, optional): The starting threshold value for the segmentation. Should be between 0 and 1.
+        max_iter (int, optional): The maximum number of iterations to perform. If the threshold is not found within this number of iterations,
+            the function will terminate.
 
-    Fallback:
-      - If selected scores include <=0 (or NaN), falls back to a distance-fade map
-        computed from (scores > 0) within the mask and re-selects top-K.
-        (Requires generate_distance_fade_mask to be defined in your file.)
+    Returns:
+        float: The threshold value that segments the volume to match the target volume within the specified tolerance.
+            Returns 1.01 if the threshold exceeds the valid range (0, 1), indicating an "above the model" condition.
+            Returns 0 if the maximum number of iterations is reached without finding a suitable threshold.
     """
-    k = int(target_voxels)
-    out = np.zeros_like(scores, dtype=np.int32)
-    if k <= 0:
-        return out
 
-    # Candidate set
-    if mask is None:
-        candidates = np.arange(scores.size, dtype=np.int64)
-    else:
-        m = mask.astype(bool, copy=False)
-        candidates = np.flatnonzero(m)  # C-order flat indices
+    if np.sum(volume > 0) < target_volume:
+        print("Volume is too small")
+        return 0
 
-    n_cand = int(candidates.size)
-    if n_cand == 0:
-        return out
+    # Define the initial threshold, step, and previous direction
+    threshold = initial_threshold
+    step = 0.1
+    previous_direction = None
 
-    if k >= n_cand:
-        out.flat[candidates] = 1
-        return out
+    # Calculate the current volume
+    current_volume = np.sum(volume > threshold)
 
-    # Sanitize scores for sorting
-    s = scores.astype(np.float32, copy=False)
-    s_cand = s.flat[candidates]
-    s_cand = np.nan_to_num(
-        s_cand,
-        nan=-np.inf,
-        posinf=np.finfo(np.float32).max,
-        neginf=-np.inf
-    )
+    # Iterate until the current volume is within the tolerance of the target volume
 
-    # ---- Pass 1: top-K on scores within candidates
-    order = np.argsort(s_cand, kind="stable")
-    chosen = candidates[order[-k:]]
-    out.flat[chosen] = 1
+    while abs(current_volume - target_volume) / target_volume > tolerance:
+        # Determine the current direction
+        if current_volume > target_volume:
+            direction = 'increase'
+        else:
+            direction = 'decrease'
 
-    # If top-K contains any non-positive or non-finite entries, use fade fallback
-    sel = s_cand[order[-k:]]
-    needs_fade = (np.any(sel <= 0) or np.any(~np.isfinite(sel)))
-    if not needs_fade:
-        return out
+        # Adjust the threshold
+        if direction == 'increase':
+            threshold += step
+        else:
+            threshold -= step
 
-    # ---- Pass 2: binarize -> fade -> top-K within candidates
-    # Binary "seed" is restricted to mask so fade doesn't pull from outside.
-    if mask is None:
-        binary = (scores > 0).astype(np.int32)
-    else:
-        binary = ((scores > 0) & m).astype(np.int32)
+        # Check if the threshold is out of bounds
+        if threshold < 0 or threshold > 1:
+            return 1.01 #above the model
 
-    fade = generate_distance_fade_mask(binary).astype(np.float32, copy=False)
-    fade_cand = fade.flat[candidates]
-    fade_cand = np.nan_to_num(
-        fade_cand,
-        nan=-np.inf,
-        posinf=np.finfo(np.float32).max,
-        neginf=-np.inf
-    )
+        # Update the current volume
+        current_volume = np.sum(volume > threshold)
 
-    order_f = np.argsort(fade_cand, kind="stable")
-    chosen_f = candidates[order_f[-k:]]
+        # Reduce the step size if the direction has alternated
+        if previous_direction and previous_direction != direction:
+            step *= 0.5
 
-    out2 = np.zeros_like(scores, dtype=np.int32)
-    out2.flat[chosen_f] = 1
-    return out2
+        # Update the previous direction
+        previous_direction = direction
+
+        maxIter -= 1
+        if maxIter < 0:
+            print("Max Iter reached, no threshold found")
+            return 0
+
+    return threshold
 
 
 def recurrence_coverage(recurrence_segmentation: np.ndarray, target_volume: np.ndarray) -> float:
@@ -262,36 +249,24 @@ def missed_voxels(recurrence_segmentation: np.ndarray, target_volume: np.ndarray
 
 def generate_distance_fade_mask(binary_model_prediction: np.ndarray) -> np.ndarray:
     if not is_binary_array(binary_model_prediction):
-        raise ValueError(f"Model prediction is not binary: {np.unique(binary_model_prediction)}")
+        raise ValueError("Model prediction is not binary: {np.unique(binary_model_prediction)}")
 
     data = np.rint(binary_model_prediction).astype(np.int32)
-    inside = (data != 0)
-
-    # Empty mask: nothing to fade from
-    if inside.sum() == 0:
-        return np.zeros_like(data, dtype=np.float32)
-
-    # Full mask: everything is inside
-    if inside.sum() == data.size:
-        return np.ones_like(data, dtype=np.float32)
 
     # Compute distance transform on background
-    distance = distance_transform_edt(~inside)
+    distance = distance_transform_edt(data == 0)
 
     # Normalize distances to [0, 1] and invert: closer to mask = higher value
-    max_dist = float(distance.max())
-    if max_dist <= 0:
-        fade = np.zeros_like(distance, dtype=np.float32)
-    else:
-        fade = 1.0 - (distance / max_dist)
+    max_dist = np.max(distance) if distance.max() > 0 else 1.0
+    fade = 1 - (distance / max_dist)
 
-    fade[inside] = 1.0  # set inside to 1
+    fade[data == 1] = 1  # Ensure mask stays at 1
     return fade.astype(np.float32)
 
 
 def generate_distance_fade_mask_no_plateau(binary_model_prediction: np.ndarray, visible_tumor_threshold: float = 0.6) -> np.ndarray:
     if not is_binary_array(binary_model_prediction):
-        raise ValueError(f"Model prediction is not binary: {np.unique(binary_model_prediction)}")
+        raise ValueError("Model prediction is not binary: {np.unique(binary_model_prediction)}")
 
     data = np.rint(binary_model_prediction).astype(np.int32)
 
@@ -335,6 +310,32 @@ def roc_auc(pred, seg, mask=None, labels_of_interest=[1, 3], drop_intermediate=T
     # ROC and AUC
     fpr, tpr, thresholds = roc_curve(y_true, scores, drop_intermediate=drop_intermediate)
     auc_value = auc(fpr, tpr)
+
+    # restricted
+    """
+    thr_min, thr_max = threshold_range
+    sel = (thresholds >= thr_min) & (thresholds <= thr_max)
+    fpr_sel, tpr_sel, thr_sel = fpr[sel], tpr[sel], thresholds[sel]
+
+    thr_asc, fpr_asc, tpr_asc = thresholds[::-1], fpr[::-1], tpr[::-1]
+
+    if not np.isclose(thr_sel[0] if thr_sel.size else np.inf, thr_min):
+        fpr_low = np.interp(thr_min, thr_asc, fpr_asc)
+        tpr_low = np.interp(thr_min, thr_asc, tpr_asc)
+        fpr_sel = np.insert(fpr_sel, 0, fpr_low)
+        tpr_sel = np.insert(tpr_sel, 0, tpr_low)
+        thr_sel = np.insert(thr_sel, 0, thr_min)
+
+    if not np.isclose(thr_sel[-1] if thr_sel.size else -np.inf, thr_max):
+        fpr_high = np.interp(thr_max, thr_asc, fpr_asc)
+        tpr_high = np.interp(thr_max, thr_asc, tpr_asc)
+        fpr_sel = np.append(fpr_sel, fpr_high)
+        tpr_sel = np.append(tpr_sel, tpr_high)
+        thr_sel = np.append(thr_sel, thr_max)
+
+    auc_value = auc(fpr_sel, tpr_sel)
+    return auc_value, fpr_sel, tpr_sel, thr_sel
+    """
 
     return auc_value, fpr, tpr, thresholds
 
@@ -467,7 +468,7 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
     """
     results = {}
 
-    #logger.info(f"Warning, using RTOG style planning, ctv 20 mm and full core")
+    #logger.info(f"Warning: using RTOG style plans, including edema and margin 20mm.")
 
     # Load data
     brain_mask_dir = BRAIN_MASK_SCHEMA.format(base_dir=str(preop_dir))
@@ -483,8 +484,6 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
         tissue_segmentation_dir = TISSUE_SEG_SCHEMA.format(base_dir=str(preop_dir))
         tissue_segmentation = np.rint(load_mri_data(str(tissue_segmentation_dir))).astype(np.int32)
         brain_mask[tissue_segmentation==TISSUE_LABELS["csf"]] = 0
-
-    brain_mask = binary_fill_holes(brain_mask.astype(bool)).astype(np.uint8)
 
     tumorseg_dir = TUMORSEG_SCHEMA.format(base_dir=str(preop_dir))
     core_segmentation = np.rint(load_mri_data(str(tumorseg_dir))).astype(np.int32)
@@ -515,8 +514,6 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
     else:
         model_prediction = load_and_resample_mri_data(str(pred_file), resample_params=core_segmentation.shape, interp_type=0)
 
-    model_prediction = np.clip(model_prediction, 0, 1)
-
     # Create standard plan
     standard_plan = create_standard_plan(core_segmentation, ctv_margin)
     #standard_plan = create_standard_plan(full_segmentation, ctv_margin) #TODO
@@ -526,33 +523,34 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
     standard_plan_coverage_all = recurrence_coverage(recurrence_segmentation_all, standard_plan)
 
     # Create model based plan
-    # Select exactly standard_plan_volume voxels with highest predicted score, restricted to brain_mask.
-    # Apply brain mask here if wanted
-    model_plan = topk_plan(
-            scores=model_prediction,
-            target_voxels=int(standard_plan_volume),
-            mask=brain_mask
-            ).astype(np.int32)
+    #model_prediction = np.clip(model_prediction + core_segmentation, 0, 1) #TODO
+    tumor_threshold = find_threshold(model_prediction, standard_plan_volume, initial_threshold=0.2)
+    #tumor_threshold = 0.6
+    model_plan = (model_prediction > tumor_threshold).astype(np.int32)
 
-    inside = int(model_plan[brain_mask > 0].sum())
-    target = int(standard_plan_volume)
-    if inside != target:
-        logger.warning(f"Model plan volume {inside} not iso-volumetic to {target}.")
-
-    
-    leak = int(model_plan[brain_mask==0].sum())
-    if leak > 0:
-        logger.warning(f"Model plan has {leak} voxels outside brain mask (should be 0).")
-
-
+    #model_plan[brain_mask == 0] = 0 #TODO
     model_recurrence_coverage = recurrence_coverage(recurrence_segmentation, model_plan)
     model_recurrence_coverage_all = recurrence_coverage(recurrence_segmentation_all, model_plan)
 
     # ROC AUC
     distance_fade_core = generate_distance_fade_mask_no_plateau(core_segmentation)
-    fpr_model, tpr_model, thr_model, auc_model = roc(recurrence_segmentation, model_prediction)
-    fpr_standard, tpr_standard, thr_standard, auc_standard = roc(recurrence_segmentation, standard_plan)
-    fpr_standard_fade, tpr_standard_fade, thr_standard_fade, auc_standard_fade = roc(recurrence_segmentation, distance_fade_core)
+    fpr_model, tpr_model, thresholds, auc_model = roc(recurrence_segmentation, model_prediction)
+    fpr_standard, tpr_standard, thresholds, auc_standard = roc(recurrence_segmentation, standard_plan)
+    fpr_standard_fade, tpr_standard_fade, thresholds, auc_standard_fade = roc(recurrence_segmentation, distance_fade_core)
+
+    #peritumoral_mask = create_standard_plan(core_segmentation, 1)
+    #rec_seg = np.rint(load_mri_data(str(recurrence_dir))).astype(np.int32)
+    #auc_model, fpr, tpr, thresholds = roc_auc(pred=model_prediction, seg=rec_seg, mask=brain_mask)
+    #auc_model, fpr, tpr, thresholds = partial_roc_auc(pred=model_prediction, seg=rec_seg, mask=brain_mask)
+
+    #auc_standard_fade, fpr, tpr, thresholds = roc_auc(pred=distance_fade_core, seg=rec_seg, mask=brain_mask)
+    #auc_standard, fpr, tpr, thresholds = roc_auc(pred=standard_plan, seg=rec_seg, mask=brain_mask)
+    #auc_standard_fade, fpr, tpr, thresholds = partial_roc_auc(pred=distance_fade_core, seg=rec_seg, mask=brain_mask)
+    #auc_standard, fpr, tpr, thresholds = partial_roc_auc(pred=standard_plan, seg=rec_seg, mask=brain_mask)
+
+
+    #imgtest = nib.Nifti1Image(distance_fade_core, np.eye(4))
+    #nib.save(imgtest, "/home/home/lucas/tmp/test.nii.gz")
 
     # Save plans
     outfile_standard = STANDARD_PLAN_SCHEMA.format(base_dir=str(preop_dir))
@@ -560,13 +558,11 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
 
     outfile_standard.parent.mkdir(parents=True, exist_ok=True)
     outfile_model.parent.mkdir(parents=True, exist_ok=True)
-
-    ref_nii = nib.load(str(tumorseg_dir))
-
-    standard_plan_nifti = nib.Nifti1Image(standard_plan.astype(np.uint8), ref_nii.affine)
+    
+    standard_plan_nifti = nib.Nifti1Image(standard_plan, affine=np.eye(4))
     nib.save(standard_plan_nifti, outfile_standard)
 
-    model_img = nib.Nifti1Image(model_plan.astype(np.uint8), ref_nii.affine)
+    model_img = nib.Nifti1Image(model_plan, affine=np.eye(4))
     nib.save(model_img, outfile_model)
 
     # Compute metrics
@@ -585,12 +581,17 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
     results["specificity_standard"] = specificity(recurrence_segmentation, standard_plan, mask=brain_mask)
     results["sensitivity_standard"] = sensitivity(recurrence_segmentation, standard_plan, mask=brain_mask)
 
+    #print(f"Specificity (model): {results['specificity_model']}")
+    #print(f"Sensitivity (model): {results['sensitivity_model']}")
+    #print(f"Specificity (standard): {results['specificity_standard']}")
+    #print(f"Sensitivity (standard): {results['sensitivity_standard']}")
+
     if auc_model != 0.0:
         results["roc_auc_model"] = auc_model
         results["tpr_model"] = tpr_model
         results["fpr_model"] = fpr_model
     if auc_standard != 0.0:
-        results["roc_auc_standard"] = auc_standard
+        results["roc_standard"] = auc_standard
         results["tpr_standard"] = tpr_standard
         results["fpr_standard"] = fpr_standard
     if auc_standard_fade != 0.0:
@@ -612,6 +613,10 @@ def evaluate_tumor_model(preop_dir: Path, followup_dir: Path, pred_file: Path, m
 
 
 if __name__ == "__main__":
+    # Example:
+    # python gbm_bench/evaluation/evaluate.py -preop_dir test_data/exam1 -followup_dir test_data/exam3 -pred_file test_data/exam1/processed/growth_models/sbtc/sbtc_pred.nii.gz
+    # python gbm_bench/evaluation/evaluate.py -preop_dir /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0024/0 -followup_dir /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0024/2 -pred_file /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0024/0/processed/growth_models/sbtc/sbtc_pred.nii.gz
+    # python gbm_bench/evaluation/evaluate.py -preop_dir /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0001/0 -followup_dir /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0001/2 -pred_file /mnt/Drive2/lucas/datasets/RHUH-GBM/Images/NIfTI/RHUH-GBM/RHUH-0001/0/processed/growth_models/sbtc/sbtc_pred.nii.gz
     parser = argparse.ArgumentParser()
     parser.add_argument("-preop_dir", type=str, help="Path.")
     parser.add_argument("-followup_dir", type=str, help="Path.")

@@ -13,18 +13,15 @@ from gbm_bench.utils.constants import PREDICTION_OUTPUT_SCHEMA
 
 if __name__ == "__main__":
     # Example:
-    # python scripts/evaluate_lumiere.py -algorithm sbtc
-    # nohup python -u scripts/evaluate_lumiere.py -algorithm sbtc > lumiere_sbtc.txt 2>&1 &
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-algorithm", type=str, help="Algorithm ID to evaluate.")
-    args = parser.parse_args()
+    # nohup python -u scripts/evaluate_lumiere_pinn.py > evaluate_pinngbm_lumiere.txt 2>&1 &
     
     # Read dataset
     lumiere_root = "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging"
     lumiere = LongitudinalDataset(dataset_id="LUMIERE", root_dir=lumiere_root)
     lumiere.load(LUMIERE_DIR)
 
-    print(f"Evaluating {args.algorithm}")
+    pinndir = Path("/mnt/Drive2/ray/predict_eval/")
+
     all_results = []
 
     for patient_ind, patient in enumerate(lumiere.patients):
@@ -37,9 +34,9 @@ if __name__ == "__main__":
         if len(preop_exams) > 1:
             print(f"Warning: found {len(preop_exams)} preop exams for patient {patiend_ind, patient_identifier}. Using first exam for evaluation.")
 
-        algo_id = args.algorithm
         preop_exam_dir = preop_exams[0]["t1"].parent
-        prediction_dir = PREDICTION_OUTPUT_SCHEMA.format(base_dir=preop_exam_dir, algo_id=algo_id)
+        #prediction_dir = PREDICTION_OUTPUT_SCHEMA.format(base_dir=preop_exam_dir, algo_id=algo_id)
+        prediction_dir = pinndir / patient_identifier / "pinngbm_pred.nii.gz"
         
         for followup_exam in followup_exams:
             followup_exam_dir = followup_exam["t1"].parent
@@ -49,7 +46,7 @@ if __name__ == "__main__":
                         preop_dir=preop_exam_dir,
                         followup_dir=followup_exam_dir,
                         pred_file=prediction_dir,
-                        model_id=algo_id
+                        model_id="pinngbm"
                         )
                 all_results.append(results)
             except Exception as e:

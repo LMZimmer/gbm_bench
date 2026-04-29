@@ -14,23 +14,52 @@ from gbm_bench.utils.visualization import plot_tumor_sizes, plot_performances, p
 
 if __name__ == "__main__":
     # Example:
-    # python scripts/extract_data.py -outdir /mnt/Drive2/lucas/mara_nnunet_data/
+    # python scripts/extract_sanity_check.py -outdir /mnt/Drive2/lucas/sanity_check/ -algo gliomap
     parser = argparse.ArgumentParser()
     parser.add_argument("-outdir", type=str, help="Algorithm ID to evaluate.")
+    parser.add_argument("-algo", type=str)
     args = parser.parse_args()
 
-    DATASET_IDS = ["RHUH", "UPENN", "LUMIERE", "GLIODIL", "IVYGAP", "CPTAC", "TCGA-GBM"] #"TCGA-LGG"]
-    DATASET_DIRS = [RHUH_GBM_DIR, UPENN_GBM_DIR, LUMIERE_DIR, GLIODIL_DIR, IVYGAP_DIR, CPTAC_DIR, TCGA_GBM_DIR] #TCGA_LGG_DIR]
+    DATASET_IDS = ["RHUH", "LUMIERE", "GLIODIL"] #"TCGA-LGG"]
+    DATASET_DIRS = [RHUH_GBM_DIR, LUMIERE_DIR, GLIODIL_DIR] #TCGA_LGG_DIR]
     ROOT_DIRS = [
             "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM",
-            "/home/home/lucas/data/UPENN-GBM/UPENN-GBM",
             "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging",
             "/mnt/Drive2/lucas/datasets/GLIODIL",
-            "/mnt/Drive2/lucas/datasets/IVYGAP",
-            "/mnt/Drive2/lucas/datasets/CPTAC-GBM",
-            "/mnt/Drive2/lucas/datasets/TCGA-GBM",
             #"/mnt/Drive2/lucas/datasets/TCGA-LGG"
             ]
+
+    # pinngbm
+    """
+    export_list = [
+            "Patient-001",
+            "Patient-002",
+            "Patient-004",
+            "Patient-005",
+            "Patient-006",
+            "RHUH-0001",
+            "RHUH-0002",
+            "RHUH-0003",
+            "RHUH-0004",
+            "RHUH-0005",
+            ]
+    """
+
+    # gliomap
+    export_list = [
+            "tgm010",
+            "tgm011",
+            "tgm013",
+            "tgm009",
+            "tgm006",
+            "respond_tum_127",
+            "respond_tum_123",
+            "respond_tum_120",
+            "respond_tum_121",
+            "respond_tum_128",
+            ]
+
+    algo = args.algo
 
     for d_id, d_dir, d_rootdir in zip(DATASET_IDS, DATASET_DIRS, ROOT_DIRS):
         print(f"Evaluating {d_id}...")
@@ -41,6 +70,10 @@ if __name__ == "__main__":
         dataset_results = []
         for patient_ind, patient in enumerate(dataset.patients):
             patient_id = patient["patient_id"]
+
+            if patient_id not in export_list:
+                continue
+
             preop_exam = dataset.get_patient_exams(patient_id=patient_id, timepoint="preop")[0]  # Find first preop exam
             followup_exam = dataset.get_patient_exams(patient_id=patient_id, timepoint="followup")[0]
 
@@ -72,7 +105,6 @@ if __name__ == "__main__":
 
             try:
                 copy_files = [
-                        BRAIN_MASK_SCHEMA.format(base_dir=preop_exam_dir),
                         TISSUE_PBMAP_SCHEMA.format(base_dir=preop_exam_dir, tissue="gm"),
                         TISSUE_PBMAP_SCHEMA.format(base_dir=preop_exam_dir, tissue="wm"),
                         TISSUE_PBMAP_SCHEMA.format(base_dir=preop_exam_dir, tissue="csf"),
@@ -80,10 +112,15 @@ if __name__ == "__main__":
                         RECURRENCE_SCHEMA.format(base_dir=followup_exam_dir),
                         MODALITY_STRIPPED_SCHEMA.format(base_dir=preop_exam_dir, modality="t1c"),
                         MODALITY_STRIPPED_SCHEMA.format(base_dir=preop_exam_dir, modality="flair"),
+                        PREDICTION_OUTPUT_SCHEMA.format(base_dir=preop_exam_dir, algo_id=algo),
+                        MODEL_PLAN_SCHEMA.format(base_dir=preop_exam_dir, algo_id=algo),
+                        STANDARD_PLAN_SCHEMA.format(base_dir=preop_exam_dir),
                         ]
+
                 backup = MODALITY_STRIPPED_SCHEMA.format(base_dir=preop_exam_dir, modality="t1c")
 
-                patient_outdir = Path(args.outdir) / d_id / patient_id
+                #patient_outdir = Path(args.outdir) / d_id / patient_id
+                patient_outdir = Path(args.outdir) / algo / patient_id
                 patient_outdir.mkdir(parents=True, exist_ok=True)
 
                 for cf in copy_files:
@@ -98,5 +135,4 @@ if __name__ == "__main__":
                             nib.save(brain_mask_nii, str(patient_outdir / cf.name))
 
             except Exception as e:
-                #shutil.rmtree(patient_outdir)
                 print(f"Exception for {patient_id}: {e}")

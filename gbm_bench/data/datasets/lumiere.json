@@ -45,6 +45,14 @@
           "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-002/week-000/T2.nii.gz"
         },
         {
+          "dir_name": "week-003",
+          "timepoint": "postop",
+          "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-002/week-003/CT1.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-002/week-003/FLAIR.nii.gz",
+          "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-002/week-003/T1.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-002/week-003/T2.nii.gz"
+        },
+        {
           "dir_name": "week-047",
           "timepoint": "followup",
           "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-002/week-047/CT1.nii.gz",
@@ -187,6 +195,14 @@
           "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-008/week-000/T2.nii.gz"
         },
         {
+          "dir_name": "week-002",
+          "timepoint": "postop",
+          "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-008/week-002/CT1.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-008/week-002/FLAIR.nii.gz",
+          "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-008/week-002/T1.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-008/week-002/T2.nii.gz"
+        },
+        {
           "dir_name": "week-017",
           "timepoint": "followup",
           "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-008/week-017/CT1.nii.gz",
@@ -267,6 +283,14 @@
           "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-011/week-000/FLAIR.nii.gz",
           "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-011/week-000/T1.nii.gz",
           "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-011/week-000/T2.nii.gz"
+        },
+        {
+          "dir_name": "week-003",
+          "timepoint": "postop",
+          "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-011/week-003/CT1.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-011/week-003/FLAIR.nii.gz",
+          "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-011/week-003/T1.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-011/week-003/T2.nii.gz"
         },
         {
           "dir_name": "week-028",
@@ -441,12 +465,20 @@
           "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-018/week-000/T2.nii.gz"
         },
         {
-          "dir_name": "week-082",
+          "dir_name": "week-003",
+          "timepoint": "postop",
+          "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-018/week-003/CT1.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-018/week-003/FLAIR.nii.gz",
+          "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-018/week-003/T1.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-018/week-003/T2.nii.gz"
+        },
+        {
+          "dir_name": "week-034",
           "timepoint": "followup",
-          "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-018/week-082/CT1.nii.gz",
-          "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-018/week-082/FLAIR.nii.gz",
-          "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-018/week-082/T1.nii.gz",
-          "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-018/week-082/T2.nii.gz"
+          "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-018/week-034/CT1.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-018/week-034/FLAIR.nii.gz",
+          "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-018/week-034/T1.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-018/week-034/T2.nii.gz"
         }
       ]
     },
@@ -471,12 +503,12 @@
           "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-021/week-000-2/T2.nii.gz"
         },
         {
-          "dir_name": "week-035",
+          "dir_name": "week-022",
           "timepoint": "followup",
-          "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-021/week-035/CT1.nii.gz",
-          "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-021/week-035/FLAIR.nii.gz",
-          "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-021/week-035/T1.nii.gz",
-          "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-021/week-035/T2.nii.gz"
+          "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-021/week-022/CT1.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-021/week-022/FLAIR.nii.gz",
+          "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-021/week-022/T1.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-021/week-022/T2.nii.gz"
         }
       ]
     },
@@ -703,6 +735,14 @@
           "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-031/week-000/T2.nii.gz"
         },
         {
+          "dir_name": "week-002",
+          "timepoint": "postop",
+          "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-031/week-002/CT1.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-031/week-002/FLAIR.nii.gz",
+          "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-031/week-002/T1.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-031/week-002/T2.nii.gz"
+        },
+        {
           "dir_name": "week-190",
           "timepoint": "followup",
           "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-031/week-190/CT1.nii.gz",
@@ -733,12 +773,12 @@
           "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-032/week-000-2/T2.nii.gz"
         },
         {
-          "dir_name": "week-096",
+          "dir_name": "week-044",
           "timepoint": "followup",
-          "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-032/week-096/CT1.nii.gz",
-          "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-032/week-096/FLAIR.nii.gz",
-          "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-032/week-096/T1.nii.gz",
-          "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-032/week-096/T2.nii.gz"
+          "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-032/week-044/CT1.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-032/week-044/FLAIR.nii.gz",
+          "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-032/week-044/T1.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-032/week-044/T2.nii.gz"
         }
       ]
     },
@@ -753,6 +793,14 @@
           "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-033/week-000/FLAIR.nii.gz",
           "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-033/week-000/T1.nii.gz",
           "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-033/week-000/T2.nii.gz"
+        },
+        {
+          "dir_name": "week-002",
+          "timepoint": "postop",
+          "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-033/week-002/CT1.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-033/week-002/FLAIR.nii.gz",
+          "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-033/week-002/T1.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-033/week-002/T2.nii.gz"
         },
         {
           "dir_name": "week-104",
@@ -837,6 +885,14 @@
           "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-038/week-000/T2.nii.gz"
         },
         {
+          "dir_name": "week-002",
+          "timepoint": "postop",
+          "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-038/week-002/CT1.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-038/week-002/FLAIR.nii.gz",
+          "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-038/week-002/T1.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-038/week-002/T2.nii.gz"
+        },
+        {
           "dir_name": "week-023",
           "timepoint": "followup",
           "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-038/week-023/CT1.nii.gz",
@@ -919,6 +975,14 @@
           "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-041/week-000/T2.nii.gz"
         },
         {
+          "dir_name": "week-002",
+          "timepoint": "postop",
+          "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-041/week-002/CT1.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-041/week-002/FLAIR.nii.gz",
+          "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-041/week-002/T1.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-041/week-002/T2.nii.gz"
+        },
+        {
           "dir_name": "week-038",
           "timepoint": "followup",
           "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-041/week-038/CT1.nii.gz",
@@ -969,6 +1033,14 @@
           "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-043/week-000/FLAIR.nii.gz",
           "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-043/week-000/T1.nii.gz",
           "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-043/week-000/T2.nii.gz"
+        },
+        {
+          "dir_name": "week-002",
+          "timepoint": "postop",
+          "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-043/week-002/CT1.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-043/week-002/FLAIR.nii.gz",
+          "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-043/week-002/T1.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-043/week-002/T2.nii.gz"
         },
         {
           "dir_name": "week-116",
@@ -1083,6 +1155,14 @@
           "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-049/week-000/T2.nii.gz"
         },
         {
+          "dir_name": "week-003",
+          "timepoint": "postop",
+          "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-049/week-003/FLAIR.nii.gz",
+          "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-049/week-003/T1.nii.gz",
+          "t1c": ".",
+          "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-049/week-003/T2.nii.gz"
+        },
+        {
           "dir_name": "week-046",
           "timepoint": "followup",
           "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-049/week-046/CT1.nii.gz",
@@ -1163,6 +1243,14 @@
           "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-052/week-000/FLAIR.nii.gz",
           "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-052/week-000/T1.nii.gz",
           "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-052/week-000/T2.nii.gz"
+        },
+        {
+          "dir_name": "week-002",
+          "timepoint": "postop",
+          "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-052/week-002/CT1.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-052/week-002/FLAIR.nii.gz",
+          "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-052/week-002/T1.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-052/week-002/T2.nii.gz"
         },
         {
           "dir_name": "week-168",
@@ -1255,12 +1343,12 @@
           "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-060/week-001/T2.nii.gz"
         },
         {
-          "dir_name": "week-040",
+          "dir_name": "week-069",
           "timepoint": "followup",
-          "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-060/week-040/CT1.nii.gz",
-          "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-060/week-040/FLAIR.nii.gz",
-          "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-060/week-040/T1.nii.gz",
-          "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-060/week-040/T2.nii.gz"
+          "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-060/week-069/CT1.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-060/week-069/FLAIR.nii.gz",
+          "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-060/week-069/T1.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-060/week-069/T2.nii.gz"
         }
       ]
     },
@@ -1337,6 +1425,14 @@
           "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-064/week-000/T2.nii.gz"
         },
         {
+          "dir_name": "week-002",
+          "timepoint": "postop",
+          "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-064/week-002/CT1.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-064/week-002/FLAIR.nii.gz",
+          "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-064/week-002/T1.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-064/week-002/T2.nii.gz"
+        },
+        {
           "dir_name": "week-062",
           "timepoint": "followup",
           "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-064/week-062/CT1.nii.gz",
@@ -1373,28 +1469,6 @@
           "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-066/week-101/FLAIR.nii.gz",
           "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-066/week-101/T1.nii.gz",
           "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-066/week-101/T2.nii.gz"
-        }
-      ]
-    },
-    {
-      "patient_id": "Patient-067",
-      "patient_dir": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-067",
-      "exams": [
-        {
-          "dir_name": "week-000-2",
-          "timepoint": "preop",
-          "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-067/week-000-2/CT1.nii.gz",
-          "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-067/week-000-2/FLAIR.nii.gz",
-          "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-067/week-000-2/T1.nii.gz",
-          "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-067/week-000-2/T2.nii.gz"
-        },
-        {
-          "dir_name": "week-167",
-          "timepoint": "followup",
-          "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-067/week-167/CT1.nii.gz",
-          "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-067/week-167/FLAIR.nii.gz",
-          "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-067/week-167/T1.nii.gz",
-          "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-067/week-167/T2.nii.gz"
         }
       ]
     },
@@ -1529,6 +1603,14 @@
           "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-075/week-000/FLAIR.nii.gz",
           "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-075/week-000/T1.nii.gz",
           "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-075/week-000/T2.nii.gz"
+        },
+        {
+          "dir_name": "week-002",
+          "timepoint": "postop",
+          "t1c": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-075/week-002/CT1.nii.gz",
+          "flair": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-075/week-002/FLAIR.nii.gz",
+          "t1": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-075/week-002/T1.nii.gz",
+          "t2": "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-075/week-002/T2.nii.gz"
         },
         {
           "dir_name": "week-044",

@@ -1,0 +1,19 @@
+nohup: ignoring input
+2026-02-16 15:11:44.765 | INFO     | gbm_bench.utils.parsing:load:215 - Successfully loaded 62 patients from /home/home/lucas/projects/gbm_bench/gbm_bench/data/datasets/lumiere.json.
+Processing 0/62...
+/home/home/lucas/bin/miniconda3/envs/brainles/lib/python3.10/site-packages/sklearn/metrics/_ranking.py:1201: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  warnings.warn(
+/home/home/lucas/bin/miniconda3/envs/brainles/lib/python3.10/site-packages/sklearn/metrics/_ranking.py:1201: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  warnings.warn(
+/home/home/lucas/bin/miniconda3/envs/brainles/lib/python3.10/site-packages/sklearn/metrics/_ranking.py:1201: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  warnings.warn(
+2026-02-16 15:11:53.820 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-001/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-001/week-044/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-001/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-001/week-044/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-001/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 1/62...
+2026-02-16 15:12:03.098 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-002/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-002/week-047/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-002/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-002/week-047/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-002/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 2/62...

@@ -14,21 +14,17 @@ from gbm_bench.utils.visualization import plot_tumor_sizes, plot_performances, p
 
 if __name__ == "__main__":
     # Example:
-    # python scripts/extract_data.py -outdir /mnt/Drive2/lucas/mara_nnunet_data/
+    # python scripts/extract_data_predictgbm.py -outdir /mnt/Drive2/lucas/predict_gbm_fulldata/
     parser = argparse.ArgumentParser()
     parser.add_argument("-outdir", type=str, help="Algorithm ID to evaluate.")
     args = parser.parse_args()
 
-    DATASET_IDS = ["RHUH", "UPENN", "LUMIERE", "GLIODIL", "IVYGAP", "CPTAC", "TCGA-GBM"] #"TCGA-LGG"]
-    DATASET_DIRS = [RHUH_GBM_DIR, UPENN_GBM_DIR, LUMIERE_DIR, GLIODIL_DIR, IVYGAP_DIR, CPTAC_DIR, TCGA_GBM_DIR] #TCGA_LGG_DIR]
+    DATASET_IDS = ["RHUH", "LUMIERE", "GLIODIL"] #"TCGA-LGG"]
+    DATASET_DIRS = [RHUH_GBM_DIR, LUMIERE_DIR, GLIODIL_DIR] #TCGA_LGG_DIR]
     ROOT_DIRS = [
             "/home/home/lucas/data/RHUH-GBM/Images/DICOM/RHUH-GBM",
-            "/home/home/lucas/data/UPENN-GBM/UPENN-GBM",
             "/mnt/Drive2/lucas/datasets/LUMIERE/Imaging",
             "/mnt/Drive2/lucas/datasets/GLIODIL",
-            "/mnt/Drive2/lucas/datasets/IVYGAP",
-            "/mnt/Drive2/lucas/datasets/CPTAC-GBM",
-            "/mnt/Drive2/lucas/datasets/TCGA-GBM",
             #"/mnt/Drive2/lucas/datasets/TCGA-LGG"
             ]
 
@@ -80,10 +76,23 @@ if __name__ == "__main__":
                         RECURRENCE_SCHEMA.format(base_dir=followup_exam_dir),
                         MODALITY_STRIPPED_SCHEMA.format(base_dir=preop_exam_dir, modality="t1c"),
                         MODALITY_STRIPPED_SCHEMA.format(base_dir=preop_exam_dir, modality="flair"),
+                        LONGITUDINAL_WARP_SCHEMA.format(base_dir=followup_exam_dir),
+                        PREDICTION_OUTPUT_SCHEMA.format(base_dir=preop_exam_dir, algo_id="gliodil"),
+                        PREDICTION_OUTPUT_SCHEMA.format(base_dir=preop_exam_dir, algo_id="sbtc"),
+                        PREDICTION_OUTPUT_SCHEMA.format(base_dir=preop_exam_dir, algo_id="lmi"),
+                        PREDICTION_OUTPUT_SCHEMA.format(base_dir=preop_exam_dir, algo_id="gliomap"),
+                        PREDICTION_OUTPUT_SCHEMA.format(base_dir=preop_exam_dir, algo_id="pinngbm"),
+                        MODEL_PLAN_SCHEMA.format(base_dir=preop_exam_dir, algo_id="gliodil"),
+                        MODEL_PLAN_SCHEMA.format(base_dir=preop_exam_dir, algo_id="sbtc"),
+                        MODEL_PLAN_SCHEMA.format(base_dir=preop_exam_dir, algo_id="lmi"),
+                        MODEL_PLAN_SCHEMA.format(base_dir=preop_exam_dir, algo_id="gliomap"),
+                        MODEL_PLAN_SCHEMA.format(base_dir=preop_exam_dir, algo_id="pinngbm"),
+                        STANDARD_PLAN_SCHEMA.format(base_dir=preop_exam_dir),
                         ]
                 backup = MODALITY_STRIPPED_SCHEMA.format(base_dir=preop_exam_dir, modality="t1c")
 
-                patient_outdir = Path(args.outdir) / d_id / patient_id
+                #patient_outdir = Path(args.outdir) / d_id / patient_id
+                patient_outdir = Path(args.outdir) / patient_id
                 patient_outdir.mkdir(parents=True, exist_ok=True)
 
                 for cf in copy_files:
@@ -98,5 +107,5 @@ if __name__ == "__main__":
                             nib.save(brain_mask_nii, str(patient_outdir / cf.name))
 
             except Exception as e:
-                #shutil.rmtree(patient_outdir)
+                shutil.rmtree(patient_outdir)
                 print(f"Exception for {patient_id}: {e}")

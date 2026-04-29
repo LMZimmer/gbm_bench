@@ -21,9 +21,15 @@ if __name__ == "__main__":
     gliodil = LongitudinalDataset(dataset_id="GLIODIL", root_dir=gliodil_root)
     gliodil.load(GLIODIL_DIR)
 
+    remaining = ["respond_tum_130"]
+
     # Predict on preop exams
     for patient_ind, patient in enumerate(gliodil.patients):
+        patient_id = patient["patient_id"]
         print(f"Predicting {patient_ind}/{len(gliodil.patients)}...")
+
+        if patient_id not in remaining:
+            continue
 
         for exam in patient["exams"]:
             if exam["timepoint"] != "preop":

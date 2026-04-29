@@ -1,0 +1,335 @@
+nohup: ignoring input
+2026-02-16 15:12:32.790 | INFO     | gbm_bench.utils.parsing:load:215 - Successfully loaded 62 patients from /home/home/lucas/projects/gbm_bench/gbm_bench/data/datasets/lumiere.json.
+Processing 0/62...
+/home/home/lucas/bin/miniconda3/envs/brainles/lib/python3.10/site-packages/sklearn/metrics/_ranking.py:1201: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  warnings.warn(
+/home/home/lucas/bin/miniconda3/envs/brainles/lib/python3.10/site-packages/sklearn/metrics/_ranking.py:1201: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  warnings.warn(
+/home/home/lucas/bin/miniconda3/envs/brainles/lib/python3.10/site-packages/sklearn/metrics/_ranking.py:1201: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  warnings.warn(
+2026-02-16 15:12:41.964 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-001/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-001/week-044/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-001/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-001/week-044/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-001/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 1/62...
+2026-02-16 15:12:51.248 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-002/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-002/week-047/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-002/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-002/week-047/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-002/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 2/62...
+2026-02-16 15:13:00.692 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-004/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-004/week-086/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-004/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-004/week-086/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-004/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 3/62...
+2026-02-16 15:13:10.045 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-005/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-005/week-015/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-005/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-005/week-015/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-005/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 4/62...
+2026-02-16 15:13:19.365 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-006/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-006/week-135/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-006/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-006/week-135/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-006/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 5/62...
+2026-02-16 15:13:28.705 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-007/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-007/week-105/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-007/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-007/week-105/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-007/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 6/62...
+2026-02-16 15:13:37.697 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-008/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-008/week-017/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-008/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-008/week-017/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-008/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 7/62...
+2026-02-16 15:13:46.763 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-009/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-009/week-066/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-009/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-009/week-066/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-009/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 8/62...
+2026-02-16 15:13:55.963 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-010/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-010/week-015/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-010/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-010/week-015/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-010/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 9/62...
+2026-02-16 15:14:06.187 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-011/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-011/week-028/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-011/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-011/week-028/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-011/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 10/62...
+2026-02-16 15:14:17.176 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-012/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-012/week-084/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-012/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-012/week-084/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-012/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 11/62...
+2026-02-16 15:14:28.031 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-013/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-013/week-030/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-013/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-013/week-030/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-013/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 12/62...
+2026-02-16 15:14:38.754 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-014/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-014/week-012/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-014/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-014/week-012/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-014/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 13/62...
+2026-02-16 15:14:48.474 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-015/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-015/week-146/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-015/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-015/week-146/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-015/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 14/62...
+2026-02-16 15:14:57.760 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-017/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-017/week-035/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-017/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-017/week-035/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-017/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 15/62...
+2026-02-16 15:15:06.834 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-018/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-018/week-034/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-018/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-018/week-034/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-018/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 16/62...
+2026-02-16 15:15:16.156 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-021/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-021/week-022/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-021/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-021/week-022/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-021/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 17/62...
+2026-02-16 15:15:25.457 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-022/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-022/week-053/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-022/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-022/week-053/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-022/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 18/62...
+2026-02-16 15:15:34.693 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-023/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-023/week-115/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-023/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-023/week-115/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-023/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 19/62...
+2026-02-16 15:15:43.683 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-025/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-025/week-070/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-025/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-025/week-070/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-025/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 20/62...
+2026-02-16 15:15:53.021 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-027/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-027/week-014/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-027/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-027/week-014/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-027/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 21/62...
+2026-02-16 15:16:02.340 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-028/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-028/week-015/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-028/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-028/week-015/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-028/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 22/62...
+2026-02-16 15:16:11.516 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-029/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-029/week-255/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-029/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-029/week-255/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-029/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 23/62...
+2026-02-16 15:16:20.652 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-030/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-030/week-085/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-030/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-030/week-085/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-030/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 24/62...
+2026-02-16 15:16:30.031 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-031/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-031/week-190/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-031/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-031/week-190/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-031/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 25/62...
+2026-02-16 15:16:39.149 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-032/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-032/week-044/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-032/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-032/week-044/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-032/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 26/62...
+/home/home/lucas/bin/miniconda3/envs/brainles/lib/python3.10/site-packages/sklearn/metrics/_ranking.py:1201: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  warnings.warn(
+/home/home/lucas/bin/miniconda3/envs/brainles/lib/python3.10/site-packages/sklearn/metrics/_ranking.py:1201: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  warnings.warn(
+/home/home/lucas/bin/miniconda3/envs/brainles/lib/python3.10/site-packages/sklearn/metrics/_ranking.py:1201: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  warnings.warn(
+2026-02-16 15:16:49.689 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-033/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-033/week-104/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-033/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-033/week-104/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-033/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 27/62...
+2026-02-16 15:17:00.175 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-034/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-034/week-058/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-034/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-034/week-058/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-034/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 28/62...
+2026-02-16 15:17:09.576 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-037/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-037/week-037/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-037/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-037/week-037/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-037/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 29/62...
+2026-02-16 15:17:18.634 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-038/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-038/week-023/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-038/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-038/week-023/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-038/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 30/62...
+2026-02-16 15:17:28.154 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-039/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-039/week-044/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-039/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-039/week-044/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-039/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 31/62...
+2026-02-16 15:17:37.386 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-040/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-040/week-015/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-040/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-040/week-015/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-040/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 32/62...
+2026-02-16 15:17:46.597 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-041/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-041/week-038/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-041/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-041/week-038/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-041/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 33/62...
+2026-02-16 15:17:55.824 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-042/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-042/week-082/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-042/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-042/week-082/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-042/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 34/62...
+2026-02-16 15:18:04.742 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-043/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-043/week-116/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-043/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-043/week-116/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-043/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 35/62...
+2026-02-16 15:18:13.865 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-045/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-045/week-028/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-045/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-045/week-028/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-045/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 36/62...
+2026-02-16 15:18:22.837 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-046/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-046/week-064/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-046/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-046/week-064/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-046/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 37/62...
+2026-02-16 15:18:31.918 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-048/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-048/week-049/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-048/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-048/week-049/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-048/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 38/62...
+2026-02-16 15:18:41.126 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-049/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-049/week-046/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-049/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-049/week-046/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-049/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 39/62...
+2026-02-16 15:18:50.527 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-050/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-050/week-061/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-050/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-050/week-061/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-050/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 40/62...
+2026-02-16 15:18:59.930 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-051/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-051/week-103/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-051/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-051/week-103/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-051/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 41/62...
+2026-02-16 15:19:09.076 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-052/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-052/week-168/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-052/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-052/week-168/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-052/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 42/62...
+2026-02-16 15:19:18.511 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-055/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-055/week-118/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-055/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-055/week-118/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-055/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 43/62...
+2026-02-16 15:19:27.355 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-059/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-059/week-136/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-059/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-059/week-136/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-059/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 44/62...
+2026-02-16 15:19:36.512 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-060/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-060/week-069/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-060/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-060/week-069/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-060/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 45/62...
+2026-02-16 15:19:45.569 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-061/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-061/week-046/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-061/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-061/week-046/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-061/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 46/62...
+2026-02-16 15:19:54.801 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-062/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-062/week-064/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-062/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-062/week-064/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-062/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 47/62...
+2026-02-16 15:20:04.346 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-064/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-064/week-062/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-064/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-064/week-062/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-064/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 48/62...
+2026-02-16 15:20:13.827 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-066/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-066/week-101/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-066/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-066/week-101/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-066/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 49/62...
+2026-02-16 15:20:23.203 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-068/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-068/week-047/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-068/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-068/week-047/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-068/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 50/62...
+2026-02-16 15:20:32.584 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-071/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-071/week-062/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-071/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-071/week-062/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-071/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 51/62...
+2026-02-16 15:20:42.054 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-072/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-072/week-120/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-072/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-072/week-120/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-072/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 52/62...
+2026-02-16 15:20:51.273 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-073/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-073/week-242/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-073/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-073/week-242/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-073/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 53/62...
+2026-02-16 15:21:00.298 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-075/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-075/week-044/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-075/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-075/week-044/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-075/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 54/62...
+2026-02-16 15:21:09.674 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-077/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-077/week-083/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-077/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-077/week-083/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-077/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 55/62...
+2026-02-16 15:21:18.810 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-078/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-078/week-041/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-078/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-078/week-041/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-078/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 56/62...
+2026-02-16 15:21:27.976 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-080/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-080/week-018/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-080/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-080/week-018/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-080/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 57/62...
+2026-02-16 15:21:37.459 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-086/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-086/week-169/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-086/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-086/week-169/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-086/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 58/62...
+2026-02-16 15:21:46.595 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-087/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-087/week-024/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-087/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-087/week-024/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-087/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 59/62...
+2026-02-16 15:21:55.780 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-089/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-089/week-064/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-089/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-089/week-064/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-089/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 60/62...
+/home/home/lucas/bin/miniconda3/envs/brainles/lib/python3.10/site-packages/sklearn/metrics/_ranking.py:1201: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  warnings.warn(
+/home/home/lucas/bin/miniconda3/envs/brainles/lib/python3.10/site-packages/sklearn/metrics/_ranking.py:1201: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  warnings.warn(
+/home/home/lucas/bin/miniconda3/envs/brainles/lib/python3.10/site-packages/sklearn/metrics/_ranking.py:1201: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  warnings.warn(
+2026-02-16 15:22:04.361 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-090/week-000-1. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-090/week-029/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-090/week-000-1/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-090/week-029/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-090/week-000-1/processed/tumor_segmentation/standard_plan.nii.gz
+Processing 61/62...
+2026-02-16 15:22:13.394 | INFO     | gbm_bench.evaluation.evaluate:evaluate_tumor_model:604 - Finished evaluation of /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-091/week-000. Saved results to /mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-091/week-043/processed/longitudinal/pinngbm_metrics.json.
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-091/week-000/processed/tumor_segmentation/tumor_seg.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-091/week-043/processed/longitudinal/recurrence_preop.nii.gz
+/mnt/Drive2/lucas/datasets/LUMIERE/Imaging/Patient-091/week-000/processed/tumor_segmentation/standard_plan.nii.gz
+Finished evaluation.
+Standard plan coverge: 75.69 ± 3.98
+Standard plan coverge (all): 56.68 ± 2.94
+Model plan coverge: 75.63 ± 4.05
+Model plan coverge (all): 60.62 ± 2.99

@@ -8,8 +8,8 @@ from gbm_bench.preprocessing.preprocess import preprocess_dicom, process_longitu
 
 if __name__ == "__main__":
     # Example:
-    # python scripts/preprocess_rhuh.py -cuda_device 0
-    # nohup python -u scripts/preprocess_rhuh.py -cuda_device 6 > tmp_rhuh_preproc.out 2>&1 &
+    # python scripts/preprocess_rhuh_postop.py -cuda_device 0
+    # nohup python -u scripts/preprocess_rhuh_postop.py -cuda_device 5 > tmp_rhuh_preproc_postop.out 2>&1 &
     parser = argparse.ArgumentParser()
     parser.add_argument("-cuda_device", type=str, default="0", help="GPU id to run on.")
     args = parser.parse_args()
@@ -23,11 +23,11 @@ if __name__ == "__main__":
     rhuh_gbm.load(RHUH_GBM_DIR)
 
     # Individual exams
-    for patient_ind, patient in enumerate(rhuh_gbm.patients[0:1]):
+    for patient_ind, patient in enumerate(rhuh_gbm.patients):
         print(f"Processing {patient_ind}/{len(rhuh_gbm.patients)}...")
 
         for exam in patient["exams"]:
-            if exam["timepoint"] != "preop":  # skip postop
+            if exam["timepoint"] != "postop":  # only postop
                 continue
 
             is_preop = (exam["timepoint"] == "preop")
@@ -42,7 +42,6 @@ if __name__ == "__main__":
                     pre_treatment=is_preop,
                     cuda_device=args.cuda_device,
                     )
-    """
 
     # Longitudinal registration
     for patient_ind, patient in enumerate(rhuh_gbm.patients):
@@ -53,7 +52,7 @@ if __name__ == "__main__":
         preop_exam_dir = preop_exam["t1"].parent
 
         # Loop through followup exams
-        followup_exams = rhuh_gbm.get_patient_exams(patient_id=patient_id, timepoint="followup")
+        followup_exams = rhuh_gbm.get_patient_exams(patient_id=patient_id, timepoint="postop") # changed from followup
         
         for followup_exam in followup_exams:
             followup_exam_dir = followup_exam["t1"].parent
@@ -65,4 +64,3 @@ if __name__ == "__main__":
                     )
     
     print(f"Finished processing.")
-    """

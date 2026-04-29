@@ -1,5 +1,6 @@
 import os
 import json
+import math
 import shutil
 import argparse
 import numpy as np
@@ -52,7 +53,8 @@ if __name__ == "__main__":
 
     print(f"Evaluating {args.algorithm}")
     all_results = []
-
+    pids = []
+    
     for d_id, d_dir, d_rootdir in zip(DATASET_IDS, DATASET_DIRS, ROOT_DIRS):
         print(f"Evaluating {d_id}...")
 
@@ -96,11 +98,12 @@ if __name__ == "__main__":
                 performance_dir = METRICS_SCHEMA.format(base_dir=followup_exam_dir, algo_id=args.algorithm)
                 performance_dict = json.load(open(performance_dir, "r"))
                 
-                if "roc_auc_model" in performance_dict.keys() and "roc_auc_standard_fade" in performance_dict.keys():
-                    all_results.append(performance_dict)
-                    dataset_results.append(performance_dict)
-                else:
-                    print(performance_dict.keys())
+                #if "specificity_model" in performance_dict.keys():
+                all_results.append(performance_dict)
+                dataset_results.append(performance_dict)
+                pids.append(patient_id)
+                #else:
+                #    print(performance_dict.keys())
             except Exception as e:
                 print(f"Exception for {patient_id}: {e}")
         
@@ -108,23 +111,38 @@ if __name__ == "__main__":
         cov_std_all = [r["recurrence_coverage_standard_all"] for r in dataset_results]
         cov_mod = [r["recurrence_coverage_model"] for r in dataset_results]
         cov_mod_all = [r["recurrence_coverage_model_all"] for r in dataset_results]
-        roc_auc_model = [r["roc_auc_model"] for r in dataset_results]
-        roc_auc_standard_fade = [r["roc_auc_standard_fade"] for r in dataset_results]
-        print(f"{d_id}: {stats.wilcoxon(cov_std, cov_mod, alternative='less')} / {stats.wilcoxon(cov_std_all, cov_mod_all, alternative='less')}")
-        print(f"{d_id} (model): {np.mean(roc_auc_model):.2f} \u00B1 {stats.sem(roc_auc_model):.2f}")
-        print(f"{d_id} (fade): {np.mean(roc_auc_standard_fade):.2f} \u00B1 {stats.sem(roc_auc_standard_fade):.2f}")
+        #roc_auc_model = [r["roc_auc_model"] for r in dataset_results]
+        #roc_auc_standard_fade = [r["roc_auc_standard_fade"] for r in dataset_results]
+        #print(f"{d_id}: {stats.wilcoxon(cov_std, cov_mod, alternative='less')} / {stats.wilcoxon(cov_std_all, cov_mod_all, alternative='less')}")
+        #print(f"{d_id} (model): {np.mean(roc_auc_model):.2f} \u00B1 {stats.sem(roc_auc_model):.2f}")
+        #print(f"{d_id} (fade): {np.mean(roc_auc_standard_fade):.2f} \u00B1 {stats.sem(roc_auc_standard_fade):.2f}")
 
     recurrence_coverage_standard = [r["recurrence_coverage_standard"] for r in all_results]
     recurrence_coverage_standard_all = [r["recurrence_coverage_standard_all"] for r in all_results]
     recurrence_coverage_model = [r["recurrence_coverage_model"] for r in all_results]
     recurrence_coverage_model_all = [r["recurrence_coverage_model_all"] for r in all_results]
-    roc_auc_model_all = [r["roc_auc_model"] for r in all_results]
-    roc_auc_standard_fade_all = [r["roc_auc_standard_fade"] for r in all_results]
-    missed_standard = [r["missed_voxels_standard"] / 1000 for r in all_results]
-    missed_standard_all = [r["missed_voxels_standard_all"] / 1000 for r in all_results]
-    missed_model = [r["missed_voxels_model"] / 1000 for r in all_results]
-    missed_model_all = [r["missed_voxels_model_all"] / 1000 for r in all_results]
-    missed_diff = [ms - mm for ms, mm in zip(missed_standard, missed_model)]
+    #roc_auc_model_all = [r["roc_auc_model"] for r in all_results]
+    #roc_auc_standard_fade_all = [r["roc_auc_standard_fade"] for r in all_results]
+    #missed_standard = [r["missed_voxels_standard"] / 1000 for r in all_results]
+    #missed_standard_all = [r["missed_voxels_standard_all"] / 1000 for r in all_results]
+    #missed_model = [r["missed_voxels_model"] / 1000 for r in all_results]
+    #missed_model_all = [r["missed_voxels_model_all"] / 1000 for r in all_results]
+    #missed_diff = [ms - mm for ms, mm in zip(missed_standard, missed_model)]
+
+    specificity_model = [r["specificity_model"] for r in all_results if "specificity_model" in r.keys() and not math.isnan(r["specificity_model"])]
+    sensitivity_model = [r["sensitivity_model"] for r in all_results if "sensitivity_model" in r.keys() and not math.isnan(r["sensitivity_model"])]
+    specificity_standard = [r["specificity_standard"] for r in all_results if "specificity_standard" in r.keys() and not math.isnan(r["specificity_standard"])]
+    sensitivity_standard = [r["sensitivity_standard"] for r in all_results if "sensitivity_standard" in r.keys() and not math.isnan(r["sensitivity_standard"])]
+
+    save_results = {}
+    for pi, rs, rsa, rm, rma in zip(pids, recurrence_coverage_standard, recurrence_coverage_standard_all, recurrence_coverage_model, recurrence_coverage_model_all):
+        save_results[pi] = {"cov_std": rs, "cov_std_all": rsa, "cov_sbtc": rm, "cov_sbtc_all": rma}
+
+    with open("coverages.json", "w") as f:
+        json.dump(save_results, f)
+
+    roc_auc_model = [r["roc_auc_model"] for r in all_results if "roc_auc_model" in r.keys() and not math.isnan(r["roc_auc_model"])]
+    roc_auc_standard_fade = [r["roc_auc_standard_fade"] for r in all_results if "roc_auc_standard_fade" in r.keys() and not math.isnan(r["roc_auc_standard_fade"])]
 
     print(f"Finished evaluation.")
     print(f"Standard plan coverge: {100*np.mean(recurrence_coverage_standard):.2f} \u00B1 {100*stats.sem(recurrence_coverage_standard):.2f}")
@@ -134,18 +152,24 @@ if __name__ == "__main__":
     #print(f"Combined: {stats.wilcoxon(recurrence_coverage_standard, recurrence_coverage_model, alternative='less')} / {stats.wilcoxon(recurrence_coverage_standard_all, recurrence_coverage_model_all, alternative='less')}")
     print(f"Combined: {stats.wilcoxon(recurrence_coverage_model, recurrence_coverage_standard, alternative='greater')} / {stats.wilcoxon(recurrence_coverage_standard_all, recurrence_coverage_model_all, alternative='less')}")
 
-    print(recurrence_coverage_standard)
-    print(recurrence_coverage_model)
-    
-    print(f"\n")
-    print(f"ROC AUC Model: {np.mean(roc_auc_model_all):.2f} \u00B1 {stats.sem(roc_auc_model_all):.2f}")
-    print(f"ROC AUC Std plan: {np.mean(roc_auc_standard_fade_all):.2f} \u00B1 {stats.sem(roc_auc_standard_fade_all):.2f}")
-    print(f"ROC AUC Wilcoxon: {stats.wilcoxon(roc_auc_standard_fade_all, roc_auc_model_all, alternative='less')}")
+    print(f"Specificity (model): {np.mean(specificity_model):.3f} \u00B1 {stats.sem(specificity_model):.3f}")
+    print(f"Sensitivity (model): {np.mean(sensitivity_model):.3f} \u00B1 {stats.sem(sensitivity_model):.3f}")
+    print(f"Specificity (standard): {np.mean(specificity_standard):.3f} \u00B1 {stats.sem(specificity_standard):.3f}")
+    print(f"Sensitivity (standard): {np.mean(sensitivity_standard):.3f} \u00B1 {stats.sem(sensitivity_standard):.3f}")
 
-    print(f"\n")
-    print(f"Standard plan missed: {np.mean(missed_standard):.2f} \u00B1 {stats.sem(missed_standard):.2f}")
-    print(f"Standard plan missed (all): {np.mean(missed_standard_all):.2f} \u00B1 {stats.sem(missed_standard_all):.2f}")
-    print(f"Model plan missed: {np.mean(missed_model):.2f} \u00B1 {stats.sem(missed_model):.2f}")
-    print(f"Model plan missed (all): {np.mean(missed_model_all):.2f} \u00B1 {stats.sem(missed_model_all):.2f}")
-    print(f"Difference: {np.mean(missed_diff):.2f} \u00B1 {stats.sem(missed_diff):.2f}")
-    print(f"Missed: {stats.wilcoxon(missed_model, missed_standard, alternative='less')} / {stats.wilcoxon(missed_model_all, missed_standard_all, alternative='less')}")
+    print(f"ROC AUC (model): {np.mean(roc_auc_model):.3f} \u00B1 {stats.sem(roc_auc_model):.3f}")
+    print(f"ROC AUC (standard): {np.mean(roc_auc_standard_fade):.3f} \u00B1 {stats.sem(roc_auc_standard_fade):.3f}")
+
+    
+    #print(f"\n")
+    #print(f"ROC AUC Model: {np.mean(roc_auc_model_all):.2f} \u00B1 {stats.sem(roc_auc_model_all):.2f}")
+    #print(f"ROC AUC Std plan: {np.mean(roc_auc_standard_fade_all):.2f} \u00B1 {stats.sem(roc_auc_standard_fade_all):.2f}")
+    #print(f"ROC AUC Wilcoxon: {stats.wilcoxon(roc_auc_standard_fade_all, roc_auc_model_all, alternative='less')}")
+
+    #print(f"\n")
+    #print(f"Standard plan missed: {np.mean(missed_standard):.2f} \u00B1 {stats.sem(missed_standard):.2f}")
+    #print(f"Standard plan missed (all): {np.mean(missed_standard_all):.2f} \u00B1 {stats.sem(missed_standard_all):.2f}")
+    #print(f"Model plan missed: {np.mean(missed_model):.2f} \u00B1 {stats.sem(missed_model):.2f}")
+    #print(f"Model plan missed (all): {np.mean(missed_model_all):.2f} \u00B1 {stats.sem(missed_model_all):.2f}")
+    #print(f"Difference: {np.mean(missed_diff):.2f} \u00B1 {stats.sem(missed_diff):.2f}")
+    #print(f"Missed: {stats.wilcoxon(missed_model, missed_standard, alternative='less')} / {stats.wilcoxon(missed_model_all, missed_standard_all, alternative='less')}")
